@@ -1,2 +1,0 @@
-# AD-D2.PANDUNK
-AD&amp;D2.PANDUNK

@@ -1,0 +1,3595 @@
+[D&D 2.Pandunk.html](https://github.com/user-attachments/files/22298772/D.D.2.Pandunk.html)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD&D 2.Pandunk</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #e5e5e5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .app-header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e5e5e5;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            height: fit-content;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .character-summary {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .character-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1a1a2e;
+        }
+
+        .category-selector {
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            color: #ffd700;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-grid {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .category-option {
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .category-option:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateX(4px);
+        }
+
+        .category-option.selected {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            position: relative;
+        }
+
+        .category-option.selected::before {
+            content: "✓";
+            position: absolute;
+            right: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .category-name {
+            font-weight: 600;
+            color: #ffd700;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .category-desc {
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            line-height: 1.3;
+        }
+
+        .main-content {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .tab-navigation {
+            display: flex;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            color: #b0b0b0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e5e5e5;
+        }
+
+        .tab-btn.active {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .tab-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ffd700;
+        }
+
+        .tab-content {
+            padding: 2rem;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #ffd700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input {
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #e5e5e5;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .abilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .ability-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ability-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .ability-name {
+            color: #ffd700;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+
+        .ability-score {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #e5e5e5;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .ability-modifier {
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+            min-width: 60px;
+        }
+
+        .modifier-positive {
+            background: rgba(0, 255, 127, 0.2);
+            color: #00ff7f;
+            border: 1px solid rgba(0, 255, 127, 0.3);
+        }
+
+        .modifier-negative {
+            background: rgba(255, 99, 71, 0.2);
+            color: #ff6347;
+            border: 1px solid rgba(255, 99, 71, 0.3);
+        }
+
+        .modifier-zero {
+            background: rgba(255, 255, 255, 0.1);
+            color: #b0b0b0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ability-input {
+            background: transparent;
+            border: none;
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            text-align: center;
+            width: 100%;
+            outline: none;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dice-roller {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .dice-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .dice-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #ffd700;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            color: #ffd700;
+            transform: translateX(400px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            white-space: pre-line;
+            max-width: 400px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .con-bonus-info {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .con-bonus-info h4 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .con-bonus-info p {
+            color: #e5e5e5;
+            margin: 0.25rem 0;
+        }
+
+        .spells-list {
+            display: grid;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .spell-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid #ffd700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .spell-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(4px);
+        }
+
+        .spell-name {
+            color: #ffd700;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .spell-level {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e5e5e5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .spell-school {
+            display: inline-block;
+            background: rgba(0, 150, 255, 0.2);
+            color: #87ceeb;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .spell-description {
+            color: #b0b0b0;
+            margin-top: 0.5rem;
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+
+        .spell-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .spell-slot {
+            aspect-ratio: 1;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .spell-slot.used {
+            background: rgba(255, 99, 71, 0.2);
+            border-color: #ff6347;
+            color: #ff6347;
+        }
+
+        .spell-slot.available {
+            background: rgba(0, 255, 127, 0.2);
+            border-color: #00ff7f;
+            color: #00ff7f;
+        }
+
+        .spell-slot:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .spell-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .spell-modal-content {
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .spell-modal .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Equipment specific styles */
+        .equipment-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .equipment-section h3 {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .equipment-slot {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .equipment-slot.occupied {
+            border-style: solid;
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .equipment-slot:hover {
+            border-color: rgba(255, 215, 0, 0.5);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .slot-label {
+            font-size: 0.8rem;
+            color: #b0b0b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .slot-item {
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .slot-empty {
+            color: #666;
+            font-style: italic;
+        }
+
+        .weapon-slot {
+            background: rgba(220, 20, 60, 0.1);
+            border-color: rgba(220, 20, 60, 0.3);
+        }
+
+        .weapon-slot.occupied {
+            border-color: #dc143c;
+            background: rgba(220, 20, 60, 0.2);
+        }
+
+        .weapon-slot .slot-item {
+            color: #ff6b6b;
+        }
+
+        .armor-stats {
+            background: rgba(0, 100, 200, 0.1);
+            border: 1px solid rgba(0, 100, 200, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .armor-stats h4 {
+            color: #4da6ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            color: #e5e5e5;
+        }
+
+        .stat-item .label {
+            color: #b0b0b0;
+        }
+
+        .stat-item .value {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .quick-equip-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-equip-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: #e5e5e5;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .quick-equip-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+
+            .equipment-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .spell-modal-content {
+                margin: 1rem;
+                max-width: calc(100% - 2rem);
+            }
+
+            .equipment-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .quick-equip-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo">
+                🎲 AD&D 2.Pandunk
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="rollAbilities()">🎲 Roll Stats</button>
+                <button class="btn btn-secondary" onclick="rollHitPoints()">❤️ Roll HP</button>
+                <button class="btn btn-secondary" onclick="saveCharacter()">💾 Guardar</button>
+                <button class="btn btn-primary" onclick="exportCharacter()">📤 Exportar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Character Summary -->
+            <div class="character-summary">
+                <div class="character-avatar" id="characterAvatar">👤</div>
+                <h3 id="characterNameDisplay">Nuevo Personaje</h3>
+                <p id="characterClassDisplay">Selecciona una clase</p>
+                <p>Nivel <span id="characterLevelDisplay">1</span></p>
+            </div>
+
+           <div class="category-selector">
+    <h4 class="category-title" style="text-align: center;">🛡️ Categoría Principal</h4>
+    <div class="custom-dropdown-container">
+        <div class="dropdown-header category-option" id="primary-dropdown-header">
+            <h5 class="category-name" id="primary-selected-name" style="color: #b0b0b0; font-style: italic; text-align: center; margin: 0;">Selecciona una clase</h5>
+            <span class="category-desc" id="primary-selected-desc"></span>
+        </div>
+        
+        <div class="dropdown-options" id="primary-dropdown-options">
+            <div class="option" data-category="luchador" data-class="Bárbaro">Bárbaro</div>
+            <div class="option" data-category="luchador" data-class="Ranger">Ranger</div>
+            <div class="option" data-category="luchador" data-class="Guerrero">Guerrero</div>
+            <div class="option" data-category="luchador" data-class="Paladín">Paladín</div>
+            <div class="option" data-category="luchador" data-class="Samurái">Samurái</div>
+            <div class="option" data-category="sacerdote" data-class="Clérigo">Clérigo</div>
+            <div class="option" data-category="sacerdote" data-class="Druida">Druida</div>
+            <div class="option" data-category="sacerdote" data-class="Chamán">Chamán</div>
+            <div class="option" data-category="hechicero" data-class="Mago">Mago</div>
+            <div class="option" data-category="hechicero" data-class="Hechicero">Hechicero</div>
+            <div class="option" data-category="hechicero" data-class="Bruja">Bruja</div>
+            <div class="option" data-category="hechicero" data-class="Artífice">Artífice</div>
+            <div class="option" data-category="bribon" data-class="Ladrón">Ladrón</div>
+            <div class="option" data-category="bribon" data-class="Bardo">Bardo</div>
+            <div class="option" data-category="bribon" data-class="Ninja">Ninja</div>
+            <div class="option" data-category="bribon" data-class="Psiónico">Psiónico</div>
+            <div class="option" data-category="bribon" data-class="Pistolero">Pistolero</div>
+        </div>
+    </div>
+</div>
+
+<div class="category-selector">
+    <h4 class="category-title" style="text-align: center;">⚔️ Categoría Secundaria</h4>
+    <div class="custom-dropdown-container">
+        <div class="dropdown-header category-option disabled" id="secondary-dropdown-header">
+            <h5 class="category-name" id="secondary-selected-name" style="color: #b0b0b0; font-style: italic; text-align: center; margin: 0;">Selecciona primero una categoría principal</h5>
+            <span class="category-desc" id="secondary-selected-desc"></span>
+        </div>
+        <div class="dropdown-options" id="secondary-dropdown-options">
+            </div>
+    </div>
+</div>
+
+<div class="category-selector">
+    <h4 class="category-title" style="text-align: center;">✨ Categoría Terciaria</h4>
+    <div class="custom-dropdown-container">
+        <div class="dropdown-header category-option disabled" id="tertiary-dropdown-header">
+            <h5 class="category-name" id="tertiary-selected-name" style="color: #b0b0b0; font-style: italic; text-align: center; margin: 0;">Selecciona primero una categoría secundaria</h5>
+            <span class="category-desc" id="tertiary-selected-desc"></span>
+        </div>
+        <div class="dropdown-options" id="tertiary-dropdown-options">
+            </div>
+    </div>
+</div>
+
+<style>
+/* Estilos para el nuevo menú desplegable personalizado */
+.custom-dropdown-container {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-header {
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    padding: 0.5rem 1.5rem;
+}
+
+.dropdown-header:hover {
+    background-color: #3b4252;
+}
+
+.dropdown-header.disabled {
+    cursor: not-allowed;
+    background-color: #2b303b;
+    opacity: 0.5;
+}
+
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #2b303b;
+    border: 1px solid #4a5464;
+    border-top: none;
+    z-index: 5;
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.dropdown-options.show {
+    max-height: 500px;
+}
+
+.option {
+    padding: 0.4rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid #2b303b;
+    text-align: center;
+}
+
+.option:hover {
+    background-color: #4a5464;
+}
+</style>
+
+<script>
+    // Mapeo de categorías y clases principales
+    const categories = {
+        primary: [
+            { id: 'luchador', name: 'Luchador', classes: ['Bárbaro', 'Ranger', 'Guerrero', 'Paladín', 'Samurái'] },
+            { id: 'sacerdote', name: 'Sacerdote', classes: ['Clérigo', 'Druida', 'Chamán'] },
+            { id: 'hechicero', name: 'Hechicero', classes: ['Mago', 'Hechicero', 'Bruja', 'Artífice'] },
+            { id: 'bribon', name: 'Bribón', classes: ['Ladrón', 'Bardo', 'Ninja', 'Psiónico', 'Pistolero'] }
+        ]
+    };
+
+    function setupDropdown(headerId, optionsId, selectedNameId, onSelectionCallback) {
+        const header = document.getElementById(headerId);
+        const options = document.getElementById(optionsId);
+        const selectedName = document.getElementById(selectedNameId);
+
+        if (!header || !options || !selectedName) return;
+
+        header.addEventListener('click', () => {
+            if (!header.classList.contains('disabled')) {
+                options.classList.toggle('show');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!header.contains(e.target) && !options.contains(e.target)) {
+                options.classList.remove('show');
+            }
+        });
+
+        options.addEventListener('click', (e) => {
+            const target = e.target.closest('.option');
+            if (target) {
+                const selectedClass = target.getAttribute('data-class');
+                const categoryId = target.getAttribute('data-category');
+
+                if (selectedClass === 'Ninguno') {
+                    selectedName.textContent = 'Selecciona una clase';
+                    selectedName.style.color = '#b0b0b0';
+                    selectedName.style.fontStyle = 'italic';
+                } else {
+                    selectedName.textContent = selectedClass;
+                    selectedName.style.color = 'inherit';
+                    selectedName.style.fontStyle = 'normal';
+                }
+
+                options.classList.remove('show');
+                
+                if (onSelectionCallback) {
+                    onSelectionCallback(categoryId);
+                }
+            }
+        });
+    }
+
+    function populateDropdown(optionsContainerId, classList) {
+        const container = document.getElementById(optionsContainerId);
+        container.innerHTML = '';
+
+        const emptyOption = document.createElement('div');
+        emptyOption.className = 'option';
+        emptyOption.setAttribute('data-category', '');
+        emptyOption.setAttribute('data-class', 'Ninguno');
+        emptyOption.textContent = 'Ninguno';
+        container.appendChild(emptyOption);
+
+        classList.forEach(cls => {
+            const optionDiv = document.createElement('div');
+            optionDiv.className = 'option';
+            optionDiv.setAttribute('data-category', cls.categoryId);
+            optionDiv.setAttribute('data-class', cls.name);
+            optionDiv.textContent = cls.name;
+            container.appendChild(optionDiv);
+        });
+    }
+
+    function handlePrimarySelection(categoryId) {
+        // Habilita el menú secundario
+        const secondaryHeader = document.getElementById('secondary-dropdown-header');
+        const secondarySelectedName = document.getElementById('secondary-selected-name');
+        
+        secondaryHeader.classList.remove('disabled');
+        secondarySelectedName.textContent = 'Selecciona una clase';
+        secondarySelectedName.style.color = '#b0b0b0';
+        secondarySelectedName.style.fontStyle = 'italic';
+        
+        const secondaryClasses = categories.primary.flatMap(cat => 
+            cat.classes.map(cls => ({ name: cls, categoryId: cat.id }))
+        );
+        populateDropdown('secondary-dropdown-options', secondaryClasses);
+        
+        // Deshabilita el menú terciario
+        const tertiaryHeader = document.getElementById('tertiary-dropdown-header');
+        const tertiarySelectedName = document.getElementById('tertiary-selected-name');
+        tertiaryHeader.classList.add('disabled');
+        tertiarySelectedName.textContent = 'Selecciona primero una categoría secundaria';
+        tertiarySelectedName.style.color = '#b0b0b0';
+        tertiarySelectedName.style.fontStyle = 'italic';
+        document.getElementById('tertiary-dropdown-options').innerHTML = '';
+        
+        // Mantén tu función original
+        selectPrimaryCategory(categoryId);
+    }
+    
+    function handleSecondarySelection(categoryId) {
+        // Habilita el menú terciario
+        const tertiaryHeader = document.getElementById('tertiary-dropdown-header');
+        const tertiarySelectedName = document.getElementById('tertiary-selected-name');
+        
+        tertiaryHeader.classList.remove('disabled');
+        tertiarySelectedName.textContent = 'Selecciona una clase';
+        tertiarySelectedName.style.color = '#b0b0b0';
+        tertiarySelectedName.style.fontStyle = 'italic';
+        
+        const tertiaryClasses = categories.primary.flatMap(cat => 
+            cat.classes.map(cls => ({ name: cls, categoryId: cat.id }))
+        );
+        populateDropdown('tertiary-dropdown-options', tertiaryClasses);
+        
+        // Mantén tu función original
+        selectSecondaryCategory(categoryId);
+    }
+    
+    // Configurar cada menú
+    setupDropdown('primary-dropdown-header', 'primary-dropdown-options', 'primary-selected-name', handlePrimarySelection);
+    setupDropdown('secondary-dropdown-header', 'secondary-dropdown-options', 'secondary-selected-name', handleSecondarySelection);
+    setupDropdown('tertiary-dropdown-header', 'tertiary-dropdown-options', 'tertiary-selected-name');
+
+    // Mantenemos la función original para la lógica de tu aplicación
+    function selectPrimaryCategory(category) {
+        console.log("Activando lógica para la categoría principal: " + category);
+        // Aquí puedes agregar tu lógica para actualizar los campos
+        // como `gaco`, `salvamentos` y `habilidades`.
+    }
+    
+    function selectSecondaryCategory(category) {
+        console.log("Activando lógica para la categoría secundaria: " + category);
+    }
+</script>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Tab Navigation -->
+            <nav class="tab-navigation">
+                <button class="tab-btn" onclick="showTab('basic', this)">📋 Básico</button>
+                <button class="tab-btn" onclick="showTab('abilities', this)">💪 Habilidades</button>
+                <button class="tab-btn" onclick="showTab('combat', this)">⚔️ Combate</button>
+                <button class="tab-btn" onclick="showTab('skills', this)">🎯 Pericias</button>
+                <button class="tab-btn" onclick="showTab('spells', this)">✨ Conjuros</button>
+                <button class="tab-btn active" onclick="showTab('equipment', this)">🎒 Equipo</button>
+            </nav>
+
+            <!-- Basic Info Tab -->
+            <div id="basic-tab" class="tab-content">
+                <h2 style="color: #ffd700; margin-bottom: 2rem;">📋 Información Básica</h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Nombre del Personaje</label>
+                        <input type="text" class="form-input" id="characterName" placeholder="Ej: Nombre del Personaje" onchange="updateCharacterDisplay()">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Jugador</label>
+                        <input type="text" class="form-input" id="playerName" placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Raza</label>
+                        <select class="form-input" id="race" onchange="updateCharacterDisplay()">
+                            <option value="">Selecciona Raza</option>
+                            <option value="humano">Humano</option>
+                            <option value="elfo">Elfo</option>
+                            <option value="enano">Enano</option>
+                            <option value="mediano">Mediano</option>
+                            <option value="orco">Orco</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Alineamiento</label>
+                        <select class="form-input" id="alignment">
+                            <option value="LB">Legal Bueno</option>
+                            <option value="NB">Neutral Bueno</option>
+                            <option value="CB">Caótico Bueno</option>
+                            <option value="LN">Legal Neutral</option>
+                            <option value="N" selected>Neutral Auténtico</option>
+                            <option value="CN">Caótico Neutral</option>
+                            <option value="LM">Legal Malvado</option>
+                            <option value="NM">Neutral Malvado</option>
+                            <option value="CM">Caótico Malvado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+    <label class="form-label">Altura (cm)</label>
+    <input type="number" class="form-input" id="characterHeight" min="1" max="3000" placeholder="Ej: 175" onchange="updateCharacterSize()">
+</div>
+
+<div class="form-group">
+    <label class="form-label">Tamaño</label>
+    <input type="text" class="form-input" id="characterSize" value="Mediano" readonly>
+</div>
+
+<div class="form-group">
+    <label class="form-label">Religión</label>
+    <select class="form-input" id="religion">
+        <option value="">Sin religión</option>
+        <option value="ao">Ao (El Oculto)</option>
+        <option value="lathander">Lathander</option>
+        <option value="gond">Gond</option>
+        <option value="tyr">Tyr</option>
+        <option value="helm">Helm</option>
+        <option value="tempus">Tempus</option>
+        <option value="mystra">Mystra</option>
+        <option value="selune">Selûne</option>
+        <option value="shar">Shar</option>
+        <option value="cyric">Cyric</option>
+        <option value="bane">Bane</option>
+        <option value="bhaal">Bhaal</option>
+        <option value="myrkul">Myrkul</option>
+        <option value="kelemvor">Kelemvor</option>
+        <option value="otro">Otro</option>
+    </select>
+</div>
+
+
+                    
+                    <div class="form-group">
+                        <label class="form-label">Experiencia</label>
+                        <input type="number" class="form-input" id="experience" value="0" onchange="updateFromXP()">
+                    </div>
+                </div>
+
+                <!-- Quick Stats Display -->
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalHP">10</div>
+                        <div class="stat-label">Puntos de Golpe</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="armorClass">10</div>
+                        <div class="stat-label">Clase de Armadura</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="gaco">20</div>
+                        <div class="stat-label">GACO</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="initiative">+0</div>
+                        <div class="stat-label">Iniciativa</div>
+                    </div>
+                </div>
+            </div>
+
+... <!-- Abilities Tab --> 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD&D 2nd Edition - Características</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0c1421 0%, #1e2a3a 100%);
+            color: #e5e5e5;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Estilos para la cuadrícula de habilidades */
+        .abilities-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
+
+        .ability-card {
+            background-color: #2b303b;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .ability-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .ability-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-align: left;
+            width: 100%;
+        }
+
+        .ability-main-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .ability-input {
+            width: 80px;
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: #e5e5e5;
+            appearance: none;
+            border-bottom: 2px solid #4a5464;
+            padding-bottom: 5px;
+            flex-shrink: 0;
+        }
+
+        .ability-input:focus {
+            outline: none;
+            border-bottom-color: #ffd700;
+        }
+
+        .ability-input::-webkit-outer-spin-button,
+        .ability-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .ability-details-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 0.8rem;
+            width: 100%;
+            min-height: 40px;
+        }
+
+        .ability-detail-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2rem;
+            text-align: center;
+            padding: 0.5rem 0.8rem;
+            background-color: #16213e;
+            border: 1px solid #4a5464;
+            border-radius: 8px;
+            min-width: 80px;
+        }
+
+        .detail-name {
+            font-size: 0.8rem;
+            color: #b0b0b0;
+            white-space: nowrap;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #e5e5e5;
+            white-space: nowrap;
+        }
+
+        .detail-value.positive {
+            color: #4CAF50;
+        }
+
+        .detail-value.negative {
+            color: #f44336;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .debug-info {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="abilities-tab" class="tab-content">
+            <h2 style="color: #ffd700; margin-bottom: 2rem;">💪 Características</h2>
+            
+            <!-- Debug info para verificar que los datos se cargan -->
+            <div class="debug-info" id="debug-info">
+                Status: Cargando datos...
+            </div>
+            
+            <div class="abilities-grid">
+                <div class="ability-card">
+                    <div class="ability-name">Fuerza</div>
+                    <div class="ability-main-row">
+                        <input type="number" class="ability-input" id="strength" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
+                        <div class="ability-details-row">
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Golpe</span>
+                                <span class="detail-value" id="str-hit-prob">+0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Daño</span>
+                                <span class="detail-value" id="str-damage-adj">+0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Peso</span>
+                                <span class="detail-value" id="str-weight-cap">0kg</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Esf. Máx.</span>
+                                <span class="detail-value" id="str-max-effort">0kg</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Puertas</span>
+                                <span class="detail-value" id="str-open-doors">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Barras</span>
+                                <span class="detail-value" id="str-bend-bar">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ability-card">
+                    <div class="ability-name">Destreza</div>
+                    <div class="ability-main-row">
+                        <input type="number" class="ability-input" id="dexterity" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
+                        <div class="ability-details-row">
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Ajuste Reacción</span>
+                                <span class="detail-value" id="dex-reaction">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Atq. Proyectiles</span>
+                                <span class="detail-value" id="dex-missile">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Def. CA</span>
+                                <span class="detail-value" id="dex-defensive">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ability-card">
+                    <div class="ability-name">Constitución</div>
+                    <div class="ability-main-row">
+                        <input type="number" class="ability-input" id="constitution" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
+                        <div class="ability-details-row">
+                            <div class="ability-detail-box">
+                                <span class="detail-name">HP/Nivel</span>
+                                <span class="detail-value" id="con-hp-bonus">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Shock Sistema</span>
+                                <span class="detail-value" id="con-shock-survival">0%</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Superv. Revivir</span>
+                                <span class="detail-value" id="con-resurrection">0%</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Prot. Veneno</span>
+                                <span class="detail-value" id="con-poison">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Regeneración</span>
+                                <span class="detail-value" id="con-regeneration">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ability-card">
+                    <div class="ability-name">Inteligencia</div>
+                    <div class="ability-main-row">
+                        <input type="number" class="ability-input" id="intelligence" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
+                        <div class="ability-details-row">
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Idiomas</span>
+                                <span class="detail-value" id="int-languages">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Niv. Conjuros</span>
+                                <span class="detail-value" id="int-spell-level">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Oport. Conjuros</span>
+                                <span class="detail-value" id="int-spell-chance">0%</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Max Conjuros</span>
+                                <span class="detail-value" id="int-max-spells">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Inmunidad</span>
+                                <span class="detail-value" id="int-immunity">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ability-card">
+                    <div class="ability-name">Sabiduría</div>
+                    <div class="ability-main-row">
+                        <input type="number" class="ability-input" id="wisdom" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
+                        <div class="ability-details-row">
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Def. Mágica</span>
+                                <span class="detail-value" id="wis-magic-defense">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Bonif. Conjuros</span>
+                                <span class="detail-value" id="wis-spell-bonus">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Fracaso Conjuro</span>
+                                <span class="detail-value" id="wis-spell-failure">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ability-card">
+                    <div class="ability-name">Carisma</div>
+                    <div class="ability-main-row">
+                        <input type="number" class="ability-input" id="charisma" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
+                        <div class="ability-details-row">
+                            <div class="ability-detail-box">
+                                <span class="detail-name">N° Servidores</span>
+                                <span class="detail-value" id="cha-max-servers">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Lealtad Base</span>
+                                <span class="detail-value" id="cha-base-loyalty">0</span>
+                            </div>
+                            <div class="ability-detail-box">
+                                <span class="detail-name">Ajuste Reacción</span>
+                                <span class="detail-value" id="cha-reaction-adj">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Envolvemos todo en un namespace global para evitar conflictos
+        window.AbilityCalculator = (function() {
+            
+            // Datos de habilidades (mismo JSON que tienes)
+            const abilityData = {
+            "fuerza": [
+                {"Punt. Habilidad": "1", "Probab. de Golpe": "-5", "Ajuste de daño": "-4", "Peso Kg autorizado": "0,5", "Esfuerzo máximo Kg": "1,5", "Abrir Puertas": "1", "Doblar Barras": "0%"},
+                {"Punt. Habilidad": "2", "Probab. de Golpe": "-3", "Ajuste de daño": "-2", "Peso Kg autorizado": "0,5", "Esfuerzo máximo Kg": "2,5", "Abrir Puertas": "1", "Doblar Barras": "0%"},
+                {"Punt. Habilidad": "3", "Probab. de Golpe": "-3", "Ajuste de daño": "-1", "Peso Kg autorizado": "2,5", "Esfuerzo máximo Kg": "5", "Abrir Puertas": "2", "Doblar Barras": "0%"},
+                {"Punt. Habilidad": "4", "Probab. de Golpe": "-2", "Ajuste de daño": "-1", "Peso Kg autorizado": "5", "Esfuerzo máximo Kg": "23", "Abrir Puertas": "3", "Doblar Barras": "0%"},
+                {"Punt. Habilidad": "5", "Probab. de Golpe": "-2", "Ajuste de daño": "-1", "Peso Kg autorizado": "5", "Esfuerzo máximo Kg": "23", "Abrir Puertas": "3", "Doblar Barras": "0%"},
+                {"Punt. Habilidad": "6", "Probab. de Golpe": "-1", "Ajuste de daño": "0", "Peso Kg autorizado": "10", "Esfuerzo máximo Kg": "28", "Abrir Puertas": "4", "Doblar Barras": "0%"},
+                {"Punt. Habilidad": "7", "Probab. de Golpe": "-1", "Ajuste de daño": "0", "Peso Kg autorizado": "10", "Esfuerzo máximo Kg": "28", "Abrir Puertas": "4", "Doblar Barras": "0%"},
+                {"Punt. Habilidad": "8", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "18", "Esfuerzo máximo Kg": "45", "Abrir Puertas": "5", "Doblar Barras": "1%"},
+                {"Punt. Habilidad": "9", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "18", "Esfuerzo máximo Kg": "45", "Abrir Puertas": "5", "Doblar Barras": "1%"},
+                {"Punt. Habilidad": "10", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "20", "Esfuerzo máximo Kg": "58", "Abrir Puertas": "6", "Doblar Barras": "2%"},
+                {"Punt. Habilidad": "11", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "20", "Esfuerzo máximo Kg": "58", "Abrir Puertas": "6", "Doblar Barras": "2%"},
+                {"Punt. Habilidad": "12", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "23", "Esfuerzo máximo Kg": "70", "Abrir Puertas": "7", "Doblar Barras": "4%"},
+                {"Punt. Habilidad": "13", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "23", "Esfuerzo máximo Kg": "70", "Abrir Puertas": "7", "Doblar Barras": "4%"},
+                {"Punt. Habilidad": "14", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "28", "Esfuerzo máximo Kg": "85", "Abrir Puertas": "8", "Doblar Barras": "7%"},
+                {"Punt. Habilidad": "15", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "28", "Esfuerzo máximo Kg": "85", "Abrir Puertas": "8", "Doblar Barras": "7%"},
+                {"Punt. Habilidad": "16", "Probab. de Golpe": "0", "Ajuste de daño": "1", "Peso Kg autorizado": "35", "Esfuerzo máximo Kg": "98", "Abrir Puertas": "9", "Doblar Barras": "10%"},
+                {"Punt. Habilidad": "17", "Probab. de Golpe": "1", "Ajuste de daño": "1", "Peso Kg autorizado": "43", "Esfuerzo máximo Kg": "110", "Abrir Puertas": "10", "Doblar Barras": "13%"},
+                {"Punt. Habilidad": "18", "Probab. de Golpe": "1", "Ajuste de daño": "2", "Peso Kg autorizado": "55", "Esfuerzo máximo Kg": "130", "Abrir Puertas": "11", "Doblar Barras": "16%"},
+                {"Punt. Habilidad": "18/00 ", "Probab. de Golpe": "3", "Ajuste de daño": "6", "Peso Kg autorizado": "170", "Esfuerzo máximo Kg": "240", "Abrir Puertas": "16(6)", "Doblar Barras": "40%"},
+                {"Punt. Habilidad": "19", "Probab. de Golpe": "3", "Ajuste de daño": "7", "Peso Kg autorizado": "245", "Esfuerzo máximo Kg": "320", "Abrir Puertas": "16(8)", "Doblar Barras": "50%"},
+                {"Punt. Habilidad": "20", "Probab. de Golpe": "3", "Ajuste de daño": "8", "Peso Kg autorizado": "270", "Esfuerzo máximo Kg": "350", "Abrir Puertas": "17(10)", "Doblar Barras": "60%"},
+                {"Punt. Habilidad": "21", "Probab. de Golpe": "4", "Ajuste de daño": "9", "Peso Kg autorizado": "320", "Esfuerzo máximo Kg": "405", "Abrir Puertas": "17(12)", "Doblar Barras": "70%"},
+                {"Punt. Habilidad": "22", "Probab. de Golpe": "4", "Ajuste de daño": "10", "Peso Kg autorizado": "395", "Esfuerzo máximo Kg": "485", "Abrir Puertas": "18(14)", "Doblar Barras": "80%"},
+                {"Punt. Habilidad": "23", "Probab. de Golpe": "5", "Ajuste de daño": "11", "Peso Kg autorizado": "470", "Esfuerzo máximo Kg": "565", "Abrir Puertas": "18(16)", "Doblar Barras": "90%"},
+                {"Punt. Habilidad": "24", "Probab. de Golpe": "6", "Ajuste de daño": "12", "Peso Kg autorizado": "620", "Esfuerzo máximo Kg": "720", "Abrir Puertas": "19(17)", "Doblar Barras": "95%"},
+                {"Punt. Habilidad": "25", "Probab. de Golpe": "7", "Ajuste de daño": "14", "Peso Kg autorizado": "770", "Esfuerzo máximo Kg": "875", "Abrir Puertas": "19(18)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "26", "Probab. de Golpe": "8", "Ajuste de daño": "16", "Peso Kg autorizado": "920", "Esfuerzo máximo Kg": "1030", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "27", "Probab. de Golpe": "9", "Ajuste de daño": "18", "Peso Kg autorizado": "1070", "Esfuerzo máximo Kg": "1185", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "28", "Probab. de Golpe": "10", "Ajuste de daño": "20", "Peso Kg autorizado": "1220", "Esfuerzo máximo Kg": "1340", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "29", "Probab. de Golpe": "11", "Ajuste de daño": "22", "Peso Kg autorizado": "1370", "Esfuerzo máximo Kg": "1495", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "30", "Probab. de Golpe": "12", "Ajuste de daño": "24", "Peso Kg autorizado": "1520", "Esfuerzo máximo Kg": "1650", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "31", "Probab. de Golpe": "13", "Ajuste de daño": "26", "Peso Kg autorizado": "1670", "Esfuerzo máximo Kg": "1805", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "32", "Probab. de Golpe": "14", "Ajuste de daño": "28", "Peso Kg autorizado": "1820", "Esfuerzo máximo Kg": "1960", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "33", "Probab. de Golpe": "15", "Ajuste de daño": "30", "Peso Kg autorizado": "1970", "Esfuerzo máximo Kg": "2115", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "34", "Probab. de Golpe": "16", "Ajuste de daño": "32", "Peso Kg autorizado": "2120", "Esfuerzo máximo Kg": "2270", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "35", "Probab. de Golpe": "17", "Ajuste de daño": "34", "Peso Kg autorizado": "2270", "Esfuerzo máximo Kg": "2425", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "36", "Probab. de Golpe": "18", "Ajuste de daño": "36", "Peso Kg autorizado": "2420", "Esfuerzo máximo Kg": "2580", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "37", "Probab. de Golpe": "19", "Ajuste de daño": "38", "Peso Kg autorizado": "2570", "Esfuerzo máximo Kg": "2735", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "38", "Probab. de Golpe": "20", "Ajuste de daño": "40", "Peso Kg autorizado": "2720", "Esfuerzo máximo Kg": "2890", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "39", "Probab. de Golpe": "21", "Ajuste de daño": "42", "Peso Kg autorizado": "2870", "Esfuerzo máximo Kg": "3045", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "40", "Probab. de Golpe": "22", "Ajuste de daño": "44", "Peso Kg autorizado": "3020", "Esfuerzo máximo Kg": "3200", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "41", "Probab. de Golpe": "23", "Ajuste de daño": "46", "Peso Kg autorizado": "3170", "Esfuerzo máximo Kg": "3355", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "42", "Probab. de Golpe": "24", "Ajuste de daño": "48", "Peso Kg autorizado": "3320", "Esfuerzo máximo Kg": "3510", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "43", "Probab. de Golpe": "25", "Ajuste de daño": "50", "Peso Kg autorizado": "3470", "Esfuerzo máximo Kg": "3665", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "44", "Probab. de Golpe": "26", "Ajuste de daño": "52", "Peso Kg autorizado": "3620", "Esfuerzo máximo Kg": "3820", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "45", "Probab. de Golpe": "27", "Ajuste de daño": "54", "Peso Kg autorizado": "3770", "Esfuerzo máximo Kg": "3975", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "46", "Probab. de Golpe": "28", "Ajuste de daño": "56", "Peso Kg autorizado": "3920", "Esfuerzo máximo Kg": "4130", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "47", "Probab. de Golpe": "29", "Ajuste de daño": "58", "Peso Kg autorizado": "4070", "Esfuerzo máximo Kg": "4285", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "48", "Probab. de Golpe": "30", "Ajuste de daño": "60", "Peso Kg autorizado": "4220", "Esfuerzo máximo Kg": "4440", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "49", "Probab. de Golpe": "31", "Ajuste de daño": "62", "Peso Kg autorizado": "4370", "Esfuerzo máximo Kg": "4595", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "50", "Probab. de Golpe": "32", "Ajuste de daño": "64", "Peso Kg autorizado": "4520", "Esfuerzo máximo Kg": "4750", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "51", "Probab. de Golpe": "33", "Ajuste de daño": "66", "Peso Kg autorizado": "4670", "Esfuerzo máximo Kg": "4905", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "52", "Probab. de Golpe": "34", "Ajuste de daño": "68", "Peso Kg autorizado": "4820", "Esfuerzo máximo Kg": "5060", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "53", "Probab. de Golpe": "35", "Ajuste de daño": "70", "Peso Kg autorizado": "4970", "Esfuerzo máximo Kg": "5215", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "54", "Probab. de Golpe": "36", "Ajuste de daño": "72", "Peso Kg autorizado": "5120", "Esfuerzo máximo Kg": "5370", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "55", "Probab. de Golpe": "37", "Ajuste de daño": "74", "Peso Kg autorizado": "5270", "Esfuerzo máximo Kg": "5525", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "56", "Probab. de Golpe": "38", "Ajuste de daño": "76", "Peso Kg autorizado": "5420", "Esfuerzo máximo Kg": "5680", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "57", "Probab. de Golpe": "39", "Ajuste de daño": "78", "Peso Kg autorizado": "5570", "Esfuerzo máximo Kg": "5835", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "58", "Probab. de Golpe": "40", "Ajuste de daño": "80", "Peso Kg autorizado": "5720", "Esfuerzo máximo Kg": "5990", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "59", "Probab. de Golpe": "41", "Ajuste de daño": "82", "Peso Kg autorizado": "5870", "Esfuerzo máximo Kg": "6145", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "60", "Probab. de Golpe": "42", "Ajuste de daño": "84", "Peso Kg autorizado": "6020", "Esfuerzo máximo Kg": "6300", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "61", "Probab. de Golpe": "43", "Ajuste de daño": "86", "Peso Kg autorizado": "6170", "Esfuerzo máximo Kg": "6455", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "62", "Probab. de Golpe": "44", "Ajuste de daño": "88", "Peso Kg autorizado": "6320", "Esfuerzo máximo Kg": "6610", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "63", "Probab. de Golpe": "45", "Ajuste de daño": "90", "Peso Kg autorizado": "6470", "Esfuerzo máximo Kg": "6765", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "64", "Probab. de Golpe": "46", "Ajuste de daño": "92", "Peso Kg autorizado": "6620", "Esfuerzo máximo Kg": "6920", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+                {"Punt. Habilidad": "65", "Probab. de Golpe": "47", "Ajuste de daño": "94", "Peso Kg autorizado": "6770", "Esfuerzo máximo Kg": "7075", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
+            ],
+            "destreza": [
+                {"Puntuación habilidad": "1", "Ajuste reacción": "-6", "Ajuste Atq Proyectiles": "-6", "Ajuste defensivo": "5"},
+                {"Puntuación habilidad": "2", "Ajuste reacción": "-4", "Ajuste Atq Proyectiles": "-4", "Ajuste defensivo": "5"},
+                {"Puntuación habilidad": "3", "Ajuste reacción": "-3", "Ajuste Atq Proyectiles": "-3", "Ajuste defensivo": "4"},
+                {"Puntuación habilidad": "4", "Ajuste reacción": "-2", "Ajuste Atq Proyectiles": "-2", "Ajuste defensivo": "3"},
+                {"Puntuación habilidad": "5", "Ajuste reacción": "-1", "Ajuste Atq Proyectiles": "-1", "Ajuste defensivo": "2"},
+                {"Puntuación habilidad": "6", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "1"},
+                {"Puntuación habilidad": "7", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
+                {"Puntuación habilidad": "8", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
+                {"Puntuación habilidad": "9", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
+                {"Puntuación habilidad": "10", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
+                {"Puntuación habilidad": "11", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
+                {"Puntuación habilidad": "12", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
+                {"Puntuación habilidad": "13", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
+                {"Puntuación habilidad": "14", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
+                {"Puntuación habilidad": "15", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "1"},
+                {"Puntuación habilidad": "16", "Ajuste reacción": "1", "Ajuste Atq Proyectiles": "1", "Ajuste defensivo": "2"},
+                {"Puntuación habilidad": "17", "Ajuste reacción": "2", "Ajuste Atq Proyectiles": "2", "Ajuste defensivo": "3"},
+                {"Puntuación habilidad": "18", "Ajuste reacción": "2", "Ajuste Atq Proyectiles": "2", "Ajuste defensivo": "4"},
+                {"Puntuación habilidad": "19", "Ajuste reacción": "3", "Ajuste Atq Proyectiles": "3", "Ajuste defensivo": "4"},
+                {"Puntuación habilidad": "20", "Ajuste reacción": "3", "Ajuste Atq Proyectiles": "3", "Ajuste defensivo": "4"},
+                {"Puntuación habilidad": "21", "Ajuste reacción": "3", "Ajuste Atq Proyectiles": "3", "Ajuste defensivo": "4"},
+                {"Puntuación habilidad": "22", "Ajuste reacción": "4", "Ajuste Atq Proyectiles": "4", "Ajuste defensivo": "5"},
+                {"Puntuación habilidad": "23", "Ajuste reacción": "4", "Ajuste Atq Proyectiles": "4", "Ajuste defensivo": "5"},
+                {"Puntuación habilidad": "24", "Ajuste reacción": "4", "Ajuste Atq Proyectiles": "4", "Ajuste defensivo": "5"},
+                {"Puntuación habilidad": "25", "Ajuste reacción": "5", "Ajuste Atq Proyectiles": "5", "Ajuste defensivo": "6"},
+                {"Puntuación habilidad": "26", "Ajuste reacción": "5", "Ajuste Atq Proyectiles": "5", "Ajuste defensivo": "6"},
+                {"Puntuación habilidad": "27", "Ajuste reacción": "5", "Ajuste Atq Proyectiles": "5", "Ajuste defensivo": "6"},
+                {"Puntuación habilidad": "28", "Ajuste reacción": "6", "Ajuste Atq Proyectiles": "6", "Ajuste defensivo": "7"},
+                {"Puntuación habilidad": "29", "Ajuste reacción": "6", "Ajuste Atq Proyectiles": "6", "Ajuste defensivo": "7"},
+                {"Puntuación habilidad": "30", "Ajuste reacción": "6", "Ajuste Atq Proyectiles": "6", "Ajuste defensivo": "7"},
+                {"Puntuación habilidad": "31", "Ajuste reacción": "7", "Ajuste Atq Proyectiles": "7", "Ajuste defensivo": "8"},
+                {"Puntuación habilidad": "32", "Ajuste reacción": "7", "Ajuste Atq Proyectiles": "7", "Ajuste defensivo": "8"},
+                {"Puntuación habilidad": "33", "Ajuste reacción": "8", "Ajuste Atq Proyectiles": "8", "Ajuste defensivo": "9"},
+                {"Puntuación habilidad": "34", "Ajuste reacción": "8", "Ajuste Atq Proyectiles": "8", "Ajuste defensivo": "9"},
+                {"Puntuación habilidad": "35", "Ajuste reacción": "9", "Ajuste Atq Proyectiles": "9", "Ajuste defensivo": "10"},
+                {"Puntuación habilidad": "36", "Ajuste reacción": "9", "Ajuste Atq Proyectiles": "9", "Ajuste defensivo": "10"},
+                {"Puntuación habilidad": "37", "Ajuste reacción": "10", "Ajuste Atq Proyectiles": "10", "Ajuste defensivo": "11"},
+                {"Puntuación habilidad": "38", "Ajuste reacción": "10", "Ajuste Atq Proyectiles": "10", "Ajuste defensivo": "11"},
+                {"Puntuación habilidad": "39", "Ajuste reacción": "11", "Ajuste Atq Proyectiles": "11", "Ajuste defensivo": "12"},
+                {"Puntuación habilidad": "40", "Ajuste reacción": "11", "Ajuste Atq Proyectiles": "11", "Ajuste defensivo": "12"},
+                {"Puntuación habilidad": "41", "Ajuste reacción": "12", "Ajuste Atq Proyectiles": "12", "Ajuste defensivo": "13"},
+                {"Puntuación habilidad": "42", "Ajuste reacción": "13", "Ajuste Atq Proyectiles": "13", "Ajuste defensivo": "14"},
+                {"Puntuación habilidad": "43", "Ajuste reacción": "14", "Ajuste Atq Proyectiles": "14", "Ajuste defensivo": "15"},
+                {"Puntuación habilidad": "44", "Ajuste reacción": "15", "Ajuste Atq Proyectiles": "15", "Ajuste defensivo": "16"},
+                {"Puntuación habilidad": "45", "Ajuste reacción": "16", "Ajuste Atq Proyectiles": "16", "Ajuste defensivo": "17"},
+                {"Puntuación habilidad": "46", "Ajuste reacción": "17", "Ajuste Atq Proyectiles": "17", "Ajuste defensivo": "18"},
+                {"Puntuación habilidad": "47", "Ajuste reacción": "18", "Ajuste Atq Proyectiles": "18", "Ajuste defensivo": "19"},
+                {"Puntuación habilidad": "48", "Ajuste reacción": "19", "Ajuste Atq Proyectiles": "19", "Ajuste defensivo": "20"},
+                {"Puntuación habilidad": "49", "Ajuste reacción": "20", "Ajuste Atq Proyectiles": "20", "Ajuste defensivo": "21"},
+                {"Puntuación habilidad": "50", "Ajuste reacción": "21", "Ajuste Atq Proyectiles": "21", "Ajuste defensivo": "22"},
+                {"Puntuación habilidad": "51", "Ajuste reacción": "22", "Ajuste Atq Proyectiles": "22", "Ajuste defensivo": "23"},
+                {"Puntuación habilidad": "52", "Ajuste reacción": "23", "Ajuste Atq Proyectiles": "23", "Ajuste defensivo": "24"},
+                {"Puntuación habilidad": "53", "Ajuste reacción": "24", "Ajuste Atq Proyectiles": "24", "Ajuste defensivo": "25"},
+                {"Puntuación habilidad": "54", "Ajuste reacción": "25", "Ajuste Atq Proyectiles": "25", "Ajuste defensivo": "26"},
+                {"Puntuación habilidad": "55", "Ajuste reacción": "26", "Ajuste Atq Proyectiles": "26", "Ajuste defensivo": "27"},
+                {"Puntuación habilidad": "56", "Ajuste reacción": "27", "Ajuste Atq Proyectiles": "27", "Ajuste defensivo": "28"},
+                {"Puntuación habilidad": "57", "Ajuste reacción": "28", "Ajuste Atq Proyectiles": "28", "Ajuste defensivo": "29"},
+                {"Puntuación habilidad": "58", "Ajuste reacción": "29", "Ajuste Atq Proyectiles": "29", "Ajuste defensivo": "30"},
+                {"Puntuación habilidad": "59", "Ajuste reacción": "30", "Ajuste Atq Proyectiles": "30", "Ajuste defensivo": "31"},
+                {"Puntuación habilidad": "60", "Ajuste reacción": "31", "Ajuste Atq Proyectiles": "31", "Ajuste defensivo": "32"},
+                {"Puntuación habilidad": "61", "Ajuste reacción": "32", "Ajuste Atq Proyectiles": "32", "Ajuste defensivo": "33"},
+                {"Puntuación habilidad": "62", "Ajuste reacción": "33", "Ajuste Atq Proyectiles": "33", "Ajuste defensivo": "34"},
+                {"Puntuación habilidad": "63", "Ajuste reacción": "34", "Ajuste Atq Proyectiles": "34", "Ajuste defensivo": "35"},
+                {"Puntuación habilidad": "64", "Ajuste reacción": "35", "Ajuste Atq Proyectiles": "35", "Ajuste defensivo": "36"},
+                {"Puntuación habilidad": "65", "Ajuste reacción": "36", "Ajuste Atq Proyectiles": "36", "Ajuste defensivo": "37"}
+            ],
+            "constitucion": [
+                {"Puntuación habilidad": "1", "Bonif HP/Nivel": "-3", "Shock de sistema": "10%", "Superv. Revivir": "20%", "Prot. Veneno": "-2", "Regeneración": "--"},
+                {"Puntuación habilidad": "2", "Bonif HP/Nivel": "-2", "Shock de sistema": "15%", "Superv. Revivir": "25%", "Prot. Veneno": "-1", "Regeneración": "--"},
+                {"Puntuación habilidad": "3", "Bonif HP/Nivel": "-2", "Shock de sistema": "20%", "Superv. Revivir": "30%", "Prot. Veneno": "-1", "Regeneración": "--"},
+                {"Puntuación habilidad": "4", "Bonif HP/Nivel": "-1", "Shock de sistema": "25%", "Superv. Revivir": "35%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "5", "Bonif HP/Nivel": "-1", "Shock de sistema": "30%", "Superv. Revivir": "40%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "6", "Bonif HP/Nivel": "0", "Shock de sistema": "35%", "Superv. Revivir": "45%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "7", "Bonif HP/Nivel": "0", "Shock de sistema": "40%", "Superv. Revivir": "50%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "8", "Bonif HP/Nivel": "0", "Shock de sistema": "45%", "Superv. Revivir": "55%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "9", "Bonif HP/Nivel": "0", "Shock de sistema": "50%", "Superv. Revivir": "60%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "10", "Bonif HP/Nivel": "0", "Shock de sistema": "55%", "Superv. Revivir": "65%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "11", "Bonif HP/Nivel": "0", "Shock de sistema": "60%", "Superv. Revivir": "70%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "12", "Bonif HP/Nivel": "0", "Shock de sistema": "65%", "Superv. Revivir": "75%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "13", "Bonif HP/Nivel": "0", "Shock de sistema": "70%", "Superv. Revivir": "80%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "14", "Bonif HP/Nivel": "0", "Shock de sistema": "75%", "Superv. Revivir": "85%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "15", "Bonif HP/Nivel": "1", "Shock de sistema": "80%", "Superv. Revivir": "90%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "16", "Bonif HP/Nivel": "2", "Shock de sistema": "85%", "Superv. Revivir": "95%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "17", "Bonif HP/Nivel": "2", "Shock de sistema": "90%", "Superv. Revivir": "96%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "18", "Bonif HP/Nivel": "3", "Shock de sistema": "95%", "Superv. Revivir": "97%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "19", "Bonif HP/Nivel": "3", "Shock de sistema": "97%", "Superv. Revivir": "98%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "20", "Bonif HP/Nivel": "4", "Shock de sistema": "98%", "Superv. Revivir": "99%", "Prot. Veneno": "0", "Regeneración": "--"},
+                {"Puntuación habilidad": "21", "Bonif HP/Nivel": "4", "Shock de sistema": "99%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "1"},
+                {"Puntuación habilidad": "22", "Bonif HP/Nivel": "4", "Shock de sistema": "99%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "1"},
+                {"Puntuación habilidad": "23", "Bonif HP/Nivel": "5", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "1"},
+                {"Puntuación habilidad": "24", "Bonif HP/Nivel": "5", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "1"},
+                {"Puntuación habilidad": "25", "Bonif HP/Nivel": "5", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "2"},
+                {"Puntuación habilidad": "26", "Bonif HP/Nivel": "6", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "2"},
+                {"Puntuación habilidad": "27", "Bonif HP/Nivel": "6", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "2"},
+                {"Puntuación habilidad": "28", "Bonif HP/Nivel": "7", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "3"},
+                {"Puntuación habilidad": "29", "Bonif HP/Nivel": "7", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "3"},
+                {"Puntuación habilidad": "30", "Bonif HP/Nivel": "8", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "3"},
+                {"Puntuación habilidad": "31", "Bonif HP/Nivel": "8", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "4"},
+                {"Puntuación habilidad": "32", "Bonif HP/Nivel": "9", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "4"},
+                {"Puntuación habilidad": "33", "Bonif HP/Nivel": "9", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "4"},
+                {"Puntuación habilidad": "34", "Bonif HP/Nivel": "10", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "5"},
+                {"Puntuación habilidad": "35", "Bonif HP/Nivel": "10", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "5"},
+                {"Puntuación habilidad": "36", "Bonif HP/Nivel": "11", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "5"},
+                {"Puntuación habilidad": "37", "Bonif HP/Nivel": "11", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "6"},
+                {"Puntuación habilidad": "38", "Bonif HP/Nivel": "12", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "6"},
+                {"Puntuación habilidad": "39", "Bonif HP/Nivel": "12", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "6"},
+                {"Puntuación habilidad": "40", "Bonif HP/Nivel": "13", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "7"},
+                {"Puntuación habilidad": "41", "Bonif HP/Nivel": "13", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "7"},
+                {"Puntuación habilidad": "42", "Bonif HP/Nivel": "14", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "8"},
+                {"Puntuación habilidad": "43", "Bonif HP/Nivel": "14", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "8"},
+                {"Puntuación habilidad": "44", "Bonif HP/Nivel": "15", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "8"},
+                {"Puntuación habilidad": "45", "Bonif HP/Nivel": "15", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "9"},
+                {"Puntuación habilidad": "46", "Bonif HP/Nivel": "16", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "9"},
+                {"Puntuación habilidad": "47", "Bonif HP/Nivel": "16", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "9"},
+                {"Puntuación habilidad": "48", "Bonif HP/Nivel": "17", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "10"},
+                {"Puntuación habilidad": "49", "Bonif HP/Nivel": "17", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "10"},
+                {"Puntuación habilidad": "50", "Bonif HP/Nivel": "18", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "10"},
+                {"Puntuación habilidad": "51", "Bonif HP/Nivel": "18", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "11"},
+                {"Puntuación habilidad": "52", "Bonif HP/Nivel": "19", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "11"},
+                {"Puntuación habilidad": "53", "Bonif HP/Nivel": "19", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "12"},
+                {"Puntuación habilidad": "54", "Bonif HP/Nivel": "20", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "12"},
+                {"Puntuación habilidad": "55", "Bonif HP/Nivel": "20", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "12"},
+                {"Puntuación habilidad": "56", "Bonif HP/Nivel": "21", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "13"},
+                {"Puntuación habilidad": "57", "Bonif HP/Nivel": "21", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "13"},
+                {"Puntuación habilidad": "58", "Bonif HP/Nivel": "22", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "14"},
+                {"Puntuación habilidad": "59", "Bonif HP/Nivel": "22", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "14"},
+                {"Puntuación habilidad": "60", "Bonif HP/Nivel": "23", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "14"},
+                {"Puntuación habilidad": "61", "Bonif HP/Nivel": "23", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "15"},
+                {"Puntuación habilidad": "62", "Bonif HP/Nivel": "24", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "15"},
+                {"Puntuación habilidad": "63", "Bonif HP/Nivel": "24", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "16"},
+                {"Puntuación habilidad": "64", "Bonif HP/Nivel": "25", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "16"},
+                {"Puntuación habilidad": "65", "Bonif HP/Nivel": "25", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "16"}
+            ],
+            "inteligencia": [
+                {"Puntuación habilidad": "1", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
+                {"Puntuación habilidad": "2", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
+                {"Puntuación habilidad": "3", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
+                {"Puntuación habilidad": "4", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
+                {"Puntuación habilidad": "5", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
+                {"Puntuación habilidad": "6", "Idiomas": "1", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
+                {"Puntuación habilidad": "7", "Idiomas": "1", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
+                {"Puntuación habilidad": "8", "Idiomas": "1", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
+                {"Puntuación habilidad": "9", "Idiomas": "1", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
+                {"Puntuación habilidad": "10", "Idiomas": "2", "Niveles de conjuros": "1", "Oportunidad de aprender conjuros": "25%", "Máximo conjuros por nivel": "6", "Inmunidad": "--"},
+                {"Puntuación habilidad": "11", "Idiomas": "2", "Niveles de conjuros": "2", "Oportunidad de aprender conjuros": "35%", "Máximo conjuros por nivel": "7", "Inmunidad": "--"},
+                {"Puntuación habilidad": "12", "Idiomas": "3", "Niveles de conjuros": "2", "Oportunidad de aprender conjuros": "45%", "Máximo conjuros por nivel": "7", "Inmunidad": "--"},
+                {"Puntuación habilidad": "13", "Idiomas": "3", "Niveles de conjuros": "3", "Oportunidad de aprender conjuros": "50%", "Máximo conjuros por nivel": "9", "Inmunidad": "--"},
+                {"Puntuación habilidad": "14", "Idiomas": "4", "Niveles de conjuros": "3", "Oportunidad de aprender conjuros": "60%", "Máximo conjuros por nivel": "11", "Inmunidad": "--"},
+                {"Puntuación habilidad": "15", "Idiomas": "4", "Niveles de conjuros": "4", "Oportunidad de aprender conjuros": "70%", "Máximo conjuros por nivel": "14", "Inmunidad": "--"},
+                {"Puntuación habilidad": "16", "Idiomas": "5", "Niveles de conjuros": "4", "Oportunidad de aprender conjuros": "75%", "Máximo conjuros por nivel": "18", "Inmunidad": "--"},
+                {"Puntuación habilidad": "17", "Idiomas": "6", "Niveles de conjuros": "5", "Oportunidad de aprender conjuros": "85%", "Máximo conjuros por nivel": "20", "Inmunidad": "--"},
+                {"Puntuación habilidad": "18", "Idiomas": "7", "Niveles de conjuros": "5", "Oportunidad de aprender conjuros": "95%", "Máximo conjuros por nivel": "25", "Inmunidad": "1"},
+                {"Puntuación habilidad": "19", "Idiomas": "8", "Niveles de conjuros": "6", "Oportunidad de aprender conjuros": "96%", "Máximo conjuros por nivel": "28", "Inmunidad": "1"},
+                {"Puntuación habilidad": "20", "Idiomas": "9", "Niveles de conjuros": "6", "Oportunidad de aprender conjuros": "97%", "Máximo conjuros por nivel": "30", "Inmunidad": "1"},
+                {"Puntuación habilidad": "21", "Idiomas": "10", "Niveles de conjuros": "7", "Oportunidad de aprender conjuros": "98%", "Máximo conjuros por nivel": "35", "Inmunidad": "1"},
+                {"Puntuación habilidad": "22", "Idiomas": "11", "Niveles de conjuros": "7", "Oportunidad de aprender conjuros": "99%", "Máximo conjuros por nivel": "38", "Inmunidad": "1"},
+                {"Puntuación habilidad": "23", "Idiomas": "12", "Niveles de conjuros": "8", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "42", "Inmunidad": "2"},
+                {"Puntuación habilidad": "24", "Idiomas": "13", "Niveles de conjuros": "8", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "45", "Inmunidad": "2"},
+                {"Puntuación habilidad": "25", "Idiomas": "14", "Niveles de conjuros": "9", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "50", "Inmunidad": "2"},
+                {"Puntuación habilidad": "26", "Idiomas": "15", "Niveles de conjuros": "9", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "55", "Inmunidad": "2"},
+                {"Puntuación habilidad": "27", "Idiomas": "16", "Niveles de conjuros": "10", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "60", "Inmunidad": "3"},
+                {"Puntuación habilidad": "28", "Idiomas": "17", "Niveles de conjuros": "10", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "65", "Inmunidad": "3"},
+                {"Puntuación habilidad": "29", "Idiomas": "18", "Niveles de conjuros": "11", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "70", "Inmunidad": "3"},
+                {"Puntuación habilidad": "30", "Idiomas": "19", "Niveles de conjuros": "11", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "75", "Inmunidad": "4"},
+                {"Puntuación habilidad": "31", "Idiomas": "20", "Niveles de conjuros": "12", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "80", "Inmunidad": "4"},
+                {"Puntuación habilidad": "32", "Idiomas": "21", "Niveles de conjuros": "12", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "85", "Inmunidad": "4"},
+                {"Puntuación habilidad": "33", "Idiomas": "22", "Niveles de conjuros": "13", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "90", "Inmunidad": "5"},
+                {"Puntuación habilidad": "34", "Idiomas": "23", "Niveles de conjuros": "13", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "95", "Inmunidad": "5"},
+                {"Puntuación habilidad": "35", "Idiomas": "24", "Niveles de conjuros": "14", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "100", "Inmunidad": "5"},
+                {"Puntuación habilidad": "36", "Idiomas": "25", "Niveles de conjuros": "14", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "105", "Inmunidad": "6"},
+                {"Puntuación habilidad": "37", "Idiomas": "26", "Niveles de conjuros": "15", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "110", "Inmunidad": "6"},
+                {"Puntuación habilidad": "38", "Idiomas": "27", "Niveles de conjuros": "15", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "115", "Inmunidad": "6"},
+                {"Puntuación habilidad": "39", "Idiomas": "28", "Niveles de conjuros": "16", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "120", "Inmunidad": "7"},
+                {"Puntuación habilidad": "40", "Idiomas": "29", "Niveles de conjuros": "16", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "125", "Inmunidad": "7"},
+                {"Puntuación habilidad": "41", "Idiomas": "30", "Niveles de conjuros": "17", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "130", "Inmunidad": "7"},
+                {"Puntuación habilidad": "42", "Idiomas": "31", "Niveles de conjuros": "17", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "135", "Inmunidad": "8"},
+                {"Puntuación habilidad": "43", "Idiomas": "32", "Niveles de conjuros": "18", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "140", "Inmunidad": "8"},
+                {"Puntuación habilidad": "44", "Idiomas": "33", "Niveles de conjuros": "18", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "145", "Inmunidad": "8"},
+                {"Puntuación habilidad": "45", "Idiomas": "34", "Niveles de conjuros": "19", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "150", "Inmunidad": "9"},
+                {"Puntuación habilidad": "46", "Idiomas": "35", "Niveles de conjuros": "19", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "155", "Inmunidad": "9"},
+                {"Puntuación habilidad": "47", "Idiomas": "36", "Niveles de conjuros": "20", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "160", "Inmunidad": "9"},
+                {"Puntuación habilidad": "48", "Idiomas": "37", "Niveles de conjuros": "20", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "165", "Inmunidad": "10"},
+                {"Puntuación habilidad": "49", "Idiomas": "38", "Niveles de conjuros": "21", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "170", "Inmunidad": "10"},
+                {"Puntuación habilidad": "50", "Idiomas": "39", "Niveles de conjuros": "21", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "175", "Inmunidad": "10"},
+                {"Puntuación habilidad": "51", "Idiomas": "40", "Niveles de conjuros": "22", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "180", "Inmunidad": "11"},
+                {"Puntuación habilidad": "52", "Idiomas": "41", "Niveles de conjuros": "22", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "185", "Inmunidad": "11"},
+                {"Puntuación habilidad": "53", "Idiomas": "42", "Niveles de conjuros": "23", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "190", "Inmunidad": "11"},
+                {"Puntuación habilidad": "54", "Idiomas": "43", "Niveles de conjuros": "23", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "195", "Inmunidad": "12"},
+                {"Puntuación habilidad": "55", "Idiomas": "44", "Niveles de conjuros": "24", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "200", "Inmunidad": "12"},
+                {"Puntuación habilidad": "56", "Idiomas": "45", "Niveles de conjuros": "24", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "205", "Inmunidad": "12"},
+                {"Puntuación habilidad": "57", "Idiomas": "46", "Niveles de conjuros": "25", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "210", "Inmunidad": "13"},
+                {"Puntuación habilidad": "58", "Idiomas": "47", "Niveles de conjuros": "25", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "215", "Inmunidad": "13"},
+                {"Puntuación habilidad": "59", "Idiomas": "48", "Niveles de conjuros": "26", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "220", "Inmunidad": "13"},
+                {"Puntuación habilidad": "60", "Idiomas": "49", "Niveles de conjuros": "26", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "225", "Inmunidad": "14"},
+                {"Puntuación habilidad": "61", "Idiomas": "50", "Niveles de conjuros": "27", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "230", "Inmunidad": "14"},
+                {"Puntuación habilidad": "62", "Idiomas": "51", "Niveles de conjuros": "27", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "235", "Inmunidad": "14"},
+                {"Puntuación habilidad": "63", "Idiomas": "52", "Niveles de conjuros": "28", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "240", "Inmunidad": "15"},
+                {"Puntuación habilidad": "64", "Idiomas": "53", "Niveles de conjuros": "28", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "245", "Inmunidad": "15"},
+                {"Puntuación habilidad": "65", "Idiomas": "54", "Niveles de conjuros": "29", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "250", "Inmunidad": "15"}
+            ],
+            "sabiduria": [
+                {"Puntuación habilidad": "1", "Def. Mágica": "-6", "Bonif. Conjuros": "0", "Fracaso Conjuro": "50%"},
+                {"Puntuación habilidad": "2", "Def. Mágica": "-4", "Bonif. Conjuros": "0", "Fracaso Conjuro": "45%"},
+                {"Puntuación habilidad": "3", "Def. Mágica": "-3", "Bonif. Conjuros": "0", "Fracaso Conjuro": "40%"},
+                {"Puntuación habilidad": "4", "Def. Mágica": "-2", "Bonif. Conjuros": "0", "Fracaso Conjuro": "35%"},
+                {"Puntuación habilidad": "5", "Def. Mágica": "-1", "Bonif. Conjuros": "0", "Fracaso Conjuro": "30%"},
+                {"Puntuación habilidad": "6", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "25%"},
+                {"Puntuación habilidad": "7", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "20%"},
+                {"Puntuación habilidad": "8", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "15%"},
+                {"Puntuación habilidad": "9", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "10%"},
+                {"Puntuación habilidad": "10", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "5%"},
+                {"Puntuación habilidad": "11", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "12", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "13", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "14", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "15", "Def. Mágica": "0", "Bonif. Conjuros": "1", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "16", "Def. Mágica": "1", "Bonif. Conjuros": "2", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "17", "Def. Mágica": "2", "Bonif. Conjuros": "3", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "18", "Def. Mágica": "3", "Bonif. Conjuros": "4", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "19", "Def. Mágica": "4", "Bonif. Conjuros": "4", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "20", "Def. Mágica": "4", "Bonif. Conjuros": "5", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "21", "Def. Mágica": "4", "Bonif. Conjuros": "5", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "22", "Def. Mágica": "5", "Bonif. Conjuros": "6", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "23", "Def. Mágica": "5", "Bonif. Conjuros": "6", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "24", "Def. Mágica": "5", "Bonif. Conjuros": "7", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "25", "Def. Mágica": "6", "Bonif. Conjuros": "7", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "26", "Def. Mágica": "6", "Bonif. Conjuros": "8", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "27", "Def. Mágica": "6", "Bonif. Conjuros": "8", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "28", "Def. Mágica": "7", "Bonif. Conjuros": "9", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "29", "Def. Mágica": "7", "Bonif. Conjuros": "9", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "30", "Def. Mágica": "8", "Bonif. Conjuros": "10", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "31", "Def. Mágica": "8", "Bonif. Conjuros": "10", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "32", "Def. Mágica": "9", "Bonif. Conjuros": "11", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "33", "Def. Mágica": "9", "Bonif. Conjuros": "11", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "34", "Def. Mágica": "10", "Bonif. Conjuros": "12", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "35", "Def. Mágica": "10", "Bonif. Conjuros": "12", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "36", "Def. Mágica": "11", "Bonif. Conjuros": "13", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "37", "Def. Mágica": "11", "Bonif. Conjuros": "13", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "38", "Def. Mágica": "12", "Bonif. Conjuros": "14", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "39", "Def. Mágica": "12", "Bonif. Conjuros": "14", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "40", "Def. Mágica": "13", "Bonif. Conjuros": "15", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "41", "Def. Mágica": "13", "Bonif. Conjuros": "15", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "42", "Def. Mágica": "14", "Bonif. Conjuros": "16", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "43", "Def. Mágica": "14", "Bonif. Conjuros": "16", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "44", "Def. Mágica": "15", "Bonif. Conjuros": "17", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "45", "Def. Mágica": "15", "Bonif. Conjuros": "17", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "46", "Def. Mágica": "16", "Bonif. Conjuros": "18", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "47", "Def. Mágica": "16", "Bonif. Conjuros": "18", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "48", "Def. Mágica": "17", "Bonif. Conjuros": "19", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "49", "Def. Mágica": "17", "Bonif. Conjuros": "19", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "50", "Def. Mágica": "18", "Bonif. Conjuros": "20", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "51", "Def. Mágica": "18", "Bonif. Conjuros": "20", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "52", "Def. Mágica": "19", "Bonif. Conjuros": "21", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "53", "Def. Mágica": "19", "Bonif. Conjuros": "21", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "54", "Def. Mágica": "20", "Bonif. Conjuros": "22", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "55", "Def. Mágica": "20", "Bonif. Conjuros": "22", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "56", "Def. Mágica": "21", "Bonif. Conjuros": "23", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "57", "Def. Mágica": "21", "Bonif. Conjuros": "23", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "58", "Def. Mágica": "22", "Bonif. Conjuros": "24", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "59", "Def. Mágica": "22", "Bonif. Conjuros": "24", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "60", "Def. Mágica": "23", "Bonif. Conjuros": "25", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "61", "Def. Mágica": "23", "Bonif. Conjuros": "25", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "62", "Def. Mágica": "24", "Bonif. Conjuros": "26", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "63", "Def. Mágica": "24", "Bonif. Conjuros": "26", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "64", "Def. Mágica": "25", "Bonif. Conjuros": "27", "Fracaso Conjuro": "0%"},
+                {"Puntuación habilidad": "65", "Def. Mágica": "25", "Bonif. Conjuros": "27", "Fracaso Conjuro": "0%"}
+            ],
+            "carisma": [
+                {"Puntuación habilidad": "1", "N° de servidores": "0", "Lealtad base": "-5", "Ajuste reacción": "-7"},
+                {"Puntuación habilidad": "2", "N° de servidores": "0", "Lealtad base": "-4", "Ajuste reacción": "-6"},
+                {"Puntuación habilidad": "3", "N° de servidores": "0", "Lealtad base": "-3", "Ajuste reacción": "-5"},
+                {"Puntuación habilidad": "4", "N° de servidores": "1", "Lealtad base": "-2", "Ajuste reacción": "-4"},
+                {"Puntuación habilidad": "5", "N° de servidores": "1", "Lealtad base": "-1", "Ajuste reacción": "-3"},
+                {"Puntuación habilidad": "6", "N° de servidores": "1", "Lealtad base": "0", "Ajuste reacción": "-2"},
+                {"Puntuación habilidad": "7", "N° de servidores": "1", "Lealtad base": "0", "Ajuste reacción": "-1"},
+                {"Puntuación habilidad": "8", "N° de servidores": "2", "Lealtad base": "0", "Ajuste reacción": "0"},
+                {"Puntuación habilidad": "9", "N° de servidores": "2", "Lealtad base": "0", "Ajuste reacción": "0"},
+                {"Puntuación habilidad": "10", "N° de servidores": "3", "Lealtad base": "0", "Ajuste reacción": "0"},
+                {"Puntuación habilidad": "11", "N° de servidores": "3", "Lealtad base": "0", "Ajuste reacción": "0"},
+                {"Puntuación habilidad": "12", "N° de servidores": "4", "Lealtad base": "0", "Ajuste reacción": "0"},
+                {"Puntuación habilidad": "13", "N° de servidores": "4", "Lealtad base": "0", "Ajuste reacción": "0"},
+                {"Puntuación habilidad": "14", "N° de servidores": "5", "Lealtad base": "1", "Ajuste reacción": "1"},
+                {"Puntuación habilidad": "15", "N° de servidores": "6", "Lealtad base": "2", "Ajuste reacción": "2"},
+                {"Puntuación habilidad": "16", "N° de servidores": "7", "Lealtad base": "3", "Ajuste reacción": "3"},
+                {"Puntuación habilidad": "17", "N° de servidores": "8", "Lealtad base": "4", "Ajuste reacción": "4"},
+                {"Puntuación habilidad": "18", "N° de servidores": "10", "Lealtad base": "5", "Ajuste reacción": "5"},
+                {"Puntuación habilidad": "19", "N° de servidores": "12", "Lealtad base": "6", "Ajuste reacción": "6"},
+                {"Puntuación habilidad": "20", "N° de servidores": "14", "Lealtad base": "7", "Ajuste reacción": "7"},
+                {"Puntuación habilidad": "21", "N° de servidores": "16", "Lealtad base": "8", "Ajuste reacción": "8"},
+                {"Puntuación habilidad": "22", "N° de servidores": "18", "Lealtad base": "9", "Ajuste reacción": "9"},
+                {"Puntuación habilidad": "23", "N° de servidores": "20", "Lealtad base": "10", "Ajuste reacción": "10"},
+                {"Puntuación habilidad": "24", "N° de servidores": "22", "Lealtad base": "11", "Ajuste reacción": "11"},
+                {"Puntuación habilidad": "25", "N° de servidores": "24", "Lealtad base": "12", "Ajuste reacción": "12"},
+                {"Puntuación habilidad": "26", "N° de servidores": "26", "Lealtad base": "13", "Ajuste reacción": "13"},
+                {"Puntuación habilidad": "27", "N° de servidores": "28", "Lealtad base": "14", "Ajuste reacción": "14"},
+                {"Puntuación habilidad": "28", "N° de servidores": "30", "Lealtad base": "15", "Ajuste reacción": "15"},
+                {"Puntuación habilidad": "29", "N° de servidores": "32", "Lealtad base": "16", "Ajuste reacción": "16"},
+                {"Puntuación habilidad": "30", "N° de servidores": "34", "Lealtad base": "17", "Ajuste reacción": "17"},
+                {"Puntuación habilidad": "31", "N° de servidores": "36", "Lealtad base": "18", "Ajuste reacción": "18"},
+                {"Puntuación habilidad": "32", "N° de servidores": "38", "Lealtad base": "19", "Ajuste reacción": "19"},
+                {"Puntuación habilidad": "33", "N° de servidores": "40", "Lealtad base": "20", "Ajuste reacción": "20"},
+                {"Puntuación habilidad": "34", "N° de servidores": "42", "Lealtad base": "21", "Ajuste reacción": "21"},
+                {"Puntuación habilidad": "35", "N° de servidores": "44", "Lealtad base": "22", "Ajuste reacción": "22"},
+                {"Puntuación habilidad": "36", "N° de servidores": "46", "Lealtad base": "23", "Ajuste reacción": "23"},
+                {"Puntuación habilidad": "37", "N° de servidores": "48", "Lealtad base": "24", "Ajuste reacción": "24"},
+                {"Puntuación habilidad": "38", "N° de servidores": "50", "Lealtad base": "25", "Ajuste reacción": "25"},
+                {"Puntuación habilidad": "39", "N° de servidores": "52", "Lealtad base": "26", "Ajuste reacción": "26"},
+                {"Puntuación habilidad": "40", "N° de servidores": "54", "Lealtad base": "27", "Ajuste reacción": "27"},
+                {"Puntuación habilidad": "41", "N° de servidores": "56", "Lealtad base": "28", "Ajuste reacción": "28"},
+                {"Puntuación habilidad": "42", "N° de servidores": "58", "Lealtad base": "29", "Ajuste reacción": "29"},
+                {"Puntuación habilidad": "43", "N° de servidores": "60", "Lealtad base": "30", "Ajuste reacción": "30"},
+                {"Puntuación habilidad": "44", "N° de servidores": "62", "Lealtad base": "31", "Ajuste reacción": "31"},
+                {"Puntuación habilidad": "45", "N° de servidores": "64", "Lealtad base": "32", "Ajuste reacción": "32"},
+                {"Puntuación habilidad": "46", "N° de servidores": "66", "Lealtad base": "33", "Ajuste reacción": "33"},
+                {"Puntuación habilidad": "47", "N° de servidores": "68", "Lealtad base": "34", "Ajuste reacción": "34"},
+                {"Puntuación habilidad": "48", "N° de servidores": "70", "Lealtad base": "35", "Ajuste reacción": "35"},
+                {"Puntuación habilidad": "49", "N° de servidores": "72", "Lealtad base": "36", "Ajuste reacción": "36"},
+                {"Puntuación habilidad": "50", "N° de servidores": "74", "Lealtad base": "37", "Ajuste reacción": "37"},
+                {"Puntuación habilidad": "51", "N° de servidores": "76", "Lealtad base": "38", "Ajuste reacción": "38"},
+                {"Puntuación habilidad": "52", "N° de servidores": "78", "Lealtad base": "39", "Ajuste reacción": "39"},
+                {"Puntuación habilidad": "53", "N° de servidores": "80", "Lealtad base": "40", "Ajuste reacción": "40"},
+                {"Puntuación habilidad": "54", "N° de servidores": "82", "Lealtad base": "41", "Ajuste reacción": "41"},
+                {"Puntuación habilidad": "55", "N° de servidores": "84", "Lealtad base": "42", "Ajuste reacción": "42"},
+                {"Puntuación habilidad": "56", "N° de servidores": "86", "Lealtad base": "43", "Ajuste reacción": "43"},
+                {"Puntuación habilidad": "57", "N° de servidores": "88", "Lealtad base": "44", "Ajuste reacción": "44"},
+                {"Puntuación habilidad": "58", "N° de servidores": "90", "Lealtad base": "45", "Ajuste reacción": "45"},
+                {"Puntuación habilidad": "59", "N° de servidores": "92", "Lealtad base": "46", "Ajuste reacción": "46"},
+                {"Puntuación habilidad": "60", "N° de servidores": "94", "Lealtad base": "47", "Ajuste reacción": "47"},
+                {"Puntuación habilidad": "61", "N° de servidores": "96", "Lealtad base": "48", "Ajuste reacción": "48"},
+                {"Puntuación habilidad": "62", "N° de servidores": "98", "Lealtad base": "49", "Ajuste reacción": "49"},
+                {"Puntuación habilidad": "63", "N° de servidores": "100", "Lealtad base": "50", "Ajuste reacción": "50"},
+                {"Puntuación habilidad": "64", "N° de servidores": "102", "Lealtad base": "51", "Ajuste reacción": "51"},
+                {"Puntuación habilidad": "65", "N° de servidores": "104", "Lealtad base": "52", "Ajuste reacción": "52"}
+            ]
+        };
+
+ // Función para calcular modificadores
+            function calculateModifiers() {
+                try {
+                    document.getElementById("debug-info").textContent = "Status: Calculando modificadores...";
+                    
+                    // FUERZA
+                    const str = parseInt(document.getElementById("strength").value) || 10;
+                    const strData = abilityData["fuerza"]?.find(f => f["Punt. Habilidad"] == str);
+                    
+                    if (strData) {
+                        document.getElementById("str-hit-prob").textContent = strData["Probab. de Golpe"] || "--";
+                        document.getElementById("str-damage-adj").textContent = strData["Ajuste de daño"] || "--";
+                        document.getElementById("str-weight-cap").textContent = (strData["Peso Kg autorizado"] || "--") + "kg";
+                        document.getElementById("str-max-effort").textContent = (strData["Esfuerzo máximo Kg"] || "--") + "kg";
+                        document.getElementById("str-open-doors").textContent = strData["Abrir Puertas"] || "--";
+                        document.getElementById("str-bend-bar").textContent = strData["Doblar Barras"] || "--";
+                    } else {
+                        setElementsToDefault("str", ["--", "--", "--kg", "--kg", "--", "--"]);
+                    }
+
+                    // DESTREZA
+                    const dex = parseInt(document.getElementById("dexterity").value) || 10;
+                    const dexData = abilityData["destreza"]?.find(f => f["Puntuación habilidad"] == dex);
+                    
+                    if (dexData) {
+                        document.getElementById("dex-reaction").textContent = dexData["Ajuste reacción"] || "--";
+                        document.getElementById("dex-missile").textContent = dexData["Ajuste Atq Proyectiles"] || "--";
+                        document.getElementById("dex-defensive").textContent = dexData["Ajuste defensivo"] || "--";
+                    } else {
+                        setElementsToDefault("dex", ["--", "--", "--"]);
+                    }
+
+                    // CONSTITUCIÓN
+                    const con = parseInt(document.getElementById("constitution").value) || 10;
+                    const conData = abilityData["constitucion"]?.find(f => f["Puntuación habilidad"] == con);
+                    
+                    if (conData) {
+                        document.getElementById("con-hp-bonus").textContent = conData["Bonif HP/Nivel"] || "--";
+                        document.getElementById("con-shock-survival").textContent = conData["Shock de sistema"] || "--";
+                        document.getElementById("con-resurrection").textContent = conData["Superv. Revivir"] || "--";
+                        document.getElementById("con-poison").textContent = conData["Prot. Veneno"] || "--";
+                        document.getElementById("con-regeneration").textContent = conData["Regeneración"] || "--";
+                    } else {
+                        setElementsToDefault("con", ["--", "--", "--", "--", "--"]);
+                    }
+
+                    // INTELIGENCIA
+                    const intel = parseInt(document.getElementById("intelligence").value) || 10;
+                    const intelData = abilityData["inteligencia"]?.find(f => f["Puntuación habilidad"] == intel);
+                    
+                    if (intelData) {
+                        document.getElementById("int-languages").textContent = intelData["Idiomas"] || "--";
+                        document.getElementById("int-spell-level").textContent = intelData["Niveles de conjuros"] || "--";
+                        document.getElementById("int-spell-chance").textContent = intelData["Oportunidad de aprender conjuros"] || "--";
+                        document.getElementById("int-max-spells").textContent = intelData["Máximo conjuros por nivel"] || "--";
+                        document.getElementById("int-immunity").textContent = intelData["Inmunidad"] || "--";
+                    } else {
+                        setElementsToDefault("int", ["--", "--", "--", "--", "--"]);
+                    }
+
+                    // SABIDURÍA
+                    const wis = parseInt(document.getElementById("wisdom").value) || 10;
+                    const wisData = abilityData["sabiduria"]?.find(f => f["Puntuación habilidad"] == wis);
+                    
+                    if (wisData) {
+                        document.getElementById("wis-magic-defense").textContent = wisData["Def. Mágica"] || "--";
+                        document.getElementById("wis-spell-bonus").textContent = wisData["Bonif. Conjuros"] || "--";
+                        document.getElementById("wis-spell-failure").textContent = wisData["Fracaso Conjuro"] || "--";
+                    } else {
+                        setElementsToDefault("wis", ["--", "--", "--"]);
+                    }
+
+                    // CARISMA
+                    const cha = parseInt(document.getElementById("charisma").value) || 10;
+                    const chaData = abilityData["carisma"]?.find(f => f["Puntuación habilidad"] == cha);
+                    
+                    if (chaData) {
+                        document.getElementById("cha-max-servers").textContent = chaData["N° de servidores"] || "--";
+                        document.getElementById("cha-base-loyalty").textContent = chaData["Lealtad base"] || "--";
+                        document.getElementById("cha-reaction-adj").textContent = chaData["Ajuste reacción"] || "--";
+                    } else {
+                        setElementsToDefault("cha", ["--", "--", "--"]);
+                    }
+
+                    document.getElementById("debug-info").textContent = "Status: ✅ Cálculos completados correctamente";
+                    
+                } catch (error) {
+                    document.getElementById("debug-info").textContent = "Status: ❌ Error - " + error.message;
+                    console.error("Error en calculateModifiers:", error);
+                }
+            }
+
+            // Función auxiliar para establecer valores por defecto
+            function setElementsToDefault(prefix, values) {
+                const ids = {
+                    "str": ["str-hit-prob", "str-damage-adj", "str-weight-cap", "str-max-effort", "str-open-doors", "str-bend-bar"],
+                    "dex": ["dex-reaction", "dex-missile", "dex-defensive"],
+                    "con": ["con-hp-bonus", "con-shock-survival", "con-resurrection", "con-poison", "con-regeneration"],
+                    "int": ["int-languages", "int-spell-level", "int-spell-chance", "int-max-spells", "int-immunity"],
+                    "wis": ["wis-magic-defense", "wis-spell-bonus", "wis-spell-failure"],
+                    "cha": ["cha-max-servers", "cha-base-loyalty", "cha-reaction-adj"]
+                };
+
+                if (ids[prefix]) {
+                    ids[prefix].forEach((id, index) => {
+                        const element = document.getElementById(id);
+                        if (element && values[index]) {
+                            element.textContent = values[index];
+                        }
+                    });
+                }
+            }
+
+            // Función de inicialización
+            function init() {
+                document.getElementById("debug-info").textContent = "Status: 🔄 Inicializando calculadora...";
+                
+                // Verificar que todos los elementos existen
+                const requiredElements = [
+                    "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"
+                ];
+                
+                let allElementsFound = true;
+                requiredElements.forEach(id => {
+                    if (!document.getElementById(id)) {
+                        console.error("Elemento no encontrado:", id);
+                        allElementsFound = false;
+                    }
+                });
+
+                if (allElementsFound) {
+                    calculateModifiers();
+                    document.getElementById("debug-info").textContent = "Status: ✅ Calculadora inicializada correctamente";
+                } else {
+                    document.getElementById("debug-info").textContent = "Status: ❌ Error - Elementos HTML faltantes";
+                }
+            }
+
+            // API pública del módulo
+            return {
+                calculateModifiers: calculateModifiers,
+                init: init,
+                abilityData: abilityData // Exportamos los datos para debugging
+            };
+        })();
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            window.AbilityCalculator.init();
+        });
+
+        // También ejecutar inmediatamente por si el DOM ya está listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', window.AbilityCalculator.init);
+        } else {
+            window.AbilityCalculator.init();
+        }
+    </script>
+</body>
+</html>
+
+<!-- Combat Tab -->
+<div id="combat-tab" class="tab-content">
+    <h2 style="color: #ffd700; margin-bottom: 2rem;">⚔️ Información de Combate</h2>
+    
+    <div class="stats-row">
+         <div class="stat-card">
+            <div class="stat-value" id="combatAC">10</div>
+            <div class="stat-label">Clase de Armadura</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="combatGaco">20</div>
+            <div class="stat-label">GACO</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="combatInitiative">+0</div>
+            <div class="stat-label">Iniciativa</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="combatMovement">12</div>
+            <div class="stat-label">Velocidad de Movimiento</div>
+        </div>
+    </div>
+
+    <!-- Sección de Armaduras -->
+    <div class="equipment-section">
+        <h3>🛡️ Protección</h3>
+        
+        <!-- Header de Armaduras -->
+        <div style="display: grid; grid-template-columns: 200px 60px 50px 50px 60px 1fr; gap: 12px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #ffd700; text-transform: uppercase; letter-spacing: 0.5px;">
+            <div>Armadura</div>
+            <div>Plus</div>
+            <div>AC</div>
+            <div>Bon.</div>
+            <div>Penal</div>
+            <div>Detalle</div>
+        </div>
+        
+        <!-- Línea de Armadura -->
+        <div style="display: grid; grid-template-columns: 200px 60px 50px 50px 60px 1fr; gap: 12px; margin-bottom: 8px;">
+            <select class="form-input" id="armor1" style="padding: 0.6rem; font-size: 0.9rem;">
+                <option value="">Seleccionar Armadura</option>
+            </select>
+            <input type="text" class="form-input" id="armor1Plus" value="+0" style="padding: 0.6rem; text-align: center; font-size: 0.9rem;">
+            <input type="text" class="form-input" id="armor1AC" value="10" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="armor1Bonus" value="6" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="armor1Penalty" value="0" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="armor1Detail" readonly style="padding: 0.6rem; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
+        </div>
+        
+        <!-- Línea de Escudo -->
+        <div style="display: grid; grid-template-columns: 200px 60px 50px 50px 60px 1fr; gap: 12px;">
+            <select class="form-input" id="shield" style="padding: 0.6rem; font-size: 0.9rem;">
+                <option value="">Sin Escudo</option>
+                <option value="escudo_corporal">Escudo Corporal</option>
+                <option value="escudo_mediano">Escudo Mediano</option>
+                <option value="escudo_rodela">Escudo Rodela</option>
+            </select>
+            <input type="text" class="form-input" id="shieldPlus" value="+0" style="padding: 0.6rem; text-align: center; font-size: 0.9rem;">
+            <input type="text" class="form-input" id="shieldAC" value="0" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="shieldBonus" value="0" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="shieldPenalty" value="0" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="shieldDetail" readonly style="padding: 0.6rem; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
+        </div>
+    </div>
+
+    <!-- Sección de Armas -->
+    <div class="equipment-section">
+        <h3>⚔️ Arsenal</h3>
+        
+        <!-- Header de Armas -->
+        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #ffd700; text-transform: uppercase; letter-spacing: 0.5px;">
+            <div>Arma</div>
+            <div>Plus</div>
+            <div>#AT</div>
+            <div>Aj. Daño</div>
+            <div>GACO</div>
+            <div>Daño</div>
+            <div>Crítico</div>
+            <div>Detalle</div>
+        </div>
+        
+        <!-- Líneas de Armas -->
+        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
+            <select class="form-input" id="weapon1" style="padding: 0.5rem; font-size: 0.85rem;">
+                <option value="">Seleccionar Arma</option>
+            </select>
+            <input type="text" class="form-input" id="weapon1Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon1Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon1DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon1Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon1Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon1Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon1Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
+            <select class="form-input" id="weapon2" style="padding: 0.5rem; font-size: 0.85rem;">
+                <option value="">Seleccionar Arma</option>
+            </select>
+            <input type="text" class="form-input" id="weapon2Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon2Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon2DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon2Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon2Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon2Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon2Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
+            <select class="form-input" id="weapon3" style="padding: 0.5rem; font-size: 0.85rem;">
+                <option value="">Seleccionar Arma</option>
+            </select>
+            <input type="text" class="form-input" id="weapon3Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon3Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon3DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon3Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon3Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon3Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon3Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
+            <select class="form-input" id="weapon4" style="padding: 0.5rem; font-size: 0.85rem;">
+                <option value="">Seleccionar Arma</option>
+            </select>
+            <input type="text" class="form-input" id="weapon4Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon4Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon4DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon4Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon4Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon4Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon4Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
+            <select class="form-input" id="weapon5" style="padding: 0.5rem; font-size: 0.85rem;">
+                <option value="">Seleccionar Arma</option>
+            </select>
+            <input type="text" class="form-input" id="weapon5Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon5Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon5DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
+            <input type="text" class="form-input" id="weapon5Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon5Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon5Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+            <input type="text" class="form-input" id="weapon5Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+        </div>
+    </div>
+</div>
+
+<script>
+// JSON de Armas basado en el PDF
+const weaponsData = {
+    // Armas sencillas cuerpo a cuerpo
+    "baston": { name: "Bastón (vara)", damage: "1d6", critical: "x2", detail: "Contundente", price: "1 po", weight: "4 lb", speed: 6 },
+    "vara_2m": { name: "Vara (2M)", damage: "1d8", critical: "x2", detail: "Contundente 2M", price: "2 po", weight: "8 lb", speed: 8 },
+    "daga": { name: "Daga", damage: "1d4", critical: "x2", detail: "Perforante", price: "2 po", weight: "1 lb", speed: 2 },
+    "hacha_mano": { name: "Hacha de mano", damage: "1d6", critical: "x2", detail: "Cortante", price: "5 po", weight: "2 lb", speed: 4 },
+    "hoz": { name: "Hoz", damage: "1d4", critical: "x2", detail: "Cortante", price: "6 po", weight: "1 lb", speed: 4 },
+    "punos": { name: "Puños", damage: "1d3", critical: "x2", detail: "Contundente", price: "-", weight: "-", speed: 1 },
+    "lanza": { name: "Lanza", damage: "1d6", critical: "x2", detail: "Perforante 2M", price: "6 po", weight: "2 lb", speed: 6 },
+    "martillo_ligero": { name: "Martillo ligero", damage: "1d4", critical: "x3", detail: "Contundente", price: "2 po", weight: "2 lb", speed: 4 },
+    "maza": { name: "Maza", damage: "1d6", critical: "x3", detail: "Contundente", price: "5 po", weight: "4 lb", speed: 4 },
+    "punal": { name: "Puñal", damage: "1d4", critical: "19-20x3", detail: "Perforante", price: "2 po", weight: "1 lb", speed: 2 },
+    
+    // Armas sencillas a distancia
+    "arco_corto": { name: "Arco corto", damage: "1d6", critical: "19-20x3", detail: "Perforante 2M", price: "30 po", weight: "1 lb", speed: 7 },
+    "arco_corto_compuesto": { name: "Arco corto compuesto", damage: "1d6", critical: "x3", detail: "Perforante 2M", price: "75 po", weight: "1 lb", speed: 6 },
+    "ballesta_ligera": { name: "Ballesta ligera", damage: "1d8", critical: "19-20x2", detail: "Perforante 2M", price: "35 po", weight: "2 lb", speed: 7 },
+    "dardo": { name: "Dardo", damage: "1d3", critical: "x2", detail: "Perforante", price: "5 po", weight: "1/4 lb", speed: 2 },
+    "honda": { name: "Honda", damage: "1d4", critical: "x2", detail: "Contundente 2M", price: "5 mc", weight: "-", speed: 6 },
+    "jabalina": { name: "Jabalina", damage: "1d6", critical: "x2", detail: "Perforante", price: "5 pp", weight: "1 lb", speed: 4 },
+    
+    // Armas marciales cuerpo a cuerpo
+    "alabarda": { name: "Alabarda", damage: "1d10", critical: "x3", detail: "Cortante 2M", price: "10 po", weight: "7 lb", speed: 9 },
+    "cimitarra": { name: "Cimitarra", damage: "1d6", critical: "18-20x2", detail: "Cortante", price: "15 po", weight: "2 lb", speed: 5 },
+    "espada_corta": { name: "Espada corta", damage: "1d6", critical: "19-20x2", detail: "Perforante", price: "10 po", weight: "1 lb", speed: 3 },
+    "espada_mandoble": { name: "Espada Mandoble", damage: "2d6", critical: "19-20x3", detail: "Cortante 2M", price: "50 po", weight: "7 lb", speed: 10 },
+    "espada_larga": { name: "Espada larga", damage: "1d8", critical: "19-20x2", detail: "Cortante", price: "15 po", weight: "2 lb", speed: 5 },
+    "estoque": { name: "Estoque", damage: "1d6", critical: "18-20x2", detail: "Perforante", price: "25 po", weight: "2 lb", speed: 3 },
+    "gran_hacha": { name: "Gran hacha", damage: "1d12", critical: "19-20x3", detail: "Cortante 2M", price: "30 po", weight: "7 lb", speed: 10 },
+    "hacha_batalla": { name: "Hacha de batalla", damage: "1d8", critical: "x3", detail: "Cortante", price: "5 po", weight: "3 lb", speed: 7 },
+    "lanza_caballeria": { name: "Lanza de caballería", damage: "1d12", critical: "x3", detail: "Perforante 2M", price: "10 po", weight: "5 lb", speed: 7 },
+    "lucero_alba": { name: "Lucero del alba", damage: "1d8", critical: "x3", detail: "Perforante", price: "8 po", weight: "5 lb", speed: 4 },
+    "martillo_guerra": { name: "Martillo de guerra", damage: "1d8", critical: "x3", detail: "Contundente", price: "2 po", weight: "3 lb", speed: 4 },
+    "mazo_guerra": { name: "Mazo de guerra", damage: "2d6", critical: "x3", detail: "Contundente 2M", price: "30 po", weight: "10 lb", speed: 12 },
+    "tridente": { name: "Tridente", damage: "1d6", critical: "x2", detail: "Perforante 2M", price: "15 po", weight: "2 lb", speed: 7 },
+    
+    // Armas marciales a distancia
+    "aguja_cerbatana": { name: "Aguja y cerbatana", damage: "1", critical: "x2", detail: "Perforante 2M", price: "10 po", weight: "1 lb", speed: 2 },
+    "arco_largo": { name: "Arco largo", damage: "1d8", critical: "19-20x3", detail: "Perforante 2M", price: "75 po", weight: "2 lb", speed: 8 },
+    "arco_largo_compuesto": { name: "Arco largo compuesto", damage: "1d8", critical: "x3", detail: "Perforante 2M", price: "100 po", weight: "2 lb", speed: 7 },
+    "ballesta_pesada": { name: "Ballesta pesada", damage: "1d10", critical: "19-20x3", detail: "Perforante 2M", price: "50 po", weight: "6 lb", speed: 10 },
+    "mayal_distancia": { name: "Mayal", damage: "1d4", critical: "x2", detail: "Perforante 2M", price: "15 po", weight: "6 lb", speed: 7 },
+    "red": { name: "Red", damage: "-", critical: "x2", detail: "Especial 2M", price: "8 po", weight: "2 lb", speed: 6 },
+    
+    // Armas exóticas cuerpo a cuerpo
+    "espada_bastarda_1m": { name: "Espada bastarda", damage: "1d8", critical: "19-20x2", detail: "Cortante", price: "25 po", weight: "5 lb", speed: 6 },
+    "espada_bastarda_2m": { name: "Espada bastarda 2M", damage: "2d4", critical: "19-20x3", detail: "Cortante 2M", price: "50 po", weight: "6 lb", speed: 8 },
+    "espada_doble": { name: "Espada doble", damage: "1d8", critical: "19-20x2", detail: "Cortante 2M", price: "200 po", weight: "6 lb", speed: 8 },
+    "hacha_guerra_enana": { name: "Hacha de guerra enana", damage: "1d6", critical: "19-20x3", detail: "Cortante", price: "10 po", weight: "2 lb", speed: 3 },
+    "hacha_doble_orca": { name: "Hacha doble orca", damage: "1d10", critical: "19-20x3", detail: "Cortante 2M", price: "100 po", weight: "10 lb", speed: 12 },
+    "katana": { name: "Katana", damage: "1d10", critical: "18-20x2", detail: "Cortante", price: "500+ po", weight: "6 lb", speed: 4 },
+    "mangual_rompecabezas": { name: "Mangual (Rompecabezas)", damage: "1d8", critical: "19-20x3", detail: "Contundente", price: "10 po", weight: "6 lb", speed: 7 },
+    "mano_shiva_1": { name: "Mano de Shiva 1", damage: "5d4", critical: "19-20x2", detail: "Cortante", price: "-", weight: "4 lb", speed: 4 },
+    "mano_shiva_2": { name: "Mano de Shiva 2", damage: "5d8", critical: "19-20x2", detail: "Cortante", price: "-", weight: "6 lb", speed: 6 },
+    
+    // Armas exóticas a distancia
+    "arcabuz": { name: "Arcabuz", damage: "1d10", critical: "19-20x3", detail: "Perforante", price: "500 po", weight: "5 lb", speed: 15 },
+    "arcabuz_largo": { name: "Arcabuz largo", damage: "1d12", critical: "19-20x3", detail: "Perforante", price: "750 po", weight: "10 lb", speed: 20 },
+    "ballesta_mano": { name: "Ballesta de mano", damage: "1d6", critical: "19-20x2", detail: "Perforante 2M", price: "300 po", weight: "1 lb", speed: 5 },
+    "ballesta_repeticion": { name: "Ballesta de repetición", damage: "1d6", critical: "19-20x3", detail: "Perforante 2M", price: "500 po", weight: "7 lb", speed: 10 },
+    "latigo": { name: "Látigo", damage: "1d2", critical: "x2", detail: "Perforante 2M", price: "1 po", weight: "1 lb", speed: 2 }
+};
+
+// JSON de Armaduras basado en el PDF
+const armorData = {
+    "sin_armadura": { name: "Sin Armadura", ac: -1, maxDex: 6, penalty: 0, detail: "Sin protección", weight: "0 kg" },
+    "cuero": { name: "Cuero", ac: -2, maxDex: 6, penalty: 0, detail: "Armadura ligera", weight: "13 kg" },
+    "acolchada": { name: "Acolchada", ac: -2, maxDex: 6, penalty: 0, detail: "Armadura ligera", weight: "5 kg" },
+    "cuero_tachado": { name: "Cuero Tachado", ac: -3, maxDex: 5, penalty: -1, detail: "Armadura ligera", weight: "11 kg" },
+    "pieles": { name: "Pieles", ac: -4, maxDex: 4, penalty: -2, detail: "Armadura mediana", weight: "7 kg" },
+    "anillas": { name: "Anillas", ac: -4, maxDex: 4, penalty: -3, detail: "Armadura mediana", weight: "13 kg" },
+    "cota_mallas": { name: "Cota de Mallas", ac: -5, maxDex: 3, penalty: -4, detail: "Armadura mediana", weight: "18 kg" },
+    "escamas": { name: "Escamas", ac: -6, maxDex: 2, penalty: -5, detail: "Armadura pesada", weight: "18 kg" },
+    "bandas": { name: "Bandas", ac: -7, maxDex: 1, penalty: -6, detail: "Armadura pesada", weight: "16 kg" },
+    "placas": { name: "Placas", ac: -8, maxDex: 0, penalty: -7, detail: "Armadura pesada", weight: "22 kg" },
+    "completa": { name: "Completa", ac: -9, maxDex: 0, penalty: -8, detail: "Armadura pesada", weight: "31 kg" }
+};
+
+// JSON de Escudos
+const shieldData = {
+    "escudo_corporal": { name: "Escudo Corporal", ac: -3, maxDex: 0, penalty: 0, detail: "Escudo grande" },
+    "escudo_mediano": { name: "Escudo Mediano", ac: -2, maxDex: 0, penalty: 0, detail: "Escudo mediano" },
+    "escudo_rodela": { name: "Escudo Rodela", ac: -1, maxDex: 0, penalty: 0, detail: "Escudo pequeño" }
+};
+
+// Función para poblar los selects de armas
+function populateWeaponSelects() {
+    const weaponSelects = ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5'];
+    
+    weaponSelects.forEach(selectId => {
+        const select = document.getElementById(selectId);
+        if (select) {
+            // Limpiar opciones existentes excepto la primera
+            select.innerHTML = '<option value="">Seleccionar Arma</option>';
+            
+            // Agregar opciones de armas agrupadas por categorías
+            const categories = {
+                'Armas Sencillas Cuerpo a Cuerpo': [
+                    'baston', 'vara_2m', 'daga', 'hacha_mano', 'hoz', 'punos', 
+                    'lanza', 'martillo_ligero', 'maza', 'punal'
+                ],
+                'Armas Sencillas a Distancia': [
+                    'arco_corto', 'arco_corto_compuesto', 'ballesta_ligera', 
+                    'dardo', 'honda', 'jabalina'
+                ],
+                'Armas Marciales Cuerpo a Cuerpo': [
+                    'alabarda', 'cimitarra', 'espada_corta', 'espada_mandoble', 
+                    'espada_larga', 'estoque', 'gran_hacha', 'hacha_batalla', 
+                    'lanza_caballeria', 'lucero_alba', 'martillo_guerra', 
+                    'mazo_guerra', 'tridente'
+                ],
+                'Armas Marciales a Distancia': [
+                    'aguja_cerbatana', 'arco_largo', 'arco_largo_compuesto', 
+                    'ballesta_pesada', 'mayal_distancia', 'red'
+                ],
+                'Armas Exóticas': [
+                    'espada_bastarda_1m', 'espada_bastarda_2m', 'espada_doble', 
+                    'hacha_guerra_enana', 'hacha_doble_orca', 'katana', 
+                    'mangual_rompecabezas', 'mano_shiva_1', 'mano_shiva_2', 
+                    'arcabuz', 'arcabuz_largo', 'ballesta_mano', 
+                    'ballesta_repeticion', 'latigo'
+                ]
+            };
+            
+            Object.keys(categories).forEach(categoryName => {
+                const optgroup = document.createElement('optgroup');
+                optgroup.label = categoryName;
+                
+                categories[categoryName].forEach(weaponKey => {
+                    if (weaponsData[weaponKey]) {
+                        const option = document.createElement('option');
+                        option.value = weaponKey;
+                        option.textContent = weaponsData[weaponKey].name;
+                        optgroup.appendChild(option);
+                    }
+                });
+                
+                select.appendChild(optgroup);
+            });
+            
+            // Agregar event listener para actualizar campos cuando se selecciona un arma
+            select.addEventListener('change', function() {
+                updateWeaponFields(selectId, this.value);
+            });
+        }
+    });
+}
+
+// Función para poblar los selects de armaduras
+function populateArmorSelects() {
+    const armorSelect = document.getElementById('armor1');
+    if (armorSelect) {
+        armorSelect.innerHTML = '<option value="">Seleccionar Armadura</option>';
+        
+        Object.keys(armorData).forEach(armorKey => {
+            const armor = armorData[armorKey];
+            const option = document.createElement('option');
+            option.value = armorKey;
+            option.textContent = armor.name;
+            armorSelect.appendChild(option);
+        });
+        
+        armorSelect.addEventListener('change', function() {
+            updateArmorFields(this.value);
+            updateTotalAC();
+        });
+    }
+    
+    // Poblar select de escudos
+    const shieldSelect = document.getElementById('shield');
+    if (shieldSelect) {
+        Object.keys(shieldData).forEach(shieldKey => {
+            const shield = shieldData[shieldKey];
+            const option = document.createElement('option');
+            option.value = shieldKey;
+            option.textContent = shield.name;
+            shieldSelect.appendChild(option);
+        });
+        
+        shieldSelect.addEventListener('change', function() {
+            updateShieldFields(this.value);
+            updateTotalAC();
+        });
+    }
+}
+
+// Función para actualizar campos de arma
+function updateWeaponFields(weaponSelectId, weaponKey) {
+    if (!weaponKey) {
+        // Limpiar campos si no hay arma seleccionada
+        const weaponNumber = weaponSelectId.replace('weapon', '');
+        document.getElementById(`weapon${weaponNumber}Damage`).value = '';
+        document.getElementById(`weapon${weaponNumber}Critical`).value = '';
+        document.getElementById(`weapon${weaponNumber}Detail`).value = '';
+        return;
+    }
+    
+    const weapon = weaponsData[weaponKey];
+    const weaponNumber = weaponSelectId.replace('weapon', '');
+    
+    if (weapon) {
+        document.getElementById(`weapon${weaponNumber}Damage`).value = weapon.damage;
+        document.getElementById(`weapon${weaponNumber}Critical`).value = weapon.critical;
+        document.getElementById(`weapon${weaponNumber}Detail`).value = weapon.detail;
+    }
+}
+
+// Función para actualizar campos de armadura
+function updateArmorFields(armorKey) {
+    if (!armorKey) {
+        document.getElementById('armor1AC').value = '10';
+        document.getElementById('armor1Bonus').value = '6';
+        document.getElementById('armor1Penalty').value = '0';
+        document.getElementById('armor1Detail').value = '';
+        return;
+    }
+    
+    const armor = armorData[armorKey];
+    if (armor) {
+        const baseAC = 10;
+        const finalAC = baseAC + armor.ac;
+        document.getElementById('armor1AC').value = finalAC.toString();
+        document.getElementById('armor1Bonus').value = armor.maxDex.toString();
+        document.getElementById('armor1Penalty').value = armor.penalty.toString();
+        document.getElementById('armor1Detail').value = armor.detail;
+    }
+}
+
+// Función para actualizar campos de escudo
+function updateShieldFields(shieldKey) {
+    if (!shieldKey) {
+        document.getElementById('shieldAC').value = '0';
+        document.getElementById('shieldBonus').value = '0';
+        document.getElementById('shieldPenalty').value = '0';
+        document.getElementById('shieldDetail').value = '';
+        return;
+    }
+    
+    const shield = shieldData[shieldKey];
+    if (shield) {
+        document.getElementById('shieldAC').value = shield.ac.toString();
+        document.getElementById('shieldBonus').value = shield.maxDex.toString();
+        document.getElementById('shieldPenalty').value = shield.penalty.toString();
+        document.getElementById('shieldDetail').value = shield.detail;
+    }
+}
+
+// Función para actualizar AC total en la stat card
+function updateTotalAC() {
+    const armorAC = parseInt(document.getElementById('armor1AC').value) || 10;
+    const shieldAC = parseInt(document.getElementById('shieldAC').value) || 0;
+    const armorPlus = parseInt(document.getElementById('armor1Plus').value) || 0;
+    const shieldPlus = parseInt(document.getElementById('shieldPlus').value) || 0;
+    
+    const totalAC = armorAC + shieldAC + armorPlus + shieldPlus;
+    document.getElementById('combatAC').textContent = totalAC;
+}
+
+// Event listeners para los campos plus
+function addPlusListeners() {
+    document.getElementById('armor1Plus').addEventListener('input', updateTotalAC);
+    document.getElementById('shieldPlus').addEventListener('input', updateTotalAC);
+}
+
+// Inicializar cuando la página esté lista
+document.addEventListener('DOMContentLoaded', function() {
+    populateWeaponSelects();
+    populateArmorSelects();
+    addPlusListeners();
+});
+</script>
+
+            <!-- Skills Tab -->
+            <div id="skills-tab" class="tab-content">
+                <h2 style="color: #ffd700; margin-bottom: 2rem;">🎯 Pericias y Habilidades</h2>
+                <p style="color: #b0b0b0; text-align: center; margin: 2rem 0;">Las pericias se implementarán según la clase seleccionada</p>
+            </div>
+
+            <!-- Spells Tab -->
+            <div id="spells-tab" class="tab-content">
+                <h2 style="color: #ffd700; margin-bottom: 2rem;">✨ Conjuros</h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Lanzador</label>
+                        <select class="form-input" id="casterType" onchange="updateSpellList()">
+                            <option value="">Selecciona tipo</option>
+                            <option value="wizard">Mago/Hechicero</option>
+                            <option value="priest">Clérigo/Druida</option>
+                            <option value="psionic">Psiónico</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nivel de Conjuro</label>
+                        <select class="form-input" id="spellLevel" onchange="filterSpells()">
+                            <option value="">Todos los niveles</option>
+                            <option value="1">Nivel 1</option>
+                            <option value="2">Nivel 2</option>
+                            <option value="3">Nivel 3</option>
+                            <option value="4">Nivel 4</option>
+                            <option value="5">Nivel 5</option>
+                            <option value="6">Nivel 6</option>
+                            <option value="7">Nivel 7</option>
+                            <option value="8">Nivel 8</option>
+                            <option value="9">Nivel 9</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Buscar Conjuro</label>
+                        <input type="text" class="form-input" id="spellSearch" placeholder="Nombre del conjuro..." oninput="searchSpells()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Explorar Listas</label>
+                        <button class="btn btn-secondary" onclick="browseSpellLists()">📜 Ver Lista Completa</button>
+                    </div>
+                </div>
+                
+                <!-- Botones adicionales para manejo de conjuros -->
+                <div class="form-grid" style="margin-bottom: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Buscar Online</label>
+                        <button class="btn btn-secondary" onclick="searchSpellOnline()" id="onlineSearchBtn" disabled>🔍 Buscar en Wiki</button>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Importar Texto</label>
+                        <button class="btn btn-primary" onclick="parseSpellsFromText()">🔥 Importar Lista</button>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Gestión</label>
+                        <button class="btn btn-secondary" onclick="exportCustomSpells()">📤 Exportar</button>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Archivos</label>
+                        <button class="btn btn-secondary" onclick="importCustomSpells()">📁 Importar JSON</button>
+                    </div>
+                </div>
+
+                <!-- Spell Slots Display -->
+                <div id="spellSlotsContainer" style="display: none;">
+                    <h3 style="color: #ffd700; margin: 2rem 0 1rem;">Espacios de Conjuro por Nivel</h3>
+                    <div id="spellSlotsGrid" class="stats-row">
+                        <!-- Spell slots will be dynamically generated here -->
+                    </div>
+                </div>
+
+                <!-- Known Spells -->
+                <div id="knownSpellsContainer">
+                    <h3 style="color: #ffd700; margin: 2rem 0 1rem;">Conjuros Conocidos</h3>
+                    <div id="knownSpellsList" class="spells-list">
+                        <p style="color: #b0b0b0; text-align: center; margin: 2rem 0;">
+                            Selecciona un tipo de lanzador para ver conjuros disponibles
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Add Spell Button -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="addCustomSpell()" id="addSpellBtn" disabled">➕ Añadir Conjuro Manual</button>
+                </div>
+            </div>
+
+            <!-- Equipment Tab -->
+            <div id="equipment-tab" class="tab-content active">
+                <h2 style="color: #ffd700; margin-bottom: 2rem;">🎒 Equipo del Personaje</h2>
+                
+                <!-- Quick Equipment Buttons -->
+                <div class="quick-equip-buttons">
+                    <button class="quick-equip-btn" onclick="quickEquipSet('warrior')">⚔️ Guerrero</button>
+                    <button class="quick-equip-btn" onclick="quickEquipSet('mage')">🔮 Mago</button>
+                    <button class="quick-equip-btn" onclick="quickEquipSet('rogue')">🗡️ Pícaro</button>
+                    <button class="quick-equip-btn" onclick="quickEquipSet('priest')">🛡️ Clérigo</button>
+                    <button class="quick-equip-btn" onclick="clearAllEquipment()">🧹 Limpiar Todo</button>
+                </div>
+
+                <!-- Head & Neck Equipment -->
+                <div class="equipment-section">
+                    <h3>👑 Cabeza y Cuello</h3>
+                    <div class="equipment-grid">
+                        <div class="equipment-slot" id="helmet-slot" onclick="equipItem('helmet')">
+                            <div class="slot-label">Casco/Yelmo</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot" id="crown-slot" onclick="equipItem('crown')">
+                            <div class="slot-label">Corona/Tiara</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot" id="neck-slot" onclick="equipItem('neck')">
+                            <div class="slot-label">Cuello</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot" id="cloak-slot" onclick="equipItem('cloak')">
+                            <div class="slot-label">Capa/Manto</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arms & Hands Equipment -->
+                <div class="equipment-section">
+                    <h3>🤲 Brazos y Manos</h3>
+                    <div class="equipment-grid">
+                        <div class="equipment-slot" id="bracers-slot" onclick="equipItem('bracers')">
+                            <div class="slot-label">Brazales</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot" id="gauntlets-slot" onclick="equipItem('gauntlets')">
+                            <div class="slot-label">Guanteletes</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot" id="ring1-slot" onclick="equipItem('ring1')">
+                            <div class="slot-label">Anillo 1</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot" id="ring2-slot" onclick="equipItem('ring2')">
+                            <div class="slot-label">Anillo 2</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Body & Feet Equipment -->
+                <div class="equipment-section">
+                    <h3>👕 Cuerpo y Pies</h3>
+                    <div class="equipment-grid">
+                        <div class="equipment-slot" id="armor-slot" onclick="equipItem('armor')">
+                            <div class="slot-label">Armadura</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot" id="shield-slot" onclick="equipItem('shield')">
+                            <div class="slot-label">Escudo</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot" id="boots-slot" onclick="equipItem('boots')">
+                            <div class="slot-label">Botas</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot" id="belt-slot" onclick="equipItem('belt')">
+                            <div class="slot-label">Cinturón</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weapons Section -->
+                <div class="equipment-section">
+                    <h3>⚔️ Armas</h3>
+                    <div class="equipment-grid">
+                        <div class="equipment-slot weapon-slot" id="weapon1-slot" onclick="equipWeapon('weapon1')">
+                            <div class="slot-label">Arma Principal</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot weapon-slot" id="weapon2-slot" onclick="equipWeapon('weapon2')">
+                            <div class="slot-label">Arma Secundaria</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot weapon-slot" id="weapon3-slot" onclick="equipWeapon('weapon3')">
+                            <div class="slot-label">Arma Terciaria</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot weapon-slot" id="weapon4-slot" onclick="equipWeapon('weapon4')">
+                            <div class="slot-label">Arma de Distancia</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                        <div class="equipment-slot weapon-slot" id="weapon5-slot" onclick="equipWeapon('weapon5')">
+                            <div class="slot-label">Arma Especial</div>
+                            <div class="slot-item slot-empty">Vacío</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Armor Statistics -->
+                <div class="armor-stats">
+                    <h4>📊 Estadísticas de Protección</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="label">Clase de Armadura:</span>
+                            <span class="value" id="equipmentAC">10</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Peso Total:</span>
+                            <span class="value" id="totalWeight">0 kg</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Penalizador Destreza:</span>
+                            <span class="value" id="dexPenalty">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Max Bonif. Destreza:</span>
+                            <span class="value" id="maxDexBonus">+6</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Velocidad:</span>
+                            <span class="value" id="armorSpeed">12</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Resistencia Mágica:</span>
+                            <span class="value" id="magicResistance">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Equipment -->
+                <div class="equipment-section">
+                    <h3>🎒 Inventario Adicional</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Dinero (MO)</label>
+                            <input type="number" class="form-input" id="gold" value="0" min="0" onchange="updateMoney()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Monedas Plata (MP)</label>
+                            <input type="number" class="form-input" id="silver" value="0" min="0" onchange="updateMoney()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Monedas Cobre (MC)</label>
+                            <input type="number" class="form-input" id="copper" value="0" min="0" onchange="updateMoney()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Valor Total (MO)</label>
+                            <input type="text" class="form-input" id="totalValue" value="0 MO" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Objetos Adicionales</label>
+                        <textarea class="form-input" id="additionalItems" rows="4" placeholder="Ej: Cuerda de seda (50 pies), Kit de ladrón, Poción de curación..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Dice Roller -->
+    <div class="dice-roller">
+        <button class="dice-btn" onclick="rollDice(20)" title="Tirar d20">🎲</button>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Global character data
+        let character = {
+            name: '',
+            playerName: '',
+            race: '',
+            alignment: 'N',
+            primaryClass: '',
+            secondaryClass: '',
+            tertiaryClass: '',
+            specificClass: '',
+            level: 1,
+            experience: 0,
+            abilities: {
+                strength: 10,
+                dexterity: 10,
+                constitution: 10,
+                intelligence: 10,
+                wisdom: 10,
+                charisma: 10
+            },
+            hitPoints: 10,
+            armorClass: 10,
+            gaco: 20,
+            equipment: {
+                helmet: null,
+                crown: null,
+                neck: null,
+                cloak: null,
+                bracers: null,
+                gauntlets: null,
+                ring1: null,
+                ring2: null,
+                armor: null,
+                shield: null,
+                boots: null,
+                belt: null,
+                weapon1: null,
+                weapon2: null,
+                weapon3: null,
+                weapon4: null,
+                weapon5: null
+            },
+            money: {
+                gold: 0,
+                silver: 0,
+                copper: 0
+            },
+            additionalItems: '',
+            knownSpells: []
+        };
+
+        // Equipment Database
+        const equipmentDatabase = {
+            helmet: [
+                { name: 'Casco de Cuero', ac: 0, weight: 1, type: 'light', price: '5 MO' },
+                { name: 'Yelmo de Acero', ac: 0, weight: 3, type: 'medium', price: '15 MO' },
+                { name: 'Gran Yelmo', ac: 1, weight: 5, type: 'heavy', price: '50 MO' },
+                { name: 'Yelmo Encantado +1', ac: 1, weight: 3, type: 'magic', price: '1000 MO' }
+            ],
+            crown: [
+                { name: 'Corona de Cobre', ac: 0, weight: 0.5, type: 'light', price: '25 MO' },
+                { name: 'Corona Real', ac: 0, weight: 1, type: 'medium', price: '500 MO' },
+                { name: 'Tiara Élfica', ac: 0, weight: 0.2, type: 'magic', price: '2000 MO' },
+                { name: 'Diadema del Intelecto', ac: 0, weight: 0.1, type: 'magic', price: '5000 MO' }
+            ],
+            neck: [
+                { name: 'Collar de Cuero', ac: 0, weight: 0.2, type: 'light', price: '2 MO' },
+                { name: 'Cadena de Plata', ac: 0, weight: 0.5, type: 'medium', price: '50 MO' },
+                { name: 'Amuleto de Protección', ac: 1, weight: 0.1, type: 'magic', price: '1500 MO' },
+                { name: 'Medallón Sagrado', ac: 0, weight: 0.3, type: 'magic', price: '800 MO' }
+            ],
+            cloak: [
+                { name: 'Capa de Viaje', ac: 0, weight: 2, type: 'light', price: '8 MO' },
+                { name: 'Manto de Lana', ac: 0, weight: 3, type: 'medium', price: '15 MO' },
+                { name: 'Capa de Desplazamiento', ac: 2, weight: 1, type: 'magic', price: '3500 MO' },
+                { name: 'Manto Élfico', ac: 1, weight: 1.5, type: 'magic', price: '2000 MO' }
+            ],
+            bracers: [
+                { name: 'Brazales de Cuero', ac: 0, weight: 1, type: 'light', price: '10 MO' },
+                { name: 'Brazales de Acero', ac: 1, weight: 3, type: 'medium', price: '75 MO' },
+                { name: 'Brazales de Defensa CA 6', ac: 4, weight: 2, type: 'magic', price: '2000 MO' },
+                { name: 'Brazales de Defensa CA 4', ac: 6, weight: 2, type: 'magic', price: '8000 MO' }
+            ],
+            gauntlets: [
+                { name: 'Guantes de Cuero', ac: 0, weight: 0.5, type: 'light', price: '5 MO' },
+                { name: 'Guanteletes', ac: 0, weight: 2, type: 'medium', price: '25 MO' },
+                { name: 'Guanteletes de Poder de Ogro', ac: 0, weight: 2, type: 'magic', price: '3000 MO' },
+                { name: 'Guanteletes de Destreza', ac: 0, weight: 1, type: 'magic', price: '2500 MO' }
+            ],
+            ring1: [
+                { name: 'Anillo de Cobre', ac: 0, weight: 0.1, type: 'light', price: '1 MO' },
+                { name: 'Anillo de Plata', ac: 0, weight: 0.1, type: 'medium', price: '10 MO' },
+                { name: 'Anillo de Protección +1', ac: 1, weight: 0.1, type: 'magic', price: '2000 MO' },
+                { name: 'Anillo de Invisibilidad', ac: 0, weight: 0.1, type: 'magic', price: '7500 MO' }
+            ],
+            ring2: [
+                { name: 'Anillo de Cobre', ac: 0, weight: 0.1, type: 'light', price: '1 MO' },
+                { name: 'Anillo de Oro', ac: 0, weight: 0.1, type: 'medium', price: '50 MO' },
+                { name: 'Anillo de Protección +2', ac: 2, weight: 0.1, type: 'magic', price: '5000 MO' },
+                { name: 'Anillo de Regeneración', ac: 0, weight: 0.1, type: 'magic', price: '15000 MO' }
+            ],
+            armor: [
+                { name: 'Sin Armadura', ac: 10, weight: 0, type: 'none', price: '0 MO' },
+                { name: 'Armadura de Cuero', ac: 8, weight: 13, type: 'light', price: '10 MO' },
+                { name: 'Cuero Tachonado', ac: 7, weight: 11, type: 'light', price: '25 MO' },
+                { name: 'Cota de Malla', ac: 5, weight: 18, type: 'medium', price: '100 MO' },
+                { name: 'Armadura de Escamas', ac: 6, weight: 18, type: 'medium', price: '120 MO' },
+                { name: 'Armadura de Placas', ac: 3, weight: 22, type: 'heavy', price: '600 MO' },
+                { name: 'Armadura Completa', ac: 2, weight: 31, type: 'heavy', price: '1200 MO' },
+                { name: 'Armadura +1', ac: 2, weight: 18, type: 'magic', price: '3000 MO' }
+            ],
+            shield: [
+                { name: 'Sin Escudo', ac: 0, weight: 0, type: 'none', price: '0 MO' },
+                { name: 'Escudo Pequeño', ac: 1, weight: 2, type: 'light', price: '3 MO' },
+                { name: 'Escudo Mediano', ac: 1, weight: 5, type: 'medium', price: '7 MO' },
+                { name: 'Escudo Grande', ac: 2, weight: 8, type: 'heavy', price: '15 MO' },
+                { name: 'Escudo +1', ac: 2, weight: 5, type: 'magic', price: '1500 MO' },
+                { name: 'Escudo +2', ac: 3, weight: 5, type: 'magic', price: '4000 MO' }
+            ],
+            boots: [
+                { name: 'Sandalias', ac: 0, weight: 0.5, type: 'light', price: '2 MO' },
+                { name: 'Botas de Cuero', ac: 0, weight: 1, type: 'medium', price: '8 MO' },
+                { name: 'Botas de Velocidad', ac: 0, weight: 1, type: 'magic', price: '5000 MO' },
+                { name: 'Botas de Andar por el Agua', ac: 0, weight: 1, type: 'magic', price: '3000 MO' }
+            ],
+            belt: [
+                { name: 'Cinturón de Cuerda', ac: 0, weight: 0.5, type: 'light', price: '1 MO' },
+                { name: 'Cinturón de Cuero', ac: 0, weight: 1, type: 'medium', price: '5 MO' },
+                { name: 'Cinturón de Fuerza de Gigante', ac: 0, weight: 1, type: 'magic', price: '8000 MO' },
+                { name: 'Cinturón Élfico', ac: 0, weight: 0.5, type: 'magic', price: '2500 MO' }
+            ],
+            weapon1: [
+                { name: 'Puños', damage: '1d3', weight: 0, type: 'none', price: '0 MO' },
+                { name: 'Daga', damage: '1d4', weight: 1, type: 'light', price: '2 MO' },
+                { name: 'Espada Corta', damage: '1d6', weight: 1, type: 'light', price: '10 MO' },
+                { name: 'Espada Larga', damage: '1d8', weight: 2, type: 'medium', price: '15 MO' },
+                { name: 'Espada Mandoble', damage: '2d6', weight: 7, type: 'heavy', price: '50 MO' },
+                { name: 'Hacha de Mano', damage: '1d6', weight: 2, type: 'light', price: '5 MO' },
+                { name: 'Hacha de Batalla', damage: '1d8', weight: 3, type: 'medium', price: '5 MO' },
+                { name: 'Gran Hacha', damage: '1d12', weight: 7, type: 'heavy', price: '30 MO' },
+                { name: 'Martillo de Guerra', damage: '1d8', weight: 3, type: 'medium', price: '2 MO' },
+                { name: 'Maza', damage: '1d6', weight: 4, type: 'medium', price: '5 MO' },
+                { name: 'Lanza', damage: '1d6', weight: 2, type: 'medium', price: '6 MO' },
+                { name: 'Alabarda', damage: '1d10', weight: 7, type: 'heavy', price: '10 MO' },
+                { name: 'Espada +1', damage: '1d8+1', weight: 2, type: 'magic', price: '2000 MO' },
+                { name: 'Espada Flamígera +2', damage: '1d8+2', weight: 2, type: 'magic', price: '5000 MO' }
+            ],
+            weapon2: [
+                { name: 'Vacío', damage: '0', weight: 0, type: 'none', price: '0 MO' },
+                { name: 'Daga Arrojadiza', damage: '1d4', weight: 1, type: 'light', price: '2 MO' },
+                { name: 'Puñal', damage: '1d4', weight: 1, type: 'light', price: '2 MO' },
+                { name: 'Martillo Ligero', damage: '1d4', weight: 2, type: 'light', price: '2 MO' },
+                { name: 'Hacha de Mano', damage: '1d6', weight: 2, type: 'light', price: '5 MO' },
+                { name: 'Maza Ligera', damage: '1d6', weight: 4, type: 'medium', price: '5 MO' },
+                { name: 'Cimitarra', damage: '1d6', weight: 2, type: 'light', price: '15 MO' },
+                { name: 'Estoque', damage: '1d6', weight: 2, type: 'light', price: '25 MO' }
+            ],
+            weapon3: [
+                { name: 'Vacío', damage: '0', weight: 0, type: 'none', price: '0 MO' },
+                { name: 'Bastón', damage: '1d6', weight: 4, type: 'medium', price: '1 MO' },
+                { name: 'Vara', damage: '1d8', weight: 8, type: 'medium', price: '2 MO' },
+                { name: 'Tridente', damage: '1d6', weight: 2, type: 'medium', price: '15 MO' },
+                { name: 'Lanza de Caballería', damage: '1d12', weight: 5, type: 'heavy', price: '10 MO' }
+            ],
+            weapon4: [
+                { name: 'Vacío', damage: '0', weight: 0, type: 'none', price: '0 MO' },
+                { name: 'Honda', damage: '1d4', weight: 0, type: 'light', price: '5 MC' },
+                { name: 'Dardo', damage: '1d3', weight: 0.25, type: 'light', price: '5 PP' },
+                { name: 'Jabalina', damage: '1d6', weight: 1, type: 'light', price: '5 PP' },
+                { name: 'Arco Corto', damage: '1d6', weight: 1, type: 'medium', price: '30 MO' },
+                { name: 'Arco Largo', damage: '1d8', weight: 2, type: 'medium', price: '75 MO' },
+                { name: 'Ballesta Ligera', damage: '1d8', weight: 2, type: 'medium', price: '35 MO' },
+                { name: 'Ballesta Pesada', damage: '1d10', weight: 6, type: 'heavy', price: '50 MO' },
+                { name: 'Arco Largo +1', damage: '1d8+1', weight: 2, type: 'magic', price: '2500 MO' }
+            ],
+            weapon5: [
+                { name: 'Vacío', damage: '0', weight: 0, type: 'none', price: '0 MO' },
+                { name: 'Látigo', damage: '1d2', weight: 1, type: 'exotic', price: '1 MO' },
+                { name: 'Red', damage: '0', weight: 2, type: 'exotic', price: '8 MO' },
+                { name: 'Mayal', damage: '1d4', weight: 6, type: 'exotic', price: '15 MO' },
+                { name: 'Katana', damage: '1d10', weight: 6, type: 'exotic', price: '500+ MO' },
+                { name: 'Espada Bastarda', damage: '1d8', weight: 5, type: 'exotic', price: '25 MO' },
+                { name: 'Arcabuz', damage: '1d10', weight: 5, type: 'exotic', price: '500 MO' }
+            ]
+        };
+
+        // Spell data - Basic spell database with most common spells
+        const spellDatabase = {
+            wizard: {
+                1: [
+                    { name: "Magic Missile", school: "Evocation", description: "Automatically hits target for 1d4+1 damage per missile" },
+                    { name: "Shield", school: "Abjuration", description: "Grants AC 2 vs. missiles, AC 4 vs. other attacks" },
+                    { name: "Sleep", school: "Enchantment", description: "Causes 4d4 HD of creatures to fall asleep" },
+                    { name: "Charm Person", school: "Enchantment", description: "Makes person friendly and helpful" },
+                    { name: "Detect Magic", school: "Divination", description: "Reveals magical auras within 60 feet" },
+                    { name: "Light", school: "Alteration", description: "Creates bright light in 20-foot radius" },
+                    { name: "Read Magic", school: "Divination", description: "Allows reading of magical writings" },
+                    { name: "Burning Hands", school: "Alteration", description: "Cone of fire deals 1d3+2 per level damage" },
+                    { name: "Identify", school: "Divination", description: "Reveals properties of magical items" },
+                    { name: "Feather Fall", school: "Alteration", description: "Slows falling rate to 2 feet per second" }
+                ],
+                2: [
+                    { name: "Fireball", school: "Evocation", description: "Explodes for 1d6 per level damage" },
+                    { name: "Web", school: "Evocation", description: "Creates sticky webs to entangle foes" },
+                    { name: "Mirror Image", school: "Illusion", description: "Creates 1d4+1 duplicate images" },
+                    { name: "Invisibility", school: "Illusion", description: "Makes creature invisible until it attacks" },
+                    { name: "Knock", school: "Alteration", description: "Opens locked doors and containers" },
+                    { name: "Levitate", school: "Alteration", description: "Moves up and down at 20 feet per round" },
+                    { name: "Detect Invisibility", school: "Divination", description: "Reveals invisible creatures and objects" },
+                    { name: "Strength", school: "Alteration", description: "Raises Strength to 18/00 for a time" }
+                ],
+                3: [
+                    { name: "Lightning Bolt", school: "Evocation", description: "Bolt deals 1d6 per level damage" },
+                    { name: "Dispel Magic", school: "Abjuration", description: "Cancels magical effects" },
+                    { name: "Hold Person", school: "Enchantment", description: "Paralyzes 1-4 persons" },
+                    { name: "Fly", school: "Alteration", description: "Grants flight at 18 movement rate" },
+                    { name: "Haste", school: "Alteration", description: "Doubles movement and attacks" },
+                    { name: "Slow", school: "Alteration", description: "Halves movement and attacks" }
+                ]
+            },
+            priest: {
+                1: [
+                    { name: "Cure Light Wounds", school: "Necromancy", description: "Heals 1d8 points of damage" },
+                    { name: "Bless", school: "Conjuration", description: "Improves morale and attack rolls" },
+                    { name: "Command", school: "Enchantment", description: "Subject obeys one-word command" },
+                    { name: "Detect Evil", school: "Divination", description: "Reveals evil auras within 60 feet" },
+                    { name: "Light", school: "Alteration", description: "Creates bright light in 20-foot radius" },
+                    { name: "Protection from Evil", school: "Abjuration", description: "Ward against evil attacks" },
+                    { name: "Remove Fear", school: "Abjuration", description: "Suppresses fear effects" },
+                    { name: "Sanctuary", school: "Abjuration", description: "Opponents can't attack caster" }
+                ],
+                2: [
+                    { name: "Cure Moderate Wounds", school: "Necromancy", description: "Heals 1d8+1 points of damage" },
+                    { name: "Hold Person", school: "Enchantment", description: "Paralyzes one person" },
+                    { name: "Silence 15' Radius", school: "Alteration", description: "Creates zone of absolute silence" },
+                    { name: "Spiritual Hammer", school: "Invocation", description: "Magical hammer attacks foes" },
+                    { name: "Know Alignment", school: "Divination", description: "Reveals creature's alignment" },
+                    { name: "Snake Charm", school: "Enchantment", description: "Charms snakes within area" }
+                ],
+                3: [
+                    { name: "Cure Serious Wounds", school: "Necromancy", description: "Heals 2d8+1 points of damage" },
+                    { name: "Dispel Magic", school: "Abjuration", description: "Cancels magical effects" },
+                    { name: "Prayer", school: "Conjuration", description: "Aids allies and hinders enemies" },
+                    { name: "Remove Curse", school: "Abjuration", description: "Removes curses from creature or object" }
+                ]
+            },
+            psionic: [
+                { name: "Mind Blast", discipline: "Telepathy", description: "Mental attack that stuns opponents" },
+                { name: "Levitation", discipline: "Psychokinesis", description: "Lift objects or self with mind power" },
+                { name: "ESP", discipline: "Telepathy", description: "Read surface thoughts of others" },
+                { name: "Telekinesis", discipline: "Psychokinesis", description: "Move objects with mental force" },
+                { name: "Body Equilibrium", discipline: "Psychometabolism", description: "Walk on water or other surfaces" },
+                { name: "Invisibility", discipline: "Psychometabolism", description: "Bend light to become invisible" }
+            ]
+        };
+
+        // Character spell slots by level (simplified AD&D progression)
+        const spellSlotsByLevel = {
+            wizard: {
+                1: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+                2: [2, 0, 0, 0, 0, 0, 0, 0, 0],
+                3: [2, 1, 0, 0, 0, 0, 0, 0, 0],
+                4: [3, 2, 0, 0, 0, 0, 0, 0, 0],
+                5: [4, 2, 1, 0, 0, 0, 0, 0, 0],
+                6: [4, 2, 2, 0, 0, 0, 0, 0, 0],
+                7: [4, 3, 2, 1, 0, 0, 0, 0, 0],
+                8: [4, 3, 3, 2, 0, 0, 0, 0, 0],
+                9: [4, 3, 3, 2, 1, 0, 0, 0, 0],
+                10: [4, 4, 3, 3, 2, 0, 0, 0, 0]
+            },
+            priest: {
+                1: [1, 0, 0, 0, 0, 0, 0],
+                2: [2, 0, 0, 0, 0, 0, 0],
+                3: [2, 1, 0, 0, 0, 0, 0],
+                4: [3, 2, 0, 0, 0, 0, 0],
+                5: [3, 3, 1, 0, 0, 0, 0],
+                6: [3, 3, 2, 0, 0, 0, 0],
+                7: [3, 3, 2, 1, 0, 0, 0],
+                8: [3, 3, 3, 2, 0, 0, 0],
+                9: [4, 4, 3, 2, 1, 0, 0],
+                10: [4, 4, 3, 3, 2, 0, 0]
+            }
+        };
+
+        // Class data structure
+        const classData = {
+            luchador: {
+                name: 'Luchador',
+                classes: ['Bárbaro', 'Ranger', 'Guerrero', 'Paladín', 'Samurái'],
+                hitDie: 'd10',
+                primaryAbility: 'strength'
+            },
+            sacerdote: {
+                name: 'Sacerdote',
+                classes: ['Clérigo', 'Druida', 'Chamán'],
+                hitDie: 'd8',
+                primaryAbility: 'wisdom'
+            },
+            hechicero: {
+                name: 'Hechicero',
+                classes: ['Mago', 'Hechicero', 'Bruja', 'Artífice'],
+                hitDie: 'd4',
+                primaryAbility: 'intelligence'
+            },
+            bribon: {
+                name: 'Bribón',
+                classes: ['Ladrón', 'Bardo', 'Ninja', 'Psiónico', 'Pistolero'],
+                hitDie: 'd6',
+                primaryAbility: 'dexterity'
+            }
+        };
+
+        // AD&D ability score modifiers
+        const abilityModifiers = {
+            strength: {
+                1: { hit: -5, damage: -4 }, 2: { hit: -3, damage: -2 }, 3: { hit: -3, damage: -1 },
+                4: { hit: -2, damage: -1 }, 5: { hit: -2, damage: -1 }, 6: { hit: -1, damage: 0 },
+                7: { hit: -1, damage: 0 }, 8: { hit: 0, damage: 0 }, 9: { hit: 0, damage: 0 },
+                10: { hit: 0, damage: 0 }, 11: { hit: 0, damage: 0 }, 12: { hit: 0, damage: 0 },
+                13: { hit: 0, damage: 0 }, 14: { hit: 0, damage: 0 }, 15: { hit: 0, damage: 0 },
+                16: { hit: 0, damage: 1 }, 17: { hit: 1, damage: 1 }, 18: { hit: 1, damage: 2 },
+                19: { hit: 3, damage: 7 }, 20: { hit: 3, damage: 8 }, 21: { hit: 4, damage: 9 },
+                22: { hit: 4, damage: 10 }, 23: { hit: 5, damage: 11 }, 24: { hit: 6, damage: 12 },
+                25: { hit: 7, damage: 14 }
+            },
+            dexterity: {
+                1: { reaction: -6, missile: -6, ac: 5 }, 2: { reaction: -4, missile: -4, ac: 5 },
+                3: { reaction: -3, missile: -3, ac: 4 }, 4: { reaction: -2, missile: -2, ac: 3 },
+                5: { reaction: -1, missile: -1, ac: 2 }, 6: { reaction: 0, missile: 0, ac: 1 },
+                7: { reaction: 0, missile: 0, ac: 0 }, 8: { reaction: 0, missile: 0, ac: 0 },
+                9: { reaction: 0, missile: 0, ac: 0 }, 10: { reaction: 0, missile: 0, ac: 0 },
+                11: { reaction: 0, missile: 0, ac: 0 }, 12: { reaction: 0, missile: 0, ac: 0 },
+                13: { reaction: 0, missile: 0, ac: 0 }, 14: { reaction: 0, missile: 0, ac: 0 },
+                15: { reaction: 0, missile: 0, ac: -1 }, 16: { reaction: 1, missile: 1, ac: -2 },
+                17: { reaction: 2, missile: 2, ac: -3 }, 18: { reaction: 2, missile: 2, ac: -4 },
+                19: { reaction: 3, missile: 3, ac: -4 }, 20: { reaction: 3, missile: 3, ac: -4 },
+                21: { reaction: 4, missile: 4, ac: -5 }, 22: { reaction: 4, missile: 4, ac: -5 },
+                23: { reaction: 5, missile: 5, ac: -6 }, 24: { reaction: 5, missile: 5, ac: -6 },
+                25: { reaction: 6, missile: 6, ac: -7 }
+            },
+            constitution: {
+                1: { hp: -3, shock: 25, resurrection: 30 }, 2: { hp: -2, shock: 30, resurrection: 35 },
+                3: { hp: -2, shock: 35, resurrection: 40 }, 4: { hp: -1, shock: 40, resurrection: 45 },
+                5: { hp: -1, shock: 45, resurrection: 50 }, 6: { hp: -1, shock: 50, resurrection: 55 },
+                7: { hp: 0, shock: 55, resurrection: 60 }, 8: { hp: 0, shock: 60, resurrection: 65 },
+                9: { hp: 0, shock: 65, resurrection: 70 }, 10: { hp: 0, shock: 70, resurrection: 75 },
+                11: { hp: 0, shock: 75, resurrection: 80 }, 12: { hp: 0, shock: 80, resurrection: 85 },
+                13: { hp: 0, shock: 85, resurrection: 90 }, 14: { hp: 0, shock: 88, resurrection: 92 },
+                15: { hp: 1, shock: 90, resurrection: 94 }, 16: { hp: 2, shock: 95, resurrection: 96 },
+                17: { hp: 3, shock: 97, resurrection: 98 }, 18: { hp: 4, shock: 99, resurrection: 100 },
+                19: { hp: 5, shock: 99, resurrection: 100 }, 20: { hp: 5, shock: 99, resurrection: 100 },
+                21: { hp: 6, shock: 99, resurrection: 100 }, 22: { hp: 6, shock: 99, resurrection: 100 },
+                23: { hp: 6, shock: 99, resurrection: 100 }, 24: { hp: 7, shock: 99, resurrection: 100 },
+                25: { hp: 7, shock: 100, resurrection: 100 }
+            }
+        };
+
+        // Equipment Functions
+        function equipItem(slotType) {
+            const items = equipmentDatabase[slotType] || [];
+            if (items.length === 0) {
+                showNotification('No hay objetos disponibles para este slot');
+                return;
+            }
+
+            let optionsHtml = '<option value="">Seleccionar objeto...</option>';
+            items.forEach((item, index) => {
+                optionsHtml += `<option value="${index}">${item.name} (AC: ${item.ac > 0 ? '+' : ''}${item.ac}, Peso: ${item.weight}kg, ${item.price})</option>`;
+            });
+
+            const selection = prompt(`Selecciona un objeto para ${slotType}:\n\n${items.map((item, index) => 
+                `${index + 1}. ${item.name} (AC: ${item.ac > 0 ? '+' : ''}${item.ac}, Peso: ${item.weight}kg, ${item.price})`
+            ).join('\n')}\n\n0. Quitar objeto actual\n\nIngresa el número:`);
+
+            if (selection === null) return;
+            
+            const itemIndex = parseInt(selection) - 1;
+            
+            if (selection === '0') {
+                character.equipment[slotType] = null;
+                updateEquipmentSlot(slotType, null);
+            } else if (itemIndex >= 0 && itemIndex < items.length) {
+                character.equipment[slotType] = items[itemIndex];
+                updateEquipmentSlot(slotType, items[itemIndex]);
+            } else {
+                showNotification('Selección inválida');
+                return;
+            }
+            
+            updateArmorStats();
+        }
+
+        function equipWeapon(slotType) {
+            equipItem(slotType);
+        }
+
+        function updateEquipmentSlot(slotType, item) {
+            const slot = document.getElementById(`${slotType}-slot`);
+            const itemDiv = slot.querySelector('.slot-item');
+            
+            if (item) {
+                itemDiv.textContent = item.name;
+                itemDiv.className = 'slot-item';
+                slot.classList.add('occupied');
+                
+                if (slotType.startsWith('weapon')) {
+                    itemDiv.textContent += ` (${item.damage})`;
+                }
+            } else {
+                itemDiv.textContent = 'Vacío';
+                itemDiv.className = 'slot-item slot-empty';
+                slot.classList.remove('occupied');
+            }
+        }
+
+        function updateArmorStats() {
+            let totalAC = 10;
+            let totalWeight = 0;
+            let dexPenalty = 0;
+            let maxDexBonus = 6;
+            let speed = 12;
+            
+            // Calculate from equipped items
+            Object.values(character.equipment).forEach(item => {
+                if (item) {
+                    totalWeight += item.weight;
+                    if (item.ac) {
+                        if (item.name === 'Sin Armadura' || item.name === 'Sin Escudo' || item.name === 'Vacío') {
+                            // These don't affect AC
+                        } else {
+                            totalAC -= Math.abs(item.ac);
+                        }
+                    }
+                }
+            });
+
+            // Apply dexterity modifier
+            const dex = parseInt(document.getElementById('dexterity').value) || 10;
+            const dexMod = abilityModifiers.dexterity[dex]?.ac || 0;
+            totalAC += dexMod;
+
+            // Update display
+            document.getElementById('equipmentAC').textContent = totalAC;
+            document.getElementById('totalWeight').textContent = `${totalWeight} kg`;
+            document.getElementById('dexPenalty').textContent = dexPenalty;
+            document.getElementById('maxDexBonus').textContent = `+${maxDexBonus}`;
+            document.getElementById('armorSpeed').textContent = speed;
+            document.getElementById('magicResistance').textContent = '0%';
+            
+            // Update main AC displays
+            character.armorClass = totalAC;
+            document.getElementById('armorClass').textContent = totalAC;
+            document.getElementById('combatAC').textContent = totalAC;
+        }
+
+        function quickEquipSet(setType) {
+            // Clear current equipment
+            Object.keys(character.equipment).forEach(slot => {
+                character.equipment[slot] = null;
+            });
+
+            // Quick equip sets
+            const sets = {
+                warrior: {
+                    armor: equipmentDatabase.armor[4], // Chain Mail
+                    shield: equipmentDatabase.shield[2], // Medium Shield
+                    helmet: equipmentDatabase.helmet[1], // Steel Helm
+                    weapon1: equipmentDatabase.weapon1[3], // Long Sword
+                    weapon2: equipmentDatabase.weapon2[4], // Hand Axe
+                    weapon4: equipmentDatabase.weapon4[4], // Short Bow
+                    boots: equipmentDatabase.boots[1], // Leather Boots
+                    cloak: equipmentDatabase.cloak[0], // Travel Cloak
+                    gauntlets: equipmentDatabase.gauntlets[0] // Leather Gloves
+                },
+                priest: {
+                    armor: equipmentDatabase.armor[3], // Chain Mail
+                    shield: equipmentDatabase.shield[1], // Small Shield
+                    helmet: equipmentDatabase.helmet[0], // Leather Cap
+                    weapon1: equipmentDatabase.weapon1[9], // Mace
+                    weapon3: equipmentDatabase.weapon3[1], // Rod
+                    cloak: equipmentDatabase.cloak[1], // Wool Cloak
+                    boots: equipmentDatabase.boots[1], // Leather Boots
+                    neck: equipmentDatabase.neck[3] // Sacred Medallion
+                }
+            };
+
+            const selectedSet = sets[setType];
+            if (selectedSet) {
+                Object.entries(selectedSet).forEach(([slot, item]) => {
+                    character.equipment[slot] = item;
+                    updateEquipmentSlot(slot, item);
+                });
+                updateArmorStats();
+                showNotification(`Equipo de ${setType} equipado correctamente`);
+            }
+        }
+
+        function clearAllEquipment() {
+            Object.keys(character.equipment).forEach(slot => {
+                character.equipment[slot] = null;
+                updateEquipmentSlot(slot, null);
+            });
+            updateArmorStats();
+            showNotification('Todo el equipo ha sido removido');
+        }
+
+        function updateMoney() {
+            const gold = parseInt(document.getElementById('gold').value) || 0;
+            const silver = parseInt(document.getElementById('silver').value) || 0;
+            const copper = parseInt(document.getElementById('copper').value) || 0;
+            
+            character.money.gold = gold;
+            character.money.silver = silver;
+            character.money.copper = copper;
+            
+            // Calculate total value in gold
+            const totalValue = gold + (silver / 10) + (copper / 100);
+            document.getElementById('totalValue').value = `${totalValue.toFixed(2)} MO`;
+        }
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Tab system
+        function showTab(tabName, element) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab and mark button as active
+            document.getElementById(tabName + '-tab').classList.add('active');
+            element.classList.add('active');
+        }
+
+        // Character management functions
+        function updateCharacterDisplay() {
+            const name = document.getElementById('characterName').value || 'Nuevo Personaje';
+            const race = document.getElementById('race').value;
+            
+            document.getElementById('characterNameDisplay').textContent = name;
+            
+            if (character.primaryClass) {
+                let classDisplay = classData[character.primaryClass].name;
+                if (character.specificClass) {
+                    classDisplay = character.specificClass;
+                }
+                if (race) {
+                    classDisplay = `${race} ${classDisplay}`;
+                }
+                document.getElementById('characterClassDisplay').textContent = classDisplay;
+            }
+        }
+
+        function selectPrimaryCategory(category) {
+            // Update selection
+            document.querySelectorAll('.category-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('selected');
+            
+            character.primaryClass = category;
+            
+            // Update secondary categories
+            const secondaryGrid = document.getElementById('secondaryCategoryGrid');
+            const otherCategories = Object.keys(classData).filter(cat => cat !== category);
+            
+            secondaryGrid.innerHTML = '';
+            otherCategories.forEach(cat => {
+                const option = document.createElement('div');
+                option.className = 'category-option';
+                option.setAttribute('data-category', cat);
+                option.onclick = () => selectSecondaryCategory(cat);
+                
+                option.innerHTML = `
+                    <span class="category-name">${classData[cat].name}</span>
+                    <span class="category-desc">${classData[cat].classes.join(', ')}</span>
+                `;
+                
+                secondaryGrid.appendChild(option);
+            });
+            
+            // Update specific class options
+            updateSpecificClassOptions();
+            updateCharacterDisplay();
+        }
+
+        function selectSecondaryCategory(category) {
+            document.querySelectorAll('#secondaryCategoryGrid .category-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelector(`#secondaryCategoryGrid [data-category="${category}"]`).classList.add('selected');
+            
+            character.secondaryClass = category;
+            
+            // Update tertiary categories
+            const tertiaryGrid = document.getElementById('tertiaryCategoryGrid');
+            const remainingCategories = Object.keys(classData).filter(cat => 
+                cat !== character.primaryClass && cat !== category
+            );
+            
+            tertiaryGrid.innerHTML = '';
+            remainingCategories.forEach(cat => {
+                const option = document.createElement('div');
+                option.className = 'category-option';
+                option.setAttribute('data-category', cat);
+                option.onclick = () => selectTertiaryCategory(cat);
+                
+                option.innerHTML = `
+                    <span class="category-name">${classData[cat].name}</span>
+                    <span class="category-desc">${classData[cat].classes.join(', ')}</span>
+                `;
+                
+                tertiaryGrid.appendChild(option);
+            });
+        }
+
+        function selectTertiaryCategory(category) {
+            document.querySelectorAll('#tertiaryCategoryGrid .category-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelector(`#tertiaryCategoryGrid [data-category="${category}"]`).classList.add('selected');
+            
+            character.tertiaryClass = category;
+        }
+
+        function updateSpecificClassOptions() {
+            const specificClassSelect = document.getElementById('specificClass');
+            
+            if (character.primaryClass) {
+                const classes = classData[character.primaryClass].classes;
+                
+                specificClassSelect.innerHTML = '<option value="">Selecciona una clase específica</option>';
+                classes.forEach(className => {
+                    const option = document.createElement('option');
+                    option.value = className;
+                    option.textContent = className;
+                    specificClassSelect.appendChild(option);
+                });
+            }
+        }
+
+        function updateClassSelection() {
+            character.specificClass = document.getElementById('specificClass').value;
+            updateCharacterDisplay();
+        }
+
+        function updateLevel() {
+            const level = parseInt(document.getElementById('level').value) || 1;
+            character.level = level;
+            document.getElementById('characterLevelDisplay').textContent = level;
+        }
+
+        function updateFromXP() {
+            const xp = parseInt(document.getElementById('experience').value) || 0;
+            character.experience = xp;
+            
+            // Basic XP to level conversion (can be refined)
+            let level = 1;
+            if (xp >= 2000) level = 2;
+            if (xp >= 4000) level = 3;
+            if (xp >= 8000) level = 4;
+            if (xp >= 16000) level = 5;
+            if (xp >= 32000) level = 6;
+            if (xp >= 64000) level = 7;
+            if (xp >= 125000) level = 8;
+            if (xp >= 250000) level = 9;
+            if (xp >= 500000) level = 10;
+            
+            document.getElementById('level').value = level;
+            updateLevel();
+        }
+
+        // Ability score functions
+        function calculateModifiers() {
+            const abilities = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+            
+            abilities.forEach(ability => {
+                const score = parseInt(document.getElementById(ability).value) || 10;
+                character.abilities[ability] = score;
+                
+                let modifier = 0;
+                if (score <= 3) modifier = -3;
+                else if (score <= 5) modifier = -2;
+                else if (score <= 8) modifier = -1;
+                else if (score <= 12) modifier = 0;
+                else if (score <= 15) modifier = 1;
+                else if (score <= 17) modifier = 2;
+                else modifier = 3;
+                
+                const modElement = document.getElementById(ability.substring(0, 3) + 'Mod');
+                modElement.textContent = modifier >= 0 ? '+' + modifier : modifier.toString();
+                
+                // Update modifier classes
+                modElement.className = 'ability-modifier ';
+                if (modifier > 0) modElement.className += 'modifier-positive';
+                else if (modifier < 0) modElement.className += 'modifier-negative';
+                else modElement.className += 'modifier-zero';
+            });
+            
+            // Update constitution bonus info
+            updateConstitutionBonus();
+            updateArmorStats(); // Update AC with dexterity changes
+        }
+
+        function updateConstitutionBonus() {
+            const con = character.abilities.constitution;
+            const conData = abilityModifiers.constitution[con] || { hp: 0, shock: 70, resurrection: 75 };
+            
+            document.getElementById('conHPBonus').textContent = `HP por nivel: ${conData.hp >= 0 ? '+' : ''}${conData.hp}`;
+            document.getElementById('conShockSurvival').textContent = `Shock del sistema: ${conData.shock}%`;
+            document.getElementById('conResurrection').textContent = `Supervivencia/Revivir: ${conData.resurrection}%`;
+            
+            document.getElementById('constitutionBonusInfo').style.display = 'block';
+        }
+
+        function rollAbilities() {
+            const abilities = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+            
+            abilities.forEach(ability => {
+                // Roll 4d6, drop lowest
+                const rolls = [];
+                for (let i = 0; i < 4; i++) {
+                    rolls.push(Math.floor(Math.random() * 6) + 1);
+                }
+                rolls.sort((a, b) => b - a);
+                const total = rolls[0] + rolls[1] + rolls[2];
+                
+                document.getElementById(ability).value = total;
+            });
+            
+            calculateModifiers();
+            showNotification('Habilidades rodadas con 4d6, descartando el menor');
+        }
+
+        function rollHitPoints() {
+            let hitDie = 8; // Default
+            if (character.primaryClass && classData[character.primaryClass]) {
+                const die = classData[character.primaryClass].hitDie;
+                hitDie = parseInt(die.substring(1));
+            }
+            
+            const roll = Math.floor(Math.random() * hitDie) + 1;
+            const conBonus = abilityModifiers.constitution[character.abilities.constitution]?.hp || 0;
+            const total = Math.max(1, roll + conBonus);
+            
+            character.hitPoints = total;
+            document.getElementById('totalHP').textContent = total;
+            document.getElementById('combatHP').textContent = total;
+            
+            showNotification(`HP rodados: ${roll} + ${conBonus} (CON) = ${total}`);
+        }
+
+        function rollDice(sides) {
+            const roll = Math.floor(Math.random() * sides) + 1;
+            showNotification(`d${sides}: ${roll}`);
+        }
+
+        // Spell system functions (simplified placeholders)
+        function updateSpellList() {
+            const casterType = document.getElementById('casterType').value;
+            document.getElementById('onlineSearchBtn').disabled = !casterType;
+            document.getElementById('addSpellBtn').disabled = !casterType;
+            
+            if (casterType) {
+                showNotification(`Tipo de lanzador seleccionado: ${casterType}`);
+            }
+        }
+
+        function filterSpells() {
+            showNotification('Función de filtrado implementada');
+        }
+
+        function searchSpells() {
+            showNotification('Función de búsqueda implementada');
+        }
+
+        function browseSpellLists() {
+            showNotification('Lista de conjuros en desarrollo');
+        }
+
+        function searchSpellOnline() {
+            showNotification('Búsqueda online en desarrollo');
+        }
+
+        function parseSpellsFromText() {
+            showNotification('Importación de texto en desarrollo');
+        }
+
+        function exportCustomSpells() {
+            showNotification('Exportación en desarrollo');
+        }
+
+        function importCustomSpells() {
+            showNotification('Importación JSON en desarrollo');
+        }
+
+        function addCustomSpell() {
+            showNotification('Añadir conjuro manual en desarrollo');
+        }
+
+        // Character management
+        function saveCharacter() {
+            const characterData = JSON.stringify(character, null, 2);
+            showNotification('Personaje guardado en memoria (localStorage no disponible)');
+            console.log('Character data:', characterData);
+        }
+
+        function exportCharacter() {
+            const characterData = JSON.stringify(character, null, 2);
+            const blob = new Blob([characterData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${character.name || 'personaje'}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showNotification('Personaje exportado como archivo JSON');
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateModifiers();
+            updateArmorStats();
+            
+            // Initialize all equipment slots as empty
+            Object.keys(character.equipment).forEach(slot => {
+                updateEquipmentSlot(slot, null);
+            });
+        });
+    </script>
+</body>
+</html> Boots
+                    gauntlets: equipmentDatabase.gauntlets[1] // Gauntlets
+                },
+                mage: {
+                    armor: equipmentDatabase.armor[1], // Leather Armor
+                    weapon1: equipmentDatabase.weapon1[1], // Dagger
+                    weapon3: equipmentDatabase.weapon3[1], // Staff
+                    cloak: equipmentDatabase.cloak[1], // Travel Cloak
+                    boots: equipmentDatabase.boots[0], // Sandals
+                    belt: equipmentDatabase.belt[1] // Leather Belt
+                },
+                rogue: {
+                    armor: equipmentDatabase.armor[2], // Studded Leather
+                    weapon1: equipmentDatabase.weapon1[2], // Short Sword
+                    weapon2: equipmentDatabase.weapon2[0], // Throwing Dagger
+                    weapon4: equipmentDatabase.weapon4[4], // Short Bow
+                    boots: equipmentDatabase.boots[1], // Leather
