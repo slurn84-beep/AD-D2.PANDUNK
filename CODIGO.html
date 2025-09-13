@@ -1,4 +1,3 @@
-[D&D 2.Pandunk.html](https://github.com/user-attachments/files/22298772/D.D.2.Pandunk.html)
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -1121,12 +1120,14 @@
         <option value="otro">Otro</option>
     </select>
 </div>
-
-
-                    
                     <div class="form-group">
                         <label class="form-label">Experiencia</label>
                         <input type="number" class="form-input" id="experience" value="0" onchange="updateFromXP()">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Nivel</label>
+                        <input type="number" class="form-input" id="Level" value="1" onchange="updateFromXP()">
                     </div>
                 </div>
 
@@ -2229,52 +2230,31 @@ const weaponsData = {
     "tridente": { name: "Tridente", damage: "1d6", critical: "x2", detail: "Perforante 2M", price: "15 po", weight: "2 lb", speed: 7 },
     
     // Armas marciales a distancia
-    "aguja_cerbatana": { name: "Aguja y cerbatana", damage: "1", critical: "x2", detail: "Perforante 2M", price: "10 po", weight: "1 lb", speed: 2 },
     "arco_largo": { name: "Arco largo", damage: "1d8", critical: "19-20x3", detail: "Perforante 2M", price: "75 po", weight: "2 lb", speed: 8 },
     "arco_largo_compuesto": { name: "Arco largo compuesto", damage: "1d8", critical: "x3", detail: "Perforante 2M", price: "100 po", weight: "2 lb", speed: 7 },
-    "ballesta_pesada": { name: "Ballesta pesada", damage: "1d10", critical: "19-20x3", detail: "Perforante 2M", price: "50 po", weight: "6 lb", speed: 10 },
-    "mayal_distancia": { name: "Mayal", damage: "1d4", critical: "x2", detail: "Perforante 2M", price: "15 po", weight: "6 lb", speed: 7 },
-    "red": { name: "Red", damage: "-", critical: "x2", detail: "Especial 2M", price: "8 po", weight: "2 lb", speed: 6 },
-    
-    // Armas exóticas cuerpo a cuerpo
-    "espada_bastarda_1m": { name: "Espada bastarda", damage: "1d8", critical: "19-20x2", detail: "Cortante", price: "25 po", weight: "5 lb", speed: 6 },
-    "espada_bastarda_2m": { name: "Espada bastarda 2M", damage: "2d4", critical: "19-20x3", detail: "Cortante 2M", price: "50 po", weight: "6 lb", speed: 8 },
-    "espada_doble": { name: "Espada doble", damage: "1d8", critical: "19-20x2", detail: "Cortante 2M", price: "200 po", weight: "6 lb", speed: 8 },
-    "hacha_guerra_enana": { name: "Hacha de guerra enana", damage: "1d6", critical: "19-20x3", detail: "Cortante", price: "10 po", weight: "2 lb", speed: 3 },
-    "hacha_doble_orca": { name: "Hacha doble orca", damage: "1d10", critical: "19-20x3", detail: "Cortante 2M", price: "100 po", weight: "10 lb", speed: 12 },
-    "katana": { name: "Katana", damage: "1d10", critical: "18-20x2", detail: "Cortante", price: "500+ po", weight: "6 lb", speed: 4 },
-    "mangual_rompecabezas": { name: "Mangual (Rompecabezas)", damage: "1d8", critical: "19-20x3", detail: "Contundente", price: "10 po", weight: "6 lb", speed: 7 },
-    "mano_shiva_1": { name: "Mano de Shiva 1", damage: "5d4", critical: "19-20x2", detail: "Cortante", price: "-", weight: "4 lb", speed: 4 },
-    "mano_shiva_2": { name: "Mano de Shiva 2", damage: "5d8", critical: "19-20x2", detail: "Cortante", price: "-", weight: "6 lb", speed: 6 },
-    
-    // Armas exóticas a distancia
-    "arcabuz": { name: "Arcabuz", damage: "1d10", critical: "19-20x3", detail: "Perforante", price: "500 po", weight: "5 lb", speed: 15 },
-    "arcabuz_largo": { name: "Arcabuz largo", damage: "1d12", critical: "19-20x3", detail: "Perforante", price: "750 po", weight: "10 lb", speed: 20 },
-    "ballesta_mano": { name: "Ballesta de mano", damage: "1d6", critical: "19-20x2", detail: "Perforante 2M", price: "300 po", weight: "1 lb", speed: 5 },
-    "ballesta_repeticion": { name: "Ballesta de repetición", damage: "1d6", critical: "19-20x3", detail: "Perforante 2M", price: "500 po", weight: "7 lb", speed: 10 },
-    "latigo": { name: "Látigo", damage: "1d2", critical: "x2", detail: "Perforante 2M", price: "1 po", weight: "1 lb", speed: 2 }
+    "ballesta_pesada": { name: "Ballesta pesada", damage: "1d10", critical: "19-20x3", detail: "Perforante 2M", price: "50 po", weight: "6 lb", speed: 10 }
 };
 
 // JSON de Armaduras basado en el PDF
 const armorData = {
-    "sin_armadura": { name: "Sin Armadura", ac: -1, maxDex: 6, penalty: 0, detail: "Sin protección", weight: "0 kg" },
-    "cuero": { name: "Cuero", ac: -2, maxDex: 6, penalty: 0, detail: "Armadura ligera", weight: "13 kg" },
-    "acolchada": { name: "Acolchada", ac: -2, maxDex: 6, penalty: 0, detail: "Armadura ligera", weight: "5 kg" },
-    "cuero_tachado": { name: "Cuero Tachado", ac: -3, maxDex: 5, penalty: -1, detail: "Armadura ligera", weight: "11 kg" },
-    "pieles": { name: "Pieles", ac: -4, maxDex: 4, penalty: -2, detail: "Armadura mediana", weight: "7 kg" },
-    "anillas": { name: "Anillas", ac: -4, maxDex: 4, penalty: -3, detail: "Armadura mediana", weight: "13 kg" },
-    "cota_mallas": { name: "Cota de Mallas", ac: -5, maxDex: 3, penalty: -4, detail: "Armadura mediana", weight: "18 kg" },
-    "escamas": { name: "Escamas", ac: -6, maxDex: 2, penalty: -5, detail: "Armadura pesada", weight: "18 kg" },
-    "bandas": { name: "Bandas", ac: -7, maxDex: 1, penalty: -6, detail: "Armadura pesada", weight: "16 kg" },
-    "placas": { name: "Placas", ac: -8, maxDex: 0, penalty: -7, detail: "Armadura pesada", weight: "22 kg" },
-    "completa": { name: "Completa", ac: -9, maxDex: 0, penalty: -8, detail: "Armadura pesada", weight: "31 kg" }
+    "sin_armadura": { name: "Sin Armadura", ac: 0, maxDex: 6, penalty: 0, detail: "Sin protección" },
+    "cuero": { name: "Cuero", ac: -2, maxDex: 6, penalty: 0, detail: "Armadura ligera" },
+    "acolchada": { name: "Acolchada", ac: -2, maxDex: 6, penalty: 0, detail: "Armadura ligera" },
+    "cuero_tachado": { name: "Cuero Tachado", ac: -3, maxDex: 5, penalty: -1, detail: "Armadura ligera" },
+    "pieles": { name: "Pieles", ac: -4, maxDex: 4, penalty: -2, detail: "Armadura mediana" },
+    "anillas": { name: "Anillas", ac: -4, maxDex: 4, penalty: -3, detail: "Armadura mediana" },
+    "cota_mallas": { name: "Cota de Mallas", ac: -5, maxDex: 3, penalty: -4, detail: "Armadura mediana" },
+    "escamas": { name: "Escamas", ac: -6, maxDex: 2, penalty: -5, detail: "Armadura pesada" },
+    "bandas": { name: "Bandas", ac: -7, maxDex: 1, penalty: -6, detail: "Armadura pesada" },
+    "placas": { name: "Placas", ac: -8, maxDex: 0, penalty: -7, detail: "Armadura pesada" },
+    "completa": { name: "Completa", ac: -9, maxDex: 0, penalty: -8, detail: "Armadura pesada" }
 };
 
 // JSON de Escudos
 const shieldData = {
-    "escudo_corporal": { name: "Escudo Corporal", ac: -3, maxDex: 0, penalty: 0, detail: "Escudo grande" },
-    "escudo_mediano": { name: "Escudo Mediano", ac: -2, maxDex: 0, penalty: 0, detail: "Escudo mediano" },
-    "escudo_rodela": { name: "Escudo Rodela", ac: -1, maxDex: 0, penalty: 0, detail: "Escudo pequeño" }
+    "escudo_corporal": { name: "Escudo Corporal", ac: -3, penalty: -2, detail: "Escudo grande" },
+    "escudo_mediano": { name: "Escudo Mediano", ac: -2, penalty: -1, detail: "Escudo mediano" },
+    "escudo_rodela": { name: "Escudo Rodela", ac: -1, penalty: 0, detail: "Escudo pequeño" }
 };
 
 // Función para poblar los selects de armas
@@ -2304,15 +2284,7 @@ function populateWeaponSelects() {
                     'mazo_guerra', 'tridente'
                 ],
                 'Armas Marciales a Distancia': [
-                    'aguja_cerbatana', 'arco_largo', 'arco_largo_compuesto', 
-                    'ballesta_pesada', 'mayal_distancia', 'red'
-                ],
-                'Armas Exóticas': [
-                    'espada_bastarda_1m', 'espada_bastarda_2m', 'espada_doble', 
-                    'hacha_guerra_enana', 'hacha_doble_orca', 'katana', 
-                    'mangual_rompecabezas', 'mano_shiva_1', 'mano_shiva_2', 
-                    'arcabuz', 'arcabuz_largo', 'ballesta_mano', 
-                    'ballesta_repeticion', 'latigo'
+                    'arco_largo', 'arco_largo_compuesto', 'ballesta_pesada'
                 ]
             };
             
@@ -2433,35 +2405,284 @@ function updateShieldFields(shieldKey) {
     const shield = shieldData[shieldKey];
     if (shield) {
         document.getElementById('shieldAC').value = shield.ac.toString();
-        document.getElementById('shieldBonus').value = shield.maxDex.toString();
+        document.getElementById('shieldBonus').value = '0';
         document.getElementById('shieldPenalty').value = shield.penalty.toString();
         document.getElementById('shieldDetail').value = shield.detail;
     }
 }
 
-// Función para actualizar AC total en la stat card
+// Función para actualizar AC total usando datos reales de Abilities
 function updateTotalAC() {
-    const armorAC = parseInt(document.getElementById('armor1AC').value) || 10;
-    const shieldAC = parseInt(document.getElementById('shieldAC').value) || 0;
-    const armorPlus = parseInt(document.getElementById('armor1Plus').value) || 0;
-    const shieldPlus = parseInt(document.getElementById('shieldPlus').value) || 0;
+    try {
+        const armorKey = document.getElementById('armor1').value;
+        const shieldKey = document.getElementById('shield').value;
+        const armorPlus = parseInt(document.getElementById('armor1Plus').value) || 0;
+        const shieldPlus = parseInt(document.getElementById('shieldPlus').value) || 0;
+        
+        // Leer destreza defensiva del tab Abilities
+        const dexDefensive = parseInt(document.getElementById('dex-defensive')?.textContent) || 0;
+        
+        let totalAC = 10; // Base AC
+        let maxDexBonus = 6;
+        
+        // Aplicar armadura
+        if (armorKey && armorData[armorKey]) {
+            totalAC += armorData[armorKey].ac;
+            maxDexBonus = armorData[armorKey].maxDex;
+        }
+        
+        // Aplicar escudo
+        if (shieldKey && shieldData[shieldKey]) {
+            totalAC += shieldData[shieldKey].ac;
+        }
+        
+        // Aplicar bonificador de destreza (limitado por armadura)
+        const effectiveDexBonus = Math.min(Math.max(dexDefensive, 0), maxDexBonus);
+        totalAC -= effectiveDexBonus;
+        
+        // Aplicar plus mágicos
+        totalAC -= (armorPlus + shieldPlus); // Los plus mágicos MEJORAN la AC (la reducen)
+        
+        // Actualizar displays
+        document.getElementById('combatAC').textContent = totalAC;
+        const basicAC = document.getElementById('armorClass');
+        if (basicAC) basicAC.textContent = totalAC; // Para el tab básico
+        
+        console.log(`AC Calculada: Base(10) + Armor(${armorData[armorKey]?.ac || 0}) + Shield(${shieldData[shieldKey]?.ac || 0}) - Dex(${effectiveDexBonus}) - Plus(${armorPlus + shieldPlus}) = ${totalAC}`);
+    } catch (error) {
+        console.error('Error calculando AC:', error);
+        document.getElementById('combatAC').textContent = '10';
+    }
+}
+
+// Función para calcular GACO
+function updateGACO() {
+    try {
+        const primaryClass = document.getElementById('primary-selected-name')?.textContent?.toLowerCase() || '';
+        const level = parseInt(document.getElementById('Level')?.value) || 1;
+        const strHitBonus = parseInt(document.getElementById('str-hit-prob')?.textContent) || 0;
+        
+        let baseGACO = 20;
+        
+        // Progresión por clase AD&D 2e
+        if (primaryClass.includes('guerrero') || primaryClass.includes('ranger') || 
+            primaryClass.includes('bárbaro') || primaryClass.includes('paladín') || 
+            primaryClass.includes('samurái')) {
+            baseGACO -= (level - 1);
+        } else if (primaryClass.includes('clérigo') || primaryClass.includes('druida') || 
+                   primaryClass.includes('chamán')) {
+            baseGACO -= Math.floor((level - 1) / 3) * 2;
+        } else if (primaryClass.includes('ladrón') || primaryClass.includes('bardo') || 
+                   primaryClass.includes('ninja') || primaryClass.includes('psiónico') || 
+                   primaryClass.includes('pistolero')) {
+            baseGACO -= Math.floor((level - 1) / 2);
+        } else if (primaryClass.includes('mago') || primaryClass.includes('hechicero') || 
+                   primaryClass.includes('bruja') || primaryClass.includes('artífice')) {
+            baseGACO -= Math.floor((level - 1) / 3);
+        } else {
+            // Clase por defecto (como luchador)
+            baseGACO -= Math.floor((level - 1) / 2);
+        }
+        
+        // Aplicar bonificador de fuerza (los bonos REDUCEN el GACO)
+        const finalGACO = Math.max(baseGACO - strHitBonus, 1);
+        
+        // Actualizar displays
+        document.getElementById('combatGaco').textContent = finalGACO;
+        const basicGACO = document.getElementById('gaco');
+        if (basicGACO) basicGACO.textContent = finalGACO; // Para el tab básico
+        
+        // Actualizar GACO de armas
+        ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5'].forEach(weaponId => {
+            const weaponGacoField = document.getElementById(weaponId + 'Gaco');
+            if (weaponGacoField) {
+                const weaponPlus = parseInt(document.getElementById(weaponId + 'Plus')?.value) || 0;
+                const finalWeaponGACO = Math.max(finalGACO - weaponPlus, 1);
+                weaponGacoField.value = finalWeaponGACO;
+            }
+        });
+        
+        console.log(`GACO Calculado: Base(20) - Nivel(${level-1}) - Str(${strHitBonus}) = ${finalGACO}`);
+    } catch (error) {
+        console.error('Error calculando GACO:', error);
+        document.getElementById('combatGaco').textContent = '20';
+    }
+}
+
+// Función para calcular movimiento
+function updateMovement() {
+    try {
+        const race = document.getElementById('race')?.value?.toLowerCase() || '';
+        
+        let baseMovement = 12; // Humano por defecto
+        if (race.includes('mediano') || race.includes('enano') || race.includes('gnomo')) {
+            baseMovement = 6;
+        } else if (race.includes('elfo')) {
+            baseMovement = 12;
+        }
+        
+        // Actualizar display principal
+        document.getElementById('combatMovement').textContent = baseMovement;
+        
+        console.log(`Movimiento: Raza(${race}) = ${baseMovement}`);
+    } catch (error) {
+        console.error('Error calculando movimiento:', error);
+        document.getElementById('combatMovement').textContent = '12';
+    }
+}
+
+// Función para calcular iniciativa
+function updateInitiative() {
+    try {
+        const dexReaction = parseInt(document.getElementById('dex-reaction')?.textContent) || 0;
+        const initiative = dexReaction >= 0 ? `+${dexReaction}` : dexReaction.toString();
+        document.getElementById('combatInitiative').textContent = initiative;
+        
+        const basicInitiative = document.getElementById('initiative');
+        if (basicInitiative) basicInitiative.textContent = initiative;
+        
+        console.log(`Iniciativa: Dex Reacción(${dexReaction})`);
+    } catch (error) {
+        console.error('Error calculando iniciativa:', error);
+        document.getElementById('combatInitiative').textContent = '+0';
+    }
+}
+
+// Función para actualizar ajuste de daño en armas
+function updateWeaponDamageAdjustment() {
+    try {
+        const strDamageAdj = parseInt(document.getElementById('str-damage-adj')?.textContent) || 0;
+        
+        ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5'].forEach(weaponId => {
+            const weaponPlusField = document.getElementById(weaponId + 'Plus');
+            const weaponDamageAdjField = document.getElementById(weaponId + 'DamageAdj');
+            
+            if (weaponPlusField && weaponDamageAdjField) {
+                const weaponPlus = parseInt(weaponPlusField.value) || 0;
+                const totalDamageAdj = strDamageAdj + weaponPlus;
+                weaponDamageAdjField.value = totalDamageAdj >= 0 ? `+${totalDamageAdj}` : totalDamageAdj.toString();
+            }
+        });
+    } catch (error) {
+        console.error('Error calculando ajuste de daño:', error);
+    }
+}
+
+// Función para actualizar todos los cálculos de combate
+function updateAllCombatStats() {
+    setTimeout(() => {
+        updateTotalAC();
+        updateGACO();
+        updateMovement();
+        updateInitiative();
+        updateWeaponDamageAdjustment();
+    }, 100); // Pequeño delay para asegurar que los valores estén actualizados
+}
+
+// Event listener para cambios en el tab Abilities
+function setupAbilitiesListener() {
+    // Observer para detectar cambios en las características
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                const target = mutation.target;
+                if (target.id && (target.id.includes('dex-') || target.id.includes('str-') || 
+                                 target.id === 'strength' || target.id === 'dexterity')) {
+                    updateAllCombatStats();
+                }
+            }
+        });
+    });
     
-    const totalAC = armorAC + shieldAC + armorPlus + shieldPlus;
-    document.getElementById('combatAC').textContent = totalAC;
+    // Observar cambios en las características
+    const abilityElements = ['str-hit-prob', 'str-damage-adj', 'dex-defensive', 'dex-reaction'];
+    abilityElements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            observer.observe(element, { childList: true, characterData: true, subtree: true });
+        }
+    });
 }
 
-// Event listeners para los campos plus
-function addPlusListeners() {
-    document.getElementById('armor1Plus').addEventListener('input', updateTotalAC);
-    document.getElementById('shieldPlus').addEventListener('input', updateTotalAC);
-}
-
-// Inicializar cuando la página esté lista
+// Inicialización principal
 document.addEventListener('DOMContentLoaded', function() {
-    populateWeaponSelects();
-    populateArmorSelects();
-    addPlusListeners();
+    console.log('Inicializando Combat Tab mejorado...');
+    
+    try {
+        populateWeaponSelects();
+        populateArmorSelects();
+        
+        // Event listeners para campos plus de armaduras
+        document.getElementById('armor1Plus')?.addEventListener('input', function() {
+            // Extraer valor numérico del input
+            let value = this.value.replace(/[^-+0-9]/g, '');
+            if (value && !value.startsWith('+') && !value.startsWith('-')) {
+                value = '+' + value;
+            }
+            this.value = value || '+0';
+            updateTotalAC();
+        });
+        
+        document.getElementById('shieldPlus')?.addEventListener('input', function() {
+            // Extraer valor numérico del input
+            let value = this.value.replace(/[^-+0-9]/g, '');
+            if (value && !value.startsWith('+') && !value.startsWith('-')) {
+                value = '+' + value;
+            }
+            this.value = value || '+0';
+            updateTotalAC();
+        });
+        
+        // Event listeners para campos plus de armas
+        ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5'].forEach(weaponId => {
+            const plusField = document.getElementById(weaponId + 'Plus');
+            if (plusField) {
+                plusField.addEventListener('input', function() {
+                    // Formatear input
+                    let value = this.value.replace(/[^-+0-9]/g, '');
+                    if (value && !value.startsWith('+') && !value.startsWith('-')) {
+                        value = '+' + value;
+                    }
+                    this.value = value || '+0';
+                    updateWeaponDamageAdjustment();
+                    updateGACO(); // Actualizar GACO de armas también
+                });
+            }
+        });
+        
+        // Event listeners para cambios en otros campos
+        document.getElementById('race')?.addEventListener('change', updateMovement);
+        document.getElementById('Level')?.addEventListener('change', updateGACO);
+        
+        // Configurar observer para el tab Abilities
+        setupAbilitiesListener();
+        
+        // Actualizar todo al inicio
+        setTimeout(updateAllCombatStats, 500); // Delay para asegurar que otros tabs estén cargados
+        
+        console.log('✅ Combat Tab inicializado correctamente');
+        
+    } catch (error) {
+        console.error('❌ Error inicializando Combat Tab:', error);
+    }
 });
+
+// Actualizar cálculos cuando se cambie a este tab
+function onCombatTabActivated() {
+    updateAllCombatStats();
+}
+
+// Exportar funciones para uso externo
+if (typeof window !== 'undefined') {
+    window.combatTabFunctions = {
+        updateAllCombatStats,
+        updateTotalAC,
+        updateGACO,
+        updateMovement,
+        updateInitiative,
+        onCombatTabActivated
+    };
+}
 </script>
 
             <!-- Skills Tab -->
