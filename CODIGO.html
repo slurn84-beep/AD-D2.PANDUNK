@@ -2682,6 +2682,13 @@ if (typeof window !== 'undefined') {
         updateInitiative,
         onCombatTabActivated
     };
+    <!-- Nuevo: Estilo de Combate -->
+    <div class="combat-card">
+      <h3>Estilo de Combate</h3>
+      <label for="combat-style-select">Selecciona estilo:</label>
+      <select id="combat-style-select"></select>
+      <p>Rango actual: <span id="combat-style-rank">Ninguno</span></p>
+    </div>
 }
 </script>
 
@@ -4095,20 +4102,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     </script>
 </body>
-</html> Boots
-                    gauntlets: equipmentDatabase.gauntlets[1] // Gauntlets
-                },
-                mage: {
-                    armor: equipmentDatabase.armor[1], // Leather Armor
-                    weapon1: equipmentDatabase.weapon1[1], // Dagger
-                    weapon3: equipmentDatabase.weapon3[1], // Staff
-                    cloak: equipmentDatabase.cloak[1], // Travel Cloak
-                    boots: equipmentDatabase.boots[0], // Sandals
-                    belt: equipmentDatabase.belt[1] // Leather Belt
-                },
-                rogue: {
-                    armor: equipmentDatabase.armor[2], // Studded Leather
-                    weapon1: equipmentDatabase.weapon1[2], // Short Sword
-                    weapon2: equipmentDatabase.weapon2[0], // Throwing Dagger
-                    weapon4: equipmentDatabase.weapon4[4], // Short Bow
-                    boots: equipmentDatabase.boots[1], // Leather
+</html> 
