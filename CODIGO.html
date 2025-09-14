@@ -2692,25 +2692,206 @@ if (typeof window !== 'undefined') {
 }
 </script>
 
-            <!-- Skills Tab -->
-            <div id="skills-tab" class="tab-content">
-    <h2 style="color: #ffd700; margin-bottom: 2rem;">🎯 Pericias y Habilidades</h2>
-    <div id="proficiencies-container" style="display: flex; flex-wrap: wrap; gap: 2rem;">
-        <div id="weapon-proficiencies-section" style="flex: 1; min-width: 300px;">
-            <h3 style="color: #ffd700; border-bottom: 1px solid #444; padding-bottom: 0.5rem;">Pericias en Armas ⚔️</h3>
-            <p style="color: #b0b0b0; margin-top: 1rem;">Ranuras disponibles: <span id="weapon-slots">0</span></p>
-            <div id="weapon-proficiency-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;">
-                </div>
-        </div>
+<!-- Skills Tab -->
+<div id="skills-tab" class="tab-content">
+  <h2 style="color: #ffd700; margin-bottom: 2rem;">🎯 Pericias y Habilidades</h2>
 
-        <div id="non-weapon-proficiencies-section" style="flex: 1; min-width: 300px;">
-            <h3 style="color: #ffd700; border-bottom: 1px solid #444; padding-bottom: 0.5rem;">Pericias en No-Armas 🧠</h3>
-            <p style="color: #b0b0b0; margin-top: 1rem;">Ranuras disponibles: <span id="non-weapon-slots">0</span></p>
-            <div id="non-weapon-proficiency-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;">
-                </div>
-        </div>
+  <div id="proficiencies-container" style="display: flex; flex-wrap: wrap; gap: 2rem;">
+    <!-- Armas + Estilos -->
+    <div id="weapon-proficiencies-section" style="flex: 1; min-width: 300px;">
+      <h3 style="color: #ffd700; border-bottom: 1px solid #444; padding-bottom: 0.5rem;">Pericias en Armas y Estilos ⚔️</h3>
+      <p style="color: #b0b0b0; margin-top: 1rem;">Ranuras disponibles: <span id="weapon-slots">0</span></p>
+      <div id="weapon-proficiency-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;"></div>
     </div>
+
+    <!-- No Armas -->
+    <div id="non-weapon-proficiencies-section" style="flex: 1; min-width: 300px;">
+      <h3 style="color: #ffd700; border-bottom: 1px solid #444; padding-bottom: 0.5rem;">Pericias en No-Armas 🧠</h3>
+      <p style="color: #b0b0b0; margin-top: 1rem;">Ranuras disponibles: <span id="non-weapon-slots">0</span></p>
+      <div id="non-weapon-proficiency-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;"></div>
+    </div>
+  </div>
 </div>
+
+<script>
+/* =============================
+   CONFIGURACIÓN
+   ============================= */
+const weaponList = [
+  "Espada Larga", "Espada Corta", "Hacha de Batalla", "Maza",
+  "Lanza", "Arco Largo", "Arco Corto", "Ballesta"
+];
+
+const styleList = [
+  "Espada y Escudo", "Dos Armas", "Defensa", "Arquería"
+];
+
+const nonWeaponList = [
+  "Herbolaria", "Sigilo", "Montar", "Curar", "Navegar", "Supervivencia"
+];
+
+const masteryLevels = {
+  1: { name: "Competencia" },
+  2: { name: "Especialización" },
+  4: { name: "Maestría" },
+  6: { name: "Alto Maestría" },
+  8: { name: "Gran Maestría" }
+};
+
+// Ranuras por grupo de clase
+const classWeaponSlots = {
+  Luchador: { base: 4, progression: 3 },
+  Sacerdote: { base: 2, progression: 4 },
+  Bribón:   { base: 2, progression: 4 },
+  Hechicero:{ base: 1, progression: 6 }
+};
+
+const classNonWeaponSlots = {
+  Luchador: { base: 3, progression: 3 },
+  Sacerdote: { base: 4, progression: 3 },
+  Bribón:   { base: 3, progression: 4 },
+  Hechicero:{ base: 4, progression: 3 }
+};
+
+/* =============================
+   VARIABLES GLOBALES
+   ============================= */
+window.weaponProficiencies = window.weaponProficiencies || {};
+window.nonWeaponProficiencies = window.nonWeaponProficiencies || {};
+
+let availableWeaponSlots = 0;
+let availableNonWeaponSlots = 0;
+
+/* =============================
+   FUNCIONES PRINCIPALES
+   ============================= */
+function calculateSlots() {
+  const primaryClass = document.getElementById("primary-dropdown-header")?.value || "Luchador";
+  const level = parseInt(document.getElementById("Level")?.value) || 1;
+  const wis = parseInt(document.getElementById("wisdom")?.value) || 10;
+
+  // Armas
+  let wBase = classWeaponSlots[primaryClass]?.base || 0;
+  let wProg = classWeaponSlots[primaryClass]?.progression || 999;
+  let wExtra = Math.floor((level - 1) / wProg);
+  availableWeaponSlots = wBase + wExtra;
+
+  // No-Armas
+  let nBase = classNonWeaponSlots[primaryClass]?.base || 0;
+  let nProg = classNonWeaponSlots[primaryClass]?.progression || 999;
+  let nExtra = Math.floor((level - 1) / nProg);
+  let wisBonus = Math.floor((wis - 8) / 2);
+  availableNonWeaponSlots = nBase + nExtra + wisBonus;
+
+  document.getElementById("weapon-slots").textContent = availableWeaponSlots;
+  document.getElementById("non-weapon-slots").textContent = availableNonWeaponSlots;
+
+  renderWeaponProficiencies();
+  renderNonWeaponProficiencies();
+}
+
+/* =============================
+   ARMAS + ESTILOS
+   ============================= */
+function renderWeaponProficiencies() {
+  const container = document.getElementById("weapon-proficiency-list");
+  container.innerHTML = "";
+
+  const allOptions = [...weaponList, ...styleList];
+
+  for (let item of allOptions) {
+    if (!window.weaponProficiencies[item]) window.weaponProficiencies[item] = 0;
+    let spent = window.weaponProficiencies[item];
+
+    let mastery = "No entrenado";
+    for (let lvl of Object.keys(masteryLevels).map(Number).sort((a,b)=>a-b)) {
+      if (spent >= lvl) mastery = masteryLevels[lvl].name;
+    }
+
+    let div = document.createElement("div");
+    div.classList.add("skill-item");
+    div.style.display = "flex";
+    div.style.justifyContent = "space-between";
+    div.style.alignItems = "center";
+
+    div.innerHTML = `
+      <span>${item} <small style="color:#888;">(${mastery})</small></span>
+      <div style="display:flex; gap:0.5rem; align-items:center;">
+        <button onclick="addWeaponProficiency('${item}')">+</button>
+        <span>${spent}</span>
+      </div>
+    `;
+    container.appendChild(div);
+  }
+}
+
+function addWeaponProficiency(item) {
+  if (availableWeaponSlots > 0) {
+    window.weaponProficiencies[item]++;
+    availableWeaponSlots--;
+    document.getElementById("weapon-slots").textContent = availableWeaponSlots;
+    renderWeaponProficiencies();
+
+    // Sincronizar con Combat Tab
+    if (typeof applySelectedStyle === "function") {
+      const select = document.getElementById("combat-style-select");
+      if (select && select.value === item) {
+        applySelectedStyle(item);
+      }
+    }
+    if (typeof updateAllCombatStats === "function") updateAllCombatStats();
+
+  } else {
+    alert("No tienes casillas de armas disponibles.");
+  }
+}
+
+/* =============================
+   NO-ARMAS
+   ============================= */
+function renderNonWeaponProficiencies() {
+  const container = document.getElementById("non-weapon-proficiency-list");
+  container.innerHTML = "";
+
+  for (let item of nonWeaponList) {
+    if (!window.nonWeaponProficiencies[item]) window.nonWeaponProficiencies[item] = 0;
+    let spent = window.nonWeaponProficiencies[item];
+
+    let div = document.createElement("div");
+    div.classList.add("skill-item");
+    div.style.display = "flex";
+    div.style.justifyContent = "space-between";
+    div.style.alignItems = "center";
+
+    div.innerHTML = `
+      <span>${item}</span>
+      <div style="display:flex; gap:0.5rem; align-items:center;">
+        <button onclick="addNonWeaponProficiency('${item}')">+</button>
+        <span>${spent}</span>
+      </div>
+    `;
+    container.appendChild(div);
+  }
+}
+
+function addNonWeaponProficiency(item) {
+  if (availableNonWeaponSlots > 0) {
+    window.nonWeaponProficiencies[item]++;
+    availableNonWeaponSlots--;
+    document.getElementById("non-weapon-slots").textContent = availableNonWeaponSlots;
+    renderNonWeaponProficiencies();
+  } else {
+    alert("No tienes casillas de no-armas disponibles.");
+  }
+}
+
+/* =============================
+   INICIALIZACIÓN
+   ============================= */
+document.addEventListener("DOMContentLoaded", () => {
+  calculateSlots();
+});
+</script>
 
             <!-- Spells Tab -->
             <div id="spells-tab" class="tab-content">
