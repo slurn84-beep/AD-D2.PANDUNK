@@ -2687,9 +2687,23 @@ if (typeof window !== 'undefined') {
 
             <!-- Skills Tab -->
             <div id="skills-tab" class="tab-content">
-                <h2 style="color: #ffd700; margin-bottom: 2rem;">🎯 Pericias y Habilidades</h2>
-                <p style="color: #b0b0b0; text-align: center; margin: 2rem 0;">Las pericias se implementarán según la clase seleccionada</p>
-            </div>
+    <h2 style="color: #ffd700; margin-bottom: 2rem;">🎯 Pericias y Habilidades</h2>
+    <div id="proficiencies-container" style="display: flex; flex-wrap: wrap; gap: 2rem;">
+        <div id="weapon-proficiencies-section" style="flex: 1; min-width: 300px;">
+            <h3 style="color: #ffd700; border-bottom: 1px solid #444; padding-bottom: 0.5rem;">Pericias en Armas ⚔️</h3>
+            <p style="color: #b0b0b0; margin-top: 1rem;">Ranuras disponibles: <span id="weapon-slots">0</span></p>
+            <div id="weapon-proficiency-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+                </div>
+        </div>
+
+        <div id="non-weapon-proficiencies-section" style="flex: 1; min-width: 300px;">
+            <h3 style="color: #ffd700; border-bottom: 1px solid #444; padding-bottom: 0.5rem;">Pericias en No-Armas 🧠</h3>
+            <p style="color: #b0b0b0; margin-top: 1rem;">Ranuras disponibles: <span id="non-weapon-slots">0</span></p>
+            <div id="non-weapon-proficiency-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+                </div>
+        </div>
+    </div>
+</div>
 
             <!-- Spells Tab -->
             <div id="spells-tab" class="tab-content">
@@ -3755,7 +3769,258 @@ function updateCharacterSize() {
     
     console.log(`Altura: ${height}cm → Tamaño: ${size}`);
 }
+// Tabla de experiencia por clase
+const xpTables = {
+    guerrero: [0, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 750000, 1000000, 1250000, 1500000, 1750000, 2000000, 2250000, 2500000, 2750000, 3000000],
+    
+    luchador: [0, 2250, 4500, 9000, 18000, 32000, 75000, 150000, 300000, 600000, 900000, 1200000, 1500000, 1800000, 2100000, 2400000, 2700000, 3000000, 3300000, 3600000],
+    
+    hechicero: [0, 2500, 5000, 10000, 20000, 40000, 60000, 90000, 135000, 250000, 375000, 750000, 1125000, 1500000, 1875000, 2250000, 2625000, 3000000, 3375000, 3750000],
+    
+    clerigo: [0, 1500, 3000, 6000, 13000, 27500, 55000, 110000, 225000, 450000, 675000, 900000, 1125000, 1350000, 1575000, 1800000, 2025000, 2250000, 2475000, 2700000],
+    
+    druida: [0, 2000, 4000, 7500, 12500, 20000, 35000, 60000, 90000, 125000, 200000, 300000, 750000, 1500000, 3000000, 3500000, 500000, 1500000, 1500000, 2000000], // Nivel 17 = 500000
+    
+    ladron: [0, 1250, 2500, 5000, 10000, 20000, 40000, 70000, 110000, 160000, 220000, 440000, 660000, 880000, 1100000, 1320000, 1540000, 1760000, 1980000, 2200000]
+};
 
+// Mapeo de clases a tablas
+const classToTable = {
+    'guerrero': 'guerrero',
+    'ranger': 'luchador',
+    'bárbaro': 'luchador', 
+    'paladín': 'luchador',
+    'samurái': 'luchador',
+    'mago': 'hechicero',
+    'hechicero': 'hechicero',
+    'bruja': 'hechicero',
+    'artífice': 'hechicero',
+    'clérigo': 'clerigo',
+    'chamán': 'clerigo',
+    'druida': 'druida',
+    'ladrón': 'ladron',
+    'bardo': 'ladron',
+    'ninja': 'ladron',
+    'psiónico': 'ladron',
+    'pistolero': 'ladron'
+};
+
+// Función para determinar si es humano
+function isHuman() {
+    const race = document.getElementById('race')?.value?.toLowerCase() || '';
+    return race === 'humano' || race === '';
+}
+
+// Función para obtener todas las clases activas
+function getActiveClasses() {
+    const classes = [];
+    
+    // Clase principal
+    const primary = document.getElementById('primary-selected-name')?.textContent;
+    if (primary && primary !== 'Selecciona una clase') {
+        classes.push(primary.toLowerCase());
+    }
+    
+    // Clase secundaria
+    const secondary = document.getElementById('secondary-selected-name')?.textContent;
+    if (secondary && secondary !== 'Selecciona una clase' && secondary !== 'Selecciona primero una categoría principal') {
+        classes.push(secondary.toLowerCase());
+    }
+    
+    // Clase terciaria
+    const tertiary = document.getElementById('tertiary-selected-name')?.textContent;
+    if (tertiary && tertiary !== 'Selecciona una clase' && tertiary !== 'Selecciona primero una categoría secundaria') {
+        classes.push(tertiary.toLowerCase());
+    }
+    
+    return classes;
+}
+
+// Función para calcular XP requerida para multiclase
+function calculateMulticlassXP(level, classes, isHumanRace) {
+    if (classes.length === 0) return 0;
+    
+    let totalXP = 0;
+    
+    classes.forEach(className => {
+        const tableKey = classToTable[className] || 'ladron';
+        const table = xpTables[tableKey];
+        
+        if (level <= table.length) {
+            let classXP = table[level - 1] || 0;
+            
+            // Aplicar penalización por raza no humana
+            if (!isHumanRace) {
+                classXP *= 2;
+            }
+            
+            totalXP += classXP;
+        }
+    });
+    
+    // Para multiclase, dividir entre número de clases
+    if (classes.length > 1) {
+        totalXP = Math.floor(totalXP / classes.length);
+    }
+    
+    return totalXP;
+}
+
+// Función principal para actualizar desde XP
+function updateFromXP() {
+    const xpInput = document.getElementById('experience');
+    if (!xpInput) return;
+    
+    const currentXP = parseInt(xpInput.value) || 0;
+    const classes = getActiveClasses();
+    const isHumanRace = isHuman();
+    
+    if (classes.length === 0) {
+        showNextLevelInfo(currentXP, 1, null, 'No hay clases seleccionadas');
+        return;
+    }
+    
+    // Calcular nivel actual
+    let currentLevel = 1;
+    for (let testLevel = 2; testLevel <= 20; testLevel++) {
+        const requiredXP = calculateMulticlassXP(testLevel, classes, isHumanRace);
+        if (currentXP >= requiredXP) {
+            currentLevel = testLevel;
+        } else {
+            break;
+        }
+    }
+    
+    // Calcular XP para siguiente nivel
+    let nextLevelXP = null;
+    if (currentLevel < 20) {
+        nextLevelXP = calculateMulticlassXP(currentLevel + 1, classes, isHumanRace);
+    }
+    
+    // Actualizar displays
+    const levelDisplay = document.getElementById('characterLevelDisplay');
+    if (levelDisplay) {
+        levelDisplay.textContent = currentLevel;
+    }
+    
+    const levelField = document.getElementById('Level');
+    if (levelField) {
+        levelField.value = currentLevel;
+    }
+    
+    // Mostrar información detallada
+    showNextLevelInfo(currentXP, currentLevel, nextLevelXP, classes, isHumanRace);
+    
+    // Actualizar cálculos de combate
+    if (typeof updateAllCombatStats === 'function') {
+        updateAllCombatStats();
+    }
+}
+
+// Función para mostrar información del siguiente nivel
+function showNextLevelInfo(currentXP, currentLevel, nextLevelXP, classes, isHumanRace) {
+    let infoElement = document.getElementById('nextLevelInfo');
+    if (!infoElement) {
+        infoElement = document.createElement('div');
+        infoElement.id = 'nextLevelInfo';
+        infoElement.style.cssText = `
+            margin-top: 0.5rem;
+            padding: 0.8rem;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #ffd700;
+            line-height: 1.4;
+        `;
+        
+        const xpInput = document.getElementById('experience');
+        if (xpInput && xpInput.parentNode) {
+            xpInput.parentNode.appendChild(infoElement);
+        }
+    }
+    
+    if (typeof classes === 'string') {
+        // Caso de error
+        infoElement.innerHTML = `<span style="color: #ff6b6b">${classes}</span>`;
+        return;
+    }
+    
+    let info = `<strong>Nivel ${currentLevel}</strong>`;
+    
+    // Mostrar clases activas
+    if (classes && classes.length > 0) {
+        info += `<br><small>Clases: ${classes.join(', ')}</small>`;
+        
+        if (classes.length > 1) {
+            info += `<br><small>Multiclase (XP promediado)</small>`;
+        }
+        
+        if (!isHumanRace) {
+            info += `<br><small style="color: #ffed4e">Raza no humana (XP x2)</small>`;
+        }
+    }
+    
+    if (nextLevelXP) {
+        const xpNeeded = nextLevelXP - currentXP;
+        const percentage = Math.min(100, (currentXP / nextLevelXP) * 100);
+        
+        info += `<br><br><strong>Siguiente nivel (${currentLevel + 1}):</strong>`;
+        info += `<br>Requiere: ${nextLevelXP.toLocaleString()} XP`;
+        info += `<br>Faltan: <span style="color: #ffed4e">${xpNeeded.toLocaleString()} XP</span>`;
+        info += `<br><small>Progreso: ${percentage.toFixed(1)}%</small>`;
+        
+        // Barra de progreso visual
+        info += `<div style="
+            width: 100%; 
+            height: 8px; 
+            background: rgba(0,0,0,0.3); 
+            border-radius: 4px; 
+            margin-top: 4px;
+            overflow: hidden;
+        ">
+            <div style="
+                width: ${percentage}%; 
+                height: 100%; 
+                background: linear-gradient(90deg, #ffd700, #ffed4e);
+                transition: width 0.3s ease;
+            "></div>
+        </div>`;
+    } else {
+        info += `<br><br><span style="color: #00ff7f">¡Nivel máximo alcanzado!</span>`;
+    }
+    
+    infoElement.innerHTML = info;
+}
+
+// Event listeners para actualizar cuando cambien las clases
+function setupXPListeners() {
+    const classElements = [
+        'primary-selected-name',
+        'secondary-selected-name', 
+        'tertiary-selected-name',
+        'race'
+    ];
+    
+    classElements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            // Observer para detectar cambios en el texto
+            const observer = new MutationObserver(() => {
+                setTimeout(updateFromXP, 100);
+            });
+            observer.observe(element, { childList: true, characterData: true, subtree: true });
+        }
+    });
+}
+
+// Inicializar listeners cuando cargue la página
+document.addEventListener('DOMContentLoaded', function() {
+    setupXPListeners();
+    // Actualizar una vez al cargar
+    setTimeout(updateFromXP, 500);
+});
+              
         // Spell system functions (simplified placeholders)
         function updateSpellList() {
             const casterType = document.getElementById('casterType').value;
