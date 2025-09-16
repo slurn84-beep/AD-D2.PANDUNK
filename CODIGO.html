@@ -2044,855 +2044,919 @@
 
 <!-- Combat Tab -->
 <div id="combat-tab" class="tab-content">
-    <h2 style="color: #ffd700; margin-bottom: 2rem;">⚔️ Información de Combate</h2>
-    
-    <div class="stats-row">
-         <div class="stat-card">
+    <h2 style="color: #ffd700; margin-bottom: 2rem;">⚔️ Combate</h2>
+
+    <!-- Stats de Combate -->
+    <div class="combat-stats-row">
+        <div class="stat-card combat-stat">
             <div class="stat-value" id="combatAC">10</div>
             <div class="stat-label">Clase de Armadura</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card combat-stat">
             <div class="stat-value" id="combatGaco">20</div>
-            <div class="stat-label">GACO</div>
+            <div class="stat-label">GACO Base</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card combat-stat">
             <div class="stat-value" id="combatInitiative">+0</div>
             <div class="stat-label">Iniciativa</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value" id="combatMovement">12</div>
-            <div class="stat-label">Velocidad de Movimiento</div>
+        <div class="stat-card combat-stat">
+            <div class="stat-value" id="combatMovement">30m</div>
+            <div class="stat-label">Movimiento</div>
         </div>
     </div>
 
-    <!-- Sección de Armaduras -->
-    <div class="equipment-section">
-        <h3>🛡️ Protección</h3>
+    <!-- Armas Equipadas -->
+    <div class="combat-section">
+        <h3 style="color: #ffd700; margin-bottom: 1rem;">⚔️ Armas Equipadas</h3>
         
-        <!-- Header de Armaduras -->
-        <div style="display: grid; grid-template-columns: 200px 60px 50px 50px 60px 1fr; gap: 12px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #ffd700; text-transform: uppercase; letter-spacing: 0.5px;">
-            <div>Armadura</div>
-            <div>Plus</div>
-            <div>AC</div>
-            <div>Bon.</div>
-            <div>Penal</div>
-            <div>Detalle</div>
-        </div>
-        
-        <!-- Línea de Armadura -->
-        <div style="display: grid; grid-template-columns: 200px 60px 50px 50px 60px 1fr; gap: 12px; margin-bottom: 8px;">
-            <select class="form-input" id="armor1" style="padding: 0.6rem; font-size: 0.9rem;">
-                <option value="">Seleccionar Armadura</option>
-            </select>
-            <input type="text" class="form-input" id="armor1Plus" value="+0" style="padding: 0.6rem; text-align: center; font-size: 0.9rem;">
-            <input type="text" class="form-input" id="armor1AC" value="10" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="armor1Bonus" value="6" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="armor1Penalty" value="0" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="armor1Detail" readonly style="padding: 0.6rem; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
-        </div>
-        
-        <!-- Línea de Escudo -->
-        <div style="display: grid; grid-template-columns: 200px 60px 50px 50px 60px 1fr; gap: 12px;">
-            <select class="form-input" id="shield" style="padding: 0.6rem; font-size: 0.9rem;">
-                <option value="">Sin Escudo</option>
-                <option value="escudo_corporal">Escudo Corporal</option>
-                <option value="escudo_mediano">Escudo Mediano</option>
-                <option value="escudo_rodela">Escudo Rodela</option>
-            </select>
-            <input type="text" class="form-input" id="shieldPlus" value="+0" style="padding: 0.6rem; text-align: center; font-size: 0.9rem;">
-            <input type="text" class="form-input" id="shieldAC" value="0" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="shieldBonus" value="0" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="shieldPenalty" value="0" readonly style="padding: 0.6rem; text-align: center; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="shieldDetail" readonly style="padding: 0.6rem; font-size: 0.9rem; background: rgba(0, 0, 0, 0.3);">
+        <div class="equipped-weapons" id="equipped-weapons-container">
+            <div class="weapon-slot-combat" data-slot="main-hand">
+                <div class="slot-label">🗡️ Mano Principal</div>
+                <div class="weapon-info" id="main-hand-weapon">
+                    <div class="weapon-name-combat">Sin Arma</div>
+                    <div class="weapon-stats-combat">
+                        <span class="weapon-gaco">GACO: 20</span>
+                        <span class="weapon-damage">Daño: 1d2</span>
+                        <span class="weapon-attacks">Ataques: 1</span>
+                    </div>
+                </div>
+                <button class="equip-weapon-btn" onclick="openWeaponSelector('main-hand')">Equipar</button>
+            </div>
+
+            <div class="weapon-slot-combat" data-slot="off-hand">
+                <div class="slot-label">🛡️ Mano Secundaria</div>
+                <div class="weapon-info" id="off-hand-weapon">
+                    <div class="weapon-name-combat">Vacío</div>
+                    <div class="weapon-stats-combat">
+                        <span class="weapon-note">Segunda arma o escudo</span>
+                    </div>
+                </div>
+                <button class="equip-weapon-btn" onclick="openWeaponSelector('off-hand')">Equipar</button>
+            </div>
+
+            <div class="weapon-slot-combat" data-slot="ranged">
+                <div class="slot-label">🏹 Arma a Distancia</div>
+                <div class="weapon-info" id="ranged-weapon">
+                    <div class="weapon-name-combat">Sin Arma</div>
+                    <div class="weapon-stats-combat">
+                        <span class="weapon-gaco">GACO: 20</span>
+                        <span class="weapon-damage">Daño: --</span>
+                        <span class="weapon-range">Alcance: --</span>
+                    </div>
+                </div>
+                <button class="equip-weapon-btn" onclick="openWeaponSelector('ranged')">Equipar</button>
+            </div>
         </div>
     </div>
 
-    <!-- Sección de Armas -->
-    <div class="equipment-section">
-        <h3>⚔️ Arsenal</h3>
+    <!-- Estilos de Combate Activos -->
+    <div class="combat-section">
+        <h3 style="color: #ffd700; margin-bottom: 1rem;">🥋 Estilos de Combate</h3>
         
-        <!-- Header de Armas -->
-        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #ffd700; text-transform: uppercase; letter-spacing: 0.5px;">
-            <div>Arma</div>
-            <div>Plus</div>
-            <div>#AT</div>
-            <div>Aj. Daño</div>
-            <div>GACO</div>
-            <div>Daño</div>
-            <div>Crítico</div>
-            <div>Detalle</div>
+        <div class="active-combat-styles" id="active-combat-styles">
+            <div class="no-styles-active">
+                <p style="color: #b0b0b0; font-style: italic; text-align: center;">
+                    No tienes estilos de combate disponibles.<br>
+                    <small>Compra estilos en la pestaña de Pericias para habilitarlos aquí.</small>
+                </p>
+            </div>
         </div>
+    </div>
+
+    <!-- Armadura y Protección -->
+    <div class="combat-section">
+        <h3 style="color: #ffd700; margin-bottom: 1rem;">🛡️ Armadura y Protección</h3>
         
-        <!-- Líneas de Armas -->
-        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
-            <select class="form-input" id="weapon1" style="padding: 0.5rem; font-size: 0.85rem;">
-                <option value="">Seleccionar Arma</option>
-            </select>
-            <input type="text" class="form-input" id="weapon1Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon1Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon1DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon1Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon1Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon1Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon1Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+        <div class="armor-protection-grid">
+            <div class="armor-slot-combat">
+                <div class="armor-type-label">Armadura Corporal</div>
+                <div class="armor-info" id="body-armor-info">
+                    <div class="armor-name">Sin Armadura</div>
+                    <div class="armor-stats">
+                        <span class="armor-ac">CA: 10</span>
+                        <span class="armor-dex-bonus">Dex: Sin límite</span>
+                    </div>
+                </div>
+                <button class="change-armor-btn" onclick="openArmorSelector('body')">Cambiar</button>
+            </div>
+
+            <div class="armor-slot-combat">
+                <div class="armor-type-label">Escudo</div>
+                <div class="armor-info" id="shield-info">
+                    <div class="armor-name">Sin Escudo</div>
+                    <div class="armor-stats">
+                        <span class="shield-ac">CA: +0</span>
+                        <span class="shield-attacks">Ataques: +0</span>
+                    </div>
+                </div>
+                <button class="change-armor-btn" onclick="openArmorSelector('shield')">Cambiar</button>
+            </div>
         </div>
-        
-        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
-            <select class="form-input" id="weapon2" style="padding: 0.5rem; font-size: 0.85rem;">
-                <option value="">Seleccionar Arma</option>
-            </select>
-            <input type="text" class="form-input" id="weapon2Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon2Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon2DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon2Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon2Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon2Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon2Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+
+        <!-- Modificadores de CA -->
+        <div class="ac-modifiers" id="ac-breakdown">
+            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Desglose de CA:</h4>
+            <div class="ac-breakdown-list">
+                <div class="ac-modifier-item">
+                    <span>Armadura base:</span>
+                    <span id="ac-base-armor">10</span>
+                </div>
+                <div class="ac-modifier-item">
+                    <span>Modificador de Destreza:</span>
+                    <span id="ac-dex-mod">+0</span>
+                </div>
+                <div class="ac-modifier-item">
+                    <span>Escudo:</span>
+                    <span id="ac-shield">+0</span>
+                </div>
+                <div class="ac-modifier-item">
+                    <span>Estilos de combate:</span>
+                    <span id="ac-style-bonus">+0</span>
+                </div>
+                <div class="ac-modifier-item">
+                    <span>Bonificaciones mágicas:</span>
+                    <span id="ac-magic-bonus">+0</span>
+                </div>
+                <div class="ac-modifier-total">
+                    <span><strong>CA Total:</strong></span>
+                    <span id="ac-total"><strong>10</strong></span>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- Ataques por Ronda -->
+    <div class="combat-section">
+        <h3 style="color: #ffd700; margin-bottom: 1rem;">⚡ Ataques por Ronda</h3>
         
-        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
-            <select class="form-input" id="weapon3" style="padding: 0.5rem; font-size: 0.85rem;">
-                <option value="">Seleccionar Arma</option>
-            </select>
-            <input type="text" class="form-input" id="weapon3Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon3Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon3DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon3Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon3Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon3Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon3Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+        <div class="attacks-per-round" id="attacks-breakdown">
+            <div class="attacks-info">
+                <div class="base-attacks">
+                    <span class="attacks-label">Ataques base por nivel:</span>
+                    <span class="attacks-value" id="base-attacks-value">1</span>
+                </div>
+                <div class="specialization-attacks">
+                    <span class="attacks-label">Por especialización en armas:</span>
+                    <span class="attacks-value" id="specialization-attacks-value">+0</span>
+                </div>
+                <div class="style-attacks">
+                    <span class="attacks-label">Por estilos de combate:</span>
+                    <span class="attacks-value" id="style-attacks-value">+0</span>
+                </div>
+                <div class="total-attacks">
+                    <span class="attacks-label"><strong>Total por ronda:</strong></span>
+                    <span class="attacks-value" id="total-attacks-value"><strong>1</strong></span>
+                </div>
+            </div>
+            
+            <div class="attacks-note">
+                <p style="color: #b0b0b0; font-size: 0.9rem; font-style: italic;">
+                    * Los ataques adicionales por especialización se alternan entre rondas.<br>
+                    Ejemplo: 1.5 ataques = 2 ataques en una ronda, 1 en la siguiente.
+                </p>
+            </div>
         </div>
+    </div>
+
+    <!-- Salvaciones -->
+    <div class="combat-section">
+        <h3 style="color: #ffd700; margin-bottom: 1rem;">🛡️ Tiradas de Salvación</h3>
         
-        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
-            <select class="form-input" id="weapon4" style="padding: 0.5rem; font-size: 0.85rem;">
-                <option value="">Seleccionar Arma</option>
-            </select>
-            <input type="text" class="form-input" id="weapon4Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon4Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon4DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon4Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon4Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon4Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon4Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-        </div>
-        
-        <div style="display: grid; grid-template-columns: 180px 50px 45px 70px 50px 80px 80px 1fr; gap: 10px; margin-bottom: 6px;">
-            <select class="form-input" id="weapon5" style="padding: 0.5rem; font-size: 0.85rem;">
-                <option value="">Seleccionar Arma</option>
-            </select>
-            <input type="text" class="form-input" id="weapon5Plus" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon5Attacks" value="1/1" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon5DamageAdj" value="+0" style="padding: 0.5rem; text-align: center; font-size: 0.85rem;">
-            <input type="text" class="form-input" id="weapon5Gaco" value="20" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon5Damage" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon5Critical" readonly style="padding: 0.5rem; text-align: center; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
-            <input type="text" class="form-input" id="weapon5Detail" readonly style="padding: 0.5rem; font-size: 0.85rem; background: rgba(0, 0, 0, 0.3);">
+        <div class="saving-throws-grid" id="saving-throws">
+            <div class="saving-throw-item">
+                <div class="save-name">Parálisis/Veneno/Muerte</div>
+                <div class="save-value" id="save-paralysis">10</div>
+            </div>
+            <div class="saving-throw-item">
+                <div class="save-name">Varas/Bastones/Hechizos</div>
+                <div class="save-value" id="save-rods">13</div>
+            </div>
+            <div class="saving-throw-item">
+                <div class="save-name">Petrificación/Transformación</div>
+                <div class="save-value" id="save-petrification">12</div>
+            </div>
+            <div class="saving-throw-item">
+                <div class="save-name">Aliento de Dragón</div>
+                <div class="save-value" id="save-breath">15</div>
+            </div>
+            <div class="saving-throw-item">
+                <div class="save-name">Conjuros</div>
+                <div class="save-value" id="save-spells">14</div>
+            </div>
         </div>
     </div>
 </div>
 
-<script>
-// JSON de Armas basado en el PDF
-const weaponsData = {
-    // Armas sencillas cuerpo a cuerpo
-    "baston": { name: "Bastón (vara)", damage: "1d6", critical: "x2", detail: "Contundente", price: "1 po", weight: "4 lb", speed: 6 },
-    "vara_2m": { name: "Vara (2M)", damage: "1d8", critical: "x2", detail: "Contundente 2M", price: "2 po", weight: "8 lb", speed: 8 },
-    "daga": { name: "Daga", damage: "1d4", critical: "x2", detail: "Perforante", price: "2 po", weight: "1 lb", speed: 2 },
-    "hacha_mano": { name: "Hacha de mano", damage: "1d6", critical: "x2", detail: "Cortante", price: "5 po", weight: "2 lb", speed: 4 },
-    "hoz": { name: "Hoz", damage: "1d4", critical: "x2", detail: "Cortante", price: "6 po", weight: "1 lb", speed: 4 },
-    "punos": { name: "Puños", damage: "1d3", critical: "x2", detail: "Contundente", price: "-", weight: "-", speed: 1 },
-    "lanza": { name: "Lanza", damage: "1d6", critical: "x2", detail: "Perforante 2M", price: "6 po", weight: "2 lb", speed: 6 },
-    "martillo_ligero": { name: "Martillo ligero", damage: "1d4", critical: "x3", detail: "Contundente", price: "2 po", weight: "2 lb", speed: 4 },
-    "maza": { name: "Maza", damage: "1d6", critical: "x3", detail: "Contundente", price: "5 po", weight: "4 lb", speed: 4 },
-    "punal": { name: "Puñal", damage: "1d4", critical: "19-20x3", detail: "Perforante", price: "2 po", weight: "1 lb", speed: 2 },
-    
-    // Armas sencillas a distancia
-    "arco_corto": { name: "Arco corto", damage: "1d6", critical: "19-20x3", detail: "Perforante 2M", price: "30 po", weight: "1 lb", speed: 7 },
-    "arco_corto_compuesto": { name: "Arco corto compuesto", damage: "1d6", critical: "x3", detail: "Perforante 2M", price: "75 po", weight: "1 lb", speed: 6 },
-    "ballesta_ligera": { name: "Ballesta ligera", damage: "1d8", critical: "19-20x2", detail: "Perforante 2M", price: "35 po", weight: "2 lb", speed: 7 },
-    "dardo": { name: "Dardo", damage: "1d3", critical: "x2", detail: "Perforante", price: "5 po", weight: "1/4 lb", speed: 2 },
-    "honda": { name: "Honda", damage: "1d4", critical: "x2", detail: "Contundente 2M", price: "5 mc", weight: "-", speed: 6 },
-    "jabalina": { name: "Jabalina", damage: "1d6", critical: "x2", detail: "Perforante", price: "5 pp", weight: "1 lb", speed: 4 },
-    
-    // Armas marciales cuerpo a cuerpo
-    "alabarda": { name: "Alabarda", damage: "1d10", critical: "x3", detail: "Cortante 2M", price: "10 po", weight: "7 lb", speed: 9 },
-    "cimitarra": { name: "Cimitarra", damage: "1d6", critical: "18-20x2", detail: "Cortante", price: "15 po", weight: "2 lb", speed: 5 },
-    "espada_corta": { name: "Espada corta", damage: "1d6", critical: "19-20x2", detail: "Perforante", price: "10 po", weight: "1 lb", speed: 3 },
-    "espada_mandoble": { name: "Espada Mandoble", damage: "2d6", critical: "19-20x3", detail: "Cortante 2M", price: "50 po", weight: "7 lb", speed: 10 },
-    "espada_larga": { name: "Espada larga", damage: "1d8", critical: "19-20x2", detail: "Cortante", price: "15 po", weight: "2 lb", speed: 5 },
-    "estoque": { name: "Estoque", damage: "1d6", critical: "18-20x2", detail: "Perforante", price: "25 po", weight: "2 lb", speed: 3 },
-    "gran_hacha": { name: "Gran hacha", damage: "1d12", critical: "19-20x3", detail: "Cortante 2M", price: "30 po", weight: "7 lb", speed: 10 },
-    "hacha_batalla": { name: "Hacha de batalla", damage: "1d8", critical: "x3", detail: "Cortante", price: "5 po", weight: "3 lb", speed: 7 },
-    "lanza_caballeria": { name: "Lanza de caballería", damage: "1d12", critical: "x3", detail: "Perforante 2M", price: "10 po", weight: "5 lb", speed: 7 },
-    "lucero_alba": { name: "Lucero del alba", damage: "1d8", critical: "x3", detail: "Perforante", price: "8 po", weight: "5 lb", speed: 4 },
-    "martillo_guerra": { name: "Martillo de guerra", damage: "1d8", critical: "x3", detail: "Contundente", price: "2 po", weight: "3 lb", speed: 4 },
-    "mazo_guerra": { name: "Mazo de guerra", damage: "2d6", critical: "x3", detail: "Contundente 2M", price: "30 po", weight: "10 lb", speed: 12 },
-    "tridente": { name: "Tridente", damage: "1d6", critical: "x2", detail: "Perforante 2M", price: "15 po", weight: "2 lb", speed: 7 },
-    
-    // Armas marciales a distancia
-    "arco_largo": { name: "Arco largo", damage: "1d8", critical: "19-20x3", detail: "Perforante 2M", price: "75 po", weight: "2 lb", speed: 8 },
-    "arco_largo_compuesto": { name: "Arco largo compuesto", damage: "1d8", critical: "x3", detail: "Perforante 2M", price: "100 po", weight: "2 lb", speed: 7 },
-    "ballesta_pesada": { name: "Ballesta pesada", damage: "1d10", critical: "19-20x3", detail: "Perforante 2M", price: "50 po", weight: "6 lb", speed: 10 }
-};
-
-// JSON de Armaduras basado en el PDF
-const armorData = {
-    "sin_armadura": { name: "Sin Armadura", ac: 0, maxDex: 6, penalty: 0, detail: "Sin protección" },
-    "cuero": { name: "Cuero", ac: -2, maxDex: 6, penalty: 0, detail: "Armadura ligera" },
-    "acolchada": { name: "Acolchada", ac: -2, maxDex: 6, penalty: 0, detail: "Armadura ligera" },
-    "cuero_tachado": { name: "Cuero Tachado", ac: -3, maxDex: 5, penalty: -1, detail: "Armadura ligera" },
-    "pieles": { name: "Pieles", ac: -4, maxDex: 4, penalty: -2, detail: "Armadura mediana" },
-    "anillas": { name: "Anillas", ac: -4, maxDex: 4, penalty: -3, detail: "Armadura mediana" },
-    "cota_mallas": { name: "Cota de Mallas", ac: -5, maxDex: 3, penalty: -4, detail: "Armadura mediana" },
-    "escamas": { name: "Escamas", ac: -6, maxDex: 2, penalty: -5, detail: "Armadura pesada" },
-    "bandas": { name: "Bandas", ac: -7, maxDex: 1, penalty: -6, detail: "Armadura pesada" },
-    "placas": { name: "Placas", ac: -8, maxDex: 0, penalty: -7, detail: "Armadura pesada" },
-    "completa": { name: "Completa", ac: -9, maxDex: 0, penalty: -8, detail: "Armadura pesada" }
-};
-
-// JSON de Escudos
-const shieldData = {
-    "escudo_corporal": { name: "Escudo Corporal", ac: -3, penalty: -2, detail: "Escudo grande" },
-    "escudo_mediano": { name: "Escudo Mediano", ac: -2, penalty: -1, detail: "Escudo mediano" },
-    "escudo_rodela": { name: "Escudo Rodela", ac: -1, penalty: 0, detail: "Escudo pequeño" }
-};
-
-// Función para poblar los selects de armas
-function populateWeaponSelects() {
-    const weaponSelects = ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5'];
-    
-    weaponSelects.forEach(selectId => {
-        const select = document.getElementById(selectId);
-        if (select) {
-            // Limpiar opciones existentes excepto la primera
-            select.innerHTML = '<option value="">Seleccionar Arma</option>';
-            
-            // Agregar opciones de armas agrupadas por categorías
-            const categories = {
-                'Armas Sencillas Cuerpo a Cuerpo': [
-                    'baston', 'vara_2m', 'daga', 'hacha_mano', 'hoz', 'punos', 
-                    'lanza', 'martillo_ligero', 'maza', 'punal'
-                ],
-                'Armas Sencillas a Distancia': [
-                    'arco_corto', 'arco_corto_compuesto', 'ballesta_ligera', 
-                    'dardo', 'honda', 'jabalina'
-                ],
-                'Armas Marciales Cuerpo a Cuerpo': [
-                    'alabarda', 'cimitarra', 'espada_corta', 'espada_mandoble', 
-                    'espada_larga', 'estoque', 'gran_hacha', 'hacha_batalla', 
-                    'lanza_caballeria', 'lucero_alba', 'martillo_guerra', 
-                    'mazo_guerra', 'tridente'
-                ],
-                'Armas Marciales a Distancia': [
-                    'arco_largo', 'arco_largo_compuesto', 'ballesta_pesada'
-                ]
-            };
-            
-            Object.keys(categories).forEach(categoryName => {
-                const optgroup = document.createElement('optgroup');
-                optgroup.label = categoryName;
-                
-                categories[categoryName].forEach(weaponKey => {
-                    if (weaponsData[weaponKey]) {
-                        const option = document.createElement('option');
-                        option.value = weaponKey;
-                        option.textContent = weaponsData[weaponKey].name;
-                        optgroup.appendChild(option);
-                    }
-                });
-                
-                select.appendChild(optgroup);
-            });
-            
-            // Agregar event listener para actualizar campos cuando se selecciona un arma
-            select.addEventListener('change', function() {
-                updateWeaponFields(selectId, this.value);
-            });
-        }
-    });
+<style>
+/* Estilos específicos para Combat Tab */
+.combat-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
-// Función para poblar los selects de armaduras
-function populateArmorSelects() {
-    const armorSelect = document.getElementById('armor1');
-    if (armorSelect) {
-        armorSelect.innerHTML = '<option value="">Seleccionar Armadura</option>';
-        
-        Object.keys(armorData).forEach(armorKey => {
-            const armor = armorData[armorKey];
-            const option = document.createElement('option');
-            option.value = armorKey;
-            option.textContent = armor.name;
-            armorSelect.appendChild(option);
-        });
-        
-        armorSelect.addEventListener('change', function() {
-            updateArmorFields(this.value);
-            updateTotalAC();
-        });
+.combat-stat {
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(255, 69, 0, 0.1));
+    border: 1px solid rgba(220, 20, 60, 0.3);
+}
+
+.combat-section {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Armas Equipadas */
+.equipped-weapons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.weapon-slot-combat {
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.weapon-slot-combat:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.weapon-slot-combat.equipped {
+    border-style: solid;
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.slot-label {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.weapon-info {
+    margin-bottom: 1rem;
+}
+
+.weapon-name-combat {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.weapon-stats-combat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    color: #e5e5e5;
+    font-size: 0.9rem;
+}
+
+.weapon-note {
+    color: #b0b0b0;
+    font-style: italic;
+}
+
+.equip-weapon-btn, .change-armor-btn {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #e5e5e5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.equip-weapon-btn:hover, .change-armor-btn:hover {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+}
+
+/* Estilos de Combate Activos */
+.active-combat-styles {
+    display: grid;
+    gap: 1rem;
+}
+
+.combat-style-active {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.style-info-active {
+    flex: 1;
+}
+
+.style-name-active {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.style-level-active {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.style-effects-active {
+    color: #e5e5e5;
+    font-size: 0.9rem;
+}
+
+.style-toggle-btn {
+    padding: 0.8rem 1.2rem;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    border-radius: 8px;
+    background: transparent;
+    color: #ffd700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.style-toggle-btn:hover {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.style-toggle-btn.active {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #ffd700;
+}
+
+/* Armadura y Protección */
+.armor-protection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.armor-slot-combat {
+    background: rgba(0, 100, 200, 0.1);
+    border: 1px solid rgba(0, 100, 200, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.armor-type-label {
+    color: #4da6ff;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.armor-info {
+    margin-bottom: 1rem;
+}
+
+.armor-name {
+    color: #4da6ff;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.armor-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    color: #e5e5e5;
+    font-size: 0.9rem;
+}
+
+/* Desglose de CA */
+.ac-modifiers {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ac-breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ac-modifier-item {
+    display: flex;
+    justify-content: space-between;
+    color: #e5e5e5;
+    font-size: 0.9rem;
+}
+
+.ac-modifier-total {
+    display: flex;
+    justify-content: space-between;
+    color: #ffd700;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Ataques por Ronda */
+.attacks-per-round {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.attacks-info {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: grid;
+    gap: 0.8rem;
+}
+
+.base-attacks, .specialization-attacks, .style-attacks, .total-attacks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.attacks-label {
+    color: #e5e5e5;
+    font-size: 0.9rem;
+}
+
+.attacks-value {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.total-attacks {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.attacks-note {
+    background: rgba(255, 215, 0, 0.05);
+    border-left: 3px solid #ffd700;
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Tiradas de Salvación */
+.saving-throws-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.saving-throw-item {
+    background: rgba(0, 150, 0, 0.1);
+    border: 1px solid rgba(0, 150, 0, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.saving-throw-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 150, 0, 0.2);
+}
+
+.save-name {
+    color: #90EE90;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.save-value {
+    color: #00FF7F;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.no-styles-active {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .combat-stats-row {
+        grid-template-columns: repeat(2, 1fr);
     }
     
-    // Poblar select de escudos
-    const shieldSelect = document.getElementById('shield');
-    if (shieldSelect) {
-        Object.keys(shieldData).forEach(shieldKey => {
-            const shield = shieldData[shieldKey];
-            const option = document.createElement('option');
-            option.value = shieldKey;
-            option.textContent = shield.name;
-            shieldSelect.appendChild(option);
-        });
-        
-        shieldSelect.addEventListener('change', function() {
-            updateShieldFields(this.value);
-            updateTotalAC();
-        });
-    }
-}
-
-// Función para actualizar campos de arma
-function updateWeaponFields(weaponSelectId, weaponKey) {
-    if (!weaponKey) {
-        // Limpiar campos si no hay arma seleccionada
-        const weaponNumber = weaponSelectId.replace('weapon', '');
-        document.getElementById(`weapon${weaponNumber}Damage`).value = '';
-        document.getElementById(`weapon${weaponNumber}Critical`).value = '';
-        document.getElementById(`weapon${weaponNumber}Detail`).value = '';
-        return;
+    .equipped-weapons {
+        grid-template-columns: 1fr;
     }
     
-    const weapon = weaponsData[weaponKey];
-    const weaponNumber = weaponSelectId.replace('weapon', '');
-    
-    if (weapon) {
-        document.getElementById(`weapon${weaponNumber}Damage`).value = weapon.damage;
-        document.getElementById(`weapon${weaponNumber}Critical`).value = weapon.critical;
-        document.getElementById(`weapon${weaponNumber}Detail`).value = weapon.detail;
-    }
-}
-
-// Función para actualizar campos de armadura
-function updateArmorFields(armorKey) {
-    if (!armorKey) {
-        document.getElementById('armor1AC').value = '10';
-        document.getElementById('armor1Bonus').value = '6';
-        document.getElementById('armor1Penalty').value = '0';
-        document.getElementById('armor1Detail').value = '';
-        return;
+    .armor-protection-grid {
+        grid-template-columns: 1fr;
     }
     
-    const armor = armorData[armorKey];
-    if (armor) {
-        const baseAC = 10;
-        const finalAC = baseAC + armor.ac;
-        document.getElementById('armor1AC').value = finalAC.toString();
-        document.getElementById('armor1Bonus').value = armor.maxDex.toString();
-        document.getElementById('armor1Penalty').value = armor.penalty.toString();
-        document.getElementById('armor1Detail').value = armor.detail;
-    }
-}
-
-// Función para actualizar campos de escudo
-function updateShieldFields(shieldKey) {
-    if (!shieldKey) {
-        document.getElementById('shieldAC').value = '0';
-        document.getElementById('shieldBonus').value = '0';
-        document.getElementById('shieldPenalty').value = '0';
-        document.getElementById('shieldDetail').value = '';
-        return;
+    .saving-throws-grid {
+        grid-template-columns: 1fr;
     }
     
-    const shield = shieldData[shieldKey];
-    if (shield) {
-        document.getElementById('shieldAC').value = shield.ac.toString();
-        document.getElementById('shieldBonus').value = '0';
-        document.getElementById('shieldPenalty').value = shield.penalty.toString();
-        document.getElementById('shieldDetail').value = shield.detail;
+    .weapon-stats-combat {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 0.5rem;
     }
 }
 
-// Función para actualizar AC total usando datos reales de Abilities
-function updateTotalAC() {
-    try {
-        const armorKey = document.getElementById('armor1').value;
-        const shieldKey = document.getElementById('shield').value;
-        const armorPlus = parseInt(document.getElementById('armor1Plus').value) || 0;
-        const shieldPlus = parseInt(document.getElementById('shieldPlus').value) || 0;
-        
-        // Leer destreza defensiva del tab Abilities
-        const dexDefensive = parseInt(document.getElementById('dex-defensive')?.textContent) || 0;
-        
-        let totalAC = 10; // Base AC
-        let maxDexBonus = 6;
-        
-        // Aplicar armadura
-        if (armorKey && armorData[armorKey]) {
-            totalAC += armorData[armorKey].ac;
-            maxDexBonus = armorData[armorKey].maxDex;
-        }
-        
-        // Aplicar escudo
-        if (shieldKey && shieldData[shieldKey]) {
-            totalAC += shieldData[shieldKey].ac;
-        }
-        
-        // Aplicar bonificador de destreza (limitado por armadura)
-        const effectiveDexBonus = Math.min(Math.max(dexDefensive, 0), maxDexBonus);
-        totalAC -= effectiveDexBonus;
-        
-        // Aplicar plus mágicos
-        totalAC -= (armorPlus + shieldPlus); // Los plus mágicos MEJORAN la AC (la reducen)
-        
-        // Actualizar displays
-        document.getElementById('combatAC').textContent = totalAC;
-        const basicAC = document.getElementById('armorClass');
-        if (basicAC) basicAC.textContent = totalAC; // Para el tab básico
-        
-        console.log(`AC Calculada: Base(10) + Armor(${armorData[armorKey]?.ac || 0}) + Shield(${shieldData[shieldKey]?.ac || 0}) - Dex(${effectiveDexBonus}) - Plus(${armorPlus + shieldPlus}) = ${totalAC}`);
-    } catch (error) {
-        console.error('Error calculando AC:', error);
-        document.getElementById('combatAC').textContent = '10';
+@media (max-width: 480px) {
+    .combat-stats-row {
+        grid-template-columns: 1fr;
     }
-}
-
-// Función para calcular GACO
-function updateGACO() {
-    try {
-        const primaryClass = document.getElementById('primary-selected-name')?.textContent?.toLowerCase() || '';
-        const level = parseInt(document.getElementById('Level')?.value) || 1;
-        const strHitBonus = parseInt(document.getElementById('str-hit-prob')?.textContent) || 0;
-        
-        let baseGACO = 20;
-        
-        // Progresión por clase AD&D 2e
-        if (primaryClass.includes('guerrero') || primaryClass.includes('ranger') || 
-            primaryClass.includes('bárbaro') || primaryClass.includes('paladín') || 
-            primaryClass.includes('samurái')) {
-            baseGACO -= (level - 1);
-        } else if (primaryClass.includes('clérigo') || primaryClass.includes('druida') || 
-                   primaryClass.includes('chamán')) {
-            baseGACO -= Math.floor((level - 1) / 3) * 2;
-        } else if (primaryClass.includes('ladrón') || primaryClass.includes('bardo') || 
-                   primaryClass.includes('ninja') || primaryClass.includes('psiónico') || 
-                   primaryClass.includes('pistolero')) {
-            baseGACO -= Math.floor((level - 1) / 2);
-        } else if (primaryClass.includes('mago') || primaryClass.includes('hechicero') || 
-                   primaryClass.includes('bruja') || primaryClass.includes('artífice')) {
-            baseGACO -= Math.floor((level - 1) / 3);
-        } else {
-            // Clase por defecto (como luchador)
-            baseGACO -= Math.floor((level - 1) / 2);
-        }
-        
-        // Aplicar bonificador de fuerza (los bonos REDUCEN el GACO)
-        const finalGACO = Math.max(baseGACO - strHitBonus, 1);
-        
-        // Actualizar displays
-        document.getElementById('combatGaco').textContent = finalGACO;
-        const basicGACO = document.getElementById('gaco');
-        if (basicGACO) basicGACO.textContent = finalGACO; // Para el tab básico
-        
-        // Actualizar GACO de armas
-        ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5'].forEach(weaponId => {
-            const weaponGacoField = document.getElementById(weaponId + 'Gaco');
-            if (weaponGacoField) {
-                const weaponPlus = parseInt(document.getElementById(weaponId + 'Plus')?.value) || 0;
-                const finalWeaponGACO = Math.max(finalGACO - weaponPlus, 1);
-                weaponGacoField.value = finalWeaponGACO;
-            }
-        });
-        
-        console.log(`GACO Calculado: Base(20) - Nivel(${level-1}) - Str(${strHitBonus}) = ${finalGACO}`);
-    } catch (error) {
-        console.error('Error calculando GACO:', error);
-        document.getElementById('combatGaco').textContent = '20';
-    }
-}
-
-// Función para calcular movimiento
-function updateMovement() {
-    try {
-        const race = document.getElementById('race')?.value?.toLowerCase() || '';
-        
-        let baseMovement = 12; // Humano por defecto
-        if (race.includes('mediano') || race.includes('enano') || race.includes('gnomo')) {
-            baseMovement = 6;
-        } else if (race.includes('elfo')) {
-            baseMovement = 12;
-        }
-        
-        // Actualizar display principal
-        document.getElementById('combatMovement').textContent = baseMovement;
-        
-        console.log(`Movimiento: Raza(${race}) = ${baseMovement}`);
-    } catch (error) {
-        console.error('Error calculando movimiento:', error);
-        document.getElementById('combatMovement').textContent = '12';
-    }
-}
-
-// Función para calcular iniciativa
-function updateInitiative() {
-    try {
-        const dexReaction = parseInt(document.getElementById('dex-reaction')?.textContent) || 0;
-        const initiative = dexReaction >= 0 ? `+${dexReaction}` : dexReaction.toString();
-        document.getElementById('combatInitiative').textContent = initiative;
-        
-        const basicInitiative = document.getElementById('initiative');
-        if (basicInitiative) basicInitiative.textContent = initiative;
-        
-        console.log(`Iniciativa: Dex Reacción(${dexReaction})`);
-    } catch (error) {
-        console.error('Error calculando iniciativa:', error);
-        document.getElementById('combatInitiative').textContent = '+0';
-    }
-}
-
-// Función para actualizar ajuste de daño en armas
-function updateWeaponDamageAdjustment() {
-    try {
-        const strDamageAdj = parseInt(document.getElementById('str-damage-adj')?.textContent) || 0;
-        
-        ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5'].forEach(weaponId => {
-            const weaponPlusField = document.getElementById(weaponId + 'Plus');
-            const weaponDamageAdjField = document.getElementById(weaponId + 'DamageAdj');
-            
-            if (weaponPlusField && weaponDamageAdjField) {
-                const weaponPlus = parseInt(weaponPlusField.value) || 0;
-                const totalDamageAdj = strDamageAdj + weaponPlus;
-                weaponDamageAdjField.value = totalDamageAdj >= 0 ? `+${totalDamageAdj}` : totalDamageAdj.toString();
-            }
-        });
-    } catch (error) {
-        console.error('Error calculando ajuste de daño:', error);
-    }
-}
-
-// Función para actualizar todos los cálculos de combate
-function updateAllCombatStats() {
-    setTimeout(() => {
-        updateTotalAC();
-        updateGACO();
-        updateMovement();
-        updateInitiative();
-        updateWeaponDamageAdjustment();
-    }, 100); // Pequeño delay para asegurar que los valores estén actualizados
-}
-
-// Event listener para cambios en el tab Abilities
-function setupAbilitiesListener() {
-    // Observer para detectar cambios en las características
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'childList' || mutation.type === 'characterData') {
-                const target = mutation.target;
-                if (target.id && (target.id.includes('dex-') || target.id.includes('str-') || 
-                                 target.id === 'strength' || target.id === 'dexterity')) {
-                    updateAllCombatStats();
-                }
-            }
-        });
-    });
     
-    // Observar cambios en las características
-    const abilityElements = ['str-hit-prob', 'str-damage-adj', 'dex-defensive', 'dex-reaction'];
-    abilityElements.forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-            observer.observe(element, { childList: true, characterData: true, subtree: true });
-        }
-    });
-}
-
-// Inicialización principal
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Inicializando Combat Tab mejorado...');
-    
-    try {
-        populateWeaponSelects();
-        populateArmorSelects();
-        
-        // Event listeners para campos plus de armaduras
-        document.getElementById('armor1Plus')?.addEventListener('input', function() {
-            // Extraer valor numérico del input
-            let value = this.value.replace(/[^-+0-9]/g, '');
-            if (value && !value.startsWith('+') && !value.startsWith('-')) {
-                value = '+' + value;
-            }
-            this.value = value || '+0';
-            updateTotalAC();
-        });
-        
-        document.getElementById('shieldPlus')?.addEventListener('input', function() {
-            // Extraer valor numérico del input
-            let value = this.value.replace(/[^-+0-9]/g, '');
-            if (value && !value.startsWith('+') && !value.startsWith('-')) {
-                value = '+' + value;
-            }
-            this.value = value || '+0';
-            updateTotalAC();
-        });
-        
-        // Event listeners para campos plus de armas
-        ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5'].forEach(weaponId => {
-            const plusField = document.getElementById(weaponId + 'Plus');
-            if (plusField) {
-                plusField.addEventListener('input', function() {
-                    // Formatear input
-                    let value = this.value.replace(/[^-+0-9]/g, '');
-                    if (value && !value.startsWith('+') && !value.startsWith('-')) {
-                        value = '+' + value;
-                    }
-                    this.value = value || '+0';
-                    updateWeaponDamageAdjustment();
-                    updateGACO(); // Actualizar GACO de armas también
-                });
-            }
-        });
-        
-        // Event listeners para cambios en otros campos
-        document.getElementById('race')?.addEventListener('change', updateMovement);
-        document.getElementById('Level')?.addEventListener('change', updateGACO);
-        
-        // Configurar observer para el tab Abilities
-        setupAbilitiesListener();
-        
-        // Actualizar todo al inicio
-        setTimeout(updateAllCombatStats, 500); // Delay para asegurar que otros tabs estén cargados
-        
-        console.log('✅ Combat Tab inicializado correctamente');
-        
-    } catch (error) {
-        console.error('❌ Error inicializando Combat Tab:', error);
+    .weapon-stats-combat {
+        flex-direction: column;
     }
-});
-
-// Actualizar cálculos cuando se cambie a este tab
-function onCombatTabActivated() {
-    updateAllCombatStats();
 }
+</style>
 
-// Exportar funciones para uso externo
-if (typeof window !== 'undefined') {
-    window.combatTabFunctions = {
-        updateAllCombatStats,
-        updateTotalAC,
-        updateGACO,
-        updateMovement,
-        updateInitiative,
-        onCombatTabActivated
-    };
-    <!-- Nuevo: Estilo de Combate -->
-    <div class="combat-card">
-      <h3>Estilo de Combate</h3>
-      <label for="combat-style-select">Selecciona estilo:</label>
-      <select id="combat-style-select"></select>
-      <p>Rango actual: <span id="combat-style-rank">Ninguno</span></p>
-    </div>
-}
-</script>
-
-<!-- Skills Tab -->
+<<!-- Skills Tab -->
 <div id="skills-tab" class="tab-content">
-  <h2 style="color: #ffd700; margin-bottom: 2rem;">🎯 Pericias y Habilidades</h2>
+    <h2 style="color: #ffd700; margin-bottom: 2rem;">🎯 Pericias</h2>
 
-  <div id="proficiencies-container" style="display: flex; flex-wrap: wrap; gap: 2rem;">
-    <!-- Armas + Estilos -->
-    <div id="weapon-proficiencies-section" style="flex: 1; min-width: 300px;">
-      <h3 style="color: #ffd700; border-bottom: 1px solid #444; padding-bottom: 0.5rem;">Pericias en Armas y Estilos ⚔️</h3>
-      <p style="color: #b0b0b0; margin-top: 1rem;">Ranuras disponibles: <span id="weapon-slots">0</span></p>
-      <div id="weapon-proficiency-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;"></div>
+    <!-- Pericias en Armas -->
+    <div class="skills-section">
+        <h3 style="color: #ffd700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            ⚔️ Pericias en Armas
+            <span class="slot-counter" id="weapon-slots-counter">0/0 casillas</span>
+        </h3>
+        
+        <div class="weapons-proficiency-container">
+            <div class="weapon-search-container">
+                <input type="text" id="weapon-search" class="form-input" placeholder="🔍 Buscar arma..." style="margin-bottom: 1rem;">
+            </div>
+            
+            <div class="weapons-grid" id="weapons-proficiency-grid">
+                <!-- Las armas se cargarán dinámicamente aquí -->
+            </div>
+        </div>
     </div>
 
-    <!-- No Armas -->
-    <div id="non-weapon-proficiencies-section" style="flex: 1; min-width: 300px;">
-      <h3 style="color: #ffd700; border-bottom: 1px solid #444; padding-bottom: 0.5rem;">Pericias en No-Armas 🧠</h3>
-      <p style="color: #b0b0b0; margin-top: 1rem;">Ranuras disponibles: <span id="non-weapon-slots">0</span></p>
-      <div id="non-weapon-proficiency-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;"></div>
+    <!-- Pericias en No-Armas -->
+    <div class="skills-section">
+        <h3 style="color: #ffd700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            🛠️ Pericias en No-Armas
+            <span class="slot-counter" id="nonweapon-slots-counter">0/0 casillas</span>
+        </h3>
+        
+        <div class="nonweapon-proficiency-container">
+            <div class="skill-search-container">
+                <input type="text" id="skill-search" class="form-input" placeholder="🔍 Buscar pericia..." style="margin-bottom: 1rem;">
+                <select id="skill-group-filter" class="form-input" style="margin-bottom: 1rem;">
+                    <option value="all">Todos los grupos</option>
+                    <option value="Gen">General (Gen)</option>
+                    <option value="Luc">Luchador (Luc)</option>
+                    <option value="Sac">Sacerdote (Sac)</option>
+                    <option value="Hec">Hechicero (Hec/Mago)</option>
+                    <option value="Bri">Bribón (Bri)</option>
+                    <option value="Psi">Psiónico (Psi)</option>
+                </select>
+            </div>
+            
+            <div class="skills-grid" id="nonweapon-skills-grid">
+                <!-- Las pericias se cargarán dinámicamente aquí -->
+            </div>
+        </div>
     </div>
-  </div>
+
+    <!-- Estilos de Combate -->
+    <div class="skills-section">
+        <h3 style="color: #ffd700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            🥋 Estilos de Combate
+            <span class="slot-counter" id="combat-styles-counter">0/0 casillas</span>
+            <small style="color: #b0b0b0; font-size: 0.8rem; margin-left: 1rem;">(Solo Luchadores)</small>
+        </h3>
+        
+        <div class="combat-styles-container" id="combat-styles-container">
+            <!-- Los estilos se cargarán dinámicamente según la clase -->
+        </div>
+    </div>
 </div>
 
-<script>
-/* =============================
-   CONFIGURACIÓN
-   ============================= */
-const weaponList = [
-  "Espada Larga", "Espada Corta", "Hacha de Batalla", "Maza",
-  "Lanza", "Arco Largo", "Arco Corto", "Ballesta"
-];
-
-const styleList = [
-  "Espada y Escudo", "Dos Armas", "Defensa", "Arquería"
-];
-
-const nonWeaponList = [
-  "Herbolaria", "Sigilo", "Montar", "Curar", "Navegar", "Supervivencia"
-];
-
-const masteryLevels = {
-  1: { name: "Competencia" },
-  2: { name: "Especialización" },
-  4: { name: "Maestría" },
-  6: { name: "Alto Maestría" },
-  8: { name: "Gran Maestría" }
-};
-
-// Ranuras por grupo de clase
-const classWeaponSlots = {
-  Luchador: { base: 4, progression: 3 },
-  Sacerdote: { base: 2, progression: 4 },
-  Bribón:   { base: 2, progression: 4 },
-  Hechicero:{ base: 1, progression: 6 }
-};
-
-const classNonWeaponSlots = {
-  Luchador: { base: 3, progression: 3 },
-  Sacerdote: { base: 4, progression: 3 },
-  Bribón:   { base: 3, progression: 4 },
-  Hechicero:{ base: 4, progression: 3 }
-};
-
-/* =============================
-   VARIABLES GLOBALES
-   ============================= */
-window.weaponProficiencies = window.weaponProficiencies || {};
-window.nonWeaponProficiencies = window.nonWeaponProficiencies || {};
-
-let availableWeaponSlots = 0;
-let availableNonWeaponSlots = 0;
-
-/* =============================
-   FUNCIONES PRINCIPALES
-   ============================= */
-function calculateSlots() {
-  const primaryClass = document.getElementById("primary-dropdown-header")?.value || "Luchador";
-  const level = parseInt(document.getElementById("Level")?.value) || 1;
-  const wis = parseInt(document.getElementById("wisdom")?.value) || 10;
-
-  // Armas
-  let wBase = classWeaponSlots[primaryClass]?.base || 0;
-  let wProg = classWeaponSlots[primaryClass]?.progression || 999;
-  let wExtra = Math.floor((level - 1) / wProg);
-  availableWeaponSlots = wBase + wExtra;
-
-  // No-Armas
-  let nBase = classNonWeaponSlots[primaryClass]?.base || 0;
-  let nProg = classNonWeaponSlots[primaryClass]?.progression || 999;
-  let nExtra = Math.floor((level - 1) / nProg);
-  let wisBonus = Math.floor((wis - 8) / 2);
-  availableNonWeaponSlots = nBase + nExtra + wisBonus;
-
-  document.getElementById("weapon-slots").textContent = availableWeaponSlots;
-  document.getElementById("non-weapon-slots").textContent = availableNonWeaponSlots;
-
-  renderWeaponProficiencies();
-  renderNonWeaponProficiencies();
+<style>
+/* Estilos específicos para el tab de Skills */
+.skills-section {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
 }
 
-/* =============================
-   ARMAS + ESTILOS
-   ============================= */
-function renderWeaponProficiencies() {
-  const container = document.getElementById("weapon-proficiency-list");
-  container.innerHTML = "";
+.slot-counter {
+    background: rgba(255, 215, 0, 0.2);
+    color: #ffd700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
 
-  const allOptions = [...weaponList, ...styleList];
+.weapons-grid, .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
 
-  for (let item of allOptions) {
-    if (!window.weaponProficiencies[item]) window.weaponProficiencies[item] = 0;
-    let spent = window.weaponProficiencies[item];
+.weapon-item, .skill-item {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
 
-    let mastery = "No entrenado";
-    for (let lvl of Object.keys(masteryLevels).map(Number).sort((a,b)=>a-b)) {
-      if (spent >= lvl) mastery = masteryLevels[lvl].name;
+.weapon-item:hover, .skill-item:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+    background: rgba(255, 215, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.item-name {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1rem;
+    flex: 1;
+}
+
+.item-group {
+    background: rgba(0, 150, 255, 0.2);
+    color: #87ceeb;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+}
+
+.item-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #e5e5e5;
+    font-size: 0.9rem;
+}
+
+.item-characteristic {
+    color: #b0b0b0;
+}
+
+.item-modifier {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.proficiency-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.proficiency-level {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.level-btn {
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: transparent;
+    color: #e5e5e5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.level-btn:hover {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.level-btn.active {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.3);
+    color: #ffd700;
+}
+
+.level-btn.disabled {
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+}
+
+.mastery-info {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 6px;
+    border-left: 3px solid #ffd700;
+    font-size: 0.8rem;
+    color: #e5e5e5;
+    display: none;
+}
+
+.mastery-info.show {
+    display: block;
+}
+
+.slots-required {
+    color: #ffd700;
+    font-weight: bold;
+    margin-left: auto;
+    font-size: 0.85rem;
+}
+
+.combat-styles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.combat-style-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.combat-style-card:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.style-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.style-name {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.style-cost {
+    color: #b0b0b0;
+    font-size: 0.85rem;
+}
+
+.style-description {
+    color: #e5e5e5;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    font-size: 0.9rem;
+}
+
+.style-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.style-level {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.style-level.purchased {
+    border-left-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.style-level-name {
+    font-weight: bold;
+    color: #ffd700;
+    min-width: 100px;
+}
+
+.style-level-effect {
+    flex: 1;
+    color: #e5e5e5;
+    font-size: 0.9rem;
+}
+
+.style-level-btn {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: transparent;
+    color: #e5e5e5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.style-level-btn:hover {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+}
+
+.style-level-btn.purchased {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #ffd700;
+    color: #ffd700;
+}
+
+.style-level-btn.disabled {
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+}
+
+.no-styles-message {
+    text-align: center;
+    color: #b0b0b0;
+    font-style: italic;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+/* Filtros y búsqueda */
+.weapon-search-container, .skill-search-container {
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.skill-search-container {
+    grid-template-columns: 1fr 200px;
+}
+
+@media (max-width: 768px) {
+    .weapons-grid, .skills-grid {
+        grid-template-columns: 1fr;
     }
-
-    let div = document.createElement("div");
-    div.classList.add("skill-item");
-    div.style.display = "flex";
-    div.style.justifyContent = "space-between";
-    div.style.alignItems = "center";
-
-    div.innerHTML = `
-      <span>${item} <small style="color:#888;">(${mastery})</small></span>
-      <div style="display:flex; gap:0.5rem; align-items:center;">
-        <button onclick="addWeaponProficiency('${item}')">+</button>
-        <span>${spent}</span>
-      </div>
-    `;
-    container.appendChild(div);
-  }
-}
-
-function addWeaponProficiency(item) {
-  if (availableWeaponSlots > 0) {
-    window.weaponProficiencies[item]++;
-    availableWeaponSlots--;
-    document.getElementById("weapon-slots").textContent = availableWeaponSlots;
-    renderWeaponProficiencies();
-
-    // Sincronizar con Combat Tab
-    if (typeof applySelectedStyle === "function") {
-      const select = document.getElementById("combat-style-select");
-      if (select && select.value === item) {
-        applySelectedStyle(item);
-      }
+    
+    .combat-styles-container {
+        grid-template-columns: 1fr;
     }
-    if (typeof updateAllCombatStats === "function") updateAllCombatStats();
-
-  } else {
-    alert("No tienes casillas de armas disponibles.");
-  }
+    
+    .skill-search-container {
+        grid-template-columns: 1fr;
+    }
 }
-
-/* =============================
-   NO-ARMAS
-   ============================= */
-function renderNonWeaponProficiencies() {
-  const container = document.getElementById("non-weapon-proficiency-list");
-  container.innerHTML = "";
-
-  for (let item of nonWeaponList) {
-    if (!window.nonWeaponProficiencies[item]) window.nonWeaponProficiencies[item] = 0;
-    let spent = window.nonWeaponProficiencies[item];
-
-    let div = document.createElement("div");
-    div.classList.add("skill-item");
-    div.style.display = "flex";
-    div.style.justifyContent = "space-between";
-    div.style.alignItems = "center";
-
-    div.innerHTML = `
-      <span>${item}</span>
-      <div style="display:flex; gap:0.5rem; align-items:center;">
-        <button onclick="addNonWeaponProficiency('${item}')">+</button>
-        <span>${spent}</span>
-      </div>
-    `;
-    container.appendChild(div);
-  }
-}
-
-function addNonWeaponProficiency(item) {
-  if (availableNonWeaponSlots > 0) {
-    window.nonWeaponProficiencies[item]++;
-    availableNonWeaponSlots--;
-    document.getElementById("non-weapon-slots").textContent = availableNonWeaponSlots;
-    renderNonWeaponProficiencies();
-  } else {
-    alert("No tienes casillas de no-armas disponibles.");
-  }
-}
-
-/* =============================
-   INICIALIZACIÓN
-   ============================= */
-document.addEventListener("DOMContentLoaded", () => {
-  calculateSlots();
-});
-</script>
-
+</style>
             <!-- Spells Tab -->
             <div id="spells-tab" class="tab-content">
                 <h2 style="color: #ffd700; margin-bottom: 2rem;">✨ Conjuros</h2>
@@ -3808,7 +3872,1162 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         }
+// ==========================================
+// SISTEMA DE PERICIAS Y COMBATE AD&D 2e
+// ==========================================
 
+// Variables globales para el sistema
+let skillsData = null;
+let weaponsData = null;
+let armorData = null;
+let characterSkills = {
+    weaponProficiencies: {},
+    nonWeaponProficiencies: {},
+    combatStyles: {}
+};
+
+// ==========================================
+// DATOS BASE DEL SISTEMA
+// ==========================================
+
+// Grupos de clases
+const CLASS_GROUPS = {
+    'luchador': ['Bárbaro', 'Ranger', 'Guerrero', 'Paladín', 'Samurái'],
+    'sacerdote': ['Clérigo', 'Druida', 'Chamán'],
+    'hechicero': ['Mago', 'Hechicero', 'Bruja', 'Artífice'],
+    'bribon': ['Ladrón', 'Bardo', 'Ninja', 'Psiónico', 'Pistolero']
+};
+
+// Datos de estilos de combate
+const COMBAT_STYLES = {
+    'sin-armas': {
+        name: 'Sin Armas (Puños)',
+        description: 'Combate desarmado especializado',
+        availableFor: ['todos'],
+        levels: {
+            especialista: {
+                name: 'Especialista',
+                cost: 1,
+                effects: '+4 CA, +0.5 ataques/ronda, 1 Arte Marcial'
+            },
+            maestro: {
+                name: 'Maestro',
+                cost: 2,
+                effects: '+0.5 ataques/ronda adicional, Mejora Arte Marcial'
+            }
+        }
+    },
+    'arma-unica': {
+        name: 'Arma Única',
+        description: 'Especialización en combate con una sola arma',
+        availableFor: ['todos'],
+        levels: {
+            especialista: {
+                name: 'Especialista',
+                cost: 1,
+                effects: '+1 CA defensiva'
+            },
+            maestro: {
+                name: 'Maestro',
+                cost: 2,
+                effects: '+2 CA defensiva total'
+            }
+        }
+    },
+    'arma-y-escudo': {
+        name: 'Arma y Escudo',
+        description: 'Combate con arma de una mano y escudo',
+        availableFor: ['luchador', 'sacerdote'],
+        levels: {
+            especialista: {
+                name: 'Especialista',
+                cost: 1,
+                effects: '+2 CA adicional del escudo'
+            },
+            maestro: {
+                name: 'Maestro',
+                cost: 2,
+                effects: '1 ataque con escudo adicional'
+            }
+        }
+    },
+    'arma-dos-manos': {
+        name: 'Arma a Dos Manos',
+        description: 'Especialización en armas de dos manos',
+        availableFor: ['luchador', 'sacerdote', 'hechicero'],
+        levels: {
+            especialista: {
+                name: 'Especialista',
+                cost: 1,
+                effects: '+50% ajuste al daño por Fuerza'
+            },
+            maestro: {
+                name: 'Maestro',
+                cost: 2,
+                effects: '+100% ajuste al daño por Fuerza'
+            }
+        }
+    },
+    'dos-armas': {
+        name: 'Dos Armas',
+        description: 'Combate con arma en cada mano',
+        availableFor: ['luchador', 'bribon'],
+        levels: {
+            especialista: {
+                name: 'Especialista',
+                cost: 1,
+                effects: 'Reduce penalizadores por combate con dos armas'
+            },
+            maestro: {
+                name: 'Maestro',
+                cost: 2,
+                effects: 'Misma cantidad de ataques en ambas manos'
+            }
+        }
+    },
+    'arqueria': {
+        name: 'Arquería',
+        description: 'Especialización en arcos',
+        availableFor: ['luchador', 'bribon'],
+        levels: {
+            especialista: {
+                name: 'Especialista',
+                cost: 1,
+                effects: '+2 daño con arcos, +50% alcance'
+            },
+            maestro: {
+                name: 'Maestro',
+                cost: 2,
+                effects: '+4 daño total, +100% alcance'
+            }
+        }
+    },
+    'ballestas': {
+        name: 'Ballestas',
+        description: 'Especialización en ballestas',
+        availableFor: ['luchador', 'bribon'],
+        levels: {
+            especialista: {
+                name: 'Especialista',
+                cost: 1,
+                effects: 'Recarga más rápida, +0.5 ataques/ronda'
+            },
+            maestro: {
+                name: 'Maestro',
+                cost: 2,
+                effects: 'Recarga de rayo, +0.5 ataques/ronda adicional'
+            }
+        }
+    }
+};
+
+// Armas básicas para el sistema
+const BASIC_WEAPONS = [
+    // Armas cuerpo a cuerpo
+    { name: 'Puños', type: 'melee', size: 'S', damage: '1d2', speed: 2, category: 'Desarmado' },
+    { name: 'Daga', type: 'melee', size: 'S', damage: '1d4', speed: 2, category: 'Cuchilla Pequeña' },
+    { name: 'Espada Corta', type: 'melee', size: 'S', damage: '1d6', speed: 3, category: 'Cuchilla Pequeña' },
+    { name: 'Espada Larga', type: 'melee', size: 'M', damage: '1d8', speed: 5, category: 'Cuchilla Larga' },
+    { name: 'Espada de dos Manos', type: 'melee', size: 'L', damage: '1d10', speed: 10, category: 'Cuchilla Larga' },
+    { name: 'Hacha de Mano', type: 'melee', size: 'M', damage: '1d6', speed: 4, category: 'Hacha' },
+    { name: 'Hacha de Guerra', type: 'melee', size: 'M', damage: '1d8', speed: 7, category: 'Hacha' },
+    { name: 'Maza', type: 'melee', size: 'M', damage: '1d6+1', speed: 7, category: 'Contundente' },
+    { name: 'Martillo de Guerra', type: 'melee', size: 'M', damage: '1d4+1', speed: 4, category: 'Contundente' },
+    { name: 'Lanza', type: 'melee', size: 'M', damage: '1d6', speed: 6, category: 'Lanza' },
+    { name: 'Alabarda', type: 'melee', size: 'L', damage: '1d10', speed: 9, category: 'Asta' },
+    { name: 'Bastón', type: 'melee', size: 'L', damage: '1d6', speed: 4, category: 'Bastón' },
+    
+    // Armas a distancia
+    { name: 'Arco Corto', type: 'ranged', size: 'M', damage: '1d6', speed: 7, range: '50/100/150', category: 'Arco' },
+    { name: 'Arco Largo', type: 'ranged', size: 'L', damage: '1d6', speed: 8, range: '70/140/210', category: 'Arco' },
+    { name: 'Ballesta Ligera', type: 'ranged', size: 'M', damage: '1d4', speed: 7, range: '60/120/180', category: 'Ballesta' },
+    { name: 'Ballesta Pesada', type: 'ranged', size: 'L', damage: '1d4+1', speed: 10, range: '80/160/240', category: 'Ballesta' },
+    { name: 'Honda', type: 'ranged', size: 'S', damage: '1d4+1', speed: 6, range: '40/80/160', category: 'Honda' },
+    { name: 'Jabalina', type: 'thrown', size: 'M', damage: '1d6', speed: 4, range: '20/40/60', category: 'Lanza' },
+    { name: 'Daga Arrojadiza', type: 'thrown', size: 'S', damage: '1d4', speed: 2, range: '10/20/30', category: 'Cuchilla Pequeña' }
+];
+
+// Armaduras básicas
+const BASIC_ARMOR = [
+    { name: 'Sin Armadura', ac: 10, type: 'none', weight: 0, dexBonus: 'unlimited' },
+    { name: 'Cuero', ac: 8, type: 'light', weight: 15, dexBonus: 'unlimited' },
+    { name: 'Cuero Tachonado', ac: 7, type: 'light', weight: 20, dexBonus: 'unlimited' },
+    { name: 'Cota de Anillas', ac: 7, type: 'medium', weight: 30, dexBonus: 2 },
+    { name: 'Cota de Escamas', ac: 6, type: 'medium', weight: 40, dexBonus: 1 },
+    { name: 'Cota de Mallas', ac: 5, type: 'medium', weight: 40, dexBonus: 1 },
+    { name: 'Armadura de Bandas', ac: 4, type: 'heavy', weight: 35, dexBonus: 1 },
+    { name: 'Armadura de Placas', ac: 3, type: 'heavy', weight: 45, dexBonus: 0 },
+    { name: 'Armadura de Placas Completa', ac: 1, type: 'heavy', weight: 70, dexBonus: 0 }
+];
+
+// ==========================================
+// FUNCIONES DE UTILIDAD
+// ==========================================
+
+// Obtener grupo de clase actual
+function getCurrentClassGroup() {
+    const primaryClass = document.getElementById('primary-selected-name')?.textContent || '';
+    
+    for (const [group, classes] of Object.entries(CLASS_GROUPS)) {
+        if (classes.includes(primaryClass)) {
+            return group;
+        }
+    }
+    return 'luchador'; // Default
+}
+
+// Obtener nivel del personaje
+function getCurrentLevel() {
+    return parseInt(document.getElementById('characterLevel')?.value) || 1;
+}
+
+// Obtener valor de habilidad
+function getAbilityScore(ability) {
+    const element = document.getElementById(ability.toLowerCase());
+    return parseInt(element?.value) || 10;
+}
+
+// Calcular modificador de habilidad
+function getAbilityModifier(score, type = 'standard') {
+    if (!window.AbilityCalculator || !window.AbilityCalculator.abilityData) {
+        // Fallback calculation
+        return Math.floor((score - 10) / 2);
+    }
+
+    const data = window.AbilityCalculator.abilityData;
+    let abilityTable;
+    
+    switch (type) {
+        case 'strength-hit':
+            abilityTable = data.fuerza;
+            return findAbilityValue(abilityTable, score, 'Probab. de Golpe') || 0;
+        case 'strength-damage':
+            abilityTable = data.fuerza;
+            return findAbilityValue(abilityTable, score, 'Ajuste de daño') || 0;
+        case 'dexterity-defensive':
+            abilityTable = data.destreza;
+            return findAbilityValue(abilityTable, score, 'Ajuste defensivo') || 0;
+        case 'dexterity-missile':
+            abilityTable = data.destreza;
+            return findAbilityValue(abilityTable, score, 'Ajuste Atq Proyectiles') || 0;
+        default:
+            return Math.floor((score - 10) / 2);
+    }
+}
+
+// Buscar valor en tabla de habilidades
+function findAbilityValue(table, score, column) {
+    const entry = table.find(row => {
+        const abilityScore = row['Punt. Habilidad'] || row['Puntuación habilidad'];
+        return parseInt(abilityScore) === score;
+    });
+    
+    if (entry) {
+        const value = entry[column];
+        return parseInt(value) || 0;
+    }
+    return 0;
+}
+
+// ==========================================
+// CÁLCULOS DE COMBATE
+// ==========================================
+
+// Calcular GACO base por clase y nivel
+function calculateBaseGaco() {
+    const classGroup = getCurrentClassGroup();
+    const level = getCurrentLevel();
+    let baseGaco = 20;
+
+    switch (classGroup) {
+        case 'luchador':
+            baseGaco = 21 - level; // Mejora cada nivel
+            break;
+        case 'sacerdote':
+        case 'bribon':
+            baseGaco = 20 - Math.floor((level - 1) / 2); // Mejora cada 2 niveles
+            break;
+        case 'hechicero':
+            baseGaco = 20 - Math.floor((level - 1) / 3); // Mejora cada 3 niveles
+            break;
+    }
+
+    return Math.max(1, baseGaco); // Mínimo GACO 1
+}
+
+// Calcular Clase de Armadura
+function calculateArmorClass() {
+    let ac = 10; // CA base sin armadura
+    
+    // CA de armadura equipada (implementar cuando esté el sistema de equipo)
+    const equippedArmor = getEquippedArmor();
+    if (equippedArmor) {
+        ac = equippedArmor.ac;
+    }
+    
+    // Modificador defensivo de destreza
+    const dexScore = getAbilityScore('dexterity');
+    const dexDefensive = getAbilityModifier(dexScore, 'dexterity-defensive');
+    ac -= dexDefensive; // En AD&D menor CA es mejor
+    
+    // Escudo equipado
+    const hasShield = getEquippedShield();
+    if (hasShield) {
+        ac -= 1; // Escudo base
+        
+        // Especialización en "Arma y escudo"
+        if (hasCombatStyleActive('arma-y-escudo')) {
+            ac -= 2; // +2 CA adicional del escudo
+        }
+    }
+    
+    // Bonificaciones por otros estilos
+    if (hasCombatStyleActive('arma-unica')) {
+        const styleLevel = getCombatStyleLevel('arma-unica');
+        ac -= styleLevel === 'maestro' ? 2 : 1;
+    }
+    
+    if (hasCombatStyleActive('sin-armas')) {
+        ac -= 4; // +4 CA por combate desarmado
+    }
+    
+    return Math.max(ac, -10); // Límite práctico de CA
+}
+
+// Calcular Iniciativa
+function calculateInitiative() {
+    const dexScore = getAbilityScore('dexterity');
+    const dexReaction = getAbilityModifier(dexScore, 'dexterity-missile'); // Usar missile para reacción
+    return dexReaction;
+}
+
+// ==========================================
+// SISTEMA DE PERICIAS EN ARMAS
+// ==========================================
+
+// Calcular casillas de armas disponibles
+function calculateWeaponProficiencySlots() {
+    const classGroup = getCurrentClassGroup();
+    const level = getCurrentLevel();
+    let slots = 0;
+    
+    switch (classGroup) {
+        case 'luchador':
+            slots = 4 + Math.floor((level - 1) / 3); // 4 iniciales + 1 cada 3 niveles
+            break;
+        case 'sacerdote':
+        case 'bribon':
+            slots = 2 + Math.floor((level - 1) / 4); // 2 iniciales + 1 cada 4 niveles
+            break;
+        case 'hechicero':
+            slots = 1 + Math.floor((level - 1) / 6); // 1 inicial + 1 cada 6 niveles
+            break;
+    }
+    
+    return slots;
+}
+
+// Obtener penalizador sin pericia
+function getWeaponPenaltyWithoutProficiency() {
+    const classGroup = getCurrentClassGroup();
+    
+    switch (classGroup) {
+        case 'luchador': return -2;
+        case 'sacerdote':
+        case 'bribon': return -3;
+        case 'hechicero': return -5;
+        default: return -2;
+    }
+}
+
+// Renderizar pericias en armas
+function renderWeaponProficiencies() {
+    const container = document.getElementById('weapons-proficiency-grid');
+    const slotsCounter = document.getElementById('weapon-slots-counter');
+    
+    if (!container || !slotsCounter) return;
+    
+    const totalSlots = calculateWeaponProficiencySlots();
+    const usedSlots = calculateUsedWeaponSlots();
+    const availableSlots = totalSlots - usedSlots;
+    
+    slotsCounter.textContent = `${availableSlots}/${totalSlots} casillas`;
+    
+    // Limpiar contenedor
+    container.innerHTML = '';
+    
+    // Renderizar armas
+    BASIC_WEAPONS.forEach(weapon => {
+        const weaponElement = createWeaponProficiencyElement(weapon, availableSlots);
+        container.appendChild(weaponElement);
+    });
+}
+
+// Crear elemento de pericia en arma
+function createWeaponProficiencyElement(weapon, availableSlots) {
+    const div = document.createElement('div');
+    div.className = 'weapon-item';
+    
+    const currentLevel = characterSkills.weaponProficiencies[weapon.name] || 0;
+    const canIncrease = availableSlots > 0 && currentLevel < 4;
+    const canDecrease = currentLevel > 0;
+    
+    div.innerHTML = `
+        <div class="item-header">
+            <span class="item-name">${weapon.name}</span>
+            <span class="item-group">${weapon.category}</span>
+        </div>
+        <div class="item-details">
+            <span class="item-characteristic">Daño: ${weapon.damage}</span>
+            <span class="item-modifier">Vel: ${weapon.speed}</span>
+        </div>
+        <div class="proficiency-controls">
+            <div class="proficiency-level">
+                <button class="level-btn ${canDecrease ? '' : 'disabled'}" 
+                        onclick="adjustWeaponProficiency('${weapon.name}', -1)" 
+                        ${!canDecrease ? 'disabled' : ''}>-</button>
+                <span class="slots-required">${currentLevel}</span>
+                <button class="level-btn ${canIncrease ? '' : 'disabled'}" 
+                        onclick="adjustWeaponProficiency('${weapon.name}', 1)" 
+                        ${!canIncrease ? 'disabled' : ''}>+</button>
+            </div>
+            <span class="mastery-level">${getMasteryLevelName(currentLevel)}</span>
+        </div>
+        <div class="mastery-info ${currentLevel > 0 ? 'show' : ''}">
+            ${getMasteryEffects(currentLevel)}
+        </div>
+    `;
+    
+    return div;
+}
+
+// Obtener nombre del nivel de maestría
+function getMasteryLevelName(level) {
+    switch (level) {
+        case 0: return 'Sin Pericia';
+        case 1: return 'Pericia Básica';
+        case 2: return 'Especialización';
+        case 3: return 'Maestro';
+        case 4: return 'Gran Maestro';
+        default: return 'Sin Pericia';
+    }
+}
+
+// Obtener efectos de la maestría
+function getMasteryEffects(level) {
+    switch (level) {
+        case 0: return `Penalizador: ${getWeaponPenaltyWithoutProficiency()}`;
+        case 1: return 'Sin penalizador';
+        case 2: return '+1 ataque, +2 daño, +0.5 ataques/ronda';
+        case 3: return '+2 ataque, +4 daño, +0.5 ataques/ronda';
+        case 4: return '+3 ataque, +6 daño, +0.5 ataques/ronda';
+        default: return '';
+    }
+}
+
+// Ajustar nivel de pericia en arma
+function adjustWeaponProficiency(weaponName, change) {
+    const currentLevel = characterSkills.weaponProficiencies[weaponName] || 0;
+    const newLevel = Math.max(0, Math.min(4, currentLevel + change));
+    
+    if (newLevel !== currentLevel) {
+        characterSkills.weaponProficiencies[weaponName] = newLevel;
+        if (newLevel === 0) {
+            delete characterSkills.weaponProficiencies[weaponName];
+        }
+        renderWeaponProficiencies();
+        updateCombatStats();
+    }
+}
+
+// Calcular casillas de armas usadas
+function calculateUsedWeaponSlots() {
+    return Object.values(characterSkills.weaponProficiencies).reduce((total, level) => total + level, 0);
+}
+
+// ==========================================
+// SISTEMA DE PERICIAS EN NO-ARMAS
+// ==========================================
+
+// Cargar pericias desde JSON
+async function loadSkillsData() {
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/slurn84-beep/AD-D2.PANDUNK/refs/heads/main/Tabla%20Pericias.html');
+        const data = await response.json();
+        skillsData = data;
+        renderNonWeaponProficiencies();
+    } catch (error) {
+        console.error('Error loading skills data:', error);
+        // Usar datos de fallback si falla la carga
+        skillsData = getFallbackSkillsData();
+        renderNonWeaponProficiencies();
+    }
+}
+
+// Datos de fallback para pericias
+function getFallbackSkillsData() {
+    return [
+        { "Pericia": "Natación", "Grupo": "Gen", "Ranuras": "1", "Caracteristica": "Fue", "Modificador": "0" },
+        { "Pericia": "Trepar", "Grupo": "Gen", "Ranuras": "1", "Caracteristica": "Fue", "Modificador": "0" },
+        { "Pericia": "Rastreo", "Grupo": "Bri", "Ranuras": "2", "Caracteristica": "Sab", "Modificador": "0" },
+        { "Pericia": "Supervivencia", "Grupo": "Bri", "Ranuras": "2", "Caracteristica": "Int", "Modificador": "0" },
+        { "Pericia": "Primeros Auxilios", "Grupo": "Gen", "Ranuras": "1", "Caracteristica": "Sab", "Modificador": "0" }
+    ];
+}
+
+// Calcular casillas de no-armas disponibles
+function calculateNonWeaponProficiencySlots() {
+    const classGroup = getCurrentClassGroup();
+    const level = getCurrentLevel();
+    const wisdom = getAbilityScore('wisdom');
+    
+    let baseSlots = 0;
+    
+    switch (classGroup) {
+        case 'luchador':
+            baseSlots = 3 + Math.floor((level - 1) / 3); // 3 iniciales + 1 cada 3 niveles
+            break;
+        case 'sacerdote':
+        case 'hechicero':
+            baseSlots = 4 + Math.floor((level - 1) / 3); // 4 iniciales + 1 cada 3 niveles
+            break;
+        case 'bribon':
+            baseSlots = 3 + Math.floor((level - 1) / 4); // 3 iniciales + 1 cada 4 niveles
+            break;
+    }
+    
+    // Bonificación por Sabiduría
+    const wisdomBonus = Math.max(0, Math.floor((wisdom - 8) / 2));
+    
+    return baseSlots + wisdomBonus;
+}
+
+// Renderizar pericias en no-armas
+function renderNonWeaponProficiencies() {
+    const container = document.getElementById('nonweapon-skills-grid');
+    const slotsCounter = document.getElementById('nonweapon-slots-counter');
+    
+    if (!container || !slotsCounter || !skillsData) return;
+    
+    const totalSlots = calculateNonWeaponProficiencySlots();
+    const usedSlots = calculateUsedNonWeaponSlots();
+    const availableSlots = totalSlots - usedSlots;
+    
+    slotsCounter.textContent = `${availableSlots}/${totalSlots} casillas`;
+    
+    // Obtener filtros
+    const searchTerm = document.getElementById('skill-search')?.value.toLowerCase() || '';
+    const groupFilter = document.getElementById('skill-group-filter')?.value || 'all';
+    
+    // Limpiar contenedor
+    container.innerHTML = '';
+    
+    // Filtrar y renderizar pericias
+    const filteredSkills = skillsData.filter(skill => {
+        const matchesSearch = skill.Pericia.toLowerCase().includes(searchTerm);
+        const matchesGroup = groupFilter === 'all' || skill.Grupo === groupFilter;
+        return matchesSearch && matchesGroup;
+    });
+    
+    filteredSkills.forEach(skill => {
+        const skillElement = createNonWeaponProficiencyElement(skill, availableSlots);
+        container.appendChild(skillElement);
+    });
+}
+
+// Crear elemento de pericia en no-armas
+function createNonWeaponProficiencyElement(skill, availableSlots) {
+    const div = document.createElement('div');
+    div.className = 'skill-item';
+    
+    const currentRanks = characterSkills.nonWeaponProficiencies[skill.Pericia] || 0;
+    const maxRanks = parseInt(skill.Ranuras);
+    const canIncrease = availableSlots > 0 && currentRanks < maxRanks;
+    const canDecrease = currentRanks > 0;
+    
+    // Calcular modificador total
+    const baseModifier = parseInt(skill.Modificador) || 0;
+    const groupPenalty = getGroupPenalty(skill.Grupo);
+    const armorPenalty = getArmorPenalty(skill.Caracteristica);
+    const totalModifier = baseModifier + groupPenalty + armorPenalty;
+    
+    const modifierText = totalModifier >= 0 ? `+${totalModifier}` : `${totalModifier}`;
+    
+    div.innerHTML = `
+        <div class="item-header">
+            <span class="item-name">${skill.Pericia}</span>
+            <span class="item-group">${skill.Grupo}</span>
+        </div>
+        <div class="item-details">
+            <span class="item-characteristic">${skill.Caracteristica}</span>
+            <span class="item-modifier">${modifierText}</span>
+        </div>
+        <div class="proficiency-controls">
+            <div class="proficiency-level">
+                <button class="level-btn ${canDecrease ? '' : 'disabled'}" 
+                        onclick="adjustNonWeaponProficiency('${skill.Pericia}', -1)" 
+                        ${!canDecrease ? 'disabled' : ''}>-</button>
+                <span class="slots-required">${currentRanks}/${maxRanks}</span>
+                <button class="level-btn ${canIncrease ? '' : 'disabled'}" 
+                        onclick="adjustNonWeaponProficiency('${skill.Pericia}', 1)" 
+                        ${!canIncrease ? 'disabled' : ''}>+</button>
+            </div>
+        </div>
+        ${currentRanks > 0 ? `
+            <div class="mastery-info show">
+                Pericia adquirida: ${currentRanks} de ${maxRanks} rangos
+            </div>
+        ` : ''}
+    `;
+    
+    return div;
+}
+
+// Obtener penalizador por grupo
+function getGroupPenalty(skillGroup) {
+    const classGroup = getCurrentClassGroup();
+    
+    // Sin penalizador para grupos correspondientes o General
+    if (skillGroup === 'Gen') return 0;
+    
+    const groupMap = {
+        'Luc': 'luchador',
+        'Sac': 'sacerdote', 
+        'Hec': 'hechicero',
+        'Mago': 'hechicero',
+        'Bri': 'bribon',
+        'Psi': 'bribon'
+    };
+    
+    if (groupMap[skillGroup] === classGroup) {
+        return 0; // Sin penalizador para su grupo
+    }
+    
+    return 3; // +3 penalizador para otros grupos
+}
+
+// Obtener penalizador por armadura (solo para Destreza)
+function getArmorPenalty(characteristic) {
+    if (characteristic !== 'Des') return 0;
+    
+    const equippedArmor = getEquippedArmor();
+    if (!equippedArmor) return 0;
+    
+    // Penalizadores por tipo de armadura en pericias de Destreza
+    switch (equippedArmor.type) {
+        case 'none':
+        case 'light': return 0;
+        case 'medium': return 2;
+        case 'heavy': return 4;
+        default: return 0;
+    }
+}
+
+// Ajustar nivel de pericia en no-armas
+function adjustNonWeaponProficiency(skillName, change) {
+    const currentRanks = characterSkills.nonWeaponProficiencies[skillName] || 0;
+    const skill = skillsData.find(s => s.Pericia === skillName);
+    const maxRanks = skill ? parseInt(skill.Ranuras) : 1;
+    const newRanks = Math.max(0, Math.min(maxRanks, currentRanks + change));
+    
+    if (newRanks !== currentRanks) {
+        if (newRanks === 0) {
+            delete characterSkills.nonWeaponProficiencies[skillName];
+        } else {
+            characterSkills.nonWeaponProficiencies[skillName] = newRanks;
+        }
+        renderNonWeaponProficiencies();
+    }
+}
+
+// Calcular casillas de no-armas usadas
+function calculateUsedNonWeaponSlots() {
+    return Object.values(characterSkills.nonWeaponProficiencies).reduce((total, ranks) => total + ranks, 0);
+}
+
+// ==========================================
+// SISTEMA DE ESTILOS DE COMBATE
+// ==========================================
+
+// Renderizar estilos de combate
+function renderCombatStyles() {
+    const container = document.getElementById('combat-styles-container');
+    const slotsCounter = document.getElementById('combat-styles-counter');
+    
+    if (!container || !slotsCounter) return;
+    
+    const classGroup = getCurrentClassGroup();
+    
+    // Solo luchadores pueden usar estilos de combate
+    if (classGroup !== 'luchador') {
+        container.innerHTML = `
+            <div class="no-styles-message">
+                Los estilos de combate solo están disponibles para Luchadores
+            </div>
+        `;
+        slotsCounter.textContent = '0/0 casillas';
+        return;
+    }
+    
+    const totalSlots = calculateWeaponProficiencySlots(); // Usan las mismas casillas que armas
+    const usedWeaponSlots = calculateUsedWeaponSlots();
+    const usedStyleSlots = calculateUsedStyleSlots();
+    const availableSlots = totalSlots - usedWeaponSlots - usedStyleSlots;
+    
+    slotsCounter.textContent = `${availableSlots}/${totalSlots} casillas`;
+    
+    container.innerHTML = '';
+    
+    // Renderizar estilos disponibles
+    Object.entries(COMBAT_STYLES).forEach(([styleId, style]) => {
+        if (isStyleAvailableForClass(style, classGroup)) {
+            const styleElement = createCombatStyleElement(styleId, style, availableSlots);
+            container.appendChild(styleElement);
+        }
+    });
+}
+
+// Crear elemento de estilo de combate
+function createCombatStyleElement(styleId, style, availableSlots) {
+    const div = document.createElement('div');
+    div.className = 'combat-style-card';
+    
+    const currentLevel = characterSkills.combatStyles[styleId] || null;
+    
+    div.innerHTML = `
+        <div class="style-header">
+            <span class="style-name">${style.name}</span>
+            <span class="style-cost">1+2 casillas</span>
+        </div>
+        <div class="style-description">${style.description}</div>
+        <div class="style-levels">
+            ${Object.entries(style.levels).map(([levelId, level]) => {
+                const isPurchased = currentLevel === levelId || (currentLevel === 'maestro' && levelId === 'especialista');
+                const canPurchase = !isPurchased && availableSlots >= level.cost && 
+                    (levelId === 'especialista' || currentLevel === 'especialista');
+                
+                return `
+                    <div class="style-level ${isPurchased ? 'purchased' : ''}">
+                        <span class="style-level-name">${level.name}</span>
+                        <span class="style-level-effect">${level.effects}</span>
+                        <button class="style-level-btn ${isPurchased ? 'purchased' : (canPurchase ? '' : 'disabled')}"
+                                onclick="purchaseCombatStyle('${styleId}', '${levelId}')"
+                                ${!canPurchase && !isPurchased ? 'disabled' : ''}>
+                            ${isPurchased ? 'Comprado' : `${level.cost} casillas`}
+                        </button>
+                    </div>
+                `;
+            }).join('')}
+        </div>
+    `;
+    
+    return div;
+}
+
+// Verificar si el estilo está disponible para la clase
+function isStyleAvailableForClass(style, classGroup) {
+    return style.availableFor.includes('todos') || style.availableFor.includes(classGroup);
+}
+
+// Comprar estilo de combate
+function purchaseCombatStyle(styleId, levelId) {
+    const style = COMBAT_STYLES[styleId];
+    const level = style.levels[levelId];
+    const currentLevel = characterSkills.combatStyles[styleId];
+    
+    // Verificar si ya está comprado
+    if (currentLevel === levelId || (currentLevel === 'maestro' && levelId === 'especialista')) {
+        return;
+    }
+    
+    // Verificar casillas disponibles
+    const totalSlots = calculateWeaponProficiencySlots();
+    const usedSlots = calculateUsedWeaponSlots() + calculateUsedStyleSlots();
+    const availableSlots = totalSlots - usedSlots;
+    
+    if (availableSlots < level.cost) {
+        alert('No tienes suficientes casillas de pericia disponibles');
+        return;
+    }
+    
+    // Verificar prerrequisitos
+    if (levelId === 'maestro' && currentLevel !== 'especialista') {
+        alert('Debes tener el nivel Especialista antes de comprar Maestro');
+        return;
+    }
+    
+    // Comprar el estilo
+    characterSkills.combatStyles[styleId] = levelId;
+    renderCombatStyles();
+    renderCombatStylesInCombatTab();
+    updateCombatStats();
+}
+
+// Calcular casillas de estilos usadas
+function calculateUsedStyleSlots() {
+    return Object.entries(characterSkills.combatStyles).reduce((total, [styleId, level]) => {
+        const style = COMBAT_STYLES[styleId];
+        if (!style) return total;
+        
+        if (level === 'especialista') {
+            return total + style.levels.especialista.cost;
+        } else if (level === 'maestro') {
+            return total + style.levels.especialista.cost + style.levels.maestro.cost;
+        }
+        return total;
+    }, 0);
+}
+
+// ==========================================
+// SISTEMA DE COMBATE - TAB COMBAT
+// ==========================================
+
+// Renderizar estilos en el tab de combate
+function renderCombatStylesInCombatTab() {
+    const container = document.getElementById('active-combat-styles');
+    if (!container) return;
+    
+    const purchasedStyles = Object.entries(characterSkills.combatStyles);
+    
+    if (purchasedStyles.length === 0) {
+        container.innerHTML = `
+            <div class="no-styles-active">
+                <p style="color: #b0b0b0; font-style: italic; text-align: center;">
+                    No tienes estilos de combate disponibles.<br>
+                    <small>Compra estilos en la pestaña de Pericias para habilitarlos aquí.</small>
+                </p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = '';
+    
+    purchasedStyles.forEach(([styleId, level]) => {
+        const style = COMBAT_STYLES[styleId];
+        if (style) {
+            const styleElement = createActiveCombatStyleElement(styleId, style, level);
+            container.appendChild(styleElement);
+        }
+    });
+}
+
+// Crear elemento de estilo activo en combate
+function createActiveCombatStyleElement(styleId, style, level) {
+    const div = document.createElement('div');
+    div.className = 'combat-style-active';
+    
+    const isActive = characterSkills.activeCombatStyles?.[styleId] || false;
+    const effectsText = level === 'maestro' 
+        ? `${style.levels.especialista.effects} + ${style.levels.maestro.effects}`
+        : style.levels[level].effects;
+    
+    div.innerHTML = `
+        <div class="style-info-active">
+            <div class="style-name-active">${style.name}</div>
+            <div class="style-level-active">${getMasteryLevelName(level === 'maestro' ? 2 : 1)}</div>
+            <div class="style-effects-active">${effectsText}</div>
+        </div>
+        <button class="style-toggle-btn ${isActive ? 'active' : ''}"
+                onclick="toggleCombatStyle('${styleId}')">
+            ${isActive ? 'Activo' : 'Activar'}
+        </button>
+    `;
+    
+    return div;
+}
+
+// Alternar estilo de combate activo
+function toggleCombatStyle(styleId) {
+    if (!characterSkills.activeCombatStyles) {
+        characterSkills.activeCombatStyles = {};
+    }
+    
+    characterSkills.activeCombatStyles[styleId] = !characterSkills.activeCombatStyles[styleId];
+    renderCombatStylesInCombatTab();
+    updateCombatStats();
+}
+
+// ==========================================
+// FUNCIONES DE EQUIPO (PLACEHOLDER)
+// ==========================================
+
+// Obtener armadura equipada (placeholder)
+function getEquippedArmor() {
+    // Por ahora retorna armadura base, implementar cuando esté el sistema de equipo
+    return BASIC_ARMOR[0]; // Sin armadura
+}
+
+// Obtener escudo equipado (placeholder)
+function getEquippedShield() {
+    // Por ahora retorna false, implementar cuando esté el sistema de equipo
+    return false;
+}
+
+// Verificar si tiene estilo activo
+function hasCombatStyleActive(styleId) {
+    return characterSkills.activeCombatStyles?.[styleId] || false;
+}
+
+// Obtener nivel de estilo
+function getCombatStyleLevel(styleId) {
+    return characterSkills.combatStyles[styleId] || null;
+}
+
+// ==========================================
+// ACTUALIZACIÓN DE STATS DE COMBATE
+// ==========================================
+
+// Actualizar todos los stats de combate
+function updateCombatStats() {
+    updateBaseGaco();
+    updateArmorClass();
+    updateInitiative();
+    updateSavingThrows();
+    updateAttacksPerRound();
+    updateArmorBreakdown();
+}
+
+// Actualizar GACO base
+function updateBaseGaco() {
+    const baseGaco = calculateBaseGaco();
+    
+    // Actualizar en ambos lugares
+    const combatGacoElement = document.getElementById('combatGaco');
+    const gacoElement = document.getElementById('gaco');
+    
+    if (combatGacoElement) combatGacoElement.textContent = baseGaco;
+    if (gacoElement) gacoElement.textContent = baseGaco;
+}
+
+// Actualizar CA
+function updateArmorClass() {
+    const ac = calculateArmorClass();
+    
+    // Actualizar en ambos lugares
+    const combatACElement = document.getElementById('combatAC');
+    const armorClassElement = document.getElementById('armorClass');
+    
+    if (combatACElement) combatACElement.textContent = ac;
+    if (armorClassElement) armorClassElement.textContent = ac;
+}
+
+// Actualizar iniciativa
+function updateInitiative() {
+    const initiative = calculateInitiative();
+    const initiativeText = initiative >= 0 ? `+${initiative}` : `${initiative}`;
+    
+    const combatInitiativeElement = document.getElementById('combatInitiative');
+    const initiativeElement = document.getElementById('initiative');
+    
+    if (combatInitiativeElement) combatInitiativeElement.textContent = initiativeText;
+    if (initiativeElement) initiativeElement.textContent = initiativeText;
+}
+
+// Actualizar tiradas de salvación (placeholder)
+function updateSavingThrows() {
+    const classGroup = getCurrentClassGroup();
+    const level = getCurrentLevel();
+    
+    // Valores base por clase y nivel (simplificado)
+    const saves = calculateBaseSavingThrows(classGroup, level);
+    
+    const saveElements = {
+        'save-paralysis': saves.paralysis,
+        'save-rods': saves.rods,
+        'save-petrification': saves.petrification,
+        'save-breath': saves.breath,
+        'save-spells': saves.spells
+    };
+    
+    Object.entries(saveElements).forEach(([elementId, value]) => {
+        const element = document.getElementById(elementId);
+        if (element) element.textContent = value;
+    });
+}
+
+// Calcular salvaciones base (simplificado)
+function calculateBaseSavingThrows(classGroup, level) {
+    // Valores simplificados - implementar tabla completa después
+    const baseSaves = {
+        luchador: { paralysis: 14, rods: 16, petrification: 15, breath: 17, spells: 17 },
+        sacerdote: { paralysis: 10, rods: 14, petrification: 13, breath: 16, spells: 15 },
+        hechicero: { paralysis: 14, rods: 11, petrification: 13, breath: 15, spells: 12 },
+        bribon: { paralysis: 13, rods: 14, petrification: 12, breath: 16, spells: 15 }
+    };
+    
+    const base = baseSaves[classGroup] || baseSaves.luchador;
+    const levelMod = Math.floor((level - 1) / 3); // Mejora cada 3 niveles
+    
+    return {
+        paralysis: Math.max(2, base.paralysis - levelMod),
+        rods: Math.max(2, base.rods - levelMod),
+        petrification: Math.max(2, base.petrification - levelMod),
+        breath: Math.max(2, base.breath - levelMod),
+        spells: Math.max(2, base.spells - levelMod)
+    };
+}
+
+// Actualizar ataques por ronda
+function updateAttacksPerRound() {
+    const classGroup = getCurrentClassGroup();
+    const level = getCurrentLevel();
+    
+    let baseAttacks = 1;
+    let specializationAttacks = 0;
+    let styleAttacks = 0;
+    
+    // Ataques base por nivel (solo luchadores)
+    if (classGroup === 'luchador' && level >= 7) {
+        baseAttacks = level >= 13 ? 2 : 1.5; // 3/2 a nivel 7, 2/1 a nivel 13
+    }
+    
+    // Ataques por especialización en armas
+    Object.entries(characterSkills.weaponProficiencies).forEach(([weapon, level]) => {
+        if (level >= 2) { // Especialización o superior
+            specializationAttacks += 0.5 * (level - 1);
+        }
+    });
+    
+    // Ataques por estilos de combate
+    if (hasCombatStyleActive('sin-armas')) {
+        const level = getCombatStyleLevel('sin-armas');
+        styleAttacks += level === 'maestro' ? 1 : 0.5;
+    }
+    
+    if (hasCombatStyleActive('ballestas')) {
+        const level = getCombatStyleLevel('ballestas');
+        styleAttacks += level === 'maestro' ? 1 : 0.5;
+    }
+    
+    const totalAttacks = baseAttacks + specializationAttacks + styleAttacks;
+    
+    // Actualizar elementos
+    const elements = {
+        'base-attacks-value': baseAttacks,
+        'specialization-attacks-value': specializationAttacks > 0 ? `+${specializationAttacks}` : '+0',
+        'style-attacks-value': styleAttacks > 0 ? `+${styleAttacks}` : '+0',
+        'total-attacks-value': totalAttacks
+    };
+    
+    Object.entries(elements).forEach(([elementId, value]) => {
+        const element = document.getElementById(elementId);
+        if (element) element.textContent = value;
+    });
+}
+
+// Actualizar desglose de CA
+function updateArmorBreakdown() {
+    const equippedArmor = getEquippedArmor();
+    const dexScore = getAbilityScore('dexterity');
+    const dexMod = getAbilityModifier(dexScore, 'dexterity-defensive');
+    const hasShield = getEquippedShield();
+    
+    let acBase = equippedArmor ? equippedArmor.ac : 10;
+    let acDex = dexMod;
+    let acShield = 0;
+    let acStyle = 0;
+    let acMagic = 0;
+    
+    if (hasShield) {
+        acShield = 1;
+        if (hasCombatStyleActive('arma-y-escudo')) {
+            acStyle += 2;
+        }
+    }
+    
+    if (hasCombatStyleActive('arma-unica')) {
+        const level = getCombatStyleLevel('arma-unica');
+        acStyle += level === 'maestro' ? 2 : 1;
+    }
+    
+    if (hasCombatStyleActive('sin-armas')) {
+        acStyle += 4;
+    }
+    
+    const totalAC = acBase - acDex - acShield - acStyle - acMagic;
+    
+    // Actualizar elementos
+    const elements = {
+        'ac-base-armor': acBase,
+        'ac-dex-mod': acDex > 0 ? `+${acDex}` : `${acDex}`,
+        'ac-shield': acShield > 0 ? `+${acShield}` : '+0',
+        'ac-style-bonus': acStyle > 0 ? `+${acStyle}` : '+0',
+        'ac-magic-bonus': acMagic > 0 ? `+${acMagic}` : '+0',
+        'ac-total': totalAC
+    };
+    
+    Object.entries(elements).forEach(([elementId, value]) => {
+        const element = document.getElementById(elementId);
+        if (element) element.textContent = value;
+    });
+}
+
+// ==========================================
+// EVENTOS Y FILTROS
+// ==========================================
+
+// Event listeners para búsqueda y filtros
+function setupSkillsEventListeners() {
+    // Búsqueda de armas
+    const weaponSearch = document.getElementById('weapon-search');
+    if (weaponSearch) {
+        weaponSearch.addEventListener('input', renderWeaponProficiencies);
+    }
+    
+    // Búsqueda de pericias
+    const skillSearch = document.getElementById('skill-search');
+    if (skillSearch) {
+        skillSearch.addEventListener('input', renderNonWeaponProficiencies);
+    }
+    
+    // Filtro de grupos
+    const groupFilter = document.getElementById('skill-group-filter');
+    if (groupFilter) {
+        groupFilter.addEventListener('change', renderNonWeaponProficiencies);
+    }
+}
+
+// ==========================================
+// INICIALIZACIÓN
+// ==========================================
+
+// Inicializar sistema de pericias
+function initializeSkillsSystem() {
+    loadSkillsData();
+    renderWeaponProficiencies();
+    renderCombatStyles();
+    renderCombatStylesInCombatTab();
+    updateCombatStats();
+    setupSkillsEventListeners();
+}
+
+// Ejecutar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    // Esperar un poco para asegurar que otros sistemas estén cargados
+    setTimeout(initializeSkillsSystem, 100);
+});
+
+// También ejecutar cuando se cambie de clase o nivel
+function onCharacterChanged() {
+    renderWeaponProficiencies();
+    renderNonWeaponProficiencies();
+    renderCombatStyles();
+    renderCombatStylesInCombatTab();
+    updateCombatStats();
+}
+
+// Hook para integrar con el sistema existente
+if (window.AbilityCalculator) {
+    const originalCalculateModifiers = window.AbilityCalculator.calculateModifiers;
+    window.AbilityCalculator.calculateModifiers = function() {
+        if (originalCalculateModifiers) {
+            originalCalculateModifiers.call(this);
+        }
+        updateCombatStats();
+    };
+}
+              
         function updateClassSelection() {
             character.specificClass = document.getElementById('specificClass').value;
             updateCharacterDisplay();
