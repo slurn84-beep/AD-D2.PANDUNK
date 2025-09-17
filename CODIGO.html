@@ -838,6 +838,161 @@
             </div>
     </div>
 </div>
+<!-- 📜 Trasfondos -->
+<div class="category-selector">
+  <h4 class="category-title" style="text-align: center;">📜 Trasfondos</h4>
+  <div class="custom-dropdown-container">
+    <div class="dropdown-header category-option disabled" id="background-dropdown-header">
+      <h5 class="category-name" id="background-selected-name" style="color: #b0b0b0; font-style: italic; text-align: center; margin: 0;">Selecciona primero una clase</h5>
+      <span class="category-desc" id="background-selected-desc"></span>
+    </div>
+    <div class="dropdown-options" id="background-dropdown-options"></div>
+  </div>
+</div>
+
+<script>
+/* =========================
+   CATEGORÍAS PRINCIPALES
+   ========================= */
+const categories = {
+  primary: [
+    { id: 'luchador', name: 'Luchador', classes: ['Bárbaro', 'Ranger', 'Guerrero', 'Paladín', 'Samurái'] },
+    { id: 'sacerdote', name: 'Sacerdote', classes: ['Clérigo', 'Druida', 'Chamán'] },
+    { id: 'hechicero', name: 'Hechicero', classes: ['Mago', 'Hechicero', 'Bruja', 'Artífice'] },
+    { id: 'bribon', name: 'Bribón', classes: ['Ladrón', 'Bardo', 'Ninja', 'Psiónico', 'Pistolero'] }
+  ]
+};
+
+/* =========================
+   TRASFONDOS POR GRUPO
+   ========================= */
+const backgrounds = {
+  "luchador": ["Soldado", "Guardia", "Marinero", "Campesino"],
+  "sacerdote": ["Acolito", "Ermitaño", "Noble", "Erudito"],
+  "hechicero": ["Escribano", "Erudito", "Charlatán", "Animador"],
+  "bribon": ["Criminal", "Charlatán", "Animador", "Vagabundo", "Comerciante"]
+};
+
+/* =========================
+   FUNCIONES DE DROPDOWN
+   ========================= */
+function setupDropdown(headerId, optionsId, selectedNameId, onSelectionCallback) {
+  const header = document.getElementById(headerId);
+  const options = document.getElementById(optionsId);
+  const selectedName = document.getElementById(selectedNameId);
+
+  if (!header || !options || !selectedName) return;
+
+  header.addEventListener('click', () => {
+    if (!header.classList.contains('disabled')) {
+      options.classList.toggle('show');
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!header.contains(e.target) && !options.contains(e.target)) {
+      options.classList.remove('show');
+    }
+  });
+
+  options.addEventListener('click', (e) => {
+    const target = e.target.closest('.option');
+    if (target) {
+      const selectedClass = target.getAttribute('data-class');
+      const categoryId = target.getAttribute('data-category');
+
+      if (selectedClass === 'Ninguno') {
+        selectedName.textContent = 'Selecciona una clase';
+        selectedName.style.color = '#b0b0b0';
+        selectedName.style.fontStyle = 'italic';
+      } else {
+        selectedName.textContent = selectedClass;
+        selectedName.style.color = 'inherit';
+        selectedName.style.fontStyle = 'normal';
+      }
+
+      options.classList.remove('show');
+
+      if (onSelectionCallback) {
+        onSelectionCallback(categoryId);
+      }
+    }
+  });
+}
+
+function populateDropdown(optionsContainerId, classList) {
+  const container = document.getElementById(optionsContainerId);
+  container.innerHTML = '';
+
+  const emptyOption = document.createElement('div');
+  emptyOption.className = 'option';
+  emptyOption.setAttribute('data-category', '');
+  emptyOption.setAttribute('data-class', 'Ninguno');
+  emptyOption.textContent = 'Ninguno';
+  container.appendChild(emptyOption);
+
+  classList.forEach(cls => {
+    const optionDiv = document.createElement('div');
+    optionDiv.className = 'option';
+    optionDiv.setAttribute('data-category', cls.categoryId);
+    optionDiv.setAttribute('data-class', cls.name);
+    optionDiv.textContent = cls.name;
+    container.appendChild(optionDiv);
+  });
+}
+
+/* =========================
+   TRASFONDOS (activar y llenar)
+   ========================= */
+function populateBackgroundsForGroup(groupId) {
+  const header = document.getElementById('background-dropdown-header');
+  const selectedName = document.getElementById('background-selected-name');
+  const options = document.getElementById('background-dropdown-options');
+
+  if (!backgrounds[groupId]) {
+    header.classList.add('disabled');
+    selectedName.textContent = "No hay trasfondos para esta categoría";
+    selectedName.style.color = "#b0b0b0";
+    selectedName.style.fontStyle = "italic";
+    options.innerHTML = '';
+    return;
+  }
+
+  header.classList.remove('disabled');
+  selectedName.textContent = "Selecciona un trasfondo";
+  selectedName.style.color = "#b0b0b0";
+  selectedName.style.fontStyle = "italic";
+
+  options.innerHTML = '';
+  backgrounds[groupId].forEach(bg => {
+    const opt = document.createElement('div');
+    opt.className = 'option';
+    opt.setAttribute('data-class', bg);
+    opt.textContent = bg;
+    options.appendChild(opt);
+  });
+}
+
+/* =========================
+   HOOKS DE SELECCIÓN
+   ========================= */
+function selectPrimaryCategory(categoryId) {
+  console.log("Categoría principal seleccionada: " + categoryId);
+  populateBackgroundsForGroup(categoryId);
+}
+
+function selectSecondaryCategory(categoryId) {
+  console.log("Categoría secundaria seleccionada: " + categoryId);
+}
+
+/* =========================
+   INICIALIZACIÓN
+   ========================= */
+setupDropdown('primary-dropdown-header', 'primary-dropdown-options', 'primary-selected-name', selectPrimaryCategory);
+setupDropdown('secondary-dropdown-header', 'secondary-dropdown-options', 'secondary-selected-name', selectSecondaryCategory);
+setupDropdown('tertiary-dropdown-header', 'tertiary-dropdown-options', 'tertiary-selected-name');
+setupDropdown('background-dropdown-header', 'background-dropdown-options', 'background-selected-name');
+</script>
 
 <style>
 /* Estilos para el nuevo menú desplegable personalizado */
@@ -1130,40 +1285,86 @@
                         <input type="number" class="form-input" id="Level" value="1" onchange="updateFromXP()">
                     </div>
                 </div>
-    <!-- Salvaciones -->
-    <div class="combat-section">
-        <h3 style="color: #ffd700; margin-bottom: 1rem;">🛡️ Tiradas de Salvación</h3>
+<!-- Salvaciones -->
+<div class="combat-section">
+    <h3 style="color: #ffd700; margin-bottom: 1rem;">🛡️ Tiradas de Salvación</h3>
+    
+    <!-- Encabezados -->
+    <div class="saves-headers">
+        <div class="save-type-header">Tipo de Salvación</div>
+        <div class="save-data-headers">
+            <span class="header-item">Base</span>
+            <span class="header-item">Mod1</span>
+            <span class="header-item">Mod2</span>
+            <span class="header-item">Total</span>
+        </div>
+    </div>
+    
+    <div class="saving-throws-vertical" id="saving-throws">
+        <div class="saving-throw-row">
+            <div class="save-type-name">Parálisis/Veneno/Muerte</div>
+            <div class="save-data-row">
+                <span class="save-value" id="save-paralysis-base">14</span>
+                <input type="number" id="save-paralysis-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <input type="number" id="save-paralysis-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <span class="save-total-value" id="save-paralysis-total">14</span>
+            </div>
+        </div>
         
-        <div class="saving-throws-grid" id="saving-throws">
-            <div class="saving-throw-item">
-                <div class="save-name">Parál / Ven / Muerte Mágica</div>
-                <div class="save-value" id="save-paralysis">10</div>
+        <div class="saving-throw-row">
+            <div class="save-type-name">Cetros/Varas/Varitas</div>
+            <div class="save-data-row">
+                <span class="save-value" id="save-rods-base">16</span>
+                <input type="number" id="save-rods-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <input type="number" id="save-rods-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <span class="save-total-value" id="save-rods-total">16</span>
             </div>
-            <div class="saving-throw-item">
-                <div class="save-name">Cetros / Varas / Varítas</div>
-                <div class="save-value" id="save-rods">13</div>
+        </div>
+        
+        <div class="saving-throw-row">
+            <div class="save-type-name">Petrificación/Polimorfismo</div>
+            <div class="save-data-row">
+                <span class="save-value" id="save-petrification-base">12</span>
+                <input type="number" id="save-petrification-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <input type="number" id="save-petrification-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <span class="save-total-value" id="save-petrification-total">12</span>
             </div>
-            <div class="saving-throw-item">
-                <div class="save-name">Petrif / Polimorf.</div>
-                <div class="save-value" id="save-petrification">12</div>
+        </div>
+        
+        <div class="saving-throw-row">
+            <div class="save-type-name">Arma de Aliento</div>
+            <div class="save-data-row">
+                <span class="save-value" id="save-breath-base">17</span>
+                <input type="number" id="save-breath-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <input type="number" id="save-breath-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <span class="save-total-value" id="save-breath-total">17</span>
             </div>
-            <div class="saving-throw-item">
-                <div class="save-name">Arma de Aliento</div>
-                <div class="save-value" id="save-breath">15</div>
-            </div>
-            <div class="saving-throw-item">
-                <div class="save-name">Conjuros</div>
-                <div class="save-value" id="save-spells">14</div>
+        </div>
+        
+        <div class="saving-throw-row">
+            <div class="save-type-name">Conjuros</div>
+            <div class="save-data-row">
+                <span class="save-value" id="save-spells-base">17</span>
+                <input type="number" id="save-spells-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <input type="number" id="save-spells-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
+                <span class="save-total-value" id="save-spells-total">17</span>
             </div>
         </div>
     </div>
-                <!-- Quick Stats Display -->
-                <div class="stats-row">
-                    <div class="stat-card">
-                        <div class="stat-value" id="totalHP">10</div>
-                        <div class="stat-label">Puntos de Golpe</div>
-                    </div>
-                    <div class="stat-card">
+</div>
+
+<!-- Quick Stats Display -->
+<div class="stats-row">
+    <div class="stat-card">
+        <div class="stat-value-container">
+            <div class="stat-value" id="totalHP">10</div>
+            <div class="stat-detail" id="hp-breakdown">10 + 0</div>
+            <input type="number" id="hp-manual-bonus" value="0" class="manual-bonus-input" placeholder="Bonus" oninput="updateHitPoints()">
+        </div>
+        <div class="stat-label">Puntos de Golpe</div>
+    </div>
+    
+<div class="stat-card">
                         <div class="stat-value" id="ArcaneMana">10</div>
                         <div class="stat-label">Maná Arcano</div>
                     </div>
@@ -1176,7 +1377,307 @@
                         <div class="stat-label">PSP</div>
                     </div>
                 </div>
-            </div>
+</div>
+
+<!-- Stats Adicionales por Clase -->
+<div class="additional-stats-row">
+    <div class="stat-card mana-card" id="arcane-mana-card" style="display: none;">
+        <div class="stat-value-container">
+            <div class="stat-value" id="arcaneMana">0</div>
+            <div class="stat-detail" id="arcane-mana-breakdown">0/0</div>
+            <input type="number" id="arcane-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus" oninput="updateArcaneMana()">
+        </div>
+        <div class="stat-label">Maná Arcano</div>
+    </div>
+    
+    <div class="stat-card mana-card" id="divine-mana-card" style="display: none;">
+        <div class="stat-value-container">
+            <div class="stat-value" id="divineMana">0</div>
+            <div class="stat-detail" id="divine-mana-breakdown">0/0</div>
+            <input type="number" id="divine-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus" oninput="updateDivineMana()">
+        </div>
+        <div class="stat-label">Maná Divino</div>
+    </div>
+    
+    <div class="stat-card psp-card" id="psp-card" style="display: none;">
+        <div class="stat-value-container">
+            <div class="stat-value" id="pspPool">0</div>
+            <div class="stat-detail" id="psp-breakdown">Base + Mods</div>
+            <input type="number" id="psp-manual" value="0" class="manual-bonus-input" placeholder="Bonus" oninput="updatePSPPool()">
+        </div>
+        <div class="stat-label">Pool PSP</div>
+    </div>
+</div>
+
+<style>
+/* Estilos para Salvaciones Organizadas */
+.saves-headers {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.8rem 1rem;
+    background: rgba(0, 150, 0, 0.15);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 150, 0, 0.3);
+}
+
+.save-type-header {
+    color: #90EE90;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex: 2;
+}
+
+.save-data-headers {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 3;
+}
+
+.header-item {
+    color: #90EE90;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    text-align: center;
+    min-width: 60px;
+}
+
+.saving-throws-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.saving-throw-row {
+    background: rgba(0, 150, 0, 0.08);
+    border: 1px solid rgba(0, 150, 0, 0.25);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.saving-throw-row:hover {
+    background: rgba(0, 150, 0, 0.12);
+    border-color: rgba(0, 150, 0, 0.4);
+    transform: translateX(3px);
+}
+
+.save-type-name {
+    color: #e5e5e5;
+    font-weight: 600;
+    font-size: 0.95rem;
+    flex: 2;
+    min-width: 200px;
+}
+
+.save-data-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 3;
+}
+
+.save-value {
+    color: #00FF7F;
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-width: 60px;
+    text-align: center;
+    background: rgba(0, 255, 127, 0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 255, 127, 0.3);
+}
+
+.save-modifier-input {
+    width: 60px;
+    padding: 0.4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #e5e5e5;
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.save-modifier-input:focus {
+    outline: none;
+    border-color: #ffd700;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+.save-total-value {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1.2rem;
+    min-width: 60px;
+    text-align: center;
+    background: rgba(255, 215, 0, 0.15);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+}
+
+/* Stats Row Principal */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Fila Adicional para Stats por Clase */
+.additional-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Estilos para Stats Cards Mejorados */
+.stat-value-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.stat-detail {
+    font-size: 0.8rem;
+    color: #b0b0b0;
+    text-align: center;
+    min-height: 20px;
+    font-weight: 500;
+}
+
+.manual-bonus-input {
+    width: 70px;
+    padding: 0.3rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #e5e5e5;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 0.3rem;
+}
+
+.manual-bonus-input:focus {
+    outline: none;
+    border-color: #ffd700;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+}
+
+.manual-bonus-input::placeholder {
+    color: #666;
+    font-size: 0.75rem;
+}
+
+/* Cards de Maná */
+.mana-card {
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.1), rgba(138, 43, 226, 0.1));
+    border: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+.mana-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.2);
+    border-color: rgba(138, 43, 226, 0.5);
+}
+
+/* Card de PSP */
+.psp-card {
+    background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
+    border: 1px solid rgba(199, 21, 133, 0.3);
+}
+
+.psp-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(199, 21, 133, 0.2);
+    border-color: rgba(199, 21, 133, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .saves-headers {
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+    }
+    
+    .save-data-headers {
+        justify-content: center;
+    }
+    
+    .saving-throw-row {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .save-type-name {
+        min-width: auto;
+    }
+    
+    .save-data-row {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .additional-stats-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .save-data-row {
+        gap: 0.8rem;
+    }
+    
+    .header-item {
+        min-width: 50px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .saves-headers {
+        padding: 0.6rem;
+    }
+    
+    .saving-throw-row {
+        padding: 0.8rem;
+    }
+    
+    .save-data-headers {
+        gap: 1rem;
+    }
+    
+    .save-data-row {
+        gap: 0.6rem;
+    }
+}
+</style>
 
 ... <!-- Abilities Tab --> 
 <!DOCTYPE html>
@@ -5499,6 +6000,512 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateEquipmentSlot(slot, null);
             });
         });
+ // ==========================================
+// SISTEMA DE SALVACIONES Y STATS MEJORADO
+// ==========================================
+
+// Datos de salvaciones por clase y nivel
+const SAVING_THROWS_TABLE = {
+    'bribon': {
+        '1-4': { paralysis: 13, rods: 14, petrification: 12, breath: 16, spells: 15 },
+        '5-8': { paralysis: 12, rods: 12, petrification: 11, breath: 15, spells: 13 },
+        '9-12': { paralysis: 11, rods: 10, petrification: 10, breath: 14, spells: 11 },
+        '13-16': { paralysis: 10, rods: 8, petrification: 9, breath: 13, spells: 9 },
+        '17-20': { paralysis: 9, rods: 6, petrification: 8, breath: 12, spells: 7 },
+        '21+': { paralysis: 8, rods: 7, petrification: 4, breath: 11, spells: 5 }
+    },
+    'hechicero': {
+        '1-5': { paralysis: 14, rods: 11, petrification: 13, breath: 15, spells: 12 },
+        '6-10': { paralysis: 13, rods: 9, petrification: 11, breath: 13, spells: 10 },
+        '11-15': { paralysis: 11, rods: 7, petrification: 9, breath: 11, spells: 8 },
+        '16-20': { paralysis: 10, rods: 5, petrification: 7, breath: 9, spells: 6 },
+        '21+': { paralysis: 8, rods: 3, petrification: 5, breath: 7, spells: 4 }
+    },
+    'luchador': {
+        '0': { paralysis: 16, rods: 18, petrification: 17, breath: 20, spells: 19 },
+        '1-2': { paralysis: 14, rods: 16, petrification: 15, breath: 17, spells: 17 },
+        '3-4': { paralysis: 13, rods: 15, petrification: 14, breath: 16, spells: 16 },
+        '5-6': { paralysis: 11, rods: 13, petrification: 12, breath: 13, spells: 14 },
+        '7-8': { paralysis: 10, rods: 12, petrification: 11, breath: 12, spells: 13 },
+        '9-10': { paralysis: 8, rods: 10, petrification: 9, breath: 9, spells: 11 },
+        '11-12': { paralysis: 7, rods: 9, petrification: 8, breath: 8, spells: 10 },
+        '13-14': { paralysis: 5, rods: 7, petrification: 6, breath: 5, spells: 8 },
+        '15-16': { paralysis: 4, rods: 6, petrification: 5, breath: 4, spells: 7 },
+        '17-20': { paralysis: 3, rods: 5, petrification: 4, breath: 4, spells: 6 },
+        '21+': { paralysis: 2, rods: 4, petrification: 3, breath: 4, spells: 5 }
+    },
+    'sacerdote': {
+        '1-3': { paralysis: 10, rods: 14, petrification: 13, breath: 16, spells: 15 },
+        '4-6': { paralysis: 9, rods: 12, petrification: 12, breath: 15, spells: 14 },
+        '7-9': { paralysis: 7, rods: 11, petrification: 10, breath: 13, spells: 12 },
+        '10-12': { paralysis: 6, rods: 10, petrification: 9, breath: 12, spells: 11 },
+        '13-15': { paralysis: 5, rods: 9, petrification: 8, breath: 11, spells: 10 },
+        '16-18': { paralysis: 4, rods: 8, petrification: 7, breath: 10, spells: 9 },
+        '19-20': { paralysis: 2, rods: 6, petrification: 5, breath: 8, spells: 7 },
+        '21+': { paralysis: 2, rods: 5, petrification: 4, breath: 7, spells: 6 }
+    }
+};
+
+// Tabla PSP por puntuación de característica
+const PSP_TABLE = {
+    5: { base: 0, modifier: 0 }, 6: { base: 2, modifier: 0 }, 7: { base: 4, modifier: 0 },
+    8: { base: 6, modifier: 0 }, 9: { base: 8, modifier: 0 }, 10: { base: 10, modifier: 0 },
+    11: { base: 12, modifier: 0 }, 12: { base: 14, modifier: 0 }, 13: { base: 16, modifier: 0 },
+    14: { base: 18, modifier: 0 }, 15: { base: 20, modifier: 0 }, 16: { base: 22, modifier: 1 },
+    17: { base: 24, modifier: 2 }, 18: { base: 26, modifier: 3 }, 19: { base: 28, modifier: 4 },
+    20: { base: 30, modifier: 5 }, 21: { base: 32, modifier: 6 }, 22: { base: 34, modifier: 7 },
+    23: { base: 36, modifier: 8 }, 24: { base: 38, modifier: 9 }, 25: { base: 40, modifier: 10 },
+    26: { base: 42, modifier: 11 }, 27: { base: 44, modifier: 12 }, 28: { base: 46, modifier: 13 },
+    29: { base: 48, modifier: 14 }, 30: { base: 50, modifier: 15 }, 31: { base: 52, modifier: 16 },
+    32: { base: 54, modifier: 17 }, 33: { base: 56, modifier: 18 }, 34: { base: 58, modifier: 19 },
+    35: { base: 60, modifier: 20 }, 36: { base: 62, modifier: 21 }, 37: { base: 64, modifier: 22 },
+    38: { base: 66, modifier: 23 }, 39: { base: 68, modifier: 24 }, 40: { base: 70, modifier: 25 },
+    41: { base: 72, modifier: 26 }, 42: { base: 74, modifier: 27 }, 43: { base: 76, modifier: 28 },
+    44: { base: 78, modifier: 29 }, 45: { base: 80, modifier: 30 }, 46: { base: 82, modifier: 31 },
+    47: { base: 84, modifier: 32 }, 48: { base: 86, modifier: 33 }, 49: { base: 88, modifier: 34 },
+    50: { base: 90, modifier: 35 }, 51: { base: 92, modifier: 36 }, 52: { base: 94, modifier: 37 },
+    53: { base: 96, modifier: 38 }, 54: { base: 98, modifier: 39 }, 55: { base: 100, modifier: 40 },
+    56: { base: 102, modifier: 41 }, 57: { base: 104, modifier: 42 }, 58: { base: 106, modifier: 43 },
+    59: { base: 108, modifier: 44 }, 60: { base: 110, modifier: 45 }, 61: { base: 112, modifier: 46 },
+    62: { base: 114, modifier: 47 }, 63: { base: 116, modifier: 48 }, 64: { base: 118, modifier: 49 },
+    65: { base: 120, modifier: 50 }
+};
+
+// Dados de golpe por clase
+const HIT_DICE = {
+    'luchador': 10,
+    'sacerdote': 8,
+    'bribon': 6,
+    'hechicero': 4
+};
+
+// ==========================================
+// FUNCIONES DE UTILIDAD
+// ==========================================
+
+// Obtener nivel de rango para salvaciones
+function getSavingThrowLevelRange(classGroup, level) {
+    const ranges = Object.keys(SAVING_THROWS_TABLE[classGroup] || {});
+    
+    for (const range of ranges) {
+        if (range === '21+' && level >= 21) return range;
+        if (range === '0' && level === 0) return range;
+        
+        if (range.includes('-')) {
+            const [min, max] = range.split('-').map(n => parseInt(n));
+            if (level >= min && level <= max) return range;
+        }
+    }
+    
+    return ranges[0] || '1-2'; // Fallback
+}
+
+// Obtener clases activas del personaje
+function getActiveClasses() {
+    const classes = [];
+    const primary = document.getElementById('primary-selected-name')?.textContent;
+    const secondary = document.getElementById('secondary-selected-name')?.textContent;
+    const tertiary = document.getElementById('tertiary-selected-name')?.textContent;
+    
+    if (primary && primary !== 'Selecciona una clase') classes.push(primary);
+    if (secondary && secondary !== 'Selecciona una clase') classes.push(secondary);
+    if (tertiary && tertiary !== 'Selecciona una clase') classes.push(tertiary);
+    
+    return classes;
+}
+
+// Verificar si es multiclase
+function isMulticlass() {
+    return getActiveClasses().length > 1;
+}
+
+// Verificar si tiene una clase específica
+function hasClassInGroup(targetGroup) {
+    const activeClasses = getActiveClasses();
+    return activeClasses.some(className => {
+        for (const [group, classes] of Object.entries(CLASS_GROUPS)) {
+            if (group === targetGroup && classes.includes(className)) {
+                return true;
+            }
+        }
+        return false;
+    });
+}
+
+// Obtener bonificación de HP por constitución
+function getConstitutionHPBonus() {
+    const constitution = parseInt(document.getElementById('constitution')?.value) || 10;
+    
+    if (window.AbilityCalculator && window.AbilityCalculator.abilityData) {
+        const constitutionData = window.AbilityCalculator.abilityData.constitucion;
+        const entry = constitutionData.find(row => 
+            parseInt(row['Puntuación habilidad']) === constitution
+        );
+        
+        if (entry) {
+            return parseInt(entry['Bonif HP/Nivel']) || 0;
+        }
+    }
+    
+    // Fallback calculation
+    if (constitution <= 3) return -2;
+    if (constitution <= 6) return -1;
+    if (constitution <= 14) return 0;
+    if (constitution <= 16) return 2;
+    if (constitution === 17) return 2;
+    if (constitution === 18) return 3;
+    return Math.floor((constitution - 15) / 2);
+}
+
+// ==========================================
+// ACTUALIZACIÓN DE SALVACIONES
+// ==========================================
+
+function updateSavingThrows() {
+    const classGroup = getCurrentClassGroup();
+    const level = getCurrentLevel();
+    const levelRange = getSavingThrowLevelRange(classGroup, level);
+    
+    const baseSaves = SAVING_THROWS_TABLE[classGroup]?.[levelRange] || {
+        paralysis: 15, rods: 15, petrification: 15, breath: 15, spells: 15
+    };
+    
+    // Actualizar cada tipo de salvación
+    const saveTypes = ['paralysis', 'rods', 'petrification', 'breath', 'spells'];
+    
+    saveTypes.forEach(saveType => {
+        const baseValue = baseSaves[saveType];
+        const mod1 = parseInt(document.getElementById(`save-${saveType}-mod1`)?.value) || 0;
+        const mod2 = parseInt(document.getElementById(`save-${saveType}-mod2`)?.value) || 0;
+        const total = baseValue - mod1 - mod2;
+        
+        // Actualizar elementos
+        const baseElement = document.getElementById(`save-${saveType}-base`);
+        const totalElement = document.getElementById(`save-${saveType}-total`);
+        
+        if (baseElement) baseElement.textContent = baseValue;
+        if (totalElement) totalElement.textContent = Math.max(1, total); // Mínimo 1
+    });
+}
+
+// ==========================================
+// PUNTOS DE GOLPE
+// ==========================================
+
+function updateHitPoints() {
+    const level = getCurrentLevel();
+    const constitutionBonus = getConstitutionHPBonus();
+    const manualBonus = parseInt(document.getElementById('hp-manual-bonus')?.value) || 0;
+    
+    let hpPerLevel = 0;
+    let totalHP = 0;
+    
+    if (isMulticlass()) {
+        // Multiclase: promedio de dados de golpe
+        const activeClasses = getActiveClasses();
+        const classGroups = activeClasses.map(className => {
+            for (const [group, classes] of Object.entries(CLASS_GROUPS)) {
+                if (classes.includes(className)) return group;
+            }
+            return 'luchador'; // Fallback
+        });
+        
+        const hitDiceSum = classGroups.reduce((sum, group) => sum + HIT_DICE[group], 0);
+        hpPerLevel = Math.floor(hitDiceSum / classGroups.length) + constitutionBonus;
+        
+        // Nivel 1: 10 + bonus, niveles siguientes: promedio + bonus
+        totalHP = 10 + constitutionBonus; // Nivel 1
+        if (level > 1) {
+            totalHP += (level - 1) * hpPerLevel;
+        }
+    } else {
+        // Clase única
+        const classGroup = getCurrentClassGroup();
+        const hitDie = HIT_DICE[classGroup] || 10;
+        hpPerLevel = hitDie + constitutionBonus;
+        
+        // Nivel 1: 10 + bonus, niveles siguientes: dado + bonus
+        totalHP = 10 + constitutionBonus; // Nivel 1
+        if (level > 1) {
+            totalHP += (level - 1) * hpPerLevel;
+        }
+    }
+    
+    const finalTotal = totalHP + manualBonus;
+    
+    // Actualizar elementos
+    const totalHPElement = document.getElementById('totalHP');
+    const breakdownElement = document.getElementById('hp-breakdown');
+    
+    if (totalHPElement) totalHPElement.textContent = finalTotal;
+    if (breakdownElement) {
+        if (level === 1) {
+            breakdownElement.textContent = manualBonus > 0 ? `10 + ${manualBonus}` : '10';
+        } else {
+            breakdownElement.textContent = manualBonus > 0 
+                ? `${hpPerLevel}/${totalHP} + ${manualBonus}` 
+                : `${hpPerLevel}/${totalHP}`;
+        }
+    }
+}
+
+// ==========================================
+// MANÁ ARCANO
+// ==========================================
+
+function updateArcaneMana() {
+    const manaCard = document.getElementById('arcane-mana-card');
+    
+    if (!hasClassInGroup('hechicero')) {
+        if (manaCard) manaCard.style.display = 'none';
+        return;
+    }
+    
+    if (manaCard) manaCard.style.display = 'block';
+    
+    const level = getCurrentLevel();
+    const intelligence = parseInt(document.getElementById('intelligence')?.value) || 10;
+    const constitution = parseInt(document.getElementById('constitution')?.value) || 10;
+    const manualBonus = parseInt(document.getElementById('arcane-mana-manual')?.value) || 0;
+    
+    // Maná por nivel: (Int + 1) + (Con / 4)
+    const manaPerLevel = (intelligence + 1) + Math.floor(constitution / 4);
+    const totalMana = level * manaPerLevel;
+    const finalTotal = totalMana + manualBonus;
+    
+    // Actualizar elementos
+    const manaElement = document.getElementById('arcaneMana');
+    const breakdownElement = document.getElementById('arcane-mana-breakdown');
+    
+    if (manaElement) manaElement.textContent = finalTotal;
+    if (breakdownElement) {
+        breakdownElement.textContent = manualBonus > 0 
+            ? `${manaPerLevel}/${totalMana} + ${manualBonus}` 
+            : `${manaPerLevel}/${totalMana}`;
+    }
+}
+
+// ==========================================
+// MANÁ DIVINO
+// ==========================================
+
+function updateDivineMana() {
+    const manaCard = document.getElementById('divine-mana-card');
+    
+    if (!hasClassInGroup('sacerdote')) {
+        if (manaCard) manaCard.style.display = 'none';
+        return;
+    }
+    
+    if (manaCard) manaCard.style.display = 'block';
+    
+    const level = getCurrentLevel();
+    const wisdom = parseInt(document.getElementById('wisdom')?.value) || 10;
+    const constitution = parseInt(document.getElementById('constitution')?.value) || 10;
+    
+    // Maná por nivel: (Sab + 1) + (Con / 4)
+    const manaPerLevel = (wisdom + 1) + Math.floor(constitution / 4);
+    const totalMana = level * manaPerLevel;
+    const finalTotal = totalMana + manualBonus;
+    
+    // Actualizar elementos
+    const manaElement = document.getElementById('divineMana');
+    const breakdownElement = document.getElementById('divine-mana-breakdown');
+    
+    if (manaElement) manaElement.textContent = finalTotal;
+    if (breakdownElement) {
+        breakdownElement.textContent = manualBonus > 0 
+            ? `${manaPerLevel}/${totalMana} + ${manualBonus}` 
+            : `${manaPerLevel}/${totalMana}`;
+    }
+}
+
+// ==========================================
+// POOL DE PSP (PSIÓNICO)
+// ==========================================
+
+function updatePSPPool() {
+    const pspCard = document.getElementById('psp-card');
+    const activeClasses = getActiveClasses();
+    const isPsionic = activeClasses.some(className => className === 'Psiónico');
+    
+    if (!isPsionic) {
+        if (pspCard) pspCard.style.display = 'none';
+        return;
+    }
+    
+    if (pspCard) pspCard.style.display = 'block';
+    
+    const level = getCurrentLevel();
+    const wisdom = parseInt(document.getElementById('wisdom')?.value) || 10;
+    const constitution = parseInt(document.getElementById('constitution')?.value) || 10;
+    const intelligence = parseInt(document.getElementById('intelligence')?.value) || 10;
+    const manualBonus = parseInt(document.getElementById('psp-manual')?.value) || 0;
+    
+    // Obtener modificadores de la tabla PSP
+    const wisdomPSP = PSP_TABLE[Math.min(65, Math.max(5, wisdom))] || PSP_TABLE[10];
+    const constitutionPSP = PSP_TABLE[Math.min(65, Math.max(5, constitution))] || PSP_TABLE[10];
+    const intelligencePSP = PSP_TABLE[Math.min(65, Math.max(5, intelligence))] || PSP_TABLE[10];
+    
+    let totalPSP = 0;
+    
+    if (level === 1) {
+        // Nivel 1: Base de Sabiduría + Mod. Constitución + Mod. Inteligencia
+        totalPSP = wisdomPSP.base + constitutionPSP.modifier + intelligencePSP.modifier;
+    } else {
+        // Nivel 1 base + niveles adicionales
+        const basePSP = wisdomPSP.base + constitutionPSP.modifier + intelligencePSP.modifier;
+        const additionalPSP = (level - 1) * (10 + wisdomPSP.modifier);
+        totalPSP = basePSP + additionalPSP;
+    }
+    
+    const finalTotal = totalPSP + manualBonus;
+    
+    // Actualizar elementos
+    const pspElement = document.getElementById('pspPool');
+    const breakdownElement = document.getElementById('psp-breakdown');
+    
+    if (pspElement) pspElement.textContent = finalTotal;
+    if (breakdownElement) {
+        if (level === 1) {
+            breakdownElement.textContent = manualBonus > 0 
+                ? `Base: ${totalPSP} + ${manualBonus}` 
+                : `Base: ${totalPSP}`;
+        } else {
+            const perLevelGain = 10 + wisdomPSP.modifier;
+            breakdownElement.textContent = manualBonus > 0 
+                ? `${perLevelGain}/niv + ${manualBonus}` 
+                : `${perLevelGain}/nivel`;
+        }
+    }
+}
+
+// ==========================================
+// FUNCIONES DE ACTUALIZACIÓN GENERAL
+// ==========================================
+
+// Actualizar todos los stats cuando cambie algo
+function updateAllStats() {
+    updateSavingThrows();
+    updateHitPoints();
+    updateArcaneMana();
+    updateDivineMana();
+    updatePSPPool();
+}
+
+// Integrar con el sistema existente
+function integrateWithExistingSystem() {
+    // Hook en el calculador de habilidades existente
+    if (window.AbilityCalculator) {
+        const originalCalculateModifiers = window.AbilityCalculator.calculateModifiers;
+        window.AbilityCalculator.calculateModifiers = function() {
+            if (originalCalculateModifiers) {
+                originalCalculateModifiers.call(this);
+            }
+            // Actualizar nuestros stats después del cálculo de habilidades
+            setTimeout(updateAllStats, 50);
+        };
+    }
+    
+    // Hook en cambios de nivel
+    const levelInput = document.getElementById('characterLevel');
+    if (levelInput) {
+        levelInput.addEventListener('input', updateAllStats);
+    }
+    
+    // Hook en cambios de experiencia
+    const expInput = document.getElementById('experience');
+    if (expInput) {
+        expInput.addEventListener('input', updateAllStats);
+    }
+    
+    // Hook en cambios de clase (si existe la función)
+    if (window.selectPrimaryCategory) {
+        const originalSelectPrimary = window.selectPrimaryCategory;
+        window.selectPrimaryCategory = function(category) {
+            originalSelectPrimary(category);
+            setTimeout(updateAllStats, 100);
+        };
+    }
+    
+    if (window.selectSecondaryCategory) {
+        const originalSelectSecondary = window.selectSecondaryCategory;
+        window.selectSecondaryCategory = function(category) {
+            originalSelectSecondary(category);
+            setTimeout(updateAllStats, 100);
+        };
+    }
+    
+    // Actualizar cuando se cargue la página
+    setTimeout(updateAllStats, 200);
+}
+
+// ==========================================
+// FUNCIONES DE COMPATIBILIDAD
+// ==========================================
+
+// Usar las funciones existentes del sistema principal si están disponibles
+if (typeof getCurrentClassGroup === 'undefined') {
+    window.getCurrentClassGroup = function() {
+        const primaryClass = document.getElementById('primary-selected-name')?.textContent || '';
+        
+        const CLASS_GROUPS_LOCAL = {
+            'luchador': ['Bárbaro', 'Ranger', 'Guerrero', 'Paladín', 'Samurái'],
+            'sacerdote': ['Clérigo', 'Druida', 'Chamán'],
+            'hechicero': ['Mago', 'Hechicero', 'Bruja', 'Artífice'],
+            'bribon': ['Ladrón', 'Bardo', 'Ninja', 'Psiónico', 'Pistolero']
+        };
+        
+        for (const [group, classes] of Object.entries(CLASS_GROUPS_LOCAL)) {
+            if (classes.includes(primaryClass)) {
+                return group;
+            }
+        }
+        return 'luchador'; // Default
+    };
+}
+
+if (typeof getCurrentLevel === 'undefined') {
+    window.getCurrentLevel = function() {
+        return parseInt(document.getElementById('characterLevel')?.value) || 1;
+    };
+}
+
+// Definir CLASS_GROUPS si no existe
+if (typeof CLASS_GROUPS === 'undefined') {
+    window.CLASS_GROUPS = {
+        'luchador': ['Bárbaro', 'Ranger', 'Guerrero', 'Paladín', 'Samurái'],
+        'sacerdote': ['Clérigo', 'Druida', 'Chamán'],
+        'hechicero': ['Mago', 'Hechicero', 'Bruja', 'Artífice'],
+        'bribon': ['Ladrón', 'Bardo', 'Ninja', 'Psiónico', 'Pistolero']
+    };
+}
+
+// ==========================================
+// INICIALIZACIÓN
+// ==========================================
+
+// Ejecutar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(integrateWithExistingSystem, 300);
+});
+
+// También ejecutar si ya está cargado
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(integrateWithExistingSystem, 300);
+    });
+} else {
+    setTimeout(integrateWithExistingSystem, 300);
+}
+
+// Exponer funciones globalmente para uso manual
+window.updateSavingThrows = updateSavingThrows;
+window.updateHitPoints = updateHitPoints;
+window.updateArcaneMana = updateArcaneMana;
+window.updateDivineMana = updateDivineMana;
+window.updatePSPPool = updatePSPPool;
+window.updateAllStats = updateAllStats;             
     </script>
 </body>
 </html> 
