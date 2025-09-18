@@ -1,0 +1,471 @@
+{
+  "categorias": [
+    {
+      "nombre": "Barbaro",
+      "dado_golpe": "d12",
+      "alineamiento": "Cualquiera no legal",
+      "competencias": {
+        "armas": "Todas las armas simples y marciales",
+        "armaduras": "Armaduras ligeras, intermedias y escudos (excepto escudos corporales)"
+      },
+      "pericias": [
+        "Acrobacias (Des)", "Artesanía (Int)", "Intimidar (Car)",
+        "Montar (Des)", "Nadar (Fue)", "Percepción (Sab)",
+        "Saber (Naturaleza) (Int)", "Supervivencia (Sab)", "Trato con animales (Car)", "Trepar (Fue)"
+      ],
+      "rasgos": {
+        "1": ["Movimiento rápido", "Furia 1/día"],
+        "2": ["Poder de furia", "Esquiva asombrosa"],
+        "3": ["Sentido de las trampas +1"],
+        "5": ["Mejora de furia", "Furia 2/día"],
+        "7": ["Esquiva asombrosa mejorada"],
+        "11": ["Furia mayor"],
+        "14": ["Indomable"],
+        "17": ["Furia incansable"],
+        "20": ["Furia suprema"]
+      },
+      "poderes": {
+        "furia": [
+          {"nombre": "Abandono temerario", "nivel_minimo": 1, "efecto": "Ataque +1, CA -1. Escala cada 4 niveles."},
+          {"nombre": "Abatir", "nivel_minimo": 1, "efecto": "Sustituye ataque normal por intento de derribo."},
+          {"nombre": "Instinto animal", "nivel_minimo": 2, "efecto": "+2 Percepción y Supervivencia en furia."}
+        ]
+      }
+    },
+    {
+      "nombre": "Bardo",
+      "dado_golpe": "d8",
+      "alineamiento": "Cualquiera",
+      "competencias": {
+        "armas": "Armas simples, ballesta ligera, espada corta, estoque, arco corto, látigo",
+        "armaduras": "Armaduras ligeras y escudos (sin penalizar conjuración arcana)"
+      },
+      "pericias": [
+        "Acrobacias (Des)", "Artesanía (Int)", "Engañar (Car)", "Diplomacia (Car)",
+        "Interpretar (Car)", "Saber (Arcano) (Int)", "Saber (Historia) (Int)", "Saber (Nobleza) (Int)",
+        "Saber (Planos) (Int)", "Hechicería (Car)", "Percepción (Sab)", "Sigilo (Des)"
+      ],
+      "rasgos": {
+        "1": ["Inspirar valor +1", "Conocimientos bardicos", "Conjuro 1º"],
+        "2": ["Versatilidad con armas", "Inspirar competencia +2"],
+        "3": ["Fascinar"],
+        "6": ["Inspirar grandeza"],
+        "9": ["Inspirar heroísmo"],
+        "12": ["Canción de libertad"],
+        "15": ["Inspirar valor +3"],
+        "18": ["Inspirar grandeza superior"],
+        "20": ["Inspirar heroísmo supremo"]
+      },
+      "conjuros": {
+        "niveles": {
+          "1": ["Detectar magia", "Hechizar persona", "Luz"],
+          "2": ["Desplazar", "Imagen silenciosa", "Invisibilidad"],
+          "3": ["Curar heridas moderadas", "Lenguas", "Disipar magia"],
+          "4": ["Confusión", "Muro de sonido", "Curar heridas críticas"],
+          "5": ["Dominar persona", "Canto mágico"]
+        }
+      }
+    },
+    {
+      "nombre": "Bruja",
+      "dado_golpe": "d6",
+      "alineamiento": "Cualquiera",
+      "competencias": {
+        "armas": "Armas simples",
+        "armaduras": "Ninguna"
+      },
+      "pericias": [
+        "Artesanía (Int)", "Conocimiento (Arcano) (Int)", "Conocimiento (Naturaleza) (Int)",
+        "Percepción (Sab)", "Hechicería (Car)", "Supervivencia (Sab)"
+      ],
+      "rasgos": {
+        "1": ["Familiar", "Conjuros", "Maleficios"],
+        "2": ["Maleficio adicional"],
+        "4": ["Revelación menor"],
+        "8": ["Revelación mayor"],
+        "12": ["Revelación suprema"],
+        "16": ["Maleficio superior"],
+        "20": ["Gran maleficio"]
+      },
+      "conjuros": {
+        "niveles": {
+          "1": ["Maldecir", "Fatiga", "Dormir"],
+          "2": ["Ceguera/sordera", "Inmovilizar persona", "Invisibilidad"],
+          "3": ["Bestia mágica mayor", "Maldición mayor"],
+          "4": ["Polimorfismo", "Confusión"],
+          "5": ["Maldición de muerte", "Dominar persona"],
+          "6": ["Mirada maléfica", "Plaga"]
+        }
+      },
+      "maleficios": [
+        {"nombre": "Ojo maligno", "nivel_minimo": 1, "efecto": "Penalización -2 a tiradas de salvación"},
+        {"nombre": "Curar", "nivel_minimo": 1, "efecto": "Curar heridas leves 1/día"},
+        {"nombre": "Risa de bruja", "nivel_minimo": 8, "efecto": "Confusión menor 1/día"}
+      ]
+    },
+    {
+      "nombre": "Chaman",
+      "dado_golpe": "d8",
+      "alineamiento": "Cualquiera neutral",
+      "competencias": {
+        "armas": "Todas las armas simples",
+        "armaduras": "Armaduras ligeras e intermedias, escudos (excepto escudos corporales)"
+      },
+      "pericias": [
+        "Artesanía (Int)", "Conocimiento (Arcano) (Int)", "Conocimiento (Religión) (Int)",
+        "Curar (Sab)", "Diplomacia (Car)", "Percepción (Sab)",
+        "Saber (Naturaleza) (Int)", "Supervivencia (Sab)"
+      ],
+      "rasgos": {
+        "1": ["Espíritu chamánico", "Conjuros", "Maleficios"],
+        "2": ["Canalizar energía espiritual"],
+        "4": ["Revelación de espíritu menor"],
+        "8": ["Revelación de espíritu mayor"],
+        "16": ["Revelación suprema"],
+        "20": ["Unión con el espíritu"]
+      },
+      "conjuros": {
+        "niveles": {
+          "1": ["Detectar magia", "Curar heridas leves", "Invocar animal menor"],
+          "2": ["Restauración menor", "Resistencia al daño", "Fuerza de toro"],
+          "3": ["Invocar naturaleza III", "Disipar magia", "Respiración acuática"],
+          "4": ["Invocar naturaleza IV", "Caminar por el aire", "Muro de fuego"],
+          "5": ["Curar heridas críticas", "Columna de llamas"],
+          "6": ["Curar enfermedades masivas", "Transformación"]
+        }
+      }
+    },
+    {
+      "nombre": "Clerigo",
+      "dado_golpe": "d8",
+      "alineamiento": "Debe estar a un paso del dios patrono",
+      "competencias": {
+        "armas": "Todas las armas simples",
+        "armaduras": "Todas las armaduras y escudos"
+      },
+      "pericias": [
+        "Artesanía (Int)", "Conocimiento (Religión) (Int)", "Curar (Sab)",
+        "Diplomacia (Car)", "Hechicería (Car)", "Saber (Historia) (Int)"
+      ],
+      "rasgos": {
+        "1": ["Conjuros", "Auras", "Canalizar energía"],
+        "2": ["Dominio 1"],
+        "3": ["Dominio 2"],
+        "5": ["Expulsar/Intimidar muertos vivientes"],
+        "9": ["Canalizar energía mejorado"],
+        "15": ["Dominio mayor"],
+        "20": ["Avatar divino"]
+      },
+      "conjuros": {
+        "niveles": {
+          "1": ["Curar heridas leves", "Bendecir", "Escudo de fe"],
+          "2": ["Restauración menor", "Arma espiritual", "Silencio"],
+          "3": ["Disipar magia", "Luz del día", "Oración"],
+          "4": ["Muerte fingida", "Protección contra la energía", "Infligir heridas críticas"],
+          "5": ["Columna de llamas", "Muro de piedra"],
+          "6": ["Curar heridas masivas", "Hoja flamígera"],
+          "7": ["Resurrección", "Desplazamiento etéreo"],
+          "8": ["Muerte masiva", "Campo antipático"],
+          "9": ["Milagro", "Resurrección verdadera"]
+        }
+      }
+    },
+    {
+      "nombre": "Druida",
+      "dado_golpe": "d8",
+      "alineamiento": "Cualquier neutral",
+      "competencias": {
+        "armas": "Armas simples, cimitarra, daga, guadaña, lanza, bastón, hoz",
+        "armaduras": "Armaduras ligeras e intermedias de materiales naturales, escudos de madera"
+      },
+      "pericias": [
+        "Artesanía (Int)", "Conocimiento (Naturaleza) (Int)", "Curar (Sab)",
+        "Diplomacia (Car)", "Percepción (Sab)", "Saber (Geografía) (Int)",
+        "Supervivencia (Sab)", "Trato con animales (Car)"
+      ],
+      "rasgos": {
+        "1": ["Conjuros", "Vínculo natural (animal o terreno)", "Forma salvaje menor"],
+        "2": ["Forma salvaje 1/día"],
+        "4": ["Forma salvaje 2/día"],
+        "6": ["Forma salvaje 3/día", "Forma elemental menor"],
+        "8": ["Forma salvaje 4/día"],
+        "10": ["Forma elemental"],
+        "12": ["Forma salvaje 5/día"],
+        "14": ["Forma elemental mayor"],
+        "20": ["Forma elemental suprema"]
+      },
+      "conjuros": {
+        "niveles": {
+          "1": ["Detectar magia", "Curar heridas leves", "Invocar animal menor"],
+          "2": ["Corteza de árbol", "Calmar emociones", "Restauración menor"],
+          "3": ["Invocar naturaleza III", "Tormenta de granizo"],
+          "4": ["Invocar naturaleza IV", "Muro de fuego"],
+          "5": ["Muro de espinas", "Transmutar lodo en roca"],
+          "6": ["Convocar tormenta", "Transformación"],
+          "7": ["Regeneración", "Control del clima"],
+          "8": ["Maremoto", "Muro de hierro"],
+          "9": ["Metamorfosis suprema", "Invocar naturaleza IX"]
+        }
+      }
+    },
+    {
+      "nombre": "Guerrero",
+      "dado_golpe": "d10",
+      "alineamiento": "Cualquiera",
+      "competencias": {
+        "armas": "Todas las armas simples y marciales",
+        "armaduras": "Todas las armaduras y escudos"
+      },
+      "pericias": [
+        "Escalar (Fue)", "Intimidar (Car)", "Montar (Des)", "Nadar (Fue)", "Profesión (Sab)"
+      ],
+      "rasgos": {
+        "1": ["Dote adicional"],
+        "2": ["Valentía +1", "Dote adicional"],
+        "3": ["Entrenamiento con armaduras 1"],
+        "4": ["Dote adicional"],
+        "5": ["Entrenamiento con armas 1"],
+        "6": ["Dote adicional"],
+        "7": ["Entrenamiento con armaduras 2"],
+        "8": ["Dote adicional"],
+        "9": ["Entrenamiento con armas 2"],
+        "11": ["Maestría en armaduras"],
+        "13": ["Entrenamiento con armas 3"],
+        "17": ["Entrenamiento con armas 4"],
+        "19": ["Valentía +4"],
+        "20": ["Maestría en armas"]
+      }
+    },
+    {
+      "nombre": "Hechicero",
+      "dado_golpe": "d6",
+      "alineamiento": "Cualquiera",
+      "competencias": {
+        "armas": "Armas simples",
+        "armaduras": "Ninguna"
+      },
+      "pericias": [
+        "Artesanía (Int)", "Engañar (Car)", "Hechicería (Car)", "Saber (Arcano) (Int)"
+      ],
+      "rasgos": {
+        "1": ["Linaje de sangre", "Conjuros"],
+        "3": ["Poder de linaje menor"],
+        "9": ["Poder de linaje intermedio"],
+        "15": ["Poder de linaje mayor"],
+        "20": ["Poder de linaje supremo"]
+      },
+      "conjuros": {
+        "niveles": {
+          "0": ["Detectar magia", "Leer magia", "Luz", "Rayo de escarcha"],
+          "1": ["Misil mágico", "Armadura de mago", "Encantar persona"],
+          "2": ["Imagen menor", "Invisibilidad", "Resistencia a energía"],
+          "3": ["Bola de fuego", "Vuelo", "Contraconjuro"],
+          "4": ["Polimorfismo", "Muro de fuego"],
+          "5": ["Dominación", "Teletransportar"],
+          "6": ["Disipar magia mayor", "Proyectar imagen"],
+          "7": ["Puerta dimensional", "Meteoro"],
+          "8": ["Labernito", "Forma etérea"],
+          "9": ["Deseo", "Parar el tiempo"]
+        }
+      }
+    },
+    {
+      "nombre": "Ladron",
+      "dado_golpe": "d8",
+      "alineamiento": "Cualquiera no legal",
+      "competencias": {
+        "armas": "Armas simples, ballesta ligera, estoque, espada corta, arco corto, garrote, látigo",
+        "armaduras": "Armaduras ligeras"
+      },
+      "pericias": [
+        "Acrobacias (Des)", "Artesanía (Int)", "Engañar (Car)", "Percepción (Sab)",
+        "Saber (Local) (Int)", "Sigilo (Des)", "Juego de manos (Des)", "Trucos de ladrón"
+      ],
+      "rasgos": {
+        "1": ["Ataque furtivo +1d6", "Trucos de ladrón", "Esquiva asombrosa"],
+        "2": ["Evasión"],
+        "3": ["Ataque furtivo +2d6", "Truco de ladrón"],
+        "4": ["Esquiva asombrosa mejorada"],
+        "5": ["Ataque furtivo +3d6"],
+        "10": ["Ataque furtivo +5d6"],
+        "15": ["Ataque furtivo +8d6"],
+        "20": ["Ataque furtivo +10d6", "Maestro ladrón"]
+      }
+    },
+    {
+      "nombre": "Mago",
+      "dado_golpe": "d6",
+      "alineamiento": "Cualquiera",
+      "competencias": {
+        "armas": "Daga, bastón, ballesta ligera, ballesta pesada",
+        "armaduras": "Ninguna"
+      },
+      "pericias": [
+        "Artesanía (Int)", "Conocimiento (Arcano) (Int)", "Hechicería (Car)", "Profesión (Sab)"
+      ],
+      "rasgos": {
+        "1": ["Conjuros", "Escuela arcana", "Trucos"],
+        "5": ["Descubrimiento de escuela"],
+        "10": ["Descubrimiento mayor"],
+        "15": ["Descubrimiento superior"],
+        "20": ["Arcanista supremo"]
+      },
+      "conjuros": {
+        "niveles": {
+          "0": ["Detectar magia", "Leer magia", "Luz", "Mano de mago"],
+          "1": ["Misil mágico", "Armadura de mago", "Escudo"],
+          "2": ["Invisibilidad", "Imagen menor", "Resistencia a energía"],
+          "3": ["Bola de fuego", "Vuelo", "Relámpago"],
+          "4": ["Polimorfismo", "Muro de hielo"],
+          "5": ["Teletransportar", "Dominación"],
+          "6": ["Desintegrar", "Proyectar imagen"],
+          "7": ["Meteoro", "Forma etérea"],
+          "8": ["Campo antipático", "Clon"],
+          "9": ["Deseo", "Parar el tiempo"]
+        }
+      }
+    },
+    {
+      "nombre": "Monje",
+      "dado_golpe": "d8",
+      "alineamiento": "Cualquiera legal",
+      "competencias": {
+        "armas": "Armas simples, kama, nunchaku, bastón, sai, shuriken",
+        "armaduras": "Ninguna"
+      },
+      "pericias": [
+        "Acrobacias (Des)", "Escalar (Fue)", "Percepción (Sab)", "Sigilo (Des)", "Saltar (Fue)"
+      ],
+      "rasgos": {
+        "1": ["Golpe sin armas mejorado", "Esquiva asombrosa", "Movimiento rápido"],
+        "2": ["Evasión", "Bonificador de Sabiduría a CA"],
+        "3": ["Puño aturdidor"],
+        "4": ["Caída lenta"],
+        "5": ["Pureza corporal"],
+        "7": ["Evasión mejorada"],
+        "11": ["Diamante interior"],
+        "15": ["Cuerpo intocable"],
+        "20": ["Perfección física"]
+      }
+    },
+    {
+      "nombre": "Ninja",
+      "dado_golpe": "d8",
+      "alineamiento": "Cualquiera no legal",
+      "competencias": {
+        "armas": "Armas simples, kama, katana, kusarigama, nunchaku, sai, shuriken, espada corta",
+        "armaduras": "Armaduras ligeras"
+      },
+      "pericias": [
+        "Acrobacias (Des)", "Engañar (Car)", "Percepción (Sab)", "Sigilo (Des)", "Juego de manos (Des)", "Técnicas ninja"
+      ],
+      "rasgos": {
+        "1": ["Ataque furtivo +1d6", "Trucos ninja", "Reservas de ki"],
+        "2": ["Evasión"],
+        "3": ["Ataque furtivo +2d6"],
+        "4": ["Truco ninja"],
+        "5": ["Ataque furtivo +3d6"],
+        "10": ["Ataque furtivo +5d6", "Truco ninja"],
+        "15": ["Ataque furtivo +8d6"],
+        "20": ["Ataque furtivo +10d6", "Maestro ninja"]
+      }
+    },
+    {
+      "nombre": "Paladin",
+      "dado_golpe": "d10",
+      "alineamiento": "Legal bueno",
+      "competencias": {
+        "armas": "Todas las armas simples y marciales",
+        "armaduras": "Todas las armaduras y escudos"
+      },
+      "pericias": [
+        "Diplomacia (Car)", "Curar (Sab)", "Conocimiento (Religión) (Int)", "Montar (Des)", "Sentir intenciones (Sab)"
+      ],
+      "rasgos": {
+        "1": ["Aura de bien", "Detectar mal", "Imposición de manos"],
+        "2": ["Gracia divina", "Golpe divino 1/día"],
+        "3": ["Aura de valor"],
+        "5": ["Castigar el mal 2/día"],
+        "6": ["Eliminar enfermedad 1/semana"],
+        "11": ["Aura de justicia"],
+        "14": ["Eliminar enfermedad 3/día"],
+        "20": ["Campeón sagrado"]
+      }
+    },
+    {
+      "nombre": "Pistolero",
+      "dado_golpe": "d10",
+      "alineamiento": "Cualquiera",
+      "competencias": {
+        "armas": "Todas las armas simples y de fuego",
+        "armaduras": "Armaduras ligeras"
+      },
+      "pericias": [
+        "Artesanía (Int)", "Engañar (Car)", "Intimidar (Car)", "Percepción (Sab)", "Profesión (Sab)"
+      ],
+      "rasgos": {
+        "1": ["Armas de fuego", "Hazaña de pistolero"],
+        "2": ["Recarga rápida"],
+        "3": ["Hazaña de pistolero"],
+        "5": ["Tiro certero"],
+        "7": ["Hazaña de pistolero"],
+        "11": ["Disparo mortal"],
+        "15": ["Hazaña de pistolero"],
+        "20": ["Maestro pistolero"]
+      }
+    },
+    {
+      "nombre": "Samurai",
+      "dado_golpe": "d10",
+      "alineamiento": "Cualquiera legal",
+      "competencias": {
+        "armas": "Todas las armas simples y marciales, katana, naginata, nodachi",
+        "armaduras": "Todas las armaduras y escudos"
+      },
+      "pericias": [
+        "Intimidar (Car)", "Montar (Des)", "Percepción (Sab)", "Profesión (Sab)", "Saber (Nobleza) (Int)"
+      ],
+      "rasgos": {
+        "1": ["Desafío", "Dote adicional"],
+        "2": ["Valentía +1"],
+        "3": ["Entrenamiento con armaduras 1"],
+        "5": ["Iaijutsu (golpe veloz con katana)"],
+        "9": ["Desafío mejorado"],
+        "11": ["Entrenamiento con armas samurai"],
+        "17": ["Valentía +4"],
+        "20": ["Maestro samurai"]
+      }
+    },
+    {
+      "nombre": "Guardabosque",
+      "dado_golpe": "d10",
+      "alineamiento": "Cualquiera",
+      "competencias": {
+        "armas": "Todas las armas simples y marciales",
+        "armaduras": "Armaduras ligeras, intermedias y escudos"
+      },
+      "pericias": [
+        "Acrobacias (Des)", "Conocimiento (Naturaleza) (Int)", "Percepción (Sab)", "Supervivencia (Sab)", "Trato con animales (Car)"
+      ],
+      "rasgos": {
+        "1": ["Enemigo predilecto +2", "Estilo de combate"],
+        "2": ["Pista"],
+        "3": ["Resistencia al medio ambiente"],
+        "4": ["Conjuros"],
+        "5": ["Enemigo predilecto +4"],
+        "6": ["Segundo estilo de combate"],
+        "10": ["Enemigo predilecto +6"],
+        "15": ["Enemigo predilecto +8"],
+        "20": ["Maestro guardabosque"]
+      },
+      "conjuros": {
+        "niveles": {
+          "1": ["Detectar magia", "Curar heridas leves", "Enredar"],
+          "2": ["Piel de corteza", "Restauración menor", "Resistencia al daño"],
+          "3": ["Invocar naturaleza III", "Caminar por el aire"],
+          "4": ["Comunión con la naturaleza", "Muro de espinas"]
+        }
+      }
+    }
+  ]
+}
