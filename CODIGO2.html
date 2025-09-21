@@ -44,7 +44,7 @@
         <div class="form-group">
             <label class="form-label">Altura (cm)</label>
             <input type="number" class="form-input" id="characterHeight" min="1" max="30000" 
-                   placeholder="Ej: 175" onchange="updateCharacterSize()" oninput="updateCharacterSize()">
+       placeholder="Ej: 175" onchange="updateCharacterSize()" oninput="updateCharacterSize()">
         </div>
 
         <div class="form-group">
@@ -77,13 +77,13 @@
         <div class="form-group">
             <label class="form-label">Experiencia</label>
             <input type="number" class="form-input" id="experience" value="0" min="0"
-                   onchange="updateFromXP()" oninput="updateFromXP()">
+       		onchange="updateFromXP()" oninput="updateFromXP()">
         </div>
         
         <div class="form-group">
             <label class="form-label">Nivel</label>
             <input type="number" class="form-input" id="Level" value="1" min="1" max="20"
-                   onchange="updateFromLevel()" oninput="updateFromLevel()">
+       			onchange="updateFromLevel()" oninput="updateFromLevel()">
         </div>
     </div>
 
@@ -168,48 +168,47 @@
     <!-- Quick Stats Display -->
     <div class="stats-row">
         <div class="stat-card">
-            <div class="stat-value-container">
-                <div class="stat-value" id="totalHP">10</div>
-                <div class="stat-detail" id="hp-breakdown">Base: 10</div>
-                <input type="number" id="hp-manual-bonus" value="0" class="manual-bonus-input" 
-                       placeholder="Bonus" oninput="updateHitPoints()">
-            </div>
-            <div class="stat-label">Puntos de Golpe</div>
-        </div>
+    <div class="stat-value-container">
+        <div class="stat-value" id="totalHP">10</div>
+        <div class="stat-detail" id="hp-breakdown">Base: 10</div>
+        <input type="number" id="hp-manual-bonus" value="0" class="manual-bonus-input" 
+               placeholder="Bonus" oninput="updateHitPoints()">
+    	</div>
+    	<div class="stat-label">Puntos de Golpe</div>
+    </div>
         
         <!-- Maná Arcano - Solo para Hechiceros -->
-        <div class="stat-card mana-card" id="arcane-mana-card" style="display: none;">
-            <div class="stat-value-container">
-                <div class="stat-value" id="arcaneMana">0</div>
-                <div class="stat-detail" id="arcane-mana-breakdown">0/0</div>
-                <input type="number" id="arcane-mana-manual" value="0" class="manual-bonus-input" 
-                       placeholder="Bonus" oninput="updateArcaneMana()">
-            </div>
-            <div class="stat-label">Maná Arcano</div>
-        </div>
+<div class="stat-card mana-card" id="arcane-mana-card" style="display: none;">
+    <div class="stat-value-container">
+        <div class="stat-value" id="arcaneMana">0</div>
+        <div class="stat-detail" id="arcane-mana-breakdown">0/0</div>
+        <input type="number" id="arcane-mana-manual" value="0" class="manual-bonus-input" 
+               placeholder="Bonus" oninput="updateArcaneMana()">
+    </div>
+    <div class="stat-label">Maná Arcano</div>
+</div>
         
         <!-- Maná Divino - Solo para Sacerdotes -->
         <div class="stat-card mana-card" id="divine-mana-card" style="display: none;">
-            <div class="stat-value-container">
-                <div class="stat-value" id="divineMana">0</div>
-                <div class="stat-detail" id="divine-mana-breakdown">0/0</div>
-                <input type="number" id="divine-mana-manual" value="0" class="manual-bonus-input" 
-                       placeholder="Bonus" oninput="updateDivineMana()">
-            </div>
-            <div class="stat-label">Maná Divino</div>
-        </div>
+    <div class="stat-value-container">
+        <div class="stat-value" id="divineMana">0</div>
+        <div class="stat-detail" id="divine-mana-breakdown">0/0</div>
+        <input type="number" id="divine-mana-manual" value="0" class="manual-bonus-input" 
+               placeholder="Bonus" oninput="updateDivineMana()">
+    </div>
+    <div class="stat-label">Maná Divino</div>
+</div>
         
         <!-- Pool PSP - Solo para Psiónicos -->
         <div class="stat-card psp-card" id="psp-card" style="display: none;">
-            <div class="stat-value-container">
-                <div class="stat-value" id="pspPool">0</div>
-                <div class="stat-detail" id="psp-breakdown">Base + Mods</div>
-                <input type="number" id="psp-manual" value="0" class="manual-bonus-input" 
-                       placeholder="Bonus" oninput="updatePSPPool()">
-            </div>
-            <div class="stat-label">Pool PSP</div>
-        </div>
+    <div class="stat-value-container">
+        <div class="stat-value" id="pspPool">0</div>
+        <div class="stat-detail" id="psp-breakdown">Base + Mods</div>
+        <input type="number" id="psp-manual" value="0" class="manual-bonus-input" 
+               placeholder="Bonus" oninput="updatePSPPool()">
     </div>
+    <div class="stat-label">Pool PSP</div>
+</div>
 
     <!-- Información de Progreso XP/Nivel -->
     <div class="xp-progress-section">
@@ -335,6 +334,22 @@
 <!-- Abilities Tab -->
 <div id="abilities-tab" class="tab-content">
     <h2 style="color: #ffd700; margin-bottom: 2rem;">💪 Características</h2>
+
+<!-- Controles superiores -->
+<div class="abilities-controls">
+    <div class="control-group">
+        <button class="btn btn-secondary" onclick="rollAbilities()">🎲 Rodar Stats (4d6)</button>
+        <button class="btn btn-secondary" onclick="rollAbilitiesStandard()">🎯 Rodar Standard (3d6)</button>
+        <button class="btn btn-secondary" onclick="setAbilitiesToAverage()">📊 Valores Promedio</button>
+    </div>
+    
+    <div class="debug-toggle">
+        <label>
+            <input type="checkbox" id="showDebugInfo" onchange="toggleDebugInfo()"> 
+            Mostrar Debug
+        </label>
+    </div>
+</div>
     
     <!-- Controles superiores -->
     <div class="abilities-controls">
@@ -363,8 +378,8 @@
             <div class="ability-name">Fuerza</div>
             <div class="ability-main-row">
                 <input type="number" class="ability-input" id="strength" min="1" max="65" value="10" 
-                       oninput="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();"
-                       onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
+       			oninput="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();"
+       		        onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
                 <div class="ability-details-row">
                     <div class="ability-detail-box">
                         <span class="detail-name">Golpe</span>
@@ -400,7 +415,7 @@
             <div class="ability-main-row">
                 <input type="number" class="ability-input" id="dexterity" min="1" max="65" value="10" 
                        oninput="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();"
-                       onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
+       		        onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
                 <div class="ability-details-row">
                     <div class="ability-detail-box">
                         <span class="detail-name">Ajuste Reacción</span>
@@ -424,7 +439,7 @@
             <div class="ability-main-row">
                 <input type="number" class="ability-input" id="constitution" min="1" max="65" value="10" 
                        oninput="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();"
-                       onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
+       		        onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
                 <div class="ability-details-row">
                     <div class="ability-detail-box">
                         <span class="detail-name">HP/Nivel</span>
@@ -456,7 +471,7 @@
             <div class="ability-main-row">
                 <input type="number" class="ability-input" id="intelligence" min="1" max="65" value="10" 
                        oninput="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();"
-                       onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
+       		        onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
                 <div class="ability-details-row">
                     <div class="ability-detail-box">
                         <span class="detail-name">Idiomas</span>
@@ -488,7 +503,7 @@
             <div class="ability-main-row">
                 <input type="number" class="ability-input" id="wisdom" min="1" max="65" value="10" 
                        oninput="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();"
-                       onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
+       		        onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
                 <div class="ability-details-row">
                     <div class="ability-detail-box">
                         <span class="detail-name">Def. Mágica</span>
@@ -512,7 +527,7 @@
             <div class="ability-main-row">
                 <input type="number" class="ability-input" id="charisma" min="1" max="65" value="10" 
                        oninput="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();"
-                       onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
+       		        onchange="window.AbilityCalculator.calculateModifiers(); updateAllConnectedSystems();">
                 <div class="ability-details-row">
                     <div class="ability-detail-box">
                         <span class="detail-name">Nº Servidores</span>
@@ -6362,6 +6377,83 @@ function openItemSelector(slot) {
     border-radius: 50%;
     border: 2px solid #1a1a2e;
 }
+/* Estilos para controles de habilidades */
+.abilities-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.control-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.debug-toggle {
+    color: #b0b0b0;
+    font-size: 0.85rem;
+}
+
+.debug-toggle input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* Estilos para stats mejorados */
+.stat-value-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-detail {
+    font-size: 0.8rem;
+    color: #b0b0b0;
+    text-align: center;
+    min-height: 20px;
+    font-weight: 500;
+}
+
+.manual-bonus-input {
+    width: 70px;
+    padding: 0.3rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #e5e5e5;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 0.3rem;
+}
+
+.manual-bonus-input:focus {
+    outline: none;
+    border-color: #ffd700;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+}
+
+.manual-bonus-input::placeholder {
+    color: #666;
+    font-size: 0.7rem;
+}
+
+.mana-card {
+    border: 2px solid rgba(138, 43, 226, 0.4);
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.15), rgba(138, 43, 226, 0.15));
+}
+
+.psp-card {
+    border: 2px solid rgba(199, 21, 133, 0.4);
+    background: linear-gradient(135deg, rgba(255, 20, 147, 0.15), rgba(199, 21, 133, 0.15));
+}
+
 </style>
 
 <script>
