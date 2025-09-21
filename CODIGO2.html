@@ -7080,39 +7080,7 @@ function openItemSelector(slot) {
 
 </style>
 
-<script>
-// Script para inicializar los tabs adicionales cuando se carga la página
-document.addEventListener('DOMContentLoaded', function() {
-    // Delay para asegurar que otros scripts estén cargados
-    setTimeout(() => {
-        if (typeof initializeAdditionalTabs === 'function') {
-            initializeAdditionalTabs();
-        } else if (window.addPandunkAdditional?.initializeAdditionalTabs) {
-            window.addPandunkAdditional.initializeAdditionalTabs();
-        }
-        
-        // Marcar tabs que tienen contenido
-        updateTabContentIndicators();
-    }, 1000);
-});
 
-function updateTabContentIndicators() {
-    // Marcar tab de categorías si hay modificadores aplicados
-    const categoriesTab = document.querySelector('[onclick="showTab(\'categories\')"]');
-    if (categoriesTab && window.addPandunkAdditional?.appliedRaceModifiers) {
-        categoriesTab.classList.add('has-content');
-    }
-    
-    // Marcar tab de compañeros si hay compañeros
-    const companionsTab = document.querySelector('[onclick="showTab(\'companions\')"]');
-    if (companionsTab && window.addPandunkAdditional?.companionsList?.length > 0) {
-        companionsTab.classList.add('has-content');
-    }
-}
-
-// Actualizar indicadores periódicamente
-setInterval(updateTabContentIndicators, 5000);
-</script>
 
 // ===========================================
 // CONTINUACIÓN SCRIPTS COMPLETOS AD&D 2.PANDUNK
@@ -8393,7 +8361,41 @@ function openItemSelector(slot) {
 </main>
     </div>
 
-    <script>
+    
+<script>
+// Script para inicializar los tabs adicionales cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    // Delay para asegurar que otros scripts estén cargados
+    setTimeout(() => {
+        if (typeof initializeAdditionalTabs === 'function') {
+            initializeAdditionalTabs();
+        } else if (window.addPandunkAdditional?.initializeAdditionalTabs) {
+            window.addPandunkAdditional.initializeAdditionalTabs();
+        }
+        
+        // Marcar tabs que tienen contenido
+        updateTabContentIndicators();
+    }, 1000);
+});
+
+function updateTabContentIndicators() {
+    // Marcar tab de categorías si hay modificadores aplicados
+    const categoriesTab = document.querySelector('[onclick="showTab(\'categories\')"]');
+    if (categoriesTab && window.addPandunkAdditional?.appliedRaceModifiers) {
+        categoriesTab.classList.add('has-content');
+    }
+    
+    // Marcar tab de compañeros si hay compañeros
+    const companionsTab = document.querySelector('[onclick="showTab(\'companions\')"]');
+    if (companionsTab && window.addPandunkAdditional?.companionsList?.length > 0) {
+        companionsTab.classList.add('has-content');
+    }
+}
+
+// Actualizar indicadores periódicamente
+setInterval(updateTabContentIndicators, 5000);
+</script>
+<script>
         // Funciones básicas para el funcionamiento
         function showTab(tabName, element) {
             // Ocultar todos los tabs
@@ -8512,5 +8514,6 @@ function openItemSelector(slot) {
         function updateFromLevel() { console.log("Update from level"); }
         function updateSavingThrows() { console.log("Update saving throws"); }
     </script>
+</div>
 </body>
 </html>
