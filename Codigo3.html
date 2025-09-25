@@ -1,0 +1,1732 @@
+<button onclick="setAbilityAverage('intelligence')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="intelligence-benefits" style="color: #a0aec0; font-size: 0.8rem;">Idiomas: 2, Conjuros: Normal, Inmunidad: Ninguna</div>
+                            </div>
+                        </div>
+
+                        <!-- Wisdom -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #38b2ac; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="wisdom-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🕯️ Sabiduría</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Intuición y percepción</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="wisdom-base" min="3" max="25" value="10" onchange="updateAbilityScore('wisdom')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="wisdom-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="wisdom-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="wisdom-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="wisdom-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('wisdom', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('wisdom', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('wisdom')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="wisdom-benefits" style="color: #a0aec0; font-size: 0.8rem;">Conjuros divinos: 0, Salvaciones mentales: +0</div>
+                            </div>
+                        </div>
+
+                        <!-- Charisma -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #ed64a6; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="charisma-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🌟 Carisma</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Personalidad y liderazgo</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="charisma-base" min="3" max="25" value="10" onchange="updateAbilityScore('charisma')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="charisma-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="charisma-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="charisma-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="charisma-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('charisma', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('charisma', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('charisma')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="charisma-benefits" style="color: #a0aec0; font-size: 0.8rem;">Lealtad: 0, Reacción: 0, Seguidores: 0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate All Button -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button onclick="generateAllAbilities()" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; padding: 1rem 2rem; border-radius: 12px; color: white; cursor: pointer; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);">
+                        <i class="fas fa-dice"></i>
+                        Generar Todas las Habilidades (4d6)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Placeholder tabs for now -->
+            <div id="categories-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-scroll text-primary"></i>
+                    Categorías
+                </h2>
+                <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-top: 3rem;">
+                    <i class="fas fa-construction"></i>
+                    Tab de Categorías - En construcción
+                </p>
+                <p style="text-align: center; color: #a0aec0;">
+                    Este tab mostrará información detallada de las clases seleccionadas en el sidebar.
+                </p>
+            </div>
+
+            <div id="combat-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-sword text-primary"></i>
+                    Combate
+                </h2>
+                <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-top: 3rem;">
+                    <i class="fas fa-construction"></i>
+                    Tab de Combate - En construcción
+                </p>
+                <p style="text-align: center; color: #a0aec0;">
+                    Este tab incluirá CA, GACO, armas, armaduras y acciones de combate.
+                </p>
+            </div>
+
+            <div id="skills-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-tools text-primary"></i>
+                    Pericias
+                </h2>
+                <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-top: 3rem;">
+                    <i class="fas fa-construction"></i>
+                    Tab de Pericias - En construcción
+                </p>
+                <p style="text-align: center; color: #a0aec0;">
+                    Este tab incluirá pericias generales, habilidades de ladrón y competencias con armas.
+                </p>
+            </div>
+
+            <div id="spells-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-magic text-primary"></i>
+                    Conjuros
+                </h2>
+                <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-top: 3rem;">
+                    <i class="fas fa-construction"></i>
+                    Tab de Conjuros - En construcción
+                </p>
+                <p style="text-align: center; color: #a0aec0;">
+                    Este tab incluirá slots de conjuros, grimorio y sistema de lanzamiento.
+                </p>
+            </div>
+
+            <div id="companions-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-paw text-primary"></i>
+                    Compañeros
+                </h2>
+                <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-top: 3rem;">
+                    <i class="fas fa-construction"></i>
+                    Tab de Compañeros - En construcción
+                </p>
+                <p style="text-align: center; color: #a0aec0;">
+                    Este tab incluirá compañeros animales, humanoides y mágicos.
+                </p>
+            </div>
+
+            <div id="equipment-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-backpack text-primary"></i>
+                    Equipo
+                </h2>
+                <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-top: 3rem;">
+                    <i class="fas fa-construction"></i>
+                    Tab de Equipo - En construcción
+                </p>
+                <p style="text-align: center; color: #a0aec0;">
+                    Este tab incluirá inventario completo, armas, armaduras y objetos mágicos.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Global character data
+        let characterData = {
+            basic: {
+                name: '',
+                player: '',
+                race: '',
+                alignment: 'Neutral Auténtico',
+                height: 175,
+                religion: '',
+                experience: 0,
+                level: 1
+            },
+            abilities: {
+                strength: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                dexterity: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                constitution: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                intelligence: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                wisdom: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                charisma: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' }
+            },
+            classes: {
+                primary: '',
+                secondary: '',
+                tertiary: ''
+            },
+            background: '',
+            savingThrows: {
+                death: { base: 14, mod1: 0, mod2: 0, total: 14 },
+                wands: { base: 16, mod1: 0, mod2: 0, total: 16 },
+                petrification: { base: 12, mod1: 0, mod2: 0, total: 12 },
+                breath: { base: 17, mod1: 0, mod2: 0, total: 17 },
+                spells: { base: 17, mod1: 0, mod2: 0, total: 17 }
+            }
+        };
+
+        // Racial modifiers (AD&D 2e)
+        const racialModifiers = {
+            'Humano': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
+            'Elfo': { str: 0, dex: 1, con: -1, int: 0, wis: 0, cha: 0 },
+            'Enano': { str: 0, dex: 0, con: 1, int: 0, wis: 0, cha: -1 },
+            'Halfling': { str: -1, dex: 1, con: 0, int: 0, wis: 0, cha: 0 },
+            'Gnomo': { str: 0, dex: 0, con: 1, int: 0, wis: 0, cha: 0 },
+            'Semielfos': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
+            'Semiorcos': { str: 1, dex: 0, con: 1, int: -1, wis: 0, cha: -2 }
+        };
+
+        // Background modifiers
+        const backgroundModifiers = {
+            'Soldado': { str: 1, dex: 0, con: 1, int: 0, wis: 0, cha: 0 },
+            'Noble': { str: 0, dex: 0, con: 0, int: 1, wis: 0, cha: 1 },
+            'Erudito': { str: 0, dex: 0, con: 0, int: 2, wis: 0, cha: 0 },
+            'Artesano': { str: 1, dex: 1, con: 0, int: 0, wis: 0, cha: 0 },
+            'Explorador': { str: 0, dex: 1, con: 0, int: 0, wis: 1, cha: 0 },
+            'Mercader': { str: 0, dex: 0, con: 0, int: 1, wis: 0, cha: 1 }
+        };
+
+        // XP tables (simplified - Warrior progression)
+        const xpTable = [
+            0, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000,
+            750000, 1000000, 1250000, 1500000, 1750000, 2000000, 2250000, 2500000, 2750000, 3000000
+        ];
+
+        // Tab Management
+        function showTab(tabName, button) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            button.classList.add('active');
+
+            // Dispatch tab change event
+            document.dispatchEvent(new CustomEvent('tabChanged', { detail: tabName }));
+        }
+
+        // Dropdown Management
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const header = dropdown.previousElementSibling;
+            const icon = header.querySelector('i');
+            
+            dropdown.classList.toggle('show');
+            
+            if (dropdown.classList.contains('show')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Class Selection
+        function selectClass(category, className) {
+            characterData.classes[category] = className;
+            
+            // Update header text
+            const header = document.getElementById(category + '-dropdown-header');
+            const span = header.querySelector('span');
+            
+            if (className === 'Ninguna') {
+                span.textContent = getDropdownText(category);
+            } else {
+                span.textContent = getClassIcon(className) + ' ' + className;
+            }
+            
+            // Update selected item
+            const dropdown = document.getElementById(category + '-dropdown');
+            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            event.target.classList.add('selected');
+            
+            // Close dropdown
+            dropdown.classList.remove('show');
+            
+            // Update character display
+            updateCharacterDisplay();
+            updateManaCards();
+            updateAllBasicStats();
+        }
+
+        function getDropdownText(category) {
+            const texts = {
+                'primary': '🏛️ Categoría Principal',
+                'secondary': '⚡ Categoría Secundaria', 
+                'tertiary': '⭐ Categoría Terciaria'
+            };
+            return texts[category] || '';
+        }
+
+        function getClassIcon(className) {
+            const icons = {
+                'Guerrero': '⚔️',
+                'Bárbaro': '🪓',
+                'Paladín': '⛪',
+                'Ranger': '🏹',
+                'Clérigo': '🛡️',
+                'Druida': '🌿',
+                'Mago': '🧙',
+                'Hechicero': '✨',
+                'Ladrón': '🥷',
+                'Bardo': '🎭',
+                'Psiónico': '🧠'
+            };
+            return icons[className] || '⚔️';
+        }
+
+        // Background Selection
+        function selectBackground(background) {
+            characterData.background = background;
+            
+            // Update header
+            const header = document.getElementById('background-dropdown-header');
+            const span = header.querySelector('span');
+            span.textContent = getBackgroundIcon(background) + ' ' + background;
+            
+            // Update selected item
+            const dropdown = document.getElementById('background-dropdown');
+            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            event.target.classList.add('selected');
+            
+            // Close dropdown
+            dropdown.classList.remove('show');
+            
+            // Update abilities
+            updateAllAbilityScores();
+        }
+
+        function getBackgroundIcon(background) {
+            const icons = {
+                'Soldado': '🛡️',
+                'Noble': '👑',
+                'Erudito': '📚',
+                'Artesano': '🔨',
+                'Explorador': '🗺️',
+                'Mercader': '💰'
+            };
+            return icons[background] || '🏰';
+        }
+
+        // Character Display Updates
+        function updateCharacterDisplay() {
+            const name = document.getElementById('character-name').value || 'Nuevo Personaje';
+            const level = document.getElementById('level').value || 1;
+            const primaryClass = characterData.classes.primary || 'Sin clase';
+            
+            document.getElementById('character-display-name').textContent = name;
+            document.getElementById('character-display-info').textContent = `${primaryClass} • Nivel ${level}`;
+            
+            characterData.basic.name = name;
+            characterData.basic.level = parseInt(level);
+        }
+
+        // Size Category Update
+        function updateSizeCategory() {
+            const height = parseInt(document.getElementById('height').value);
+            let size = 'Mediano';
+            
+            if (height < 120) size = 'Pequeño';
+            else if (height > 200) size = 'Grande';
+            
+            document.getElementById('size-category').value = size;
+            characterData.basic.height = height;
+            
+            // Update size modifiers for all abilities
+            updateAllAbilityScores();
+        }
+
+        // XP and Level Conversion
+        function updateLevelFromXP() {
+            const xp = parseInt(document.getElementById('experience').value) || 0;
+            let level = 1;
+            
+            for (let i = 0; i < xpTable.length; i++) {
+                if (xp >= xpTable[i]) {
+                    level = i + 1;
+                }
+            }
+            
+            document.getElementById('level').value = level;
+            characterData.basic.experience = xp;
+            characterData.basic.level = level;
+            
+            updateXPProgress();
+            updateCharacterDisplay();
+        }
+
+        function updateXPFromLevel() {
+            const level = parseInt(document.getElementById('level').value) || 1;
+            const xp = xpTable[level - 1] || 0;
+            
+            document.getElementById('experience').value = xp;
+            characterData.basic.experience = xp;
+            characterData.basic.level = level;
+            
+            updateXPProgress();
+            updateCharacterDisplay();
+        }
+
+        function convertXPToLevel() {
+            updateLevelFromXP();
+        }
+
+        function updateXPProgress() {
+            const currentXP = parseInt(document.getElementById('experience').value) || 0;
+            const level = parseInt(document.getElementById('level').value) || 1;
+            
+            document.getElementById('current-xp-display').textContent = currentXP.toLocaleString();
+            document.getElementById('current-level-display').textContent = level;
+            
+            if (level < 20) {
+                const nextLevelXP = xpTable[level] || xpTable[xpTable.length - 1];
+                const currentLevelXP = xpTable[level - 1] || 0;
+                const progress = ((currentXP - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100;
+                
+                document.getElementById('xp-progress-bar').style.width = Math.min(Math.max(progress, 0), 100) + '%';
+                document.getElementById('xp-needed-display').textContent = `Necesita ${nextLevelXP.toLocaleString()} XP para nivel ${level + 1}`;
+            } else {
+                document.getElementById('xp-progress-bar').style.width = '100%';
+                document.getElementById('xp-needed-display').textContent = 'Nivel máximo alcanzado';
+            }
+        }
+
+        // Mana Cards Management
+        function updateManaCards() {
+            const primary = characterData.classes.primary;
+            const secondary = characterData.classes.secondary;
+            const tertiary = characterData.classes.tertiary;
+            
+            // Hide all mana cards initially
+            document.getElementById('arcane-mana-card').style.display = 'none';
+            document.getElementById('divine-mana-card').style.display = 'none';
+            document.getElementById('psp-card').style.display = 'none';
+            
+            // Show relevant mana cards
+            const arcaneClasses = ['Mago', 'Hechicero', 'Bardo'];
+            const divineClasses = ['Clérigo', 'Druida', 'Paladín', 'Ranger'];
+            const psionicClasses = ['Psiónico'];
+            
+            if (arcaneClasses.includes(primary) || arcaneClasses.includes(secondary) || arcaneClasses.includes(tertiary)) {
+                document.getElementById('arcane-mana-card').style.display = 'block';
+            }
+            
+            if (divineClasses.includes(primary) || divineClasses.includes(secondary) || divineClasses.includes(tertiary)) {
+                document.getElementById('divine-mana-card').style.display = 'block';
+            }
+            
+            if (psionicClasses.includes(primary) || psionicClasses.includes(secondary) || psionicClasses.includes(tertiary)) {
+                document.getElementById('psp-card').style.display = 'block';
+            }
+        }
+
+        // Ability Score Management
+        function rollAbility(ability, diceType) {
+            let total = 0;
+            
+            if (diceType === '4d6') {
+                // Roll 4d6, drop lowest
+                let rolls = [];
+                for (let i = 0; i < 4; i++) {
+                    rolls.push(Math.floor(Math.random() * 6) + 1);
+                }
+                rolls.sort((a, b) => b - a);
+                total = rolls[0] + rolls[1] + rolls[2];
+                characterData.abilities[ability].method = 'rolled4d6';
+                document.getElementById(ability + '-method').textContent = '🎲';
+            } else if (diceType === '3d6') {
+                // Roll 3d6
+                for (let i = 0; i < 3; i++) {
+                    total += Math.floor(Math.random() * 6) + 1;
+                }
+                characterData.abilities[ability].method = 'rolled3d6';
+                document.getElementById(ability + '-method').textContent = '🎲';
+            }
+            
+            document.getElementById(ability + '-base').value = total;
+            updateAbilityScore(ability);
+        }
+
+        function setAbilityAverage(ability) {
+            document.getElementById(ability + '-base').value = 11;
+            characterData.abilities[ability].method = 'average';
+            document.getElementById(ability + '-method').textContent = '📊';
+            updateAbilityScore(ability);
+        }
+
+        function updateAbilityScore(ability) {
+            const base = parseInt(document.getElementById(ability + '-base').value) || 10;
+            const race = document.getElementById('race').value || '';
+            const background = characterData.background || '';
+            const height = parseInt(document.getElementById('height').value) || 175;
+            
+            // Calculate modifiers
+            const racial = racialModifiers[race] ? racialModifiers[race][ability.substring(0, 3)] || 0 : 0;
+            const backgroundMod = backgroundModifiers[background] ? backgroundModifiers[background][ability.substring(0, 3)] || 0 : 0;
+            const sizeMod = getSizeModifier(ability, height);
+            
+            const final = base + racial + backgroundMod + sizeMod;
+            
+            // Update display
+            document.getElementById(ability + '-racial').textContent = racial >= 0 ? '+' + racial : racial;
+            document.getElementById(ability + '-background').textContent = backgroundMod >= 0 ? '+' + backgroundMod : backgroundMod;
+            document.getElementById(ability + '-size').textContent = sizeMod >= 0 ? '+' + sizeMod : sizeMod;
+            document.getElementById(ability + '-final').textContent = final;
+            
+            // Update benefits
+            updateAbilityBenefits(ability, final);
+            
+            // Store in character data
+            characterData.abilities[ability] = {
+                base: base,
+                racial: racial,
+                background: backgroundMod,
+                size: sizeMod,
+                final: final,
+                method: characterData.abilities[ability].method
+            };
+            
+            // Trigger stats changed event
+            document.dispatchEvent(new CustomEvent('statsChanged'));
+        }
+
+        function getSizeModifier(ability, height) {
+            // Size modifiers for abilities (simplified)
+            if (height < 120) { // Small
+                if (ability === 'strength') return -1;
+                if (ability === 'dexterity') return +1;
+            } else if (height > 200) { // Large
+                if (ability === 'strength') return +2;
+                if (ability === 'dexterity') return -1;
+            }
+            return 0;
+        }
+
+        function updateAbilityBenefits(ability, score) {
+            let benefits = '';
+            
+            switch (ability) {
+                case 'strength':
+                    const hitBonus = Math.floor((score - 15) / 2);
+                    const damageBonus = Math.floor((score - 15) / 2);
+                    const carryCapacity = getCarryingCapacity(score);
+                    benefits = `Ataque: ${hitBonus >= 0 ? '+' : ''}${hitBonus}, Daño: ${damageBonus >= 0 ? '+' : ''}${damageBonus}, Puertas: ${Math.min(score - 3, 19)}/20, Cargar: ${carryCapacity} lb`;
+                    break;
+                    
+                case 'dexterity':
+                    const acBonus = Math.floor((score - 15) / 2);
+                    const rangedBonus = Math.floor((score - 15) / 2);
+                    const initBonus = Math.floor((score - 15) / 2);
+                    benefits = `CA: ${acBonus >= 0 ? '+' : ''}${acBonus}, Ataque a distancia: ${rangedBonus >= 0 ? '+' : ''}${rangedBonus}, Iniciativa: ${initBonus >= 0 ? '+' : ''}${initBonus}`;
+                    break;
+                    
+                case 'constitution':
+                    const hpBonus = Math.floor((score - 15) / 2);
+                    const resurrection = Math.min(70 + (score - 10) * 2, 99);
+                    benefits = `HP: ${hpBonus >= 0 ? '+' : ''}${hpBonus}, Resistencia: ${score >= 16 ? 'Alta' : 'Normal'}, Resurrección: ${resurrection}%`;
+                    break;
+                    
+                case 'intelligence':
+                    const languages = Math.max(2, 2 + Math.floor((score - 10) / 2));
+                    const spellImmunity = score >= 19 ? 'Nivel 1-2' : score >= 18 ? 'Nivel 1' : 'Ninguna';
+                    benefits = `Idiomas: ${languages}, Conjuros: ${score >= 9 ? 'Normal' : 'Limitado'}, Inmunidad: ${spellImmunity}`;
+                    break;
+                    
+                case 'wisdom':
+                    const bonusSpells = Math.max(0, Math.floor((score - 13) / 2));
+                    const mentalSave = Math.floor((score - 15) / 2);
+                    benefits = `Conjuros divinos: ${bonusSpells}, Salvaciones mentales: ${mentalSave >= 0 ? '+' : ''}${mentalSave}`;
+                    break;
+                    
+                case 'charisma':
+                    const loyalty = Math.floor((score - 10) / 2);
+                    const reaction = Math.floor((score - 10) / 2);
+                    const followers = Math.max(0, Math.floor((score - 12) / 2));
+                    benefits = `Lealtad: ${loyalty}, Reacción: ${reaction >= 0 ? '+' : ''}${reaction}, Seguidores: ${followers}`;
+                    break;
+            }
+            
+            document.getElementById(ability + '-benefits').textContent = benefits;
+        }
+
+        function getCarryingCapacity(strength) {
+            const capacityTable = {
+                3: 5, 4: 10, 5: 10, 6: 20, 7: 20, 8: 35, 9: 35, 10: 40,
+                11: 40, 12: 45, 13: 45, 14: 55, 15: 55, 16: 70, 17: 85,
+                18: 110, 19: 185, 20: 335, 21: 485, 22: 635, 23: 785, 24: 935, 25: 1235
+            };
+            return capacityTable[Math.min(strength, 25)] || 40;
+        }
+
+        function generateAllAbilities() {
+            const abilities = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+            abilities.forEach(ability => {
+                rollAbility(ability, '4d6');
+            });
+        }
+
+        function updateAllAbilityScores() {
+            const abilities = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+            abilities.forEach(ability => {
+                updateAbilityScore(ability);
+            });
+        }
+
+        // Saving Throws
+        function updateSavingThrows() {
+            const saves = ['death', 'wands', 'petrification', 'breath', 'spells'];
+            
+            saves.forEach(save => {
+                const base = parseInt(document.getElementById('save-' + save + '-base').textContent) || 0;
+                const mod1 = parseInt(document.getElementById('save-' + save + '-mod1').value) || 0;
+                const mod2 = parseInt(document.getElementById('save-' + save + '-mod2').value) || 0;
+                const total = base + mod1 + mod2;
+                
+                document.getElementById('save-' + save + '-total').textContent = total;
+                
+                characterData.savingThrows[save] = {
+                    base: base,
+                    mod1: mod1,
+                    mod2: mod2,
+                    total: total
+                };
+            });
+        }
+
+        function updateAllBasicStats() {
+            updateSavingThrows();
+            updateAllAbilityScores();
+            updateXPProgress();
+        }
+
+        // Header Actions
+        function saveCharacter() {
+            // Update character data from form
+            characterData.basic.name = document.getElementById('character-name').value;
+            characterData.basic.player = document.getElementById('player-name').value;
+            characterData.basic.race = document.getElementById('race').value;
+            characterData.basic.alignment = document.getElementById('alignment').value;
+            characterData.basic.height = parseInt(document.getElementById('height').value);
+            characterData.basic.religion = document.getElementById('religion').value;
+            characterData.basic.experience = parseInt(document.getElementById('experience').value);
+            characterData.basic.level = parseInt(document.getElementById('level').value);
+            
+            // Store in localStorage
+            localStorage.setItem('addCharacterData', JSON.stringify(characterData));
+            
+            // Show notification
+            showNotification('Personaje guardado exitosamente', 'success');
+        }
+
+        function rollStats() {
+            generateAllAbilities();
+            showNotification('Todas las habilidades generadas con 4d6', 'success');
+        }
+
+        function rollHP() {
+            const level = parseInt(document.getElementById('level').value) || 1;
+            const constitution = characterData.abilities.constitution.final || 10;
+            const conBonus = Math.floor((constitution - 15) / 2);
+            
+            // Simple HP calculation (d8 hit die for average class)
+            let totalHP = 8; // Max at level 1
+            for (let i = 2; i <= level; i++) {
+                totalHP += Math.floor(Math.random() * 8) + 1;
+            }
+            totalHP += conBonus * level;
+            totalHP = Math.max(1, totalHP);
+            
+            document.getElementById('max-hp').value = totalHP;
+            document.getElementById('current-hp').value = totalHP;
+            
+            showNotification(`HP generado: ${totalHP} (${level}d8 + ${conBonus * level})`, 'success');
+        }
+
+        function exportCharacter() {
+            const dataStr = JSON.stringify(characterData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `${characterData.basic.name || 'personaje'}_${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            showNotification('Personaje exportado exitosamente', 'success');
+        }
+
+        // Utility Functions
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 90px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                color: white;
+                font-weight: bold;
+                z-index: 1001;
+                max-width: 300px;
+                animation: slideIn 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            `;
+            
+            const colors = {
+                'success': 'linear-gradient(135deg, #48bb78, #38a169)',
+                'error': 'linear-gradient(135deg, #f56565, #e53e3e)',
+                'info': 'linear-gradient(135deg, #4299e1, #3182ce)',
+                'warning': 'linear-gradient(135deg, #ed8936, #dd6b20)'
+            };
+            
+            notification.style.background = colors[type] || colors.info;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Load saved character data
+        function loadCharacter() {
+            const saved = localStorage.getItem('addCharacterData');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    characterData = { ...characterData, ...data };
+                    
+                    // Populate form fields
+                    if (data.basic) {
+                        document.getElementById('character-name').value = data.basic.name || '';
+                        document.getElementById('player-name').value = data.basic.player || '';
+                        document.getElementById('race').value = data.basic.race || '';
+                        document.getElementById('alignment').value = data.basic.alignment || 'Neutral Auténtico';
+                        document.getElementById('height').value = data.basic.height || 175;
+                        document.getElementById('religion').value = data.basic.religion || '';
+                        document.getElementById('experience').value = data.basic.experience || 0;
+                        document.getElementById('level').value = data.basic.level || 1;
+                    }
+                    
+                    // Update displays
+                    updateCharacterDisplay();
+                    updateSizeCategory();
+                    updateAllBasicStats();
+                    
+                    console.log('Character data loaded successfully');
+                } catch (e) {
+                    console.error('Error loading character data:', e);
+                }
+            }
+        }
+
+        // Add notification animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCharacter();
+            updateAllBasicStats();
+            updateManaCards();
+            
+            // Initialize saving throws
+            updateSavingThrows();
+            
+            console.log('AD&D 2e Character Sheet initialized');
+        });
+
+        // Auto-save on changes
+        let saveTimeout;
+        document.addEventListener('input', function() {
+            clearTimeout(saveTimeout);
+            saveTimeout = setTimeout(() => {
+                saveCharacter();
+            }, 2000); // Auto-save after 2 seconds of inactivity
+        });
+    </script>
+</body>
+</html>                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-petrification-total">12</div>
+                        </div>
+                        
+                        <!-- Aliento de Dragón -->
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <div style="color: #e2e8f0;">Aliento de Dragón</div>
+                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-breath-base">17</div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-breath-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-breath-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-breath-total">17</div>
+                        </div>
+                        
+                        <!-- Conjuros -->
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <div style="color: #e2e8f0;">Conjuros</div>
+                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-spells-base">17</div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-spells-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-spells-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-spells-total">17</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-cards mt-3">
+                    <h3 class="mb-2 text-center">
+                        <i class="fas fa-heart text-danger"></i>
+                        Estadísticas Vitales
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <!-- HP Card -->
+                        <div style="background: linear-gradient(135deg, #e53e3e, #c53030); border-radius: 12px; padding: 1.5rem; color: white; text-align: center;">
+                            <h4 style="margin: 0 0 1rem 0;"><i class="fas fa-heart"></i> Puntos de Golpe</h4>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <input type="number" id="current-hp" min="0" value="8" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                                <span style="font-size: 1.5rem; font-weight: bold;">/</span>
+                                <input type="number" id="max-hp" min="1" value="8" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Bonificación Manual:</label>
+                                <input type="number" id="hp-bonus" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center;">
+                            </div>
+                        </div>
+
+                        <!-- Arcane Mana Card (Wizard/Sorcerer) -->
+                        <div id="arcane-mana-card" style="background: linear-gradient(135deg, #805ad5, #6b46c1); border-radius: 12px; padding: 1.5rem; color: white; text-align: center; display: none;">
+                            <h4 style="margin: 0 0 1rem 0;"><i class="fas fa-magic"></i> Maná Arcano</h4>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <input type="number" id="current-arcane-mana" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                                <span style="font-size: 1.5rem; font-weight: bold;">/</span>
+                                <input type="number" id="max-arcane-mana" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                            </div>
+                        </div>
+
+                        <!-- Divine Mana Card (Cleric/Druid) -->
+                        <div id="divine-mana-card" style="background: linear-gradient(135deg, #4299e1, #3182ce); border-radius: 12px; padding: 1.5rem; color: white; text-align: center; display: none;">
+                            <h4 style="margin: 0 0 1rem 0;"><i class="fas fa-pray"></i> Maná Divino</h4>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <input type="number" id="current-divine-mana" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                                <span style="font-size: 1.5rem; font-weight: bold;">/</span>
+                                <input type="number" id="max-divine-mana" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                            </div>
+                        </div>
+
+                        <!-- PSP Card (Psionics) -->
+                        <div id="psp-card" style="background: linear-gradient(135deg, #ed64a6, #d53f8c); border-radius: 12px; padding: 1.5rem; color: white; text-align: center; display: none;">
+                            <h4 style="margin: 0 0 1rem 0;"><i class="fas fa-brain"></i> Pool PSP</h4>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <input type="number" id="current-psp" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                                <span style="font-size: 1.5rem; font-weight: bold;">/</span>
+                                <input type="number" id="max-psp" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XP Progress -->
+                <div class="xp-progress mt-3">
+                    <h3 class="mb-2 text-center">
+                        <i class="fas fa-star text-warning"></i>
+                        Progresión de Experiencia
+                    </h3>
+                    
+                    <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                            <div style="text-align: center;">
+                                <div style="color: #cbd5e0; font-size: 0.9rem;">XP Actual</div>
+                                <div style="color: #4299e1; font-size: 1.5rem; font-weight: bold;" id="current-xp-display">0</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <button onclick="convertXPToLevel()" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; padding: 0.8rem 1.2rem; border-radius: 8px; color: white; cursor: pointer; font-weight: bold;">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <br>Convertir
+                                </button>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: #cbd5e0; font-size: 0.9rem;">Nivel Actual</div>
+                                <div style="color: #48bb78; font-size: 1.5rem; font-weight: bold;" id="current-level-display">1</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                <span style="color: #cbd5e0; font-size: 0.9rem;">Progreso al siguiente nivel</span>
+                                <span style="color: #e2e8f0; font-size: 0.9rem;" id="xp-needed-display">Necesita 2000 XP para nivel 2</span>
+                            </div>
+                            <div style="width: 100%; height: 12px; background: rgba(0, 0, 0, 0.3); border-radius: 6px; overflow: hidden;">
+                                <div id="xp-progress-bar" style="height: 100%; background: linear-gradient(90deg, #4299e1, #48bb78); width: 0%; transition: width 0.3s ease;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Abilities Tab -->
+            <div id="abilities-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-fist-raised text-primary"></i>
+                    Habilidades
+                </h2>
+                
+                <div style="background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <!-- Strength -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #e53e3e; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="strength-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">💪 Fuerza</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Poder físico y musculatura</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="strength-base" min="3" max="25" value="10" onchange="updateAbilityScore('strength')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="strength-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="strength-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="strength-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="strength-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('strength', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('strength', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('strength')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="strength-benefits" style="color: #a0aec0; font-size: 0.8rem;">Ataque: +0, Daño: +0, Puertas: 1-2, Cargar: 40 lb</div>
+                            </div>
+                        </div>
+
+                        <!-- Dexterity -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #48bb78; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="dexterity-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🏃 Destreza</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Agilidad y coordinación</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="dexterity-base" min="3" max="25" value="10" onchange="updateAbilityScore('dexterity')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="dexterity-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="dexterity-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="dexterity-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="dexterity-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('dexterity', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('dexterity', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('dexterity')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="dexterity-benefits" style="color: #a0aec0; font-size: 0.8rem;">CA: +0, Ataque a distancia: +0, Iniciativa: +0</div>
+                            </div>
+                        </div>
+
+                        <!-- Constitution -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #f56565; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="constitution-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🛡️ Constitución</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Resistencia y salud</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="constitution-base" min="3" max="25" value="10" onchange="updateAbilityScore('constitution')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="constitution-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="constitution-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="constitution-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="constitution-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('constitution', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('constitution', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('constitution')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="constitution-benefits" style="color: #a0aec0; font-size: 0.8rem;">HP: +0, Resistencia: Normal, Resurrección: 70%</div>
+                            </div>
+                        </div>
+
+                        <!-- Intelligence -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #805ad5; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="intelligence-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🧠 Inteligencia</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Razonamiento y memoria</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="intelligence-base" min="3" max="25" value="10" onchange="updateAbilityScore('intelligence')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="intelligence-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="intelligence-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="intelligence-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="intelligence-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('intelligence', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('intelligence', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('intelligence')" style="<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD&D 2e Pandunk</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            color: #e2e8f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            border-bottom: 2px solid #4a5568;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f7fafc;
+        }
+
+        .logo i {
+            color: #f6ad55;
+            font-size: 1.8rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .header-btn {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+        }
+
+        .header-btn.save { background: linear-gradient(135deg, #48bb78, #38a169); }
+        .header-btn.export { background: linear-gradient(135deg, #ed8936, #dd6b20); }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: linear-gradient(180deg, #1a202c, #2d3748);
+            border-right: 2px solid #4a5568;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .character-card {
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .character-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f6ad55, #ed8936);
+            margin: 0 auto 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .character-name {
+            color: #f7fafc;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .character-level {
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .dropdown-header {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .dropdown-header:hover {
+            background: linear-gradient(135deg, #718096, #4a5568);
+            transform: translateX(4px);
+        }
+
+        .dropdown-header.primary { border-left: 4px solid #f6ad55; }
+        .dropdown-header.secondary { border-left: 4px solid #4299e1; }
+        .dropdown-header.tertiary { border-left: 4px solid #9f7aea; }
+        .dropdown-header.background { border-left: 4px solid #48bb78; }
+
+        .dropdown-content {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            padding: 0.5rem;
+            display: none;
+        }
+
+        .dropdown-content.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .dropdown-item {
+            padding: 0.6rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 0.3rem;
+            transition: all 0.3s ease;
+            color: #cbd5e0;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(66, 153, 225, 0.2);
+            color: #e2e8f0;
+            transform: translateX(4px);
+        }
+
+        .dropdown-item.selected {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: linear-gradient(180deg, #16213e, #1a1a2e);
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            color: #cbd5e0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: fit-content;
+        }
+
+        .tab-btn:hover {
+            background: rgba(66, 153, 225, 0.2);
+            color: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+            box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: #e2e8f0;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                border-right: none;
+                border-bottom: 2px solid #4a5568;
+            }
+            
+            .header {
+                padding: 0.5rem 1rem;
+            }
+            
+            .header-actions {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .tab-navigation {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-primary { color: #4299e1; }
+        .text-success { color: #48bb78; }
+        .text-warning { color: #ed8936; }
+        .text-danger { color: #f56565; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .hidden { display: none; }
+        .visible { display: block; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-dice-d20"></i>
+            <span>AD&D 2e Pandunk</span>
+        </div>
+        <div class="header-actions">
+            <button class="header-btn save" onclick="saveCharacter()">
+                <i class="fas fa-save"></i>
+                Guardar
+            </button>
+            <button class="header-btn" onclick="rollStats()">
+                <i class="fas fa-dice"></i>
+                Roll Stats
+            </button>
+            <button class="header-btn" onclick="rollHP()">
+                <i class="fas fa-heart"></i>
+                Roll HP
+            </button>
+            <button class="header-btn export" onclick="exportCharacter()">
+                <i class="fas fa-download"></i>
+                Exportar
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Character Card -->
+            <div class="character-card">
+                <div class="character-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="character-name" id="character-display-name">Nuevo Personaje</div>
+                <div class="character-level" id="character-display-info">Selecciona una clase • Nivel 1</div>
+            </div>
+
+            <!-- Class Dropdowns -->
+            <div class="dropdown-section">
+                <div class="dropdown-header primary" id="primary-dropdown-header" onclick="toggleDropdown('primary-dropdown')">
+                    <span>🏛️ Categoría Principal</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-content" id="primary-dropdown">
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Guerrero')">⚔️ Guerrero</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Bárbaro')">🪓 Bárbaro</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Paladín')">⛪ Paladín</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Ranger')">🏹 Ranger</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Clérigo')">🛡️ Clérigo</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Druida')">🌿 Druida</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Mago')">🧙 Mago</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Hechicero')">✨ Hechicero</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Ladrón')">🥷 Ladrón</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Bardo')">🎭 Bardo</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Psiónico')">🧠 Psiónico</div>
+                </div>
+            </div>
+
+            <div class="dropdown-section">
+                <div class="dropdown-header secondary" id="secondary-dropdown-header" onclick="toggleDropdown('secondary-dropdown')">
+                    <span>⚡ Categoría Secundaria</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-content" id="secondary-dropdown">
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Ninguna')">❌ Ninguna</div>
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Guerrero')">⚔️ Guerrero</div>
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Ladrón')">🥷 Ladrón</div>
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Mago')">🧙 Mago</div>
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Clérigo')">🛡️ Clérigo</div>
+                </div>
+            </div>
+
+            <div class="dropdown-section">
+                <div class="dropdown-header tertiary" id="tertiary-dropdown-header" onclick="toggleDropdown('tertiary-dropdown')">
+                    <span>⭐ Categoría Terciaria</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-content" id="tertiary-dropdown">
+                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Ninguna')">❌ Ninguna</div>
+                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Guerrero')">⚔️ Guerrero</div>
+                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Ladrón')">🥷 Ladrón</div>
+                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Mago')">🧙 Mago</div>
+                </div>
+            </div>
+
+            <div class="dropdown-section">
+                <div class="dropdown-header background" id="background-dropdown-header" onclick="toggleDropdown('background-dropdown')">
+                    <span>🏰 Trasfondos</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-content" id="background-dropdown">
+                    <div class="dropdown-item" onclick="selectBackground('Soldado')">🛡️ Soldado</div>
+                    <div class="dropdown-item" onclick="selectBackground('Noble')">👑 Noble</div>
+                    <div class="dropdown-item" onclick="selectBackground('Erudito')">📚 Erudito</div>
+                    <div class="dropdown-item" onclick="selectBackground('Artesano')">🔨 Artesano</div>
+                    <div class="dropdown-item" onclick="selectBackground('Explorador')">🗺️ Explorador</div>
+                    <div class="dropdown-item" onclick="selectBackground('Mercader')">💰 Mercader</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Tab Navigation -->
+            <nav class="tab-navigation">
+                <button class="tab-btn active" onclick="showTab('basic', this)">
+                    <i class="fas fa-user"></i>
+                    Básico
+                </button>
+                <button class="tab-btn" onclick="showTab('abilities', this)">
+                    <i class="fas fa-fist-raised"></i>
+                    Habilidades
+                </button>
+                <button class="tab-btn" onclick="showTab('categories', this)">
+                    <i class="fas fa-scroll"></i>
+                    Categorías
+                </button>
+                <button class="tab-btn" onclick="showTab('combat', this)">
+                    <i class="fas fa-sword"></i>
+                    Combate
+                </button>
+                <button class="tab-btn" onclick="showTab('skills', this)">
+                    <i class="fas fa-tools"></i>
+                    Pericias
+                </button>
+                <button class="tab-btn" onclick="showTab('spells', this)">
+                    <i class="fas fa-magic"></i>
+                    Conjuros
+                </button>
+                <button class="tab-btn" onclick="showTab('companions', this)">
+                    <i class="fas fa-paw"></i>
+                    Compañeros
+                </button>
+                <button class="tab-btn" onclick="showTab('equipment', this)">
+                    <i class="fas fa-backpack"></i>
+                    Equipo
+                </button>
+            </nav>
+
+            <!-- Basic Info Tab -->
+            <div id="basic-tab" class="tab-content active">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-user text-primary"></i>
+                    Información Básica
+                </h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="character-name">
+                            <i class="fas fa-signature"></i>
+                            Nombre del Personaje
+                        </label>
+                        <input type="text" id="character-name" placeholder="Ej: Nombre del Personaje" onchange="updateCharacterDisplay()">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="player-name">
+                            <i class="fas fa-user-friends"></i>
+                            Jugador
+                        </label>
+                        <input type="text" id="player-name" placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="race">
+                            <i class="fas fa-users"></i>
+                            Raza
+                        </label>
+                        <select id="race" onchange="updateCharacterDisplay(); updateAllBasicStats();">
+                            <option value="">Selecciona Raza</option>
+                            <option value="Humano">Humano</option>
+                            <option value="Elfo">Elfo</option>
+                            <option value="Enano">Enano</option>
+                            <option value="Halfling">Halfling</option>
+                            <option value="Gnomo">Gnomo</option>
+                            <option value="Semielfos">Semielfo</option>
+                            <option value="Semiorcos">Semiorco</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="alignment">
+                            <i class="fas fa-balance-scale"></i>
+                            Alineamiento
+                        </label>
+                        <select id="alignment">
+                            <option value="Neutral Auténtico">Neutral Auténtico</option>
+                            <option value="Legal Bueno">Legal Bueno</option>
+                            <option value="Legal Neutral">Legal Neutral</option>
+                            <option value="Legal Malvado">Legal Malvado</option>
+                            <option value="Neutral Bueno">Neutral Bueno</option>
+                            <option value="Neutral Malvado">Neutral Malvado</option>
+                            <option value="Caótico Bueno">Caótico Bueno</option>
+                            <option value="Caótico Neutral">Caótico Neutral</option>
+                            <option value="Caótico Malvado">Caótico Malvado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="height">
+                            <i class="fas fa-ruler-vertical"></i>
+                            Altura (cm)
+                        </label>
+                        <input type="number" id="height" min="100" max="300" value="175" onchange="updateSizeCategory()">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="size-category">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                            Tamaño
+                        </label>
+                        <input type="text" id="size-category" value="Mediano" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="religion">
+                            <i class="fas fa-pray"></i>
+                            Religión
+                        </label>
+                        <input type="text" id="religion" placeholder="Sin religión">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">
+                            <i class="fas fa-star"></i>
+                            Experiencia
+                        </label>
+                        <input type="number" id="experience" min="0" value="0" onchange="updateLevelFromXP()">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="level">
+                            <i class="fas fa-level-up-alt"></i>
+                            Nivel
+                        </label>
+                        <input type="number" id="level" min="1" max="20" value="1" onchange="updateXPFromLevel(); updateCharacterDisplay();">
+                    </div>
+                </div>
+
+                <!-- Saving Throws Section -->
+                <div class="saving-throws-section mt-3">
+                    <h3 class="mb-2 text-center">
+                        <i class="fas fa-shield-alt text-warning"></i>
+                        Tiradas de Salvación
+                    </h3>
+                    
+                    <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; font-weight: bold; color: #cbd5e0;">
+                            <div>Tipo de Salvación</div>
+                            <div style="text-align: center;">Base</div>
+                            <div style="text-align: center;">Mod1</div>
+                            <div style="text-align: center;">Mod2</div>
+                            <div style="text-align: center;">Total</div>
+                        </div>
+                        
+                        <!-- Paralisis/Veneno/Muerte -->
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <div style="color: #e2e8f0;">Parálisis/Veneno/Muerte</div>
+                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-death-base">14</div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-death-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-death-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-death-total">14</div>
+                        </div>
+                        
+                        <!-- Cetros/Varas/Varitas -->
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <div style="color: #e2e8f0;">Cetros/Varas/Varitas</div>
+                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-wands-base">16</div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-wands-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-wands-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-wands-total">16</div>
+                        </div>
+                        
+                        <!-- Petrificación/Transformación -->
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                            <div style="color: #e2e8f0;">Petrificación/Transformación</div>
+                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-petrification-base">12</div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-petrification-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center;">
+                                <input type="number" id="save-petrification-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
+                            </div>
+                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-petrification-total">
