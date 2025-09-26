@@ -1,3 +1,2157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD&D 2e Pandunk</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            color: #e2e8f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            border-bottom: 2px solid #4a5568;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f7fafc;
+        }
+
+        .logo i {
+            color: #f6ad55;
+            font-size: 1.8rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .header-btn {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+        }
+
+        .header-btn.save { background: linear-gradient(135deg, #48bb78, #38a169); }
+        .header-btn.export { background: linear-gradient(135deg, #ed8936, #dd6b20); }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: linear-gradient(180deg, #1a202c, #2d3748);
+            border-right: 2px solid #4a5568;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .character-card {
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .character-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f6ad55, #ed8936);
+            margin: 0 auto 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .character-name {
+            color: #f7fafc;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .character-level {
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .dropdown-header {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .dropdown-header:hover {
+            background: linear-gradient(135deg, #718096, #4a5568);
+            transform: translateX(4px);
+        }
+
+        .dropdown-header.primary { border-left: 4px solid #f6ad55; }
+        .dropdown-header.secondary { border-left: 4px solid #4299e1; }
+        .dropdown-header.tertiary { border-left: 4px solid #9f7aea; }
+        .dropdown-header.background { border-left: 4px solid #48bb78; }
+
+        .dropdown-content {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            padding: 0.5rem;
+            display: none;
+        }
+
+        .dropdown-content.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .dropdown-item {
+            padding: 0.6rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 0.3rem;
+            transition: all 0.3s ease;
+            color: #cbd5e0;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(66, 153, 225, 0.2);
+            color: #e2e8f0;
+            transform: translateX(4px);
+        }
+
+        .dropdown-item.selected {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: linear-gradient(180deg, #16213e, #1a1a2e);
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            color: #cbd5e0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: fit-content;
+        }
+
+        .tab-btn:hover {
+            background: rgba(66, 153, 225, 0.2);
+            color: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+            box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: #e2e8f0;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                border-right: none;
+                border-bottom: 2px solid #4a5568;
+            }
+            
+            .header {
+                padding: 0.5rem 1rem;
+            }
+            
+            .header-actions {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .tab-navigation {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-primary { color: #4299e1; }
+        .text-success { color: #48bb78; }
+        .text-warning { color: #ed8936; }
+        .text-danger { color: #f56565; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .hidden { display: none; }
+        .visible { display: block; }
+
+        /* Notification Animations */
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-dice-d20"></i>
+            <span>AD&D 2e Pandunk</span>
+        </div>
+        <div class="header-actions">
+            <button class="header-btn save" onclick="saveCharacter()">
+                <i class="fas fa-save"></i>
+                Guardar
+            </button>
+            <button class="header-btn" onclick="rollStats()">
+                <i class="fas fa-dice"></i>
+                Roll Stats
+            </button>
+            <button class="header-btn" onclick="rollHP()">
+                <i class="fas fa-heart"></i>
+                Roll HP
+            </button>
+            <button class="header-btn export" onclick="exportCharacter()">
+                <i class="fas fa-download"></i>
+                Exportar
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Character Card -->
+            <div class="character-card">
+                <div class="character-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="character-name" id="character-display-name">Nuevo Personaje</div>
+                <div class="character-level" id="character-display-info">Selecciona una clase • Nivel 1</div>
+            </div>
+
+            <!-- Class Dropdowns -->
+            <div class="dropdown-section">
+                <div class="dropdown-header primary" id="primary-dropdown-header" onclick="toggleDropdown('primary-dropdown')">
+                    <span>🏛️ Categoría Principal</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-content" id="primary-dropdown">
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Guerrero')">⚔️ Guerrero</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Bárbaro')">🪓 Bárbaro</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Paladín')">⛪ Paladín</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Ranger')">🏹 Ranger</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Clérigo')">🛡️ Clérigo</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Druida')">🌿 Druida</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Mago')">🧙 Mago</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Hechicero')">✨ Hechicero</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Ladrón')">🥷 Ladrón</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Bardo')">🎭 Bardo</div>
+                    <div class="dropdown-item" onclick="selectClass('primary', 'Psiónico')">🧠 Psiónico</div>
+                </div>
+            </div>
+
+            <div class="dropdown-section">
+                <div class="dropdown-header secondary" id="secondary-dropdown-header" onclick="toggleDropdown('secondary-dropdown')">
+                    <span>⚡ Categoría Secundaria</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-content" id="secondary-dropdown">
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Ninguna')">❌ Ninguna</div>
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Guerrero')">⚔️ Guerrero</div>
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Ladrón')">🥷 Ladrón</div>
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Mago')">🧙 Mago</div>
+                    <div class="dropdown-item" onclick="selectClass('secondary', 'Clérigo')">🛡️ Clérigo</div>
+                </div>
+            </div>
+
+            <div class="dropdown-section">
+                <div class="dropdown-header tertiary" id="tertiary-dropdown-header" onclick="toggleDropdown('tertiary-dropdown')">
+                    <span>⭐ Categoría Terciaria</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-content" id="tertiary-dropdown">
+                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Ninguna')">❌ Ninguna</div>
+                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Guerrero')">⚔️ Guerrero</div>
+                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Ladrón')">🥷 Ladrón</div>
+                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Mago')">🧙 Mago</div>
+                </div>
+            </div>
+
+            <div class="dropdown-section">
+                <div class="dropdown-header background" id="background-dropdown-header" onclick="toggleDropdown('background-dropdown')">
+                    <span>🏰 Trasfondos</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-content" id="background-dropdown">
+                    <div class="dropdown-item" onclick="selectBackground('Soldado')">🛡️ Soldado</div>
+                    <div class="dropdown-item" onclick="selectBackground('Noble')">👑 Noble</div>
+                    <div class="dropdown-item" onclick="selectBackground('Erudito')">📚 Erudito</div>
+                    <div class="dropdown-item" onclick="selectBackground('Artesano')">🔨 Artesano</div>
+                    <div class="dropdown-item" onclick="selectBackground('Explorador')">🗺️ Explorador</div>
+                    <div class="dropdown-item" onclick="selectBackground('Mercader')">💰 Mercader</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Tab Navigation -->
+            <nav class="tab-navigation">
+                <button class="tab-btn active" onclick="showTab('basic', this)">
+                    <i class="fas fa-user"></i>
+                    Básico
+                </button>
+                <button class="tab-btn" onclick="showTab('abilities', this)">
+                    <i class="fas fa-fist-raised"></i>
+                    Habilidades
+                </button>
+                <button class="tab-btn" onclick="showTab('categories', this)">
+                    <i class="fas fa-scroll"></i>
+                    Categorías
+                </button>
+                <button class="tab-btn" onclick="showTab('combat', this)">
+                    <i class="fas fa-sword"></i>
+                    Combate
+                </button>
+                <button class="tab-btn" onclick="showTab('skills', this)">
+                    <i class="fas fa-tools"></i>
+                    Pericias
+                </button>
+                <button class="tab-btn" onclick="showTab('spells', this)">
+                    <i class="fas fa-magic"></i>
+                    Conjuros
+                </button>
+                <button class="tab-btn" onclick="showTab('companions', this)">
+                    <i class="fas fa-paw"></i>
+                    Compañeros
+                </button>
+                <button class="tab-btn" onclick="showTab('equipment', this)">
+                    <i class="fas fa-backpack"></i>
+                    Equipo
+                </button>
+            </nav>
+
+            <!-- AQUÍ VAN LOS 8 TABS - Placeholder por ahora -->
+            <div id="basic-tab" class="tab-content active">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-user text-primary"></i>
+                    Tab Básico - PLACEHOLDER
+                </h2>
+                <p style="text-align: center; color: #cbd5e0;">
+                    Copia aquí el contenido del Tab Básico de tu archivo original
+                </p>
+            </div>
+
+            <div id="abilities-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-fist-raised text-primary"></i>
+                    Tab Habilidades - PLACEHOLDER
+                </h2>
+                <p style="text-align: center; color: #cbd5e0;">
+                    Copia aquí el contenido del Tab Habilidades de tu archivo original
+                </p>
+            </div>
+
+            <div id="categories-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-scroll text-primary"></i>
+                    Tab Categorías - PLACEHOLDER
+                </h2>
+                <p style="text-align: center; color: #cbd5e0;">
+                    Copia aquí el contenido del Tab Categorías de tu archivo original
+                </p>
+            </div>
+
+            <div id="combat-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-sword text-primary"></i>
+                    Tab Combate - PLACEHOLDER
+                </h2>
+                <p style="text-align: center; color: #cbd5e0;">
+                    Copia aquí el contenido del Tab Combate de tu archivo original
+                </p>
+            </div>
+
+            <div id="skills-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-tools text-primary"></i>
+                    Tab Pericias - PLACEHOLDER
+                </h2>
+                <p style="text-align: center; color: #cbd5e0;">
+                    Copia aquí el contenido del Tab Pericias de tu archivo original
+                </p>
+            </div>
+
+            <div id="spells-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-magic text-primary"></i>
+                    Tab Conjuros - PLACEHOLDER
+                </h2>
+                <p style="text-align: center; color: #cbd5e0;">
+                    Copia aquí el contenido del Tab Conjuros de tu archivo original
+                </p>
+            </div>
+
+            <div id="companions-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-paw text-primary"></i>
+                    Tab Compañeros - PLACEHOLDER
+                </h2>
+                <p style="text-align: center; color: #cbd5e0;">
+                    Copia aquí el contenido del Tab Compañeros de tu archivo original
+                </p>
+            </div>
+
+            <div id="equipment-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-backpack text-primary"></i>
+                    Tab Equipo - PLACEHOLDER
+                </h2>
+                <p style="text-align: center; color: #cbd5e0;">
+                    Copia aquí el contenido del Tab Equipo de tu archivo original
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Global character data
+        let characterData = {
+            basic: {
+                name: '',
+                player: '',
+                race: '',
+                alignment: 'Neutral Auténtico',
+                height: 175,
+                religion: '',
+                experience: 0,
+                level: 1
+            },
+            abilities: {
+                strength: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                dexterity: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                constitution: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                intelligence: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                wisdom: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
+                charisma: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' }
+            },
+            classes: {
+                primary: '',
+                secondary: '',
+                tertiary: ''
+            },
+            background: '',
+            savingThrows: {
+                death: { base: 14, mod1: 0, mod2: 0, total: 14 },
+                wands: { base: 16, mod1: 0, mod2: 0, total: 16 },
+                petrification: { base: 12, mod1: 0, mod2: 0, total: 12 },
+                breath: { base: 17, mod1: 0, mod2: 0, total: 17 },
+                spells: { base: 17, mod1: 0, mod2: 0, total: 17 }
+            }
+        };
+
+        // Racial modifiers (AD&D 2e)
+        const racialModifiers = {
+            'Humano': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
+            'Elfo': { str: 0, dex: 1, con: -1, int: 0, wis: 0, cha: 0 },
+            'Enano': { str: 0, dex: 0, con: 1, int: 0, wis: 0, cha: -1 },
+            'Halfling': { str: -1, dex: 1, con: 0, int: 0, wis: 0, cha: 0 },
+            'Gnomo': { str: 0, dex: 0, con: 1, int: 0, wis: 0, cha: 0 },
+            'Semielfos': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
+            'Semiorcos': { str: 1, dex: 0, con: 1, int: -1, wis: 0, cha: -2 }
+        };
+
+        // Background modifiers
+        const backgroundModifiers = {
+            'Soldado': { str: 1, dex: 0, con: 1, int: 0, wis: 0, cha: 0 },
+            'Noble': { str: 0, dex: 0, con: 0, int: 1, wis: 0, cha: 1 },
+            'Erudito': { str: 0, dex: 0, con: 0, int: 2, wis: 0, cha: 0 },
+            'Artesano': { str: 1, dex: 1, con: 0, int: 0, wis: 0, cha: 0 },
+            'Explorador': { str: 0, dex: 1, con: 0, int: 0, wis: 1, cha: 0 },
+            'Mercader': { str: 0, dex: 0, con: 0, int: 1, wis: 0, cha: 1 }
+        };
+
+        // XP tables (simplified - Warrior progression)
+        const xpTable = [
+            0, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000,
+            750000, 1000000, 1250000, 1500000, 1750000, 2000000, 2250000, 2500000, 2750000, 3000000
+        ];
+
+        // Tab Management
+        function showTab(tabName, button) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            button.classList.add('active');
+
+            // Dispatch tab change event
+            document.dispatchEvent(new CustomEvent('tabChanged', { detail: tabName }));
+        }
+
+        // Dropdown Management
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const header = dropdown.previousElementSibling;
+            const icon = header.querySelector('i');
+            
+            dropdown.classList.toggle('show');
+            
+            if (dropdown.classList.contains('show')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Class Selection
+        function selectClass(category, className) {
+            characterData.classes[category] = className;
+            
+            // Update header text
+            const header = document.getElementById(category + '-dropdown-header');
+            const span = header.querySelector('span');
+            
+            if (className === 'Ninguna') {
+                span.textContent = getDropdownText(category);
+            } else {
+                span.textContent = getClassIcon(className) + ' ' + className;
+            }
+            
+            // Update selected item
+            const dropdown = document.getElementById(category + '-dropdown');
+            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            event.target.classList.add('selected');
+            
+            // Close dropdown
+            dropdown.classList.remove('show');
+            
+            // Update character display
+            updateCharacterDisplay();
+            updateManaCards();
+            updateAllBasicStats();
+        }
+
+        function getDropdownText(category) {
+            const texts = {
+                'primary': '🏛️ Categoría Principal',
+                'secondary': '⚡ Categoría Secundaria', 
+                'tertiary': '⭐ Categoría Terciaria'
+            };
+            return texts[category] || '';
+        }
+
+        function getClassIcon(className) {
+            const icons = {
+                'Guerrero': '⚔️',
+                'Bárbaro': '🪓',
+                'Paladín': '⛪',
+                'Ranger': '🏹',
+                'Clérigo': '🛡️',
+                'Druida': '🌿',
+                'Mago': '🧙',
+                'Hechicero': '✨',
+                'Ladrón': '🥷',
+                'Bardo': '🎭',
+                'Psiónico': '🧠'
+            };
+            return icons[className] || '⚔️';
+        }
+
+        // Background Selection
+        function selectBackground(background) {
+            characterData.background = background;
+            
+            const header = document.getElementById('background-dropdown-header');
+            const span = header.querySelector('span');
+            span.textContent = getBackgroundIcon(background) + ' ' + background;
+            
+            const dropdown = document.getElementById('background-dropdown');
+            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            event.target.classList.add('selected');
+            dropdown.classList.remove('show');
+            
+            updateAllAbilityScores();
+        }
+
+        function getBackgroundIcon(background) {
+            const icons = {
+                'Soldado': '🛡️',
+                'Noble': '👑',
+                'Erudito': '📚',
+                'Artesano': '🔨',
+                'Explorador': '🗺️',
+                'Mercader': '💰'
+            };
+            return icons[background] || '🏰';
+        }
+
+        // Character Display Updates
+        function updateCharacterDisplay() {
+            const name = document.getElementById('character-name').value || 'Nuevo Personaje';
+            const level = document.getElementById('level').value || 1;
+            const primaryClass = characterData.classes.primary || 'Sin clase';
+            
+            document.getElementById('character-display-name').textContent = name;
+            document.getElementById('character-display-info').textContent = `${primaryClass} • Nivel ${level}`;
+            
+            characterData.basic.name = name;
+            characterData.basic.level = parseInt(level);
+        }
+
+        // Utility Functions - Placeholders que serán completados
+        function updateAllBasicStats() {
+            console.log('updateAllBasicStats called');
+        }
+
+        function updateManaCards() {
+            console.log('updateManaCards called');
+        }
+
+        function updateAllAbilityScores() {
+            console.log('updateAllAbilityScores called');
+        }
+
+        function saveCharacter() {
+            console.log('saveCharacter called');
+            showNotification('Personaje guardado (placeholder)', 'success');
+        }
+
+        function rollStats() {
+            console.log('rollStats called');
+            showNotification('Stats generados (placeholder)', 'success');
+        }
+
+        function rollHP() {
+            console.log('rollHP called');
+            showNotification('HP generado (placeholder)', 'success');
+        }
+
+        function exportCharacter() {
+            console.log('exportCharacter called');
+            showNotification('Personaje exportado (placeholder)', 'success');
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 90px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                color: white;
+                font-weight: bold;
+                z-index: 1001;
+                max-width: 300px;
+                animation: slideIn 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            `;
+            
+            const colors = {
+                'success': 'linear-gradient(135deg, #48bb78, #38a169)',
+                'error': 'linear-gradient(135deg, #f56565, #e53e3e)',
+                'info': 'linear-gradient(135deg, #4299e1, #3182ce)',
+                'warning': 'linear-gradient(135deg, #ed8936, #dd6b20)'
+            };
+            
+            notification.style.background = colors[type] || colors.info;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('AD&D 2e Character Sheet initialized - Base Structure');
+        });
+    </script>
+</body>
+</html>
+
+            <!-- Abilities Tab -->
+            <div id="abilities-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-fist-raised text-primary"></i>
+                    Habilidades
+                </h2>
+                
+                <div style="background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <!-- Strength -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #e53e3e; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="strength-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">💪 Fuerza</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Poder físico y musculatura</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="strength-base" min="3" max="25" value="10" onchange="updateAbilityScore('strength')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="strength-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="strength-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="strength-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="strength-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('strength', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('strength', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('strength')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="strength-benefits" style="color: #a0aec0; font-size: 0.8rem;">Ataque: +0, Daño: +0, Puertas: 1-2, Cargar: 40 lb</div>
+                            </div>
+                        </div>
+
+                        <!-- Dexterity -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #48bb78; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="dexterity-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🏃 Destreza</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Agilidad y coordinación</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="dexterity-base" min="3" max="25" value="10" onchange="updateAbilityScore('dexterity')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="dexterity-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="dexterity-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="dexterity-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="dexterity-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('dexterity', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('dexterity', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('dexterity')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="dexterity-benefits" style="color: #a0aec0; font-size: 0.8rem;">CA: +0, Ataque a distancia: +0, Iniciativa: +0</div>
+                            </div>
+                        </div>
+
+                        <!-- Constitution -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #f56565; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="constitution-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🛡️ Constitución</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Resistencia y salud</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="constitution-base" min="3" max="25" value="10" onchange="updateAbilityScore('constitution')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="constitution-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="constitution-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="constitution-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="constitution-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('constitution', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('constitution', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('constitution')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="constitution-benefits" style="color: #a0aec0; font-size: 0.8rem;">HP: +0, Resistencia: Normal, Resurrección: 70%</div>
+                            </div>
+                        </div>
+
+                        <!-- Intelligence -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #805ad5; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="intelligence-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🧠 Inteligencia</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Razonamiento y memoria</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="intelligence-base" min="3" max="25" value="10" onchange="updateAbilityScore('intelligence')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="intelligence-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="intelligence-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="intelligence-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="intelligence-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('intelligence', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('intelligence', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('intelligence')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="intelligence-benefits" style="color: #a0aec0; font-size: 0.8rem;">Idiomas: 2, Conjuros: Normal, Inmunidad: Ninguna</div>
+                            </div>
+                        </div>
+
+                        <!-- Wisdom -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #38b2ac; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="wisdom-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🕯️ Sabiduría</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Intuición y percepción</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="wisdom-base" min="3" max="25" value="10" onchange="updateAbilityScore('wisdom')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="wisdom-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="wisdom-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="wisdom-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="wisdom-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('wisdom', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('wisdom', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('wisdom')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="wisdom-benefits" style="color: #a0aec0; font-size: 0.8rem;">Conjuros divinos: 0, Salvaciones mentales: +0</div>
+                            </div>
+                        </div>
+
+                        <!-- Charisma -->
+                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #ed64a6; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="charisma-method">🎲</div>
+                                <div style="flex: 1;">
+                                    <h4 style="color: #e2e8f0; margin: 0;">🌟 Carisma</h4>
+                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Personalidad y liderazgo</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
+                                <div>Base</div>
+                                <div>Racial</div>
+                                <div>Trasfondo</div>
+                                <div>Tamaño</div>
+                                <div>Final</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                                <input type="number" id="charisma-base" min="3" max="25" value="10" onchange="updateAbilityScore('charisma')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="charisma-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
+                                <span id="charisma-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
+                                <span id="charisma-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
+                                <span id="charisma-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                <button onclick="rollAbility('charisma', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
+                                <button onclick="rollAbility('charisma', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
+                                <button onclick="setAbilityAverage('charisma')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
+                            </div>
+                            
+                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
+                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
+                                <div id="charisma-benefits" style="color: #a0aec0; font-size: 0.8rem;">Lealtad: 0, Reacción: 0, Seguidores: 0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate All Button -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button onclick="generateAllAbilities()" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; padding: 1rem 2rem; border-radius: 12px; color: white; cursor: pointer; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);">
+                        <i class="fas fa-dice"></i>
+                        Generar Todas las Habilidades (4d6)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Categories Tab -->
+<div id="categories-tab" class="tab-content">
+    <h2 class="mb-3 text-center">
+        <i class="fas fa-scroll text-primary"></i>
+        Categorías de Personaje
+    </h2>
+    
+    <div id="selected-classes-info">
+        <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-bottom: 2rem;">
+            Selecciona clases en el sidebar para ver información detallada
+        </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <div id="primary-class-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
+            <h3 style="color: #4299e1; margin-bottom: 1rem;">
+                <i class="fas fa-crown"></i>
+                Categoría Principal
+            </h3>
+            <div id="primary-class-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div id="secondary-class-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
+            <h3 style="color: #ed8936; margin-bottom: 1rem;">
+                <i class="fas fa-star"></i>
+                Categoría Secundaria
+            </h3>
+            <div id="secondary-class-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div id="tertiary-class-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
+            <h3 style="color: #48bb78; margin-bottom: 1rem;">
+                <i class="fas fa-plus"></i>
+                Categoría Terciaria
+            </h3>
+            <div id="tertiary-class-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div id="background-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
+            <h3 style="color: #48bb78; margin-bottom: 1rem;">
+                <i class="fas fa-home"></i>
+                Trasfondo
+            </h3>
+            <div id="background-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+// Class information database
+const classInfo = {
+    'Guerrero': {
+        icon: '⚔️',
+        hitDie: 'd10',
+        thac0: 20,
+        description: 'Maestro del combate cuerpo a cuerpo y las armas.',
+        abilities: 'Especialización en armas, ataques múltiples, liderazgo',
+        restrictions: 'Limitado en el uso de magia'
+    },
+    'Bárbaro': {
+        icon: '🪓',
+        hitDie: 'd12',
+        thac0: 20,
+        description: 'Guerrero salvaje con furia berserker.',
+        abilities: 'Furia berserker, resistencia al miedo, supervivencia',
+        restrictions: 'No puede usar armadura pesada, limitaciones mágicas'
+    },
+    'Paladín': {
+        icon: '⛪',
+        hitDie: 'd10',
+        thac0: 20,
+        description: 'Guerrero santo con poderes divinos.',
+        abilities: 'Detectar mal, curar enfermedades, inmunidad al miedo',
+        restrictions: 'Debe ser Legal Bueno, código de honor estricto'
+    },
+    'Ranger': {
+        icon: '🏹',
+        hitDie: 'd10',
+        thac0: 20,
+        description: 'Explorador y guardabosques experto.',
+        abilities: 'Rastreo, combate con dos armas, conjuros divinos',
+        restrictions: 'Limitado en ciudades, debe ser bueno'
+    },
+    'Clérigo': {
+        icon: '🛡️',
+        hitDie: 'd8',
+        thac0: 20,
+        description: 'Servidor divino con poderes curativos.',
+        abilities: 'Conjuros divinos, expulsar muertos vivientes',
+        restrictions: 'Limitaciones de armas según deidad'
+    },
+    'Druida': {
+        icon: '🌿',
+        hitDie: 'd8',
+        thac0: 20,
+        description: 'Guardián de la naturaleza con magia natural.',
+        abilities: 'Conjuros druídicos, forma salvaje, inmunidad a encantamientos',
+        restrictions: 'Solo armadura de cuero, armas naturales'
+    },
+    'Mago': {
+        icon: '🧙',
+        hitDie: 'd4',
+        thac0: 21,
+        description: 'Maestro de las artes arcanas y la magia.',
+        abilities: 'Conjuros arcanos, investigación mágica, crear objetos',
+        restrictions: 'Limitado en armas y armaduras'
+    },
+    'Hechicero': {
+        icon: '✨',
+        hitDie: 'd4',
+        thac0: 21,
+        description: 'Conjurador innato con magia espontánea.',
+        abilities: 'Magia espontánea, metamagia, poder mágico natural',
+        restrictions: 'Conjuros limitados pero flexibles'
+    },
+    'Ladrón': {
+        icon: '🥷',
+        hitDie: 'd6',
+        thac0: 21,
+        description: 'Experto en sigilo, trampas y subterfugio.',
+        abilities: 'Habilidades de ladrón, ataque sorpresa, leer lenguajes',
+        restrictions: 'Limitado en armadura y algunas armas'
+    },
+    'Bardo': {
+        icon: '🎭',
+        hitDie: 'd6',
+        thac0: 20,
+        description: 'Aventurero versátil con habilidades mágicas y sociales.',
+        abilities: 'Conjuros arcanos, habilidades de ladrón, música inspiradora',
+        restrictions: 'Progresión mágica limitada'
+    },
+    'Psiónico': {
+        icon: '🧠',
+        hitDie: 'd6',
+        thac0: 20,
+        description: 'Usuario de poderes mentales y psíquicos.',
+        abilities: 'Poderes psiónicos, telepatía, telequinesis',
+        restrictions: 'Reglas especiales de PSP'
+    }
+};
+
+// Background information database
+const backgroundInfo = {
+    'Soldado': {
+        icon: '🛡️',
+        description: 'Veterano de guerra con experiencia militar.',
+        skills: 'Uso de armas, tácticas, liderazgo',
+        bonus: '+1 Fuerza, +1 Constitución',
+        equipment: 'Armas militares, armadura, insignias'
+    },
+    'Noble': {
+        icon: '👑',
+        description: 'Miembro de la aristocracia con educación refinada.',
+        skills: 'Etiqueta, historia, idiomas',
+        bonus: '+1 Inteligencia, +1 Carisma',
+        equipment: 'Ropas finas, joyas, documentos'
+    },
+    'Erudito': {
+        icon: '📚',
+        description: 'Académico con vasto conocimiento libresco.',
+        skills: 'Investigación, idiomas, conocimiento arcano',
+        bonus: '+2 Inteligencia',
+        equipment: 'Libros, instrumentos de escritura, pergaminos'
+    },
+    'Artesano': {
+        icon: '🔨',
+        description: 'Trabajador especializado en un oficio.',
+        skills: 'Artesanía, comercio, reparaciones',
+        bonus: '+1 Fuerza, +1 Destreza',
+        equipment: 'Herramientas, materiales, productos'
+    },
+    'Explorador': {
+        icon: '🗺️',
+        description: 'Viajero experimentado conocedor del mundo.',
+        skills: 'Supervivencia, navegación, idiomas',
+        bonus: '+1 Destreza, +1 Sabiduría',
+        equipment: 'Equipo de viaje, mapas, brújula'
+    },
+    'Mercader': {
+        icon: '💰',
+        description: 'Comerciante con ojo para los negocios.',
+        skills: 'Tasación, negociación, contactos',
+        bonus: '+1 Inteligencia, +1 Carisma',
+        equipment: 'Dinero, productos, contratos'
+    }
+};
+
+// Categories Tab Functions
+function updateCategoriesDisplay() {
+    const primary = characterData.classes.primary;
+    const secondary = characterData.classes.secondary;
+    const tertiary = characterData.classes.tertiary;
+    const background = characterData.background;
+
+    // Update primary class card
+    if (primary && primary !== 'Ninguna') {
+        const card = document.getElementById('primary-class-card');
+        const content = document.getElementById('primary-class-content');
+        const info = classInfo[primary];
+        
+        if (info) {
+            content.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="font-size: 3rem;">${info.icon}</div>
+                    <div>
+                        <h4 style="color: #f7fafc; margin: 0;">${primary}</h4>
+                        <div style="color: #a0aec0; font-size: 0.9rem;">Dado de Golpe: ${info.hitDie}</div>
+                    </div>
+                </div>
+                <p style="color: #e2e8f0; margin-bottom: 1rem;">${info.description}</p>
+                <div style="margin-bottom: 1rem;">
+                    <strong style="color: #4299e1;">Habilidades:</strong>
+                    <div style="color: #cbd5e0; font-size: 0.9rem;">${info.abilities}</div>
+                </div>
+                <div>
+                    <strong style="color: #f56565;">Restricciones:</strong>
+                    <div style="color: #cbd5e0; font-size: 0.9rem;">${info.restrictions}</div>
+                </div>
+            `;
+            card.style.display = 'block';
+        }
+    } else {
+        document.getElementById('primary-class-card').style.display = 'none';
+    }
+
+    // Update secondary class card
+    if (secondary && secondary !== 'Ninguna') {
+        const card = document.getElementById('secondary-class-card');
+        const content = document.getElementById('secondary-class-content');
+        const info = classInfo[secondary];
+        
+        if (info) {
+            content.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="font-size: 2.5rem;">${info.icon}</div>
+                    <div>
+                        <h5 style="color: #f7fafc; margin: 0;">${secondary}</h5>
+                        <div style="color: #a0aec0; font-size: 0.8rem;">Clase Secundaria</div>
+                    </div>
+                </div>
+                <p style="color: #e2e8f0; font-size: 0.9rem;">${info.description}</p>
+            `;
+            card.style.display = 'block';
+        }
+    } else {
+        document.getElementById('secondary-class-card').style.display = 'none';
+    }
+
+    // Update tertiary class card
+    if (tertiary && tertiary !== 'Ninguna') {
+        const card = document.getElementById('tertiary-class-card');
+        const content = document.getElementById('tertiary-class-content');
+        const info = classInfo[tertiary];
+        
+        if (info) {
+            content.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="font-size: 2rem;">${info.icon}</div>
+                    <div>
+                        <h6 style="color: #f7fafc; margin: 0;">${tertiary}</h6>
+                        <div style="color: #a0aec0; font-size: 0.8rem;">Clase Terciaria</div>
+                    </div>
+                </div>
+                <p style="color: #e2e8f0; font-size: 0.8rem;">${info.description}</p>
+            `;
+            card.style.display = 'block';
+        }
+    } else {
+        document.getElementById('tertiary-class-card').style.display = 'none';
+    }
+
+    // Update background card
+    if (background) {
+        const card = document.getElementById('background-card');
+        const content = document.getElementById('background-content');
+        const info = backgroundInfo[background];
+        
+        if (info) {
+            content.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="font-size: 2.5rem;">${info.icon}</div>
+                    <div>
+                        <h5 style="color: #f7fafc; margin: 0;">${background}</h5>
+                        <div style="color: #48bb78; font-size: 0.8rem;">${info.bonus}</div>
+                    </div>
+                </div>
+                <p style="color: #e2e8f0; font-size: 0.9rem; margin-bottom: 1rem;">${info.description}</p>
+                <div>
+                    <strong style="color: #ed8936;">Habilidades:</strong>
+                    <div style="color: #cbd5e0; font-size: 0.9rem;">${info.skills}</div>
+                </div>
+            `;
+            card.style.display = 'block';
+        }
+    } else {
+        document.getElementById('background-card').style.display = 'none';
+    }
+
+    // Hide info message if any class is selected
+    if (primary || secondary || tertiary || background) {
+        document.getElementById('selected-classes-info').style.display = 'none';
+    } else {
+        document.getElementById('selected-classes-info').style.display = 'block';
+    }
+}        
+</div>
+            <!-- Combat Tab -->
+            <div id="combat-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-sword text-primary"></i>
+                    Sistema de Combate
+                </h2>
+
+                <div class="grid-2">
+                    <!-- Combat Stats -->
+                    <div class="card">
+                        <h3 class="mb-2 text-center">
+                            <i class="fas fa-shield-alt text-warning"></i>
+                            Estadísticas de Combate
+                        </h3>
+                        
+                        <div class="grid-2 mb-3">
+                            <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="color: #cbd5e0; font-size: 0.9rem;">Clase de Armadura</div>
+                                <div style="color: #f7fafc; font-size: 2rem; font-weight: bold;" id="armor-class">10</div>
+                                <div style="color: #a0aec0; font-size: 0.8rem;" id="ac-breakdown">(Base 10)</div>
+                            </div>
+                            <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="color: #cbd5e0; font-size: 0.9rem;">GACO</div>
+                                <div style="color: #f7fafc; font-size: 2rem; font-weight: bold;" id="thac0">20</div>
+                                <div style="color: #a0aec0; font-size: 0.8rem;">Para Impactar CA 0</div>
+                            </div>
+                        </div>
+
+                        <div class="grid-2">
+                            <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="color: #cbd5e0; font-size: 0.9rem;">Iniciativa</div>
+                                <div style="color: #48bb78; font-size: 1.5rem; font-weight: bold;" id="initiative-bonus">+0</div>
+                            </div>
+                            <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="color: #cbd5e0; font-size: 0.9rem;">Ataques/Ronda</div>
+                                <div style="color: #ed8936; font-size: 1.5rem; font-weight: bold;" id="attacks-per-round">1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card">
+                        <h3 class="mb-2 text-center">
+                            <i class="fas fa-bolt text-danger"></i>
+                            Acciones Rápidas
+                        </h3>
+                        
+                        <div class="grid-2">
+                            <button class="btn btn-success" onclick="rollInitiative()">
+                                <i class="fas fa-dice"></i>
+                                Iniciativa
+                            </button>
+                            <button class="btn btn-danger" onclick="rollToHit()">
+                                <i class="fas fa-crosshairs"></i>
+                                Ataque
+                            </button>
+                            <button class="btn btn-warning" onclick="rollDamage()">
+                                <i class="fas fa-hammer"></i>
+                                Daño
+                            </button>
+                            <button class="btn btn-purple" onclick="rollSavingThrow()">
+                                <i class="fas fa-shield-alt"></i>
+                                Salvación
+                            </button>
+                        </div>
+
+                        <div class="mt-3" style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; max-height: 200px; overflow-y: auto;">
+                            <h4 style="color: #e2e8f0; margin-bottom: 1rem; font-size: 1rem;">Registro de Combate:</h4>
+                            <div id="combat-log" style="color: #a0aec0; font-size: 0.9rem;">
+                                Listo para combate...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weapons Section -->
+                <div class="card mt-3">
+                    <h3 class="mb-3 text-center">
+                        <i class="fas fa-sword text-danger"></i>
+                        Arsenal de Armas
+                    </h3>
+                    
+                    <div class="grid-3" id="weapon-slots">
+                        <div class="weapon-slot" onclick="addWeapon(0)">
+                            <i class="fas fa-plus" style="font-size: 2rem; margin-bottom: 1rem; color: #4a5568;"></i>
+                            <div>Arma Principal</div>
+                            <div style="font-size: 0.8rem; color: #718096;">Click para añadir</div>
+                        </div>
+                        <div class="weapon-slot" onclick="addWeapon(1)">
+                            <i class="fas fa-plus" style="font-size: 2rem; margin-bottom: 1rem; color: #4a5568;"></i>
+                            <div>Arma Secundaria</div>
+                            <div style="font-size: 0.8rem; color: #718096;">Click para añadir</div>
+                        </div>
+                        <div class="weapon-slot" onclick="addWeapon(2)">
+                            <i class="fas fa-plus" style="font-size: 2rem; margin-bottom: 1rem; color: #4a5568;"></i>
+                            <div>Arma a Distancia</div>
+                            <div style="font-size: 0.8rem; color: #718096;">Click para añadir</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Armor Section -->
+                <div class="card mt-3">
+                    <h3 class="mb-3 text-center">
+                        <i class="fas fa-shield-alt text-primary"></i>
+                        Protección y Armadura
+                    </h3>
+                    
+                    <div class="grid-2">
+                        <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px;">
+                            <h4 style="color: #e2e8f0; margin-bottom: 1rem;">Escudo</h4>
+                            <select id="shield" onchange="updateArmorClass()" style="width: 100%; padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0;">
+                                <option value="none">Sin Escudo</option>
+                                <option value="small">Escudo Pequeño (+1 CA)</option>
+                                <option value="medium">Escudo Mediano (+2 CA)</option>
+                                <option value="large">Escudo Grande (+3 CA)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Tab -->
+            <div id="skills-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-tools text-primary"></i>
+                    Pericias y Habilidades
+                </h2>
+
+                <!-- Skill Slots Management -->
+                <div class="card">
+                    <h3 class="mb-2 text-center">
+                        <i class="fas fa-cog text-warning"></i>
+                        Gestión de Slots de Pericia
+                    </h3>
+                    
+                    <div class="grid-3">
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">Slots Disponibles</div>
+                            <div style="color: #48bb78; font-size: 2rem; font-weight: bold;" id="available-skill-slots">4</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">Por Clase/INT</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">Slots Usados</div>
+                            <div style="color: #ed8936; font-size: 2rem; font-weight: bold;" id="used-skill-slots">0</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">En Pericias</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">Slots Restantes</div>
+                            <div style="color: #4299e1; font-size: 2rem; font-weight: bold;" id="remaining-skill-slots">4</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">Sin Asignar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General Skills -->
+                <div class="skill-category">
+                    <h3 class="mb-3">
+                        <i class="fas fa-hammer text-warning"></i>
+                        Pericias Generales
+                    </h3>
+                    
+                    <div class="grid-2">
+                        <div class="skill-item">
+                            <div>
+                                <strong>Agricultura</strong> (Inteligencia)
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Cultivos y ganadería</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="number" id="agriculture-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('agriculture')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="agriculture-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('agriculture')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Manejo de Animales</strong> (Sabiduría)
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Entrenar y controlar animales</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="number" id="animal-handling-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('animal-handling')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="animal-handling-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('animal-handling')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Tasación</strong> (Inteligencia)
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Evaluar objetos y tesoros</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="number" id="appraisal-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('appraisal')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="appraisal-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('appraisal')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Armero</strong> (Inteligencia)
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Crear y reparar armas</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="number" id="weaponsmithing-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('weaponsmithing')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="weaponsmithing-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('weaponsmithing')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Carpintería</strong> (Fuerza)
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Trabajar la madera</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="number" id="carpentry-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('carpentry')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="carpentry-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('carpentry')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Cocina</strong> (Inteligencia)
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Preparar comida y detectar venenos</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="number" id="cooking-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('cooking')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
+                                <span id="cooking-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('cooking')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thief Skills -->
+                <div class="skill-category" id="thief-skills-section" style="display: none;">
+                    <h3 class="mb-3">
+                        <i class="fas fa-mask text-danger"></i>
+                        Habilidades de Ladrón
+                    </h3>
+                    
+                    <div class="grid-2">
+                        <div class="skill-item">
+                            <div>
+                                <strong>Escalar Superficies</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 60% + 5% por nivel</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span id="climb-walls-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">60%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('climb-walls')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Detectar/Desarmar Trampas</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 25% + 5% por nivel</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span id="find-traps-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">25%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('find-traps')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Abrir Cerraduras</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 25% + 5% por nivel</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span id="open-locks-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">25%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('open-locks')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Moverse en Silencio</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 15% + 5% por nivel</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span id="move-silently-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">15%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('move-silently')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Ocultarse en las Sombras</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 10% + 5% por nivel</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span id="hide-in-shadows-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">10%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('hide-in-shadows')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div>
+                                <strong>Hurtar Carteras</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 15% + 5% por nivel</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span id="pick-pockets-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">15%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('pick-pockets')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="skill-item" id="read-languages-skill" style="display: none;">
+                            <div>
+                                <strong>Leer Lenguajes</strong>
+                                <div style="font-size: 0.8rem; color: #a0aec0;">Disponible desde nivel 4</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span id="read-languages-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">0%</span>
+                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('read-languages')">
+                                    <i class="fas fa-dice"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weapon Proficiencies -->
+                <div class="skill-category">
+                    <h3 class="mb-3">
+                        <i class="fas fa-sword text-danger"></i>
+                        Competencias con Armas
+                    </h3>
+                    
+                    <div style="margin-bottom: 1rem; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>Slots de Competencia:</strong>
+                                <span id="weapon-proficiency-slots" style="color: #48bb78; font-weight: bold;">4</span>
+                                disponibles
+                            </div>
+                            <button class="btn btn-success" onclick="showWeaponProficiencyModal()">
+                                <i class="fas fa-plus"></i>
+                                Añadir Competencia
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="weapon-proficiencies-list">
+                        <p style="text-align: center; color: #a0aec0; font-style: italic;">
+                            No hay competencias con armas seleccionadas
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Skill Roll Log -->
+                <div class="card mt-3">
+                    <h3 class="mb-2">
+                        <i class="fas fa-scroll text-primary"></i>
+                        Registro de Tiradas de Pericia
+                    </h3>
+                    <div id="skill-log" style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; max-height: 200px; overflow-y: auto; color: #a0aec0; font-size: 0.9rem;">
+                        Listo para tiradas de pericia...
+                    </div>
+                </div>
+            </div>
+
+<!-- Spells Tab -->
+            <div id="spells-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-magic text-primary"></i>
+                    Sistema de Conjuros
+                </h2>
+
+                <div id="spell-caster-check">
+                    <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-top: 3rem;">
+                        <i class="fas fa-info-circle"></i>
+                        Selecciona una clase conjuradora para ver el sistema de conjuros
+                    </p>
+                    <p style="text-align: center; color: #a0aec0;">
+                        Clases conjuradoras: Mago, Hechicero, Clérigo, Druida, Bardo, Paladín, Ranger
+                    </p>
+                </div>
+
+                <div id="spell-system" class="hidden">
+                    <!-- Spell Slots Management -->
+                    <div class="card">
+                        <h3 class="mb-3 text-center">
+                            <i class="fas fa-gem text-purple"></i>
+                            Slots de Conjuros
+                        </h3>
+                        
+                        <div class="grid-4" id="spell-slots-grid">
+                            <!-- Spell slots will be populated by JavaScript -->
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button class="btn btn-success" onclick="applySpellProgression()">
+                                <i class="fas fa-level-up-alt"></i>
+                                Aplicar Progresión Automática
+                            </button>
+                            <button class="btn btn-primary" onclick="restoreAllSpellSlots()">
+                                <i class="fas fa-bed"></i>
+                                Descanso Completo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Spell Progression Table -->
+                    <div class="card">
+                        <h3 class="mb-3 text-center">
+                            <i class="fas fa-chart-line text-warning"></i>
+                            Tabla de Progresión
+                        </h3>
+                        
+                        <div style="overflow-x: auto;">
+                            <table id="spell-progression-table" style="width: 100%; border-collapse: collapse; color: #e2e8f0;">
+                                <!-- Table will be populated by JavaScript -->
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Spellbook/Grimoire -->
+                    <div class="card">
+                        <h3 class="mb-3 text-center">
+                            <i class="fas fa-book-open text-purple"></i>
+                            Grimorio / Lista de Conjuros
+                        </h3>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <input type="text" id="spell-search" placeholder="Buscar conjuros..." style="width: 100%; padding: 0.8rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 8px; color: #e2e8f0;">
+                        </div>
+
+                        <div class="grid-2">
+                            <div>
+                                <h4 style="color: #e2e8f0; margin-bottom: 1rem;">Conjuros Conocidos</h4>
+                                <div id="known-spells-list" style="max-height: 400px; overflow-y: auto;">
+                                    <!-- Known spells will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="color: #e2e8f0; margin-bottom: 1rem;">Conjuros Preparados</h4>
+                                <div id="prepared-spells-list" style="max-height: 400px; overflow-y: auto;">
+                                    <!-- Prepared spells will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spell Casting Log -->
+                    <div class="card">
+                        <h3 class="mb-2">
+                            <i class="fas fa-scroll text-primary"></i>
+                            Registro de Lanzamiento
+                        </h3>
+                        <div id="spell-log" style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; max-height: 200px; overflow-y: auto; color: #a0aec0; font-size: 0.9rem;">
+                            Listo para lanzar conjuros...
+                        </div>
+                    </div>
+                </div>
+            </div>f0; margin-bottom: 1rem;">Armadura Corporal</h4>
+                            <select id="body-armor" onchange="updateArmorClass()" style="width: 100%; padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0;">
+                                <option value="none">Sin Armadura (CA 10)</option>
+                                <option value="leather">Cuero (CA 8)</option>
+                                <option value="studded">Cuero Tachonado (CA 7)</option>
+                                <option value="chain">Cota de Mallas (CA 5)</option>
+                                <option value="splint">Armadura de Bandas (CA 4)</option>
+                                <option value="plate">Armadura de Placas (CA 3)</option>
+                            </select>
+                        </div>
+                        
+                        <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px;">
+                            <h4 style="color: #e2e8
+                <div class="character-name" id="character-display-name">Nuevo Personaje</div>
+                <div class="character-level" id="character-display-info">Selecciona una clase • Nivel 1</div>
+            </div>
+
+<!-- Equipment Tab -->
+            <div id="equipment-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-backpack text-primary"></i>
+                    Inventario y Equipo
+                </h2>
+
+                <!-- Inventory Management -->
+                <div class="card">
+                    <h3 class="mb-3 text-center">
+                        <i class="fas fa-weight-hanging text-warning"></i>
+                        Gestión de Inventario
+                    </h3>
+                    
+                    <div class="grid-4">
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">Peso Total</div>
+                            <div style="color: #f56565; font-size: 1.5rem; font-weight: bold;" id="total-weight">0</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">libras</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">Capacidad</div>
+                            <div style="color: #48bb78; font-size: 1.5rem; font-weight: bold;" id="carry-capacity">40</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">libras máx</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">Items Totales</div>
+                            <div style="color: #4299e1; font-size: 1.5rem; font-weight: bold;" id="total-items">0</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">objetos</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">Valor Total</div>
+                            <div style="color: #ed8936; font-size: 1.5rem; font-weight: bold;" id="total-value">0</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">po</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button class="btn btn-success" onclick="showAddItemModal()">
+                            <i class="fas fa-plus"></i>
+                            Añadir Item
+                        </button>
+                        <button class="btn btn-primary" onclick="showQuickEquipModal()">
+                            <i class="fas fa-bolt"></i>
+                            Equipo Rápido
+                        </button>
+                        <button class="btn btn-warning" onclick="sortInventory()">
+                            <i class="fas fa-sort"></i>
+                            Ordenar
+                        </button>
+                        <button class="btn" onclick="exportInventory()">
+                            <i class="fas fa-download"></i>
+                            Exportar
+                        </button>
+                    </div>
+
+                    <!-- Carry Capacity Bar -->
+                    <div class="mt-3">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span style="color: #cbd5e0; font-size: 0.9rem;">Capacidad de Carga</span>
+                            <span style="color: #e2e8f0; font-size: 0.9rem;" id="weight-status">Normal</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: rgba(0, 0, 0, 0.3); border-radius: 6px; overflow: hidden;">
+                            <div id="weight-progress-bar" style="height: 100%; background: linear-gradient(90deg, #48bb78, #ed8936); width: 0%; transition: width 0.3s ease;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Money Section -->
+                <div class="card">
+                    <h3 class="mb-3 text-center">
+                        <i class="fas fa-coins text-warning"></i>
+                        Monedas y Tesoro
+                    </h3>
+                    
+                    <div class="grid-4">
+                        <div style="text-align: center; padding: 1rem; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 8px;">
+                            <div style="color: #ffd700; font-weight: bold; margin-bottom: 0.5rem;">Oro (po)</div>
+                            <input type="number" id="gold-coins" min="0" value="0" onchange="updateMoney()" style="width: 80px; padding: 0.5rem; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 4px; color: #ffd700; text-align: center; font-weight: bold;">
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(192, 192, 192, 0.1); border: 1px solid rgba(192, 192, 192, 0.2); border-radius: 8px;">
+                            <div style="color: #c0c0c0; font-weight: bold; margin-bottom: 0.5rem;">Plata (pp)</div>
+                            <input type="number" id="silver-coins" min="0" value="0" onchange="updateMoney()" style="width: 80px; padding: 0.5rem; background: rgba(192, 192, 192, 0.1); border: 1px solid rgba(192, 192, 192, 0.3); border-radius: 4px; color: #c0c0c0; text-align: center; font-weight: bold;">
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(205, 127, 50, 0.1); border: 1px solid rgba(205, 127, 50, 0.2); border-radius: 8px;">
+                            <div style="color: #cd7f32; font-weight: bold; margin-bottom: 0.5rem;">Cobre (pc)</div>
+                            <input type="number" id="copper-coins" min="0" value="0" onchange="updateMoney()" style="width: 80px; padding: 0.5rem; background: rgba(205, 127, 50, 0.1); border: 1px solid rgba(205, 127, 50, 0.3); border-radius: 4px; color: #cd7f32; text-align: center; font-weight: bold;">
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(230, 230, 250, 0.1); border: 1px solid rgba(230, 230, 250, 0.2); border-radius: 8px;">
+                            <div style="color: #e6e6fa; font-weight: bold; margin-bottom: 0.5rem;">Platino (pz)</div>
+                            <input type="number" id="platinum-coins" min="0" value="0" onchange="updateMoney()" style="width: 80px; padding: 0.5rem; background: rgba(230, 230, 250, 0.1); border: 1px solid rgba(230, 230, 250, 0.3); border-radius: 4px; color: #e6e6fa; text-align: center; font-weight: bold;">
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 1rem; padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 8px;">
+                        <strong style="color: #ffd700;">Total en Oro Equivalente: </strong>
+                        <span id="total-gold-equivalent" style="color: #ffd700; font-size: 1.2rem; font-weight: bold;">0 po</span>
+                    </div>
+                </div>
+
+                <!-- Equipment Categories -->
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 class="mb-3">
+                            <i class="fas fa-sword text-danger"></i>
+                            Armas <span id="weapons-count" style="color: #a0aec0; font-size: 0.9rem;">(0)</span>
+                        </h3>
+                        <div id="weapons-list" style="max-height: 300px; overflow-y: auto;">
+                            <p style="text-align: center; color: #a0aec0; font-style: italic;">No hay armas en el inventario</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mb-3">
+                            <i class="fas fa-shield-alt text-primary"></i>
+                            Armaduras <span id="armor-count" style="color: #a0aec0; font-size: 0.9rem;">(0)</span>
+                        </h3>
+                        <div id="armor-list" style="max-height: 300px; overflow-y: auto;">
+                            <p style="text-align: center; color: #a0aec0; font-style: italic;">No hay armaduras en el inventario</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mb-3">
+                            <i class="fas fa-tools text-warning"></i>
+                            Equipo General <span id="equipment-count" style="color: #a0aec0; font-size: 0.9rem;">(0)</span>
+                        </h3>
+                        <div id="equipment-list" style="max-height: 300px; overflow-y: auto;">
+                            <p style="text-align: center; color: #a0aec0; font-style: italic;">No hay equipo en el inventario</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mb-3">
+                            <i class="fas fa-magic text-purple"></i>
+                            Objetos Mágicos <span id="magic-items-count" style="color: #a0aec0; font-size: 0.9rem;">(0)</span>
+                        </h3>
+                        <div id="magic-items-list" style="max-height: 300px; overflow-y: auto;">
+                            <p style="text-align: center; color: #a0aec0; font-style: italic;">No hay objetos mágicos en el inventario</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+<!-- Companions Tab -->
+            <div id="companions-tab" class="tab-content">
+                <h2 class="mb-3 text-center">
+                    <i class="fas fa-paw text-primary"></i>
+                    Compañeros y Aliados
+                </h2>
+
+                <!-- Companions Management -->
+                <div class="card">
+                    <h3 class="mb-3 text-center">
+                        <i class="fas fa-users text-success"></i>
+                        Gestión de Compañeros
+                    </h3>
+                    
+                    <div class="grid-3">
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">Compañeros Activos</div>
+                            <div style="color: #48bb78; font-size: 2rem; font-weight: bold;" id="active-companions">0</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">En el Grupo</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">HP Total</div>
+                            <div style="color: #f56565; font-size: 2rem; font-weight: bold;" id="companions-total-hp">0</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">Puntos de Golpe</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            <div style="color: #cbd5e0; font-size: 0.9rem;">Nivel Promedio</div>
+                            <div style="color: #4299e1; font-size: 2rem; font-weight: bold;" id="companions-avg-level">0</div>
+                            <div style="color: #a0aec0; font-size: 0.8rem;">Del Grupo</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button class="btn btn-success" onclick="showAddCompanionModal()">
+                            <i class="fas fa-plus"></i>
+                            Añadir Compañero
+                        </button>
+                        <button class="btn btn-primary" onclick="restoreAllCompanions()">
+                            <i class="fas fa-heart"></i>
+                            Curar Todos
+                        </button>
+                        <button class="btn btn-warning" onclick="companionGroupRest()">
+                            <i class="fas fa-bed"></i>
+                            Descanso Grupal
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Companions List -->
+                <div id="companions-list">
+                    <div style="text-align: center; color: #a0aec0; font-style: italic; margin: 2rem 0;">
+                        No hay compañeros en el grupo
+                    </div>
+                </div>
+
+                <!-- Companion Categories -->
+                <div class="grid-3">
+                    <div class="card">
+                        <h4 class="mb-2 text-center">
+                            <i class="fas fa-dog text-success"></i>
+                            Compañeros Animales
+                        </h4>
+                        <div style="font-size: 0.9rem; color: #a0aec0; text-align: center;">
+                            <div>• Lobo (Guardián)</div>
+                            <div>• Oso Pardo (Tanque)</div>
+                            <div>• Halcón (Explorador)</div>
+                            <div>• Caballo (Montura)</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="mb-2 text-center">
+                            <i class="fas fa-user-friends text-warning"></i>
+                            Compañeros Humanoides
+                        </h4>
+                        <div style="font-size: 0.9rem; color: #a0aec0; text-align: center;">
+                            <div>• Escudero</div>
+                            <div>• Mercenario</div>
+                            <div>• Explorador</div>
+                            <div>• Guardia</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="mb-2 text-center">
+                            <i class="fas fa-magic text-purple"></i>
+                            Compañeros Mágicos
+                        </h4>
+                        <div style="font-size: 0.9rem; color: #a0aec0; text-align: center;">
+                            <div>• Pseudodragón</div>
+                            <div>• Familiar</div>
+                            <div>• Sprite</div>
+                            <div>• Elemental Menor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+--- LUIS RONDON
 }
 
         // Ability Score Management
@@ -1262,249 +3416,8 @@
             // Update selected item
             const dropdown =             </div>
 
-            <!-- Companions Tab -->
-            <div id="companions-tab" class="tab-content">
-                <h2 class="mb-3 text-center">
-                    <i class="fas fa-paw text-primary"></i>
-                    Compañeros y Aliados
-                </h2>
 
-                <!-- Companions Management -->
-                <div class="card">
-                    <h3 class="mb-3 text-center">
-                        <i class="fas fa-users text-success"></i>
-                        Gestión de Compañeros
-                    </h3>
-                    
-                    <div class="grid-3">
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">Compañeros Activos</div>
-                            <div style="color: #48bb78; font-size: 2rem; font-weight: bold;" id="active-companions">0</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">En el Grupo</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">HP Total</div>
-                            <div style="color: #f56565; font-size: 2rem; font-weight: bold;" id="companions-total-hp">0</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">Puntos de Golpe</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">Nivel Promedio</div>
-                            <div style="color: #4299e1; font-size: 2rem; font-weight: bold;" id="companions-avg-level">0</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">Del Grupo</div>
-                        </div>
-                    </div>
 
-                    <div class="text-center mt-3">
-                        <button class="btn btn-success" onclick="showAddCompanionModal()">
-                            <i class="fas fa-plus"></i>
-                            Añadir Compañero
-                        </button>
-                        <button class="btn btn-primary" onclick="restoreAllCompanions()">
-                            <i class="fas fa-heart"></i>
-                            Curar Todos
-                        </button>
-                        <button class="btn btn-warning" onclick="companionGroupRest()">
-                            <i class="fas fa-bed"></i>
-                            Descanso Grupal
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Companions List -->
-                <div id="companions-list">
-                    <div style="text-align: center; color: #a0aec0; font-style: italic; margin: 2rem 0;">
-                        No hay compañeros en el grupo
-                    </div>
-                </div>
-
-                <!-- Companion Categories -->
-                <div class="grid-3">
-                    <div class="card">
-                        <h4 class="mb-2 text-center">
-                            <i class="fas fa-dog text-success"></i>
-                            Compañeros Animales
-                        </h4>
-                        <div style="font-size: 0.9rem; color: #a0aec0; text-align: center;">
-                            <div>• Lobo (Guardián)</div>
-                            <div>• Oso Pardo (Tanque)</div>
-                            <div>• Halcón (Explorador)</div>
-                            <div>• Caballo (Montura)</div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h4 class="mb-2 text-center">
-                            <i class="fas fa-user-friends text-warning"></i>
-                            Compañeros Humanoides
-                        </h4>
-                        <div style="font-size: 0.9rem; color: #a0aec0; text-align: center;">
-                            <div>• Escudero</div>
-                            <div>• Mercenario</div>
-                            <div>• Explorador</div>
-                            <div>• Guardia</div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h4 class="mb-2 text-center">
-                            <i class="fas fa-magic text-purple"></i>
-                            Compañeros Mágicos
-                        </h4>
-                        <div style="font-size: 0.9rem; color: #a0aec0; text-align: center;">
-                            <div>• Pseudodragón</div>
-                            <div>• Familiar</div>
-                            <div>• Sprite</div>
-                            <div>• Elemental Menor</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Equipment Tab -->
-            <div id="equipment-tab" class="tab-content">
-                <h2 class="mb-3 text-center">
-                    <i class="fas fa-backpack text-primary"></i>
-                    Inventario y Equipo
-                </h2>
-
-                <!-- Inventory Management -->
-                <div class="card">
-                    <h3 class="mb-3 text-center">
-                        <i class="fas fa-weight-hanging text-warning"></i>
-                        Gestión de Inventario
-                    </h3>
-                    
-                    <div class="grid-4">
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">Peso Total</div>
-                            <div style="color: #f56565; font-size: 1.5rem; font-weight: bold;" id="total-weight">0</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">libras</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">Capacidad</div>
-                            <div style="color: #48bb78; font-size: 1.5rem; font-weight: bold;" id="carry-capacity">40</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">libras máx</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">Items Totales</div>
-                            <div style="color: #4299e1; font-size: 1.5rem; font-weight: bold;" id="total-items">0</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">objetos</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">Valor Total</div>
-                            <div style="color: #ed8936; font-size: 1.5rem; font-weight: bold;" id="total-value">0</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">po</div>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-3">
-                        <button class="btn btn-success" onclick="showAddItemModal()">
-                            <i class="fas fa-plus"></i>
-                            Añadir Item
-                        </button>
-                        <button class="btn btn-primary" onclick="showQuickEquipModal()">
-                            <i class="fas fa-bolt"></i>
-                            Equipo Rápido
-                        </button>
-                        <button class="btn btn-warning" onclick="sortInventory()">
-                            <i class="fas fa-sort"></i>
-                            Ordenar
-                        </button>
-                        <button class="btn" onclick="exportInventory()">
-                            <i class="fas fa-download"></i>
-                            Exportar
-                        </button>
-                    </div>
-
-                    <!-- Carry Capacity Bar -->
-                    <div class="mt-3">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <span style="color: #cbd5e0; font-size: 0.9rem;">Capacidad de Carga</span>
-                            <span style="color: #e2e8f0; font-size: 0.9rem;" id="weight-status">Normal</span>
-                        </div>
-                        <div style="width: 100%; height: 12px; background: rgba(0, 0, 0, 0.3); border-radius: 6px; overflow: hidden;">
-                            <div id="weight-progress-bar" style="height: 100%; background: linear-gradient(90deg, #48bb78, #ed8936); width: 0%; transition: width 0.3s ease;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Money Section -->
-                <div class="card">
-                    <h3 class="mb-3 text-center">
-                        <i class="fas fa-coins text-warning"></i>
-                        Monedas y Tesoro
-                    </h3>
-                    
-                    <div class="grid-4">
-                        <div style="text-align: center; padding: 1rem; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 8px;">
-                            <div style="color: #ffd700; font-weight: bold; margin-bottom: 0.5rem;">Oro (po)</div>
-                            <input type="number" id="gold-coins" min="0" value="0" onchange="updateMoney()" style="width: 80px; padding: 0.5rem; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 4px; color: #ffd700; text-align: center; font-weight: bold;">
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(192, 192, 192, 0.1); border: 1px solid rgba(192, 192, 192, 0.2); border-radius: 8px;">
-                            <div style="color: #c0c0c0; font-weight: bold; margin-bottom: 0.5rem;">Plata (pp)</div>
-                            <input type="number" id="silver-coins" min="0" value="0" onchange="updateMoney()" style="width: 80px; padding: 0.5rem; background: rgba(192, 192, 192, 0.1); border: 1px solid rgba(192, 192, 192, 0.3); border-radius: 4px; color: #c0c0c0; text-align: center; font-weight: bold;">
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(205, 127, 50, 0.1); border: 1px solid rgba(205, 127, 50, 0.2); border-radius: 8px;">
-                            <div style="color: #cd7f32; font-weight: bold; margin-bottom: 0.5rem;">Cobre (pc)</div>
-                            <input type="number" id="copper-coins" min="0" value="0" onchange="updateMoney()" style="width: 80px; padding: 0.5rem; background: rgba(205, 127, 50, 0.1); border: 1px solid rgba(205, 127, 50, 0.3); border-radius: 4px; color: #cd7f32; text-align: center; font-weight: bold;">
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(230, 230, 250, 0.1); border: 1px solid rgba(230, 230, 250, 0.2); border-radius: 8px;">
-                            <div style="color: #e6e6fa; font-weight: bold; margin-bottom: 0.5rem;">Platino (pz)</div>
-                            <input type="number" id="platinum-coins" min="0" value="0" onchange="updateMoney()" style="width: 80px; padding: 0.5rem; background: rgba(230, 230, 250, 0.1); border: 1px solid rgba(230, 230, 250, 0.3); border-radius: 4px; color: #e6e6fa; text-align: center; font-weight: bold;">
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 1rem; padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 8px;">
-                        <strong style="color: #ffd700;">Total en Oro Equivalente: </strong>
-                        <span id="total-gold-equivalent" style="color: #ffd700; font-size: 1.2rem; font-weight: bold;">0 po</span>
-                    </div>
-                </div>
-
-                <!-- Equipment Categories -->
-                <div class="grid-2">
-                    <div class="card">
-                        <h3 class="mb-3">
-                            <i class="fas fa-sword text-danger"></i>
-                            Armas <span id="weapons-count" style="color: #a0aec0; font-size: 0.9rem;">(0)</span>
-                        </h3>
-                        <div id="weapons-list" style="max-height: 300px; overflow-y: auto;">
-                            <p style="text-align: center; color: #a0aec0; font-style: italic;">No hay armas en el inventario</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="mb-3">
-                            <i class="fas fa-shield-alt text-primary"></i>
-                            Armaduras <span id="armor-count" style="color: #a0aec0; font-size: 0.9rem;">(0)</span>
-                        </h3>
-                        <div id="armor-list" style="max-height: 300px; overflow-y: auto;">
-                            <p style="text-align: center; color: #a0aec0; font-style: italic;">No hay armaduras en el inventario</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="mb-3">
-                            <i class="fas fa-tools text-warning"></i>
-                            Equipo General <span id="equipment-count" style="color: #a0aec0; font-size: 0.9rem;">(0)</span>
-                        </h3>
-                        <div id="equipment-list" style="max-height: 300px; overflow-y: auto;">
-                            <p style="text-align: center; color: #a0aec0; font-style: italic;">No hay equipo en el inventario</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="mb-3">
-                            <i class="fas fa-magic text-purple"></i>
-                            Objetos Mágicos <span id="magic-items-count" style="color: #a0aec0; font-size: 0.9rem;">(0)</span>
-                        </h3>
-                        <div id="magic-items-list" style="max-height: 300px; overflow-y: auto;">
-                            <p style="text-align: center; color: #a0aec0; font-style: italic;">No hay objetos mágicos en el inventario</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
 
     <script>
         // Global character data
@@ -2382,809 +4295,10 @@
                     <i class="fas fa-user"></i>
                 </div>
 
-            <!-- Abilities Tab -->
-            <div id="abilities-tab" class="tab-content">
-                <h2 class="mb-3 text-center">
-                    <i class="fas fa-fist-raised text-primary"></i>
-                    Habilidades
-                </h2>
-                
-                <div style="background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                        <!-- Strength -->
-                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                <div style="background: #e53e3e; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="strength-method">🎲</div>
-                                <div style="flex: 1;">
-                                    <h4 style="color: #e2e8f0; margin: 0;">💪 Fuerza</h4>
-                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Poder físico y musculatura</p>
-                                </div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
-                                <div>Base</div>
-                                <div>Racial</div>
-                                <div>Trasfondo</div>
-                                <div>Tamaño</div>
-                                <div>Final</div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
-                                <input type="number" id="strength-base" min="3" max="25" value="10" onchange="updateAbilityScore('strength')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="strength-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
-                                <span id="strength-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
-                                <span id="strength-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
-                                <span id="strength-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
-                            </div>
-                            
-                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                                <button onclick="rollAbility('strength', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
-                                <button onclick="rollAbility('strength', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
-                                <button onclick="setAbilityAverage('strength')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
-                            </div>
-                            
-                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
-                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
-                                <div id="strength-benefits" style="color: #a0aec0; font-size: 0.8rem;">Ataque: +0, Daño: +0, Puertas: 1-2, Cargar: 40 lb</div>
-                            </div>
-                        </div>
 
-                        <!-- Dexterity -->
-                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                <div style="background: #48bb78; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="dexterity-method">🎲</div>
-                                <div style="flex: 1;">
-                                    <h4 style="color: #e2e8f0; margin: 0;">🏃 Destreza</h4>
-                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Agilidad y coordinación</p>
-                                </div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
-                                <div>Base</div>
-                                <div>Racial</div>
-                                <div>Trasfondo</div>
-                                <div>Tamaño</div>
-                                <div>Final</div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
-                                <input type="number" id="dexterity-base" min="3" max="25" value="10" onchange="updateAbilityScore('dexterity')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="dexterity-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
-                                <span id="dexterity-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
-                                <span id="dexterity-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
-                                <span id="dexterity-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
-                            </div>
-                            
-                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                                <button onclick="rollAbility('dexterity', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
-                                <button onclick="rollAbility('dexterity', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
-                                <button onclick="setAbilityAverage('dexterity')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
-                            </div>
-                            
-                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
-                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
-                                <div id="dexterity-benefits" style="color: #a0aec0; font-size: 0.8rem;">CA: +0, Ataque a distancia: +0, Iniciativa: +0</div>
-                            </div>
-                        </div>
 
-                        <!-- Constitution -->
-                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                <div style="background: #f56565; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="constitution-method">🎲</div>
-                                <div style="flex: 1;">
-                                    <h4 style="color: #e2e8f0; margin: 0;">🛡️ Constitución</h4>
-                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Resistencia y salud</p>
-                                </div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
-                                <div>Base</div>
-                                <div>Racial</div>
-                                <div>Trasfondo</div>
-                                <div>Tamaño</div>
-                                <div>Final</div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
-                                <input type="number" id="constitution-base" min="3" max="25" value="10" onchange="updateAbilityScore('constitution')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="constitution-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
-                                <span id="constitution-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
-                                <span id="constitution-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
-                                <span id="constitution-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
-                            </div>
-                            
-                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                                <button onclick="rollAbility('constitution', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
-                                <button onclick="rollAbility('constitution', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
-                                <button onclick="setAbilityAverage('constitution')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
-                            </div>
-                            
-                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
-                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
-                                <div id="constitution-benefits" style="color: #a0aec0; font-size: 0.8rem;">HP: +0, Resistencia: Normal, Resurrección: 70%</div>
-                            </div>
-                        </div>
 
-                        <!-- Intelligence -->
-                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                <div style="background: #805ad5; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="intelligence-method">🎲</div>
-                                <div style="flex: 1;">
-                                    <h4 style="color: #e2e8f0; margin: 0;">🧠 Inteligencia</h4>
-                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Razonamiento y memoria</p>
-                                </div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
-                                <div>Base</div>
-                                <div>Racial</div>
-                                <div>Trasfondo</div>
-                                <div>Tamaño</div>
-                                <div>Final</div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
-                                <input type="number" id="intelligence-base" min="3" max="25" value="10" onchange="updateAbilityScore('intelligence')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="intelligence-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
-                                <span id="intelligence-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
-                                <span id="intelligence-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
-                                <span id="intelligence-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
-                            </div>
-                            
-                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                                <button onclick="rollAbility('intelligence', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
-                                <button onclick="rollAbility('intelligence', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
-                                <button onclick="setAbilityAverage('intelligence')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
-                            </div>
-                            
-                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
-                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
-                                <div id="intelligence-benefits" style="color: #a0aec0; font-size: 0.8rem;">Idiomas: 2, Conjuros: Normal, Inmunidad: Ninguna</div>
-                            </div>
-                        </div>
 
-                        <!-- Wisdom -->
-                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                <div style="background: #38b2ac; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="wisdom-method">🎲</div>
-                                <div style="flex: 1;">
-                                    <h4 style="color: #e2e8f0; margin: 0;">🕯️ Sabiduría</h4>
-                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Intuición y percepción</p>
-                                </div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
-                                <div>Base</div>
-                                <div>Racial</div>
-                                <div>Trasfondo</div>
-                                <div>Tamaño</div>
-                                <div>Final</div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
-                                <input type="number" id="wisdom-base" min="3" max="25" value="10" onchange="updateAbilityScore('wisdom')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="wisdom-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
-                                <span id="wisdom-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
-                                <span id="wisdom-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
-                                <span id="wisdom-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
-                            </div>
-                            
-                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                                <button onclick="rollAbility('wisdom', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
-                                <button onclick="rollAbility('wisdom', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
-                                <button onclick="setAbilityAverage('wisdom')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
-                            </div>
-                            
-                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
-                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
-                                <div id="wisdom-benefits" style="color: #a0aec0; font-size: 0.8rem;">Conjuros divinos: 0, Salvaciones mentales: +0</div>
-                            </div>
-                        </div>
-
-                        <!-- Charisma -->
-                        <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 10px; padding: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                <div style="background: #ed64a6; color: white; width: 50px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;" id="charisma-method">🎲</div>
-                                <div style="flex: 1;">
-                                    <h4 style="color: #e2e8f0; margin: 0;">🌟 Carisma</h4>
-                                    <p style="color: #cbd5e0; margin: 0; font-size: 0.8rem;">Personalidad y liderazgo</p>
-                                </div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; text-align: center; font-size: 0.8rem; color: #cbd5e0;">
-                                <div>Base</div>
-                                <div>Racial</div>
-                                <div>Trasfondo</div>
-                                <div>Tamaño</div>
-                                <div>Final</div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
-                                <input type="number" id="charisma-base" min="3" max="25" value="10" onchange="updateAbilityScore('charisma')" style="padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="charisma-racial" style="text-align: center; color: #4299e1; font-weight: bold;">0</span>
-                                <span id="charisma-background" style="text-align: center; color: #48bb78; font-weight: bold;">0</span>
-                                <span id="charisma-size" style="text-align: center; color: #ed8936; font-weight: bold;">0</span>
-                                <span id="charisma-final" style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.2rem;">10</span>
-                            </div>
-                            
-                            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                                <button onclick="rollAbility('charisma', '4d6')" style="flex: 1; background: #4299e1; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">4d6</button>
-                                <button onclick="rollAbility('charisma', '3d6')" style="flex: 1; background: #48bb78; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">3d6</button>
-                                <button onclick="setAbilityAverage('charisma')" style="flex: 1; background: #ed8936; border: none; padding: 0.5rem; border-radius: 4px; color: white; cursor: pointer; font-size: 0.8rem;">Prom</button>
-                            </div>
-                            
-                            <div style="background: rgba(0, 0, 0, 0.2); padding: 0.8rem; border-radius: 6px;">
-                                <div style="color: #cbd5e0; font-size: 0.8rem; margin-bottom: 0.5rem;">Beneficios:</div>
-                                <div id="charisma-benefits" style="color: #a0aec0; font-size: 0.8rem;">Lealtad: 0, Reacción: 0, Seguidores: 0</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Generate All Button -->
-                <div style="text-align: center; margin-top: 2rem;">
-                    <button onclick="generateAllAbilities()" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; padding: 1rem 2rem; border-radius: 12px; color: white; cursor: pointer; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);">
-                        <i class="fas fa-dice"></i>
-                        Generar Todas las Habilidades (4d6)
-                    </button>
-                </div>
-            </div>
-
-            <!-- Categories Tab -->
-            <div id="categories-tab" class="tab-content">
-                <h2 class="mb-3 text-center">
-                    <i class="fas fa-scroll text-primary"></i>
-                    Categorías de Personaje
-                </h2>
-                
-                <div id="selected-classes-info">
-                    <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-bottom: 2rem;">
-                        Selecciona clases en el sidebar para ver información detallada
-                    </p>
-                </div>
-
-                <div class="grid-2">
-                    <div id="primary-class-card" class="card hidden">
-                        <h3 class="text-primary mb-2">
-                            <i class="fas fa-crown"></i>
-                            Categoría Principal
-                        </h3>
-                        <div id="primary-class-content">
-                            <!-- Content will be populated by JavaScript -->
-                        </div>
-                    </div>
-
-                    <div id="secondary-class-card" class="card hidden">
-                        <h3 class="text-warning mb-2">
-                            <i class="fas fa-star"></i>
-                            Categoría Secundaria
-                        </h3>
-                        <div id="secondary-class-content">
-                            <!-- Content will be populated by JavaScript -->
-                        </div>
-                    </div>
-
-                    <div id="tertiary-class-card" class="card hidden">
-                        <h3 class="text-success mb-2">
-                            <i class="fas fa-plus"></i>
-                            Categoría Terciaria
-                        </h3>
-                        <div id="tertiary-class-content">
-                            <!-- Content will be populated by JavaScript -->
-                        </div>
-                    </div>
-
-                    <div id="background-card" class="card hidden">
-                        <h3 style="color: #48bb78;" class="mb-2">
-                            <i class="fas fa-home"></i>
-                            Trasfondo
-                        </h3>
-                        <div id="background-content">
-                            <!-- Content will be populated by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Combat Tab -->
-            <div id="combat-tab" class="tab-content">
-                <h2 class="mb-3 text-center">
-                    <i class="fas fa-sword text-primary"></i>
-                    Sistema de Combate
-                </h2>
-
-                <div class="grid-2">
-                    <!-- Combat Stats -->
-                    <div class="card">
-                        <h3 class="mb-2 text-center">
-                            <i class="fas fa-shield-alt text-warning"></i>
-                            Estadísticas de Combate
-                        </h3>
-                        
-                        <div class="grid-2 mb-3">
-                            <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                                <div style="color: #cbd5e0; font-size: 0.9rem;">Clase de Armadura</div>
-                                <div style="color: #f7fafc; font-size: 2rem; font-weight: bold;" id="armor-class">10</div>
-                                <div style="color: #a0aec0; font-size: 0.8rem;" id="ac-breakdown">(Base 10)</div>
-                            </div>
-                            <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                                <div style="color: #cbd5e0; font-size: 0.9rem;">GACO</div>
-                                <div style="color: #f7fafc; font-size: 2rem; font-weight: bold;" id="thac0">20</div>
-                                <div style="color: #a0aec0; font-size: 0.8rem;">Para Impactar CA 0</div>
-                            </div>
-                        </div>
-
-                        <div class="grid-2">
-                            <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                                <div style="color: #cbd5e0; font-size: 0.9rem;">Iniciativa</div>
-                                <div style="color: #48bb78; font-size: 1.5rem; font-weight: bold;" id="initiative-bonus">+0</div>
-                            </div>
-                            <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                                <div style="color: #cbd5e0; font-size: 0.9rem;">Ataques/Ronda</div>
-                                <div style="color: #ed8936; font-size: 1.5rem; font-weight: bold;" id="attacks-per-round">1</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quick Actions -->
-                    <div class="card">
-                        <h3 class="mb-2 text-center">
-                            <i class="fas fa-bolt text-danger"></i>
-                            Acciones Rápidas
-                        </h3>
-                        
-                        <div class="grid-2">
-                            <button class="btn btn-success" onclick="rollInitiative()">
-                                <i class="fas fa-dice"></i>
-                                Iniciativa
-                            </button>
-                            <button class="btn btn-danger" onclick="rollToHit()">
-                                <i class="fas fa-crosshairs"></i>
-                                Ataque
-                            </button>
-                            <button class="btn btn-warning" onclick="rollDamage()">
-                                <i class="fas fa-hammer"></i>
-                                Daño
-                            </button>
-                            <button class="btn btn-purple" onclick="rollSavingThrow()">
-                                <i class="fas fa-shield-alt"></i>
-                                Salvación
-                            </button>
-                        </div>
-
-                        <div class="mt-3" style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; max-height: 200px; overflow-y: auto;">
-                            <h4 style="color: #e2e8f0; margin-bottom: 1rem; font-size: 1rem;">Registro de Combate:</h4>
-                            <div id="combat-log" style="color: #a0aec0; font-size: 0.9rem;">
-                                Listo para combate...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Weapons Section -->
-                <div class="card mt-3">
-                    <h3 class="mb-3 text-center">
-                        <i class="fas fa-sword text-danger"></i>
-                        Arsenal de Armas
-                    </h3>
-                    
-                    <div class="grid-3" id="weapon-slots">
-                        <div class="weapon-slot" onclick="addWeapon(0)">
-                            <i class="fas fa-plus" style="font-size: 2rem; margin-bottom: 1rem; color: #4a5568;"></i>
-                            <div>Arma Principal</div>
-                            <div style="font-size: 0.8rem; color: #718096;">Click para añadir</div>
-                        </div>
-                        <div class="weapon-slot" onclick="addWeapon(1)">
-                            <i class="fas fa-plus" style="font-size: 2rem; margin-bottom: 1rem; color: #4a5568;"></i>
-                            <div>Arma Secundaria</div>
-                            <div style="font-size: 0.8rem; color: #718096;">Click para añadir</div>
-                        </div>
-                        <div class="weapon-slot" onclick="addWeapon(2)">
-                            <i class="fas fa-plus" style="font-size: 2rem; margin-bottom: 1rem; color: #4a5568;"></i>
-                            <div>Arma a Distancia</div>
-                            <div style="font-size: 0.8rem; color: #718096;">Click para añadir</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Armor Section -->
-                <div class="card mt-3">
-                    <h3 class="mb-3 text-center">
-                        <i class="fas fa-shield-alt text-primary"></i>
-                        Protección y Armadura
-                    </h3>
-                    
-                    <div class="grid-2">
-                        <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px;">
-                            <h4 style="color: #e2e8f0; margin-bottom: 1rem;">Escudo</h4>
-                            <select id="shield" onchange="updateArmorClass()" style="width: 100%; padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0;">
-                                <option value="none">Sin Escudo</option>
-                                <option value="small">Escudo Pequeño (+1 CA)</option>
-                                <option value="medium">Escudo Mediano (+2 CA)</option>
-                                <option value="large">Escudo Grande (+3 CA)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Skills Tab -->
-            <div id="skills-tab" class="tab-content">
-                <h2 class="mb-3 text-center">
-                    <i class="fas fa-tools text-primary"></i>
-                    Pericias y Habilidades
-                </h2>
-
-                <!-- Skill Slots Management -->
-                <div class="card">
-                    <h3 class="mb-2 text-center">
-                        <i class="fas fa-cog text-warning"></i>
-                        Gestión de Slots de Pericia
-                    </h3>
-                    
-                    <div class="grid-3">
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">Slots Disponibles</div>
-                            <div style="color: #48bb78; font-size: 2rem; font-weight: bold;" id="available-skill-slots">4</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">Por Clase/INT</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">Slots Usados</div>
-                            <div style="color: #ed8936; font-size: 2rem; font-weight: bold;" id="used-skill-slots">0</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">En Pericias</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">Slots Restantes</div>
-                            <div style="color: #4299e1; font-size: 2rem; font-weight: bold;" id="remaining-skill-slots">4</div>
-                            <div style="color: #a0aec0; font-size: 0.8rem;">Sin Asignar</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- General Skills -->
-                <div class="skill-category">
-                    <h3 class="mb-3">
-                        <i class="fas fa-hammer text-warning"></i>
-                        Pericias Generales
-                    </h3>
-                    
-                    <div class="grid-2">
-                        <div class="skill-item">
-                            <div>
-                                <strong>Agricultura</strong> (Inteligencia)
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Cultivos y ganadería</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <input type="number" id="agriculture-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('agriculture')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="agriculture-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('agriculture')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Manejo de Animales</strong> (Sabiduría)
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Entrenar y controlar animales</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <input type="number" id="animal-handling-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('animal-handling')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="animal-handling-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('animal-handling')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Tasación</strong> (Inteligencia)
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Evaluar objetos y tesoros</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <input type="number" id="appraisal-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('appraisal')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="appraisal-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('appraisal')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Armero</strong> (Inteligencia)
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Crear y reparar armas</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <input type="number" id="weaponsmithing-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('weaponsmithing')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="weaponsmithing-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('weaponsmithing')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Carpintería</strong> (Fuerza)
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Trabajar la madera</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <input type="number" id="carpentry-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('carpentry')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="carpentry-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('carpentry')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Cocina</strong> (Inteligencia)
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Preparar comida y detectar venenos</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <input type="number" id="cooking-slots" min="0" max="4" value="0" onchange="updateSkillPercentage('cooking')" style="width: 50px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                                <span id="cooking-percentage" style="color: #48bb78; font-weight: bold; min-width: 40px;">0%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollSkill('cooking')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Thief Skills -->
-                <div class="skill-category" id="thief-skills-section" style="display: none;">
-                    <h3 class="mb-3">
-                        <i class="fas fa-mask text-danger"></i>
-                        Habilidades de Ladrón
-                    </h3>
-                    
-                    <div class="grid-2">
-                        <div class="skill-item">
-                            <div>
-                                <strong>Escalar Superficies</strong>
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 60% + 5% por nivel</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span id="climb-walls-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">60%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('climb-walls')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Detectar/Desarmar Trampas</strong>
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 25% + 5% por nivel</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span id="find-traps-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">25%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('find-traps')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Abrir Cerraduras</strong>
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 25% + 5% por nivel</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span id="open-locks-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">25%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('open-locks')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Moverse en Silencio</strong>
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 15% + 5% por nivel</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span id="move-silently-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">15%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('move-silently')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Ocultarse en las Sombras</strong>
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 10% + 5% por nivel</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span id="hide-in-shadows-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">10%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('hide-in-shadows')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div>
-                                <strong>Hurtar Carteras</strong>
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Base: 15% + 5% por nivel</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span id="pick-pockets-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">15%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('pick-pockets')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="skill-item" id="read-languages-skill" style="display: none;">
-                            <div>
-                                <strong>Leer Lenguajes</strong>
-                                <div style="font-size: 0.8rem; color: #a0aec0;">Disponible desde nivel 4</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span id="read-languages-percentage" style="color: #48bb78; font-weight: bold; min-width: 60px;">0%</span>
-                                <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="rollThiefSkill('read-languages')">
-                                    <i class="fas fa-dice"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Weapon Proficiencies -->
-                <div class="skill-category">
-                    <h3 class="mb-3">
-                        <i class="fas fa-sword text-danger"></i>
-                        Competencias con Armas
-                    </h3>
-                    
-                    <div style="margin-bottom: 1rem; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <strong>Slots de Competencia:</strong>
-                                <span id="weapon-proficiency-slots" style="color: #48bb78; font-weight: bold;">4</span>
-                                disponibles
-                            </div>
-                            <button class="btn btn-success" onclick="showWeaponProficiencyModal()">
-                                <i class="fas fa-plus"></i>
-                                Añadir Competencia
-                            </button>
-                        </div>
-                    </div>
-
-                    <div id="weapon-proficiencies-list">
-                        <p style="text-align: center; color: #a0aec0; font-style: italic;">
-                            No hay competencias con armas seleccionadas
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Skill Roll Log -->
-                <div class="card mt-3">
-                    <h3 class="mb-2">
-                        <i class="fas fa-scroll text-primary"></i>
-                        Registro de Tiradas de Pericia
-                    </h3>
-                    <div id="skill-log" style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; max-height: 200px; overflow-y: auto; color: #a0aec0; font-size: 0.9rem;">
-                        Listo para tiradas de pericia...
-                    </div>
-                </div>
-            </div>
-
-            <!-- Spells Tab -->
-            <div id="spells-tab" class="tab-content">
-                <h2 class="mb-3 text-center">
-                    <i class="fas fa-magic text-primary"></i>
-                    Sistema de Conjuros
-                </h2>
-
-                <div id="spell-caster-check">
-                    <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-top: 3rem;">
-                        <i class="fas fa-info-circle"></i>
-                        Selecciona una clase conjuradora para ver el sistema de conjuros
-                    </p>
-                    <p style="text-align: center; color: #a0aec0;">
-                        Clases conjuradoras: Mago, Hechicero, Clérigo, Druida, Bardo, Paladín, Ranger
-                    </p>
-                </div>
-
-                <div id="spell-system" class="hidden">
-                    <!-- Spell Slots Management -->
-                    <div class="card">
-                        <h3 class="mb-3 text-center">
-                            <i class="fas fa-gem text-purple"></i>
-                            Slots de Conjuros
-                        </h3>
-                        
-                        <div class="grid-4" id="spell-slots-grid">
-                            <!-- Spell slots will be populated by JavaScript -->
-                        </div>
-
-                        <div class="text-center mt-3">
-                            <button class="btn btn-success" onclick="applySpellProgression()">
-                                <i class="fas fa-level-up-alt"></i>
-                                Aplicar Progresión Automática
-                            </button>
-                            <button class="btn btn-primary" onclick="restoreAllSpellSlots()">
-                                <i class="fas fa-bed"></i>
-                                Descanso Completo
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Spell Progression Table -->
-                    <div class="card">
-                        <h3 class="mb-3 text-center">
-                            <i class="fas fa-chart-line text-warning"></i>
-                            Tabla de Progresión
-                        </h3>
-                        
-                        <div style="overflow-x: auto;">
-                            <table id="spell-progression-table" style="width: 100%; border-collapse: collapse; color: #e2e8f0;">
-                                <!-- Table will be populated by JavaScript -->
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Spellbook/Grimoire -->
-                    <div class="card">
-                        <h3 class="mb-3 text-center">
-                            <i class="fas fa-book-open text-purple"></i>
-                            Grimorio / Lista de Conjuros
-                        </h3>
-                        
-                        <div style="margin-bottom: 1rem;">
-                            <input type="text" id="spell-search" placeholder="Buscar conjuros..." style="width: 100%; padding: 0.8rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 8px; color: #e2e8f0;">
-                        </div>
-
-                        <div class="grid-2">
-                            <div>
-                                <h4 style="color: #e2e8f0; margin-bottom: 1rem;">Conjuros Conocidos</h4>
-                                <div id="known-spells-list" style="max-height: 400px; overflow-y: auto;">
-                                    <!-- Known spells will be populated by JavaScript -->
-                                </div>
-                            </div>
-                            <div>
-                                <h4 style="color: #e2e8f0; margin-bottom: 1rem;">Conjuros Preparados</h4>
-                                <div id="prepared-spells-list" style="max-height: 400px; overflow-y: auto;">
-                                    <!-- Prepared spells will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Spell Casting Log -->
-                    <div class="card">
-                        <h3 class="mb-2">
-                            <i class="fas fa-scroll text-primary"></i>
-                            Registro de Lanzamiento
-                        </h3>
-                        <div id="spell-log" style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; max-height: 200px; overflow-y: auto; color: #a0aec0; font-size: 0.9rem;">
-                            Listo para lanzar conjuros...
-                        </div>
-                    </div>
-                </div>
-            </div>f0; margin-bottom: 1rem;">Armadura Corporal</h4>
-                            <select id="body-armor" onchange="updateArmorClass()" style="width: 100%; padding: 0.5rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0;">
-                                <option value="none">Sin Armadura (CA 10)</option>
-                                <option value="leather">Cuero (CA 8)</option>
-                                <option value="studded">Cuero Tachonado (CA 7)</option>
-                                <option value="chain">Cota de Mallas (CA 5)</option>
-                                <option value="splint">Armadura de Bandas (CA 4)</option>
-                                <option value="plate">Armadura de Placas (CA 3)</option>
-                            </select>
-                        </div>
-                        
-                        <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px;">
-                            <h4 style="color: #e2e8
-                <div class="character-name" id="character-display-name">Nuevo Personaje</div>
-                <div class="character-level" id="character-display-info">Selecciona una clase • Nivel 1</div>
-            </div>
 
             <!-- Class Dropdowns -->
             <div class="dropdown-section">
