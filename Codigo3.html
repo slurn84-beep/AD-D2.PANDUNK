@@ -1094,7 +1094,7 @@
                 </div>
             </div>
 
-            <!-- Categories Tab -->
+<!-- REEMPLAZA TODO EL CONTENIDO DEL CATEGORIES TAB CON ESTO -->
 <div id="categories-tab" class="tab-content">
     <h2 class="mb-3 text-center">
         <i class="fas fa-scroll text-primary"></i>
@@ -1103,186 +1103,257 @@
     
     <div id="selected-classes-info">
         <p style="text-align: center; color: #cbd5e0; font-size: 1.1rem; margin-bottom: 2rem;">
+            <i class="fas fa-info-circle"></i>
             Selecciona clases en el sidebar para ver información detallada
         </p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-        <div id="primary-class-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
-            <h3 style="color: #4299e1; margin-bottom: 1rem;">
-                <i class="fas fa-crown"></i>
-                Categoría Principal
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+        <!-- Primary Class Card -->
+        <div id="primary-class-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 2px solid #f6ad55; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(246, 173, 85, 0.2); display: none;">
+            <h3 style="color: #f6ad55; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;">
+                <i class="fas fa-crown" style="font-size: 1.5rem;"></i>
+                <span>Categoría Principal</span>
             </h3>
             <div id="primary-class-content">
                 <!-- Content will be populated by JavaScript -->
             </div>
         </div>
 
-        <div id="secondary-class-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
-            <h3 style="color: #ed8936; margin-bottom: 1rem;">
-                <i class="fas fa-star"></i>
-                Categoría Secundaria
+        <!-- Secondary Class Card -->
+        <div id="secondary-class-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 2px solid #4299e1; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(66, 153, 225, 0.2); display: none;">
+            <h3 style="color: #4299e1; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;">
+                <i class="fas fa-star" style="font-size: 1.3rem;"></i>
+                <span>Categoría Secundaria</span>
             </h3>
             <div id="secondary-class-content">
                 <!-- Content will be populated by JavaScript -->
             </div>
         </div>
 
-        <div id="tertiary-class-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
-            <h3 style="color: #48bb78; margin-bottom: 1rem;">
-                <i class="fas fa-plus"></i>
-                Categoría Terciaria
+        <!-- Tertiary Class Card -->
+        <div id="tertiary-class-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 2px solid #9f7aea; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(159, 122, 234, 0.2); display: none;">
+            <h3 style="color: #9f7aea; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;">
+                <i class="fas fa-plus-circle" style="font-size: 1.2rem;"></i>
+                <span>Categoría Terciaria</span>
             </h3>
             <div id="tertiary-class-content">
                 <!-- Content will be populated by JavaScript -->
             </div>
         </div>
 
-        <div id="background-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
-            <h3 style="color: #48bb78; margin-bottom: 1rem;">
-                <i class="fas fa-home"></i>
-                Trasfondo
+        <!-- Background Card -->
+        <div id="background-card" style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 2px solid #48bb78; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(72, 187, 120, 0.2); display: none;">
+            <h3 style="color: #48bb78; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;">
+                <i class="fas fa-home" style="font-size: 1.3rem;"></i>
+                <span>Trasfondo</span>
             </h3>
             <div id="background-content">
                 <!-- Content will be populated by JavaScript -->
             </div>
         </div>
     </div>
-// Class information database
+
+    <!-- Statistics Summary Card -->
+    <div id="class-stats-summary" style="background: linear-gradient(135deg, #1a202c, #2d3748); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem; margin-top: 2rem; display: none;">
+        <h3 style="color: #e2e8f0; margin-bottom: 1rem; text-align: center;">
+            <i class="fas fa-chart-bar text-warning"></i>
+            Resumen de Capacidades
+        </h3>
+        <div id="stats-summary-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <!-- Will be populated with class statistics -->
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPT PARA EL CATEGORIES TAB -->
+<!-- AGREGA ESTO AL FINAL DE TU SCRIPT, ANTES DEL CIERRE </script> -->
+<script>
+// Class information database (AD&D 2e compliant)
 const classInfo = {
     'Guerrero': {
         icon: '⚔️',
         hitDie: 'd10',
         thac0: 20,
-        description: 'Maestro del combate cuerpo a cuerpo y las armas.',
-        abilities: 'Especialización en armas, ataques múltiples, liderazgo',
-        restrictions: 'Limitado en el uso de magia'
+        primereqs: 'Fuerza 9+',
+        description: 'Maestro del combate cuerpo a cuerpo, especialista en armas y tácticas militares.',
+        abilities: ['Especialización en armas (nivel 1)', 'Ataques múltiples por asalto (nivel 7+)', 'Liderazgo de tropas', 'Construcción de fortalezas (nivel 9)'],
+        restrictions: ['Limitado en uso de objetos mágicos', 'Sin conjuros arcanos'],
+        savingThrows: 'Excelentes vs. efectos físicos',
+        armorAllowed: 'Cualquier armadura',
+        weaponsAllowed: 'Cualquier arma'
     },
     'Bárbaro': {
         icon: '🪓',
         hitDie: 'd12',
         thac0: 20,
-        description: 'Guerrero salvaje con furia berserker.',
-        abilities: 'Furia berserker, resistencia al miedo, supervivencia',
-        restrictions: 'No puede usar armadura pesada, limitaciones mágicas'
+        primereqs: 'Fuerza 15+, Constitución 15+',
+        description: 'Guerrero salvaje con furia berserker y habilidades de supervivencia primitivas.',
+        abilities: ['Furia berserker (+2 ataque, +2 daño, -2 CA)', 'Resistencia al miedo y encantamientos', 'Supervivencia en tierras salvajes', 'Escalada y salto mejorados'],
+        restrictions: ['No armadura de metal', 'No objetos mágicos tecnológicos', 'Debe ser Caótico'],
+        savingThrows: 'Resistente a magia mental',
+        armorAllowed: 'Cuero, cuero tachonado, brigandina',
+        weaponsAllowed: 'Armas primitivas y tradicionales'
     },
     'Paladín': {
         icon: '⛪',
         hitDie: 'd10',
         thac0: 20,
-        description: 'Guerrero santo con poderes divinos.',
-        abilities: 'Detectar mal, curar enfermedades, inmunidad al miedo',
-        restrictions: 'Debe ser Legal Bueno, código de honor estricto'
+        primereqs: 'Fuerza 12+, Constitución 9+, Sabiduría 13+, Carisma 17+',
+        description: 'Guerrero sagrado consagrado a combatir el mal y proteger a los inocentes.',
+        abilities: ['Detectar mal (nivel 1)', 'Protección vs. mal (+2 salvaciones)', 'Imposición de manos (curar)', 'Inmunidad a enfermedades (nivel 3)'],
+        restrictions: ['Debe ser Legal Bueno siempre', 'Código de honor estricto', 'Diezmo del 10%'],
+        savingThrows: '+2 vs. conjuros malignos',
+        armorAllowed: 'Cualquier armadura',
+        weaponsAllowed: 'Cualquier arma'
     },
     'Ranger': {
         icon: '🏹',
         hitDie: 'd10',
         thac0: 20,
-        description: 'Explorador y guardabosques experto.',
-        abilities: 'Rastreo, combate con dos armas, conjuros divinos',
-        restrictions: 'Limitado en ciudades, debe ser bueno'
+        primereqs: 'Fuerza 13+, Destreza 13+, Constitución 14+, Sabiduría 14+',
+        description: 'Explorador experto, guardián de fronteras y cazador de criaturas malignas.',
+        abilities: ['Rastreo (+1 por 3 niveles)', 'Combate con dos armas sin penalización', 'Enemigo especial (+4 daño)', 'Conjuros divinos (nivel 8+)'],
+        restrictions: ['Debe ser Bueno', 'Limitado en ciudades', 'Equipaje limitado'],
+        savingThrows: '+1 vs. ataques a distancia',
+        armorAllowed: 'Hasta cuero tachonado',
+        weaponsAllowed: 'Cualquier arma'
     },
     'Clérigo': {
         icon: '🛡️',
         hitDie: 'd8',
         thac0: 20,
-        description: 'Servidor divino con poderes curativos.',
-        abilities: 'Conjuros divinos, expulsar muertos vivientes',
-        restrictions: 'Limitaciones de armas según deidad'
+        primereqs: 'Sabiduría 9+',
+        description: 'Servidor divino con poder para canalizar la energía de su deidad.',
+        abilities: ['Conjuros divinos (nivel 1)', 'Expulsar muertos vivientes (nivel 1)', 'Bendecir agua sagrada', 'Crear objetos sagrados'],
+        restrictions: ['Armas limitadas por deidad', 'Debe seguir preceptos divinos'],
+        savingThrows: '+2 vs. conjuros',
+        armorAllowed: 'Cualquier armadura',
+        weaponsAllowed: 'Según deidad (típicamente contundentes)'
     },
     'Druida': {
         icon: '🌿',
         hitDie: 'd8',
         thac0: 20,
-        description: 'Guardián de la naturaleza con magia natural.',
-        abilities: 'Conjuros druídicos, forma salvaje, inmunidad a encantamientos',
-        restrictions: 'Solo armadura de cuero, armas naturales'
+        primereqs: 'Sabiduría 12+, Carisma 15+',
+        description: 'Guardián de la naturaleza con magia druídica y forma animal.',
+        abilities: ['Conjuros druídicos (nivel 1)', 'Idioma secreto druídico', 'Forma salvaje (nivel 7)', 'Inmunidad a encantamientos fae (nivel 7)'],
+        restrictions: ['Solo armadura de cuero', 'Armas naturales únicamente', 'Debe ser Neutral'],
+        savingThrows: '+2 vs. fuego/electricidad',
+        armorAllowed: 'Solo cuero no metálico',
+        weaponsAllowed: 'Daga, hoz, dardo, lanza, bastón, honda'
     },
     'Mago': {
         icon: '🧙',
         hitDie: 'd4',
         thac0: 21,
-        description: 'Maestro de las artes arcanas y la magia.',
-        abilities: 'Conjuros arcanos, investigación mágica, crear objetos',
-        restrictions: 'Limitado en armas y armaduras'
+        primereqs: 'Inteligencia 9+',
+        description: 'Maestro de las artes arcanas que manipula las fuerzas mágicas del universo.',
+        abilities: ['Conjuros arcanos (nivel 1)', 'Escribir pergaminos (nivel 1)', 'Investigación mágica', 'Crear objetos mágicos (nivel 9+)'],
+        restrictions: ['Sin armadura', 'Armas muy limitadas', 'Vulnerable físicamente'],
+        savingThrows: '+1 vs. conjuros por 5 niveles',
+        armorAllowed: 'Sin armadura',
+        weaponsAllowed: 'Daga, dardo, cuchillo, bastón, honda, ballesta'
     },
     'Hechicero': {
         icon: '✨',
         hitDie: 'd4',
         thac0: 21,
-        description: 'Conjurador innato con magia espontánea.',
-        abilities: 'Magia espontánea, metamagia, poder mágico natural',
-        restrictions: 'Conjuros limitados pero flexibles'
+        primereqs: 'Constitución 15+, Carisma 15+',
+        description: 'Conjurador innato que canaliza magia a través de su fuerza vital.',
+        abilities: ['Magia espontánea', 'Metamagia innata', 'Pool de poder mágico', 'Resistencia a magia (nivel 5+)'],
+        restrictions: ['Conjuros conocidos limitados', 'Vulnerable al drenaje de energía'],
+        savingThrows: '+1 vs. efectos mágicos',
+        armorAllowed: 'Sin armadura',
+        weaponsAllowed: 'Daga, bastón, dardo'
     },
     'Ladrón': {
         icon: '🥷',
         hitDie: 'd6',
         thac0: 21,
-        description: 'Experto en sigilo, trampas y subterfugio.',
-        abilities: 'Habilidades de ladrón, ataque sorpresa, leer lenguajes',
-        restrictions: 'Limitado en armadura y algunas armas'
+        primereqs: 'Destreza 9+',
+        description: 'Experto en subterfugio, sigilo y habilidades clandestinas.',
+        abilities: ['Habilidades de ladrón', 'Ataque sorpresa (×2 daño)', 'Leer lenguajes (nivel 4)', 'Usar objetos mágicos (pergaminos, nivel 10)'],
+        restrictions: ['Armadura limitada', 'Sin escudo', 'Código de ladrones'],
+        savingThrows: '+1 vs. dispositivos',
+        armorAllowed: 'Cuero, cuero tachonado, élfica',
+        weaponsAllowed: 'Limitado a armas pequeñas'
     },
     'Bardo': {
         icon: '🎭',
         hitDie: 'd6',
         thac0: 20,
-        description: 'Aventurero versátil con habilidades mágicas y sociales.',
-        abilities: 'Conjuros arcanos, habilidades de ladrón, música inspiradora',
-        restrictions: 'Progresión mágica limitada'
+        primereqs: 'Destreza 12+, Inteligencia 13+, Carisma 15+',
+        description: 'Aventurero versátil que combina música, magia y habilidades sociales.',
+        abilities: ['Conjuros arcanos (nivel 2)', 'Habilidades de ladrón', 'Música bardica', 'Conocimiento de leyendas'],
+        restrictions: ['Progresión mágica lenta', 'Equipamiento limitado'],
+        savingThrows: 'Como ladrón',
+        armorAllowed: 'Hasta cota de mallas',
+        weaponsAllowed: 'Cualquier arma'
     },
     'Psiónico': {
         icon: '🧠',
         hitDie: 'd6',
         thac0: 20,
-        description: 'Usuario de poderes mentales y psíquicos.',
-        abilities: 'Poderes psiónicos, telepatía, telequinesis',
-        restrictions: 'Reglas especiales de PSP'
+        primereqs: 'Constitución 11+, Inteligencia 12+, Sabiduría 15+',
+        description: 'Usuario de poderes mentales que manipula la realidad con la mente.',
+        abilities: ['Poderes psiónicos', 'Telepatía', 'Telequinesis', 'Resistencia psiónica'],
+        restrictions: ['PSP limitados', 'Vulnerable a ataques psíquicos'],
+        savingThrows: 'Resistencia psiónica especial',
+        armorAllowed: 'Hasta cuero tachonado',
+        weaponsAllowed: 'Armas simples y mentales'
     }
 };
 
-// Background information database
+// Background information database  
 const backgroundInfo = {
     'Soldado': {
         icon: '🛡️',
-        description: 'Veterano de guerra con experiencia militar.',
-        skills: 'Uso de armas, tácticas, liderazgo',
+        description: 'Veterano de guerra con experiencia en combate organizado y disciplina militar.',
+        skills: ['Uso de armas militares', 'Tácticas básicas', 'Liderazgo de escuadra', 'Supervivencia en campañas'],
         bonus: '+1 Fuerza, +1 Constitución',
-        equipment: 'Armas militares, armadura, insignias'
+        equipment: 'Armas militares, armadura, insignias de rango, equipo de campaña',
+        connections: 'Contactos en fuerzas armadas, veteranos de guerra'
     },
     'Noble': {
         icon: '👑',
-        description: 'Miembro de la aristocracia con educación refinada.',
-        skills: 'Etiqueta, historia, idiomas',
+        description: 'Miembro de la aristocracia con educación refinada y conexiones políticas.',
+        skills: ['Etiqueta cortesana', 'Historia y heráldica', 'Idiomas', 'Montar a caballo'],
         bonus: '+1 Inteligencia, +1 Carisma',
-        equipment: 'Ropas finas, joyas, documentos'
+        equipment: 'Ropas finas, joyas, documentos de nobleza, caballo, sirvientes',
+        connections: 'Corte real, otros nobles, comerciantes ricos'
     },
     'Erudito': {
         icon: '📚',
-        description: 'Académico con vasto conocimiento libresco.',
-        skills: 'Investigación, idiomas, conocimiento arcano',
+        description: 'Académico dedicado al estudio y la investigación de conocimientos antiguos.',
+        skills: ['Investigación', 'Idiomas antiguos', 'Conocimiento arcano', 'Escritura'],
         bonus: '+2 Inteligencia',
-        equipment: 'Libros, instrumentos de escritura, pergaminos'
+        equipment: 'Biblioteca personal, instrumentos de escritura, pergaminos raros',
+        connections: 'Universidades, otros eruditos, archiveros, bibliotecarios'
     },
     'Artesano': {
         icon: '🔨',
-        description: 'Trabajador especializado en un oficio.',
-        skills: 'Artesanía, comercio, reparaciones',
+        description: 'Trabajador especializado en un oficio específico con habilidades prácticas.',
+        skills: ['Artesanía especializada', 'Comercio', 'Reparaciones', 'Tasación'],
         bonus: '+1 Fuerza, +1 Destreza',
-        equipment: 'Herramientas, materiales, productos'
+        equipment: 'Herramientas especializadas, materiales, taller, productos acabados',
+        connections: 'Gremios de artesanos, comerciantes, clientes regulares'
     },
     'Explorador': {
         icon: '🗺️',
-        description: 'Viajero experimentado conocedor del mundo.',
-        skills: 'Supervivencia, navegación, idiomas',
+        description: 'Viajero experimentado conocedor de tierras lejanas y rutas comerciales.',
+        skills: ['Supervivencia', 'Navegación', 'Idiomas regionales', 'Cartografía'],
         bonus: '+1 Destreza, +1 Sabiduría',
-        equipment: 'Equipo de viaje, mapas, brújula'
+        equipment: 'Equipo de viaje, mapas, brújula, guías regionales',
+        connections: 'Caravanas comerciales, guías locales, posadas, exploradores'
     },
     'Mercader': {
         icon: '💰',
-        description: 'Comerciante con ojo para los negocios.',
-        skills: 'Tasación, negociación, contactos',
+        description: 'Comerciante con ojo para los negocios y redes de contactos comerciales.',
+        skills: ['Tasación', 'Negociación', 'Contactos comerciales', 'Contabilidad'],
         bonus: '+1 Inteligencia, +1 Carisma',
-        equipment: 'Dinero, productos, contratos'
+        equipment: 'Capital inicial, contratos comerciales, contactos, caravana',
+        connections: 'Red comercial, banqueros, otros mercaderes, autoridades portuarias'
     }
 };
 
@@ -1294,28 +1365,43 @@ function updateCategoriesDisplay() {
     const background = characterData.background;
 
     // Update primary class card
-    if (primary && primary !== 'Ninguna') {
+    if (primary && primary !== 'Ninguna' && primary !== '') {
         const card = document.getElementById('primary-class-card');
         const content = document.getElementById('primary-class-content');
         const info = classInfo[primary];
         
         if (info) {
             content.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-size: 3rem;">${info.icon}</div>
                     <div>
-                        <h4 style="color: #f7fafc; margin: 0;">${primary}</h4>
-                        <div style="color: #a0aec0; font-size: 0.9rem;">Dado de Golpe: ${info.hitDie}</div>
+                        <h4 style="color: #f7fafc; margin: 0; font-size: 1.5rem;">${primary}</h4>
+                        <div style="color: #f6ad55; font-size: 0.9rem; font-weight: bold;">Dado de Golpe: ${info.hitDie} | GACO: ${info.thac0}</div>
+                        <div style="color: #a0aec0; font-size: 0.8rem;">Requisitos: ${info.primereqs}</div>
                     </div>
                 </div>
-                <p style="color: #e2e8f0; margin-bottom: 1rem;">${info.description}</p>
-                <div style="margin-bottom: 1rem;">
-                    <strong style="color: #4299e1;">Habilidades:</strong>
-                    <div style="color: #cbd5e0; font-size: 0.9rem;">${info.abilities}</div>
+                <p style="color: #e2e8f0; margin-bottom: 1.5rem; font-size: 0.95rem;">${info.description}</p>
+                <div style="margin-bottom: 1.5rem;">
+                    <strong style="color: #f6ad55; font-size: 1rem;">🎯 Habilidades Especiales:</strong>
+                    <ul style="color: #cbd5e0; font-size: 0.9rem; margin: 0.5rem 0 0 1rem; list-style: none;">
+                        ${info.abilities.map(ability => `<li style="margin-bottom: 0.3rem;">• ${ability}</li>`).join('')}
+                    </ul>
                 </div>
-                <div>
-                    <strong style="color: #f56565;">Restricciones:</strong>
-                    <div style="color: #cbd5e0; font-size: 0.9rem;">${info.restrictions}</div>
+                <div style="margin-bottom: 1.5rem;">
+                    <strong style="color: #f56565; font-size: 1rem;">⚠️ Restricciones:</strong>
+                    <ul style="color: #cbd5e0; font-size: 0.9rem; margin: 0.5rem 0 0 1rem; list-style: none;">
+                        ${info.restrictions.map(restriction => `<li style="margin-bottom: 0.3rem;">• ${restriction}</li>`).join('')}
+                    </ul>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.85rem;">
+                    <div>
+                        <strong style="color: #4299e1;">🛡️ Armadura:</strong>
+                        <div style="color: #cbd5e0;">${info.armorAllowed}</div>
+                    </div>
+                    <div>
+                        <strong style="color: #48bb78;">⚔️ Armas:</strong>
+                        <div style="color: #cbd5e0;">${info.weaponsAllowed}</div>
+                    </div>
                 </div>
             `;
             card.style.display = 'block';
@@ -1325,7 +1411,7 @@ function updateCategoriesDisplay() {
     }
 
     // Update secondary class card
-    if (secondary && secondary !== 'Ninguna') {
+    if (secondary && secondary !== 'Ninguna' && secondary !== '') {
         const card = document.getElementById('secondary-class-card');
         const content = document.getElementById('secondary-class-content');
         const info = classInfo[secondary];
@@ -1335,11 +1421,17 @@ function updateCategoriesDisplay() {
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <div style="font-size: 2.5rem;">${info.icon}</div>
                     <div>
-                        <h5 style="color: #f7fafc; margin: 0;">${secondary}</h5>
-                        <div style="color: #a0aec0; font-size: 0.8rem;">Clase Secundaria</div>
+                        <h5 style="color: #f7fafc; margin: 0; font-size: 1.2rem;">${secondary}</h5>
+                        <div style="color: #4299e1; font-size: 0.8rem;">Clase Dual | DG: ${info.hitDie}</div>
                     </div>
                 </div>
-                <p style="color: #e2e8f0; font-size: 0.9rem;">${info.description}</p>
+                <p style="color: #e2e8f0; font-size: 0.9rem; margin-bottom: 1rem;">${info.description}</p>
+                <div style="font-size: 0.85rem;">
+                    <strong style="color: #4299e1;">Beneficios principales:</strong>
+                    <div style="color: #cbd5e0; margin-top: 0.3rem;">
+                        ${info.abilities.slice(0, 2).join(', ')}
+                    </div>
+                </div>
             `;
             card.style.display = 'block';
         }
@@ -1348,7 +1440,7 @@ function updateCategoriesDisplay() {
     }
 
     // Update tertiary class card
-    if (tertiary && tertiary !== 'Ninguna') {
+    if (tertiary && tertiary !== 'Ninguna' && tertiary !== '') {
         const card = document.getElementById('tertiary-class-card');
         const content = document.getElementById('tertiary-class-content');
         const info = classInfo[tertiary];
@@ -1358,11 +1450,17 @@ function updateCategoriesDisplay() {
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <div style="font-size: 2rem;">${info.icon}</div>
                     <div>
-                        <h6 style="color: #f7fafc; margin: 0;">${tertiary}</h6>
-                        <div style="color: #a0aec0; font-size: 0.8rem;">Clase Terciaria</div>
+                        <h6 style="color: #f7fafc; margin: 0; font-size: 1rem;">${tertiary}</h6>
+                        <div style="color: #9f7aea; font-size: 0.75rem;">Clase Triple</div>
                     </div>
                 </div>
-                <p style="color: #e2e8f0; font-size: 0.8rem;">${info.description}</p>
+                <p style="color: #e2e8f0; font-size: 0.8rem; margin-bottom: 0.8rem;">${info.description}</p>
+                <div style="font-size: 0.8rem;">
+                    <strong style="color: #9f7aea;">Acceso limitado a:</strong>
+                    <div style="color: #cbd5e0; margin-top: 0.3rem; font-size: 0.75rem;">
+                        ${info.abilities[0] || 'Habilidades básicas'}
+                    </div>
+                </div>
             `;
             card.style.display = 'block';
         }
@@ -1371,24 +1469,102 @@ function updateCategoriesDisplay() {
     }
 
     // Update background card
-    if (background) {
+    if (background && background !== '') {
         const card = document.getElementById('background-card');
         const content = document.getElementById('background-content');
         const info = backgroundInfo[background];
         
         if (info) {
             content.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-size: 2.5rem;">${info.icon}</div>
                     <div>
-                        <h5 style="color: #f7fafc; margin: 0;">${background}</h5>
-                        <div style="color: #48bb78; font-size: 0.8rem;">${info.bonus}</div>
+                        <h5 style="color: #f7fafc; margin: 0; font-size: 1.3rem;">${background}</h5>
+                        <div style="color: #48bb78; font-size: 0.9rem; font-weight: bold;">${info.bonus}</div>
                     </div>
                 </div>
-                <p style="color: #e2e8f0; font-size: 0.9rem; margin-bottom: 1rem;">${info.description}</p>
+                <p style="color: #e2e8f0; font-size: 0.95rem; margin-bottom: 1.5rem;">${info.description}</p>
+                <div style="margin-bottom: 1rem;">
+                    <strong style="color: #48bb78;">🎯 Habilidades:</strong>
+                    <ul style="color: #cbd5e0; font-size: 0.9rem; margin: 0.5rem 0 0 1rem; list-style: none;">
+                        ${info.skills.map(skill => `<li style="margin-bottom: 0.2rem;">• ${skill}</li>`).join('')}
+                    </ul>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <strong style="color: #ed8936;">📦 Equipo inicial:</strong>
+                    <div style="color: #cbd5e0; font-size: 0.9rem;">
+                DG: ${hitDie}<br>
+                GACO: ${thac0}<br>
+                ${armorAllowed}
+            </div>
+        </div>
+        
+        <div style="background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
+            <div style="color: #805ad5; font-weight: bold; margin-bottom: 0.5rem;">Magia</div>
+            <div style="color: #cbd5e0; font-size: 0.9rem;">
+                ${canCastArcane ? '✅ Arcana' : '❌ Arcana'}<br>
+                ${canCastDivine ? '✅ Divina' : '❌ Divina'}<br>
+                ${isPsionic ? '✅ Psiónica' : '❌ Psiónica'}
+            </div>
+        </div>
+        
+        <div style="background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
+            <div style="color: #48bb78; font-weight: bold; margin-bottom: 0.5rem;">Habilidades</div>
+            <div style="color: #cbd5e0; font-size: 0.9rem;">
+                ${canThief ? '✅ Ladrón' : '❌ Ladrón'}<br>
+                ${primary === 'Guerrero' || primary === 'Paladín' || primary === 'Ranger' || primary === 'Bárbaro' ? '✅ Armas' : '❌ Armas'}<br>
+                Pericias: ${getSkillSlots()}
+            </div>
+        </div>
+        
+        <div style="background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
+            <div style="color: #ed8936; font-weight: bold; margin-bottom: 0.5rem;">Especiales</div>
+            <div style="color: #cbd5e0; font-size: 0.9rem;">
+                ${getSpecialAbilities()}
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('class-stats-summary').style.display = 'block';
+}
+
+function getSkillSlots() {
+    const intelligence = characterData.abilities.intelligence.final || 10;
+    let baseSlots = 2;
+    
+    // Intelligence bonus slots
+    if (intelligence >= 13) baseSlots += Math.floor((intelligence - 12) / 2);
+    
+    // Class bonus slots
+    const primary = characterData.classes.primary;
+    if (primary === 'Ladrón' || primary === 'Bardo') baseSlots += 1;
+    if (primary === 'Ranger') baseSlots += 2;
+    
+    return baseSlots;
+}
+
+function getSpecialAbilities() {
+    const primary = characterData.classes.primary;
+    const primaryInfo = classInfo[primary];
+    
+    if (!primaryInfo) return 'Ninguna';
+    
+    const mainAbility = primaryInfo.abilities[0] || 'Habilidades básicas';
+    return mainAbility.length > 25 ? mainAbility.substring(0, 25) + '...' : mainAbility;
+}
+
+// Update the existing selectClass function to call updateCategoriesDisplay
+function updateAllBasicStats() {
+    updateCategoriesDisplay(); // Add this line
+    updateSavingThrows();
+    updateAllAbilityScores();
+    updateXPProgress();
+}
+</script>-size: 0.9rem; margin-top: 0.3rem;">${info.equipment}</div>
+                </div>
                 <div>
-                    <strong style="color: #ed8936;">Habilidades:</strong>
-                    <div style="color: #cbd5e0; font-size: 0.9rem;">${info.skills}</div>
+                    <strong style="color: #9f7aea;">🤝 Contactos:</strong>
+                    <div style="color: #cbd5e0; font-size: 0.9rem; margin-top: 0.3rem;">${info.connections}</div>
                 </div>
             `;
             card.style.display = 'block';
@@ -1397,15 +1573,65 @@ function updateCategoriesDisplay() {
         document.getElementById('background-card').style.display = 'none';
     }
 
-    // Hide info message if any class is selected
-    if (primary || secondary || tertiary || background) {
+    // Show/hide info message and stats summary
+    const hasAnySelection = (primary && primary !== 'Ninguna' && primary !== '') || 
+                           (secondary && secondary !== 'Ninguna' && secondary !== '') || 
+                           (tertiary && tertiary !== 'Ninguna' && tertiary !== '') || 
+                           (background && background !== '');
+
+    if (hasAnySelection) {
         document.getElementById('selected-classes-info').style.display = 'none';
+        updateStatsummary();
     } else {
         document.getElementById('selected-classes-info').style.display = 'block';
+        document.getElementById('class-stats-summary').style.display = 'none';
     }
-}        
-</div>
-            <!-- Combat Tab -->
+}
+
+function updateStatsummary() {
+    const primary = characterData.classes.primary;
+    const secondary = characterData.classes.secondary;
+    const tertiary = characterData.classes.tertiary;
+    
+    if (!primary || primary === 'Ninguna' || primary === '') {
+        document.getElementById('class-stats-summary').style.display = 'none';
+        return;
+    }
+
+    const summaryContent = document.getElementById('stats-summary-content');
+    const primaryInfo = classInfo[primary];
+    
+    if (!primaryInfo) return;
+
+    // Determine combined capabilities
+    let hitDie = primaryInfo.hitDie;
+    let thac0 = primaryInfo.thac0;
+    let armorAllowed = primaryInfo.armorAllowed;
+    let canCastArcane = primary === 'Mago' || primary === 'Hechicero' || primary === 'Bardo';
+    let canCastDivine = primary === 'Clérigo' || primary === 'Druida' || primary === 'Paladín' || primary === 'Ranger';
+    let canThief = primary === 'Ladrón' || primary === 'Bardo';
+    let isPsionic = primary === 'Psiónico';
+    
+    // Check secondary/tertiary for additional abilities
+    if (secondary && secondary !== 'Ninguna' && secondary !== '') {
+        if (secondary === 'Mago' || secondary === 'Hechicero') canCastArcane = true;
+        if (secondary === 'Clérigo' || secondary === 'Druida') canCastDivine = true;
+        if (secondary === 'Ladrón') canThief = true;
+        if (secondary === 'Psiónico') isPsionic = true;
+    }
+    
+    if (tertiary && tertiary !== 'Ninguna' && tertiary !== '') {
+        if (tertiary === 'Mago') canCastArcane = true;
+        if (tertiary === 'Clérigo') canCastDivine = true;
+        if (tertiary === 'Ladrón') canThief = true;
+    }
+
+    summaryContent.innerHTML = `
+        <div style="background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
+            <div style="color: #f6ad55; font-weight: bold; margin-bottom: 0.5rem;">Combate</div>
+            <div style="color: #cbd5e0; font
+
+<!-- Combat Tab -->
             <div id="combat-tab" class="tab-content">
                 <h2 class="mb-3 text-center">
                     <i class="fas fa-sword text-primary"></i>
@@ -2154,2524 +2380,3 @@ function updateCategoriesDisplay() {
 --- LUIS RONDON
 }
 
-        // Ability Score Management
-        function rollAbility(ability, diceType) {
-            let total = 0;
-            
-            if (diceType === '4d6') {
-                // Roll 4d6, drop lowest
-                let rolls = [];
-                for (let i = 0; i < 4; i++) {
-                    rolls.push(Math.floor(Math.random() * 6) + 1);
-                }
-                rolls.sort((a, b) => b - a);
-                total = rolls[0] + rolls[1] + rolls[2];
-                characterData.abilities[ability].method = 'rolled4d6';
-                document.getElementById(ability + '-method').textContent = '🎲';
-            } else if (diceType === '3d6') {
-                // Roll 3d6
-                for (let i = 0; i < 3; i++) {
-                    total += Math.floor(Math.random() * 6) + 1;
-                }
-                characterData.abilities[ability].method = 'rolled3d6';
-                document.getElementById(ability + '-method').textContent = '🎲';
-            }
-            
-            document.getElementById(ability + '-base').value = total;
-            updateAbilityScore(ability);
-        }
-
-        function setAbilityAverage(ability) {
-            document.getElementById(ability + '-base').value = 11;
-            characterData.abilities[ability].method = 'average';
-            document.getElementById(ability + '-method').textContent = '📊';
-            updateAbilityScore(ability);
-        }
-
-        function updateAbilityScore(ability) {
-            const base = parseInt(document.getElementById(ability + '-base').value) || 10;
-            const race = document.getElementById('race').value || '';
-            const background = characterData.background || '';
-            const height = parseInt(document.getElementById('height').value) || 175;
-            
-            // Calculate modifiers
-            const racial = racialModifiers[race] ? racialModifiers[race][ability.substring(0, 3)] || 0 : 0;
-            const backgroundMod = backgroundModifiers[background] ? backgroundModifiers[background][ability.substring(0, 3)] || 0 : 0;
-            const sizeMod = getSizeModifier(ability, height);
-            
-            const final = base + racial + backgroundMod + sizeMod;
-            
-            // Update display
-            document.getElementById(ability + '-racial').textContent = racial >= 0 ? '+' + racial : racial;
-            document.getElementById(ability + '-background').textContent = backgroundMod >= 0 ? '+' + backgroundMod : backgroundMod;
-            document.getElementById(ability + '-size').textContent = sizeMod >= 0 ? '+' + sizeMod : sizeMod;
-            document.getElementById(ability + '-final').textContent = final;
-            
-            // Update benefits
-            updateAbilityBenefits(ability, final);
-            
-            // Store in character data
-            characterData.abilities[ability] = {
-                base: base,
-                racial: racial,
-                background: backgroundMod,
-                size: sizeMod,
-                final: final,
-                method: characterData.abilities[ability].method
-            };
-            
-            // Trigger stats changed event
-            document.dispatchEvent(new CustomEvent('statsChanged'));
-        }
-
-        function getSizeModifier(ability, height) {
-            // Size modifiers for abilities (simplified)
-            if (height < 120) { // Small
-                if (ability === 'strength') return -1;
-                if (ability === 'dexterity') return +1;
-            } else if (height > 200) { // Large
-                if (ability === 'strength') return +2;
-                if (ability === 'dexterity') return -1;
-            }
-            return 0;
-        }
-
-        function updateAbilityBenefits(ability, score) {
-            let benefits = '';
-            
-            switch (ability) {
-                case 'strength':
-                    const hitBonus = Math.floor((score - 15) / 2);
-                    const damageBonus = Math.floor((score - 15) / 2);
-                    const carryCapacity = getCarryingCapacity(score);
-                    benefits = `Ataque: ${hitBonus >= 0 ? '+' : ''}${hitBonus}, Daño: ${damageBonus >= 0 ? '+' : ''}${damageBonus}, Puertas: ${Math.min(score - 3, 19)}/20, Cargar: ${carryCapacity} lb`;
-                    break;
-                    
-                case 'dexterity':
-                    const acBonus = Math.floor((score - 15) / 2);
-                    const rangedBonus = Math.floor((score - 15) / 2);
-                    const initBonus = Math.floor((score - 15) / 2);
-                    benefits = `CA: ${acBonus >= 0 ? '+' : ''}${acBonus}, Ataque a distancia: ${rangedBonus >= 0 ? '+' : ''}${rangedBonus}, Iniciativa: ${initBonus >= 0 ? '+' : ''}${initBonus}`;
-                    break;
-                    
-                case 'constitution':
-                    const hpBonus = Math.floor((score - 15) / 2);
-                    const resurrection = Math.min(70 + (score - 10) * 2, 99);
-                    benefits = `HP: ${hpBonus >= 0 ? '+' : ''}${hpBonus}, Resistencia: ${score >= 16 ? 'Alta' : 'Normal'}, Resurrección: ${resurrection}%`;
-                    break;
-                    
-                case 'intelligence':
-                    const languages = Math.max(2, 2 + Math.floor((score - 10) / 2));
-                    const spellImmunity = score >= 19 ? 'Nivel 1-2' : score >= 18 ? 'Nivel 1' : 'Ninguna';
-                    benefits = `Idiomas: ${languages}, Conjuros: ${score >= 9 ? 'Normal' : 'Limitado'}, Inmunidad: ${spellImmunity}`;
-                    break;
-                    
-                case 'wisdom':
-                    const bonusSpells = Math.max(0, Math.floor((score - 13) / 2));
-                    const mentalSave = Math.floor((score - 15) / 2);
-                    benefits = `Conjuros divinos: ${bonusSpells}, Salvaciones mentales: ${mentalSave >= 0 ? '+' : ''}${mentalSave}`;
-                    break;
-                    
-                case 'charisma':
-                    const loyalty = Math.floor((score - 10) / 2);
-                    const reaction = Math.floor((score - 10) / 2);
-                    const followers = Math.max(0, Math.floor((score - 12) / 2));
-                    benefits = `Lealtad: ${loyalty}, Reacción: ${reaction >= 0 ? '+' : ''}${reaction}, Seguidores: ${followers}`;
-                    break;
-            }
-            
-            document.getElementById(ability + '-benefits').textContent = benefits;
-        }
-
-        function getCarryingCapacity(strength) {
-            const capacityTable = {
-                3: 5, 4: 10, 5: 10, 6: 20, 7: 20, 8: 35, 9: 35, 10: 40,
-                11: 40, 12: 45, 13: 45, 14: 55, 15: 55, 16: 70, 17: 85,
-                18: 110, 19: 185, 20: 335, 21: 485, 22: 635, 23: 785, 24: 935, 25: 1235
-            };
-            return capacityTable[Math.min(strength, 25)] || 40;
-        }
-
-        function generateAllAbilities() {
-            const abilities = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
-            abilities.forEach(ability => {
-                rollAbility(ability, '4d6');
-            });
-        }
-
-        function updateAllAbilityScores() {
-            const abilities = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
-            abilities.forEach(ability => {
-                updateAbilityScore(ability);
-            });
-        }
-
-        // Saving Throws
-        function updateSavingThrows() {
-            const saves = ['death', 'wands', 'petrification', 'breath', 'spells'];
-            
-            saves.forEach(save => {
-                const base = parseInt(document.getElementById('save-' + save + '-base').textContent) || 0;
-                const mod1 = parseInt(document.getElementById('save-' + save + '-mod1').value) || 0;
-                const mod2 = parseInt(document.getElementById('save-' + save + '-mod2').value) || 0;
-                const total = base + mod1 + mod2;
-                
-                document.getElementById('save-' + save + '-total').textContent = total;
-                
-                characterData.savingThrows[save] = {
-                    base: base,
-                    mod1: mod1,
-                    mod2: mod2,
-                    total: total
-                };
-            });
-        }
-
-        function updateAllBasicStats() {
-            updateSavingThrows();
-            updateAllAbilityScores();
-            updateXPProgress();
-        }
-
-        // Skills Tab Functions
-        function updateSkillsDisplay() {
-            const primaryClass = characterData.classes.primary;
-            const level = parseInt(document.getElementById('level').value) || 1;
-            
-            // Show/hide thief skills
-            const thiefSkillsSection = document.getElementById('thief-skills-section');
-            if (primaryClass === 'Ladrón' || primaryClass === 'Bardo') {
-                thiefSkillsSection.style.display = 'block';
-                updateThiefSkills(level);
-            } else {
-                thiefSkillsSection.style.display = 'none';
-            }
-            
-            // Update skill slots
-            updateSkillSlots();
-        }
-
-        function updateThiefSkills(level) {
-            const thiefSkills = {
-                'climb-walls': 60,
-                'find-traps': 25,
-                'open-locks': 25,
-                'move-silently': 15,
-                'hide-in-shadows': 10,
-                'pick-pockets': 15,
-                'read-languages': 0
-            };
-            
-            Object.keys(thiefSkills).forEach(skill => {
-                let percentage = thiefSkills[skill] + (level - 1) * 5;
-                
-                // Special case for read languages
-                if (skill === 'read-languages') {
-                    if (level >= 4) {
-                        percentage = (level - 4) * 5 + 20;
-                        document.getElementById('read-languages-skill').style.display = 'flex';
-                    } else {
-                        document.getElementById('read-languages-skill').style.display = 'none';
-                        return;
-                    }
-                }
-                
-                percentage = Math.min(95, percentage);
-                document.getElementById(skill + '-percentage').textContent = percentage + '%';
-            });
-        }
-
-        function updateSkillSlots() {
-            const primaryClass = characterData.classes.primary;
-            const intelligence = characterData.abilities.intelligence.final;
-            
-            // Base slots by class
-            let baseSlots = 2;
-            switch (primaryClass) {
-                case 'Bardo': baseSlots = 6; break;
-                case 'Ladrón': baseSlots = 4; break;
-                case 'Ranger': baseSlots = 3; break;
-                case 'Mago': case 'Hechicero': baseSlots = 1; break;
-                case 'Clérigo': case 'Druida': baseSlots = 2; break;
-                case 'Guerrero': case 'Paladín': baseSlots = 3; break;
-                default: baseSlots = 2; break;
-            }
-            
-            // Intelligence bonus
-            const intBonus = Math.max(0, Math.floor((intelligence - 12) / 2));
-            const totalSlots = baseSlots + intBonus;
-            
-            document.getElementById('available-skill-slots').textContent = totalSlots;
-            
-            // Calculate used slots
-            const usedSlots = calculateUsedSkillSlots();
-            document.getElementById('used-skill-slots').textContent = usedSlots;
-            document.getElementById('remaining-skill-slots').textContent = Math.max(0, totalSlots - usedSlots);
-        }
-
-        function calculateUsedSkillSlots() {
-            const skills = ['agriculture', 'animal-handling', 'appraisal', 'weaponsmithing', 'carpentry', 'cooking'];
-            let total = 0;
-            
-            skills.forEach(skill => {
-                const element = document.getElementById(skill + '-slots');
-                if (element) {
-                    total += parseInt(element.value) || 0;
-                }
-            });
-            
-            return total;
-        }
-
-        function updateSkillPercentage(skill) {
-            const slots = parseInt(document.getElementById(skill + '-slots').value) || 0;
-            let baseAbility = 10; // Default
-            
-            // Determine base ability for each skill
-            const skillAbilities = {
-                'agriculture': characterData.abilities.intelligence.final,
-                'animal-handling': characterData.abilities.wisdom.final,
-                'appraisal': characterData.abilities.intelligence.final,
-                'weaponsmithing': characterData.abilities.intelligence.final,
-                'carpentry': characterData.abilities.strength.final,
-                'cooking': characterData.abilities.intelligence.final
-            };
-            
-            baseAbility = skillAbilities[skill] || 10;
-            const percentage = Math.min(95, baseAbility + (slots * 15));
-            
-            document.getElementById(skill + '-percentage').textContent = percentage + '%';
-            updateSkillSlots();
-        }
-
-        function rollSkill(skill) {
-            const percentage = parseInt(document.getElementById(skill + '-percentage').textContent) || 0;
-            const roll = Math.floor(Math.random() * 100) + 1;
-            const success = roll <= percentage;
-            
-            let result = `${skill.charAt(0).toUpperCase() + skill.slice(1).replace('-', ' ')}: ${roll} vs ${percentage}% - `;
-            result += success ? 'ÉXITO' : 'FALLO';
-            
-            if (roll <= 5) result += ' (Éxito crítico)';
-            else if (roll >= 96) result += ' (Fallo crítico)';
-            
-            addSkillLogEntry(result, success ? 'success' : 'danger');
-        }
-
-        function rollThiefSkill(skill) {
-            const percentage = parseInt(document.getElementById(skill + '-percentage').textContent) || 0;
-            const roll = Math.floor(Math.random() * 100) + 1;
-            const success = roll <= percentage;
-            
-            const skillNames = {
-                'climb-walls': 'Escalar',
-                'find-traps': 'Detectar Trampas',
-                'open-locks': 'Abrir Cerraduras',
-                'move-silently': 'Moverse en Silencio',
-                'hide-in-shadows': 'Ocultarse',
-                'pick-pockets': 'Hurtar Carteras',
-                'read-languages': 'Leer Lenguajes'
-            };
-            
-            let result = `${skillNames[skill]}: ${roll} vs ${percentage}% - `;
-            result += success ? 'ÉXITO' : 'FALLO';
-            
-            if (roll <= 5) result += ' (Éxito crítico)';
-            else if (roll >= 96) result += ' (Fallo crítico)';
-            
-            addSkillLogEntry(result, success ? 'success' : 'danger');
-        }
-
-        function addSkillLogEntry(message, type = 'info') {
-            const log = document.getElementById('skill-log');
-            const time = new Date().toLocaleTimeString();
-            const colors = {
-                'info': '#4299e1',
-                'success': '#48bb78',
-                'warning': '#ed8936',
-                'danger': '#f56565'
-            };
-            
-            const entry = document.createElement('div');
-            entry.style.color = colors[type];
-            entry.style.marginBottom = '0.5rem';
-            entry.innerHTML = `<span style="color: #718096;">[${time}]</span> ${message}`;
-            
-            log.appendChild(entry);
-            log.scrollTop = log.scrollHeight;
-        }
-
-        // Spells Tab Functions
-        function updateSpellsDisplay() {
-            const primary = characterData.classes.primary;
-            const secondary = characterData.classes.secondary;
-            const tertiary = characterData.classes.tertiary;
-            
-            const spellcasters = ['Mago', 'Hechicero', 'Clérigo', 'Druida', 'Bardo', 'Paladín', 'Ranger'];
-            const isSpellcaster = spellcasters.includes(primary) || spellcasters.includes(secondary) || spellcasters.includes(tertiary);
-            
-            if (isSpellcaster) {
-                document.getElementById('spell-caster-check').style.display = 'none';
-                document.getElementById('spell-system').classList.remove('hidden');
-                initializeSpellSystem(primary);
-            } else {
-                document.getElementById('spell-caster-check').style.display = 'block';
-                document.getElementById('spell-system').classList.add('hidden');
-            }
-        }
-
-        function initializeSpellSystem(primaryClass) {
-            const level = parseInt(document.getElementById('level').value) || 1;
-            
-            // Determine spell levels based on class
-            let maxSpellLevel = 7; // Divine classes
-            if (primaryClass === 'Mago' || primaryClass === 'Hechicero') {
-                maxSpellLevel = 9; // Arcane classes
-            }
-            
-            // Create spell slots grid
-            const grid = document.getElementById('spell-slots-grid');
-            grid.innerHTML = '';
-            
-            for (let spellLevel = 1; spellLevel <= maxSpellLevel; spellLevel++) {
-                const slotCard = document.createElement('div');
-                slotCard.style.cssText = `
-                    text-align: center;
-                    padding: 1rem;
-                    background: rgba(0,0,0,0.2);
-                    border-radius: 8px;
-                    border: 2px solid #4a5568;
-                `;
-                
-                slotCard.innerHTML = `
-                    <div style="color: #e2e8f0; font-weight: bold; margin-bottom: 0.5rem;">Nivel ${spellLevel}</div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                        <input type="number" id="spell-slots-level-${spellLevel}" min="0" max="20" value="0" 
-                               style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;">
-                        <span style="color: #cbd5e0;">slots</span>
-                    </div>
-                    <div style="display: flex; justify-content: center; gap: 0.3rem;">
-                        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="adjustSpellSlots(${spellLevel}, -1)">-</button>
-                        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="adjustSpellSlots(${spellLevel}, 1)">+</button>
-                    </div>
-                `;
-                
-                grid.appendChild(slotCard);
-            }
-            
-            // Initialize spell progression table
-            updateSpellProgressionTable(primaryClass);
-        }
-
-        function adjustSpellSlots(level, amount) {
-            const input = document.getElementById(`spell-slots-level-${level}`);
-            const currentValue = parseInt(input.value) || 0;
-            const newValue = Math.max(0, Math.min(20, currentValue + amount));
-            input.value = newValue;
-        }
-
-        function applySpellProgression() {
-            const primaryClass = characterData.classes.primary;
-            const level = parseInt(document.getElementById('level').value) || 1;
-            
-            if (spellProgression[primaryClass] && spellProgression[primaryClass][level]) {
-                const slots = spellProgression[primaryClass][level];
-                
-                slots.forEach((slotCount, index) => {
-                    const spellLevel = index + 1;
-                    const input = document.getElementById(`spell-slots-level-${spellLevel}`);
-                    if (input) {
-                        input.value = slotCount;
-                    }
-                });
-                
-                showNotification(`Progresión automática aplicada para ${primaryClass} nivel ${level}`, 'success');
-            } else {
-                showNotification('No hay progresión automática disponible para esta clase/nivel', 'warning');
-            }
-        }
-
-        function restoreAllSpellSlots() {
-            const inputs = document.querySelectorAll('[id^="spell-slots-level-"]');
-            inputs.forEach(input => {
-                // Reset to maximum (you might want to implement used vs total slots)
-                // For now, this is just a placeholder
-            });
-            
-            showNotification('Todos los slots de conjuros restaurados', 'success');
-            addSpellLogEntry('Descanso completo - Slots restaurados', 'success');
-        }
-
-        function updateSpellProgressionTable(primaryClass) {
-            const table = document.getElementById('spell-progression-table');
-            const currentLevel = parseInt(document.getElementById('level').value) || 1;
-            
-            if (!spellProgression[primaryClass]) {
-                table.innerHTML = '<tr><td style="text-align: center; padding: 1rem; color: #a0aec0;">No hay tabla de progresión disponible</td></tr>';
-                return;
-            }
-            
-            let html = '<thead><tr style="border-bottom: 2px solid #4a5568;"><th style="padding: 0.5rem; text-align: center;">Nivel</th>';
-            
-            // Add spell level headers
-            const maxSpellLevel = Math.max(...Object.values(spellProgression[primaryClass]).map(slots => slots.length));
-            for (let i = 1; i <= maxSpellLevel; i++) {
-                html += `<th style="padding: 0.5rem; text-align: center;">Nv ${i}</th>`;
-            }
-            html += '</tr></thead><tbody>';
-            
-            // Add progression rows
-            for (let level = 1; level <= 10; level++) {
-                const isCurrentLevel = level === currentLevel;
-                const rowStyle = isCurrentLevel ? 'background: rgba(66, 153, 225, 0.2); border: 1px solid #4299e1;' : '';
-                
-                html += `<tr style="${rowStyle}"><td style="padding: 0.5rem; text-align: center; font-weight: bold;">${level}</td>`;
-                
-                const slots = spellProgression[primaryClass][level] || [];
-                for (let i = 0; i < maxSpellLevel; i++) {
-                    const slotCount = slots[i] || 0;
-                    html += `<td style="padding: 0.5rem; text-align: center; color: ${slotCount > 0 ? '#48bb78' : '#718096'};">${slotCount || '-'}</td>`;
-                }
-                html += '</tr>';
-            }
-            
-            html += '</tbody>';
-            table.innerHTML = html;
-        }
-
-        function addSpellLogEntry(message, type = 'info') {
-            const log = document.getElementById('spell-log');
-            const time = new Date().toLocaleTimeString();
-            const colors = {
-                'info': '#805ad5',
-                'success': '#48bb78',
-                'warning': '#ed8936',
-                'danger': '#f56565'
-            };
-            
-            const entry = document.createElement('div');
-            entry.style.color = colors[type];
-            entry.style.marginBottom = '0.5rem';
-            entry.innerHTML = `<span style="color: #718096;">[${time}]</span> ${message}`;
-            
-            log.appendChild(entry);
-            log.scrollTop = log.scrollHeight;
-        }
-
-        // Companions Tab Functions
-        function updateCompanionsDisplay() {
-            // Update companion statistics
-            updateCompanionStats();
-        }
-
-        function updateCompanionStats() {
-            const companions = characterData.companions || [];
-            const activeCompanions = companions.filter(c => c.status !== 'dismissed');
-            
-            document.getElementById('active-companions').textContent = activeCompanions.length;
-            
-            const totalHP = activeCompanions.reduce((sum, c) => sum + (c.currentHP || 0), 0);
-            document.getElementById('companions-total-hp').textContent = totalHP;
-            
-            const avgLevel = activeCompanions.length > 0 ? 
-                Math.round(activeCompanions.reduce((sum, c) => sum + (c.level || 1), 0) / activeCompanions.length) : 0;
-            document.getElementById('companions-avg-level').textContent = avgLevel;
-        }
-
-        function showAddCompanionModal() {
-            showNotification('Modal de compañeros en desarrollo', 'info');
-        }
-
-        function restoreAllCompanions() {
-            characterData.companions.forEach(companion => {
-                companion.currentHP = companion.maxHP;
-            });
-            updateCompanionsDisplay();
-            showNotification('Todos los compañeros curados completamente', 'success');
-        }
-
-        function companionGroupRest() {
-            characterData.companions.forEach(companion => {
-                companion.currentHP = Math.min(companion.maxHP, companion.currentHP + Math.floor(companion.maxHP * 0.5));
-            });
-            updateCompanionsDisplay();
-            showNotification('Descanso grupal completado (50% HP restaurado)', 'success');
-        }
-
-        // Equipment Tab Functions
-        function updateEquipmentDisplay() {
-            updateInventoryStats();
-            updateCarryCapacity();
-        }
-
-        function updateInventoryStats() {
-            const items = characterData.equipment.items || [];
-            
-            const totalWeight = items.reduce((sum, item) => sum + ((item.weight || 0) * (item.quantity || 1)), 0);
-            const totalValue = items.reduce((sum, item) => sum + ((item.value || 0) * (item.quantity || 1)), 0);
-            
-            document.getElementById('total-weight').textContent = totalWeight;
-            document.getElementById('total-items').textContent = items.length;
-            document.getElementById('total-value').textContent = totalValue;
-            
-            // Update carry capacity
-            const strength = characterData.abilities.strength.final;
-            const capacity = getCarryingCapacity(strength);
-            document.getElementById('carry-capacity').textContent = capacity;
-            
-            updateWeightProgressBar(totalWeight, capacity);
-        }
-
-        function updateCarryCapacity() {
-            const strength = characterData.abilities.strength.final;
-            const capacity = getCarryingCapacity(strength);
-            document.getElementById('carry-capacity').textContent = capacity;
-        }
-
-        function updateWeightProgressBar(currentWeight, maxCapacity) {
-            const percentage = (currentWeight / maxCapacity) * 100;
-            const bar = document.getElementById('weight-progress-bar');
-            const status = document.getElementById('weight-status');
-            
-            bar.style.width = Math.min(percentage, 100) + '%';
-            
-            if (percentage <= 50) {
-                bar.style.background = 'linear-gradient(90deg, #48bb78, #38a169)';
-                status.textContent = 'Normal';
-                status.style.color = '#48bb78';
-            } else if (percentage <= 100) {
-                bar.style.background = 'linear-gradient(90deg, #ed8936, #dd6b20)';
-                status.textContent = 'Cargado';
-                status.style.color = '#ed8936';
-            } else {
-                bar.style.background = 'linear-gradient(90deg, #f56565, #e53e3e)';
-                status.textContent = 'Sobrecargado';
-                status.style.color = '#f56565';
-            }
-        }
-
-        function updateMoney() {
-            const gold = parseInt(document.getElementById('gold-coins').value) || 0;
-            const silver = parseInt(document.getElementById('silver-coins').value) || 0;
-            const copper = parseInt(document.getElementById('copper-coins').value) || 0;
-            const platinum = parseInt(document.getElementById('platinum-coins').value) || 0;
-            
-            // Convert to gold equivalent (1 pp = 5 po, 1 po = 1 po, 1 pp = 10 pp, 1 pc = 0.1 po)
-            const totalGold = (platinum * 5) + gold + (silver * 0.1) + (copper * 0.01);
-            
-            document.getElementById('total-gold-equivalent').textContent = totalGold.toFixed(2) + ' po';
-            
-            characterData.equipment.money = { gold, silver, copper, platinum };
-        }
-
-        function showAddItemModal() {
-            showNotification('Modal de items en desarrollo', 'info');
-        }
-
-        function showQuickEquipModal() {
-            showNotification('Equipo rápido en desarrollo', 'info');
-        }
-
-        function sortInventory() {
-            showNotification('Inventario ordenado', 'success');
-        }
-
-        function exportInventory() {
-            const data = JSON.stringify(characterData.equipment, null, 2);
-            const blob = new Blob([data], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `${characterData.basic.name || 'personaje'}_inventario.json`;
-            link.click();
-            
-            showNotification('Inventario exportado', 'success');
-        }
-
-        // Header Actions
-        function saveCharacter() {
-            // Update character data from form
-            characterData.basic.name = document.getElementById('character-name').value;
-            characterData.basic.player = document.getElementById('player-name').value;
-            characterData.basic.race = document.getElementById('race').value;
-            characterData.basic.alignment = document.getElementById('alignment').value;
-            characterData.basic.height = parseInt(document.getElementById('height').value);
-            characterData.basic.religion = document.getElementById('religion').value;
-            characterData.basic.experience = parseInt(document.getElementById('experience').value);
-            characterData.basic.level = parseInt(document.getElementById('level').value);
-            
-            // Store in localStorage
-            localStorage.setItem('addCharacterData', JSON.stringify(characterData));
-            
-            showNotification('Personaje guardado exitosamente', 'success');
-        }
-
-        function rollStats() {
-            generateAllAbilities();
-            showNotification('Todas las habilidades generadas con 4d6', 'success');
-        }
-
-        function rollHP() {
-            const level = parseInt(document.getElementById('level').value) || 1;
-            const constitution = characterData.abilities.constitution.final || 10;
-            const conBonus = Math.floor((constitution - 15) / 2);
-            
-            // Simple HP calculation (d8 hit die for average class)
-            let totalHP = 8; // Max at level 1
-            for (let i = 2; i <= level; i++) {
-                totalHP += Math.floor(Math.random() * 8) + 1;
-            }
-            totalHP += conBonus * level;
-            totalHP = Math.max(1, totalHP);
-            
-            document.getElementById('max-hp').value = totalHP;
-            document.getElementById('current-hp').value = totalHP;
-            
-            showNotification(`HP generado: ${totalHP} (${level}d8 + ${conBonus * level})`, 'success');
-        }
-
-        function exportCharacter() {
-            const dataStr = JSON.stringify(characterData, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(dataBlob);
-            link.download = `${characterData.basic.name || 'personaje'}_${new Date().toISOString().split('T')[0]}.json`;
-            link.click();
-            
-            showNotification('Personaje exportado exitosamente', 'success');
-        }
-
-        // Utility Functions
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 90px;
-                right: 20px;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                color: white;
-                font-weight: bold;
-                z-index: 1001;
-                max-width: 300px;
-                animation: slideIn 0.3s ease;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            `;
-            
-            const colors = {
-                'success': 'linear-gradient(135deg, #48bb78, #38a169)',
-                'error': 'linear-gradient(135deg, #f56565, #e53e3e)',
-                'info': 'linear-gradient(135deg, #4299e1, #3182ce)',
-                'warning': 'linear-gradient(135deg, #ed8936, #dd6b20)'
-            };
-            
-            notification.style.background = colors[type] || colors.info;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
-        }
-
-        // Load saved character data
-        function loadCharacter() {
-            const saved = localStorage.getItem('addCharacterData');
-            if (saved) {
-                try {
-                    const data = JSON.parse(saved);
-                    characterData = { ...characterData, ...data };
-                    
-                    // Populate form fields
-                    if (data.basic) {
-                        document.getElementById('character-name').value = data.basic.name || '';
-                        document.getElementById('player-name').value = data.basic.player || '';
-                        document.getElementById('race').value = data.basic.race || '';
-                        document.getElementById('alignment').value = data.basic.alignment || 'Neutral Auténtico';
-                        document.getElementById('height').value = data.basic.height || 175;
-                        document.getElementById('religion').value = data.basic.religion || '';
-                        document.getElementById('experience').value = data.basic.experience || 0;
-                        document.getElementById('level').value = data.basic.level || 1;
-                    }
-                    
-                    // Update displays
-                    updateCharacterDisplay();
-                    updateSizeCategory();
-                    updateAllBasicStats();
-                    
-                    console.log('Character data loaded successfully');
-                } catch (e) {
-                    console.error('Error loading character data:', e);
-                }
-            }
-        }
-
-        // Add notification animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCharacter();
-            updateAllBasicStats();
-            updateManaCards();
-            updateSavingThrows();
-            
-            console.log('AD&D 2e Character Sheet initialized');
-        });
-
-        // Auto-save on changes
-        let saveTimeout;
-        document.addEventListener('input', function() {
-            clearTimeout(saveTimeout);
-            saveTimeout = setTimeout(() => {
-                saveCharacter();
-            }, 2000); // Auto-save after 2 seconds of inactivity
-        });
-
-        // Event listeners for stats changes
-        document.addEventListener('statsChanged', function() {
-            updateCombatStats();
-            updateCarryCapacity();
-        });
-    </script>
-</body>
-</html>        }
-
-        // Dropdown Management
-        function toggleDropdown(dropdownId) {
-            const dropdown = document.getElementById(category + '-dropdown');
-            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
-                item.classList.remove('selected');
-            });
-            
-            event.target.classList.add('selected');
-            
-            // Close dropdown
-            dropdown.classList.remove('show');
-            
-            // Update character display
-            updateCharacterDisplay();
-            updateManaCards();
-            updateAllBasicStats();
-        }
-
-        function getDropdownText(category) {
-            const texts = {
-                'primary': '🏛️ Categoría Principal',
-                'secondary': '⚡ Categoría Secundaria', 
-                'tertiary': '⭐ Categoría Terciaria'
-            };
-            return texts[category] || '';
-        }
-
-        function getClassIcon(className) {
-            const icons = {
-                'Guerrero': '⚔️',
-                'Bárbaro': '🪓',
-                'Paladín': '⛪',
-                'Ranger': '🏹',
-                'Clérigo': '🛡️',
-                'Druida': '🌿',
-                'Mago': '🧙',
-                'Hechicero': '✨',
-                'Ladrón': '🥷',
-                'Bardo': '🎭',
-                'Psiónico': '🧠'
-            };
-            return icons[className] || '⚔️';
-        }
-
-        // Background Selection
-        function selectBackground(background) {
-            characterData.background = background;
-            
-            const header = document.getElementById('background-dropdown-header');
-            const span = header.querySelector('span');
-            span.textContent = getBackgroundIcon(background) + ' ' + background;
-            
-            const dropdown = document.getElementById('background-dropdown');
-            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
-                item.classList.remove('selected');
-            });
-            
-            event.target.classList.add('selected');
-            dropdown.classList.remove('show');
-            
-            updateAllAbilityScores();
-        }
-
-        function getBackgroundIcon(background) {
-            const icons = {
-                'Soldado': '🛡️',
-                'Noble': '👑',
-                'Erudito': '📚',
-                'Artesano': '🔨',
-                'Explorador': '🗺️',
-                'Mercader': '💰'
-            };
-            return icons[background] || '🏰';
-        }
-
-        // Character Display Updates
-        function updateCharacterDisplay() {
-            const name = document.getElementById('character-name').value || 'Nuevo Personaje';
-            const level = document.getElementById('level').value || 1;
-            const primaryClass = characterData.classes.primary || 'Sin clase';
-            
-            document.getElementById('character-display-name').textContent = name;
-            document.getElementById('character-display-info').textContent = `${primaryClass} • Nivel ${level}`;
-            
-            characterData.basic.name = name;
-            characterData.basic.level = parseInt(level);
-        }
-
-        // Categories Tab Functions
-        function updateCategoriesDisplay() {
-            const primary = characterData.classes.primary;
-            const secondary = characterData.classes.secondary;
-            const tertiary = characterData.classes.tertiary;
-            const background = characterData.background;
-
-            // Update primary class card
-            if (primary && primary !== 'Ninguna') {
-                const card = document.getElementById('primary-class-card');
-                const content = document.getElementById('primary-class-content');
-                const info = classInfo[primary];
-                
-                if (info) {
-                    content.innerHTML = `
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="font-size: 3rem;">${info.icon}</div>
-                            <div>
-                                <h4 style="color: #f7fafc; margin: 0;">${primary}</h4>
-                                <div style="color: #a0aec0; font-size: 0.9rem;">Dado de Golpe: ${info.hitDie}</div>
-                            </div>
-                        </div>
-                        <p style="color: #e2e8f0; margin-bottom: 1rem;">${info.description}</p>
-                        <div style="margin-bottom: 1rem;">
-                            <strong style="color: #4299e1;">Habilidades:</strong>
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">${info.abilities}</div>
-                        </div>
-                        <div>
-                            <strong style="color: #f56565;">Restricciones:</strong>
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">${info.restrictions}</div>
-                        </div>
-                    `;
-                    card.classList.remove('hidden');
-                }
-            } else {
-                document.getElementById('primary-class-card').classList.add('hidden');
-            }
-
-            // Update secondary class card
-            if (secondary && secondary !== 'Ninguna') {
-                const card = document.getElementById('secondary-class-card');
-                const content = document.getElementById('secondary-class-content');
-                const info = classInfo[secondary];
-                
-                if (info) {
-                    content.innerHTML = `
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="font-size: 2.5rem;">${info.icon}</div>
-                            <div>
-                                <h5 style="color: #f7fafc; margin: 0;">${secondary}</h5>
-                                <div style="color: #a0aec0; font-size: 0.8rem;">Clase Secundaria</div>
-                            </div>
-                        </div>
-                        <p style="color: #e2e8f0; font-size: 0.9rem;">${info.description}</p>
-                    `;
-                    card.classList.remove('hidden');
-                }
-            } else {
-                document.getElementById('secondary-class-card').classList.add('hidden');
-            }
-
-            // Update background card
-            if (background) {
-                const card = document.getElementById('background-card');
-                const content = document.getElementById('background-content');
-                const info = backgroundInfo[background];
-                
-                if (info) {
-                    content.innerHTML = `
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="font-size: 2.5rem;">${info.icon}</div>
-                            <div>
-                                <h5 style="color: #f7fafc; margin: 0;">${background}</h5>
-                                <div style="color: #48bb78; font-size: 0.8rem;">${info.bonus}</div>
-                            </div>
-                        </div>
-                        <p style="color: #e2e8f0; font-size: 0.9rem; margin-bottom: 1rem;">${info.description}</p>
-                        <div>
-                            <strong style="color: #ed8936;">Habilidades:</strong>
-                            <div style="color: #cbd5e0; font-size: 0.9rem;">${info.skills}</div>
-                        </div>
-                    `;
-                    card.classList.remove('hidden');
-                }
-            } else {
-                document.getElementById('background-card').classList.add('hidden');
-            }
-
-            // Hide info message if any class is selected
-            if (primary || secondary || tertiary || background) {
-                document.getElementById('selected-classes-info').style.display = 'none';
-            } else {
-                document.getElementById('selected-classes-info').style.display = 'block';
-            }
-        }
-
-        // Combat Tab Functions
-        function updateCombatStats() {
-            const level = parseInt(document.getElementById('level').value) || 1;
-            const primaryClass = characterData.classes.primary;
-            const dexterity = characterData.abilities.dexterity.final;
-            const strength = characterData.abilities.strength.final;
-            
-            // Calculate THAC0
-            let thac0 = 20;
-            if (classInfo[primaryClass]) {
-                thac0 = classInfo[primaryClass].thac0 - Math.floor((level - 1) / 2);
-            }
-            document.getElementById('thac0').textContent = thac0;
-            
-            // Calculate Initiative bonus
-            const initBonus = Math.floor((dexterity - 15) / 2);
-            document.getElementById('initiative-bonus').textContent = initBonus >= 0 ? '+' + initBonus : initBonus;
-            
-            // Calculate Attacks per Round
-            let attacksPerRound = 1;
-            if (primaryClass === 'Guerrero' || primaryClass === 'Paladín' || primaryClass === 'Ranger') {
-                if (level >= 7 && level <= 12) attacksPerRound = 1.5;
-                else if (level >= 13) attacksPerRound = 2;
-            }
-            document.getElementById('attacks-per-round').textContent = attacksPerRound;
-            
-            updateArmorClass();
-        }
-
-        function updateArmorClass() {
-            let ac = 10;
-            const armor = document.getElementById('body-armor').value;
-            const shield = document.getElementById('shield').value;
-            const dexterity = characterData.abilities.dexterity.final;
-            
-            // Base armor AC
-            const armorAC = {
-                'none': 10,
-                'leather': 8,
-                'studded': 7,
-                'chain': 5,
-                'splint': 4,
-                'plate': 3
-            };
-            
-            ac = armorAC[armor] || 10;
-            
-            // Shield bonus
-            const shieldBonus = {
-                'none': 0,
-                'small': 1,
-                'medium': 2,
-                'large': 3
-            };
-            
-            ac -= shieldBonus[shield] || 0;
-            
-            // Dexterity bonus (only if not in heavy armor)
-            if (armor !== 'splint' && armor !== 'plate') {
-                const dexBonus = Math.floor((dexterity - 15) / 2);
-                ac -= Math.max(-4, Math.min(2, dexBonus)); // Cap at -4 to +2
-            }
-            
-            document.getElementById('armor-class').textContent = ac;
-            
-            // Update AC breakdown
-            let breakdown = `Base ${armorAC[armor] || 10}`;
-            if (shieldBonus[shield]) breakdown += `, Escudo -${shieldBonus[shield]}`;
-            if (armor !== 'splint' && armor !== 'plate') {
-                const dexBonus = Math.floor((dexterity - 15) / 2);
-                if (dexBonus !== 0) breakdown += `, Des ${dexBonus >= 0 ? '-' + dexBonus : '+' + Math.abs(dexBonus)}`;
-            }
-            document.getElementById('ac-breakdown').textContent = `(${breakdown})`;
-            
-            characterData.combat.armorClass = ac;
-        }
-
-        // Combat Action Functions
-        function rollInitiative() {
-            const dexBonus = Math.floor((characterData.abilities.dexterity.final - 15) / 2);
-            const roll = Math.floor(Math.random() * 10) + 1;
-            const total = roll + dexBonus;
-            
-            addCombatLogEntry(`Iniciativa: ${roll} + ${dexBonus} = ${total}`, 'success');
-        }
-
-        function rollToHit() {
-            const roll = Math.floor(Math.random() * 20) + 1;
-            const thac0 = parseInt(document.getElementById('thac0').textContent);
-            const strBonus = Math.floor((characterData.abilities.strength.final - 15) / 2);
-            const total = roll + strBonus;
-            const acHit = thac0 - total;
-            
-            let result = `Ataque: ${roll}`;
-            if (strBonus !== 0) result += ` + ${strBonus}`;
-            result += ` = ${total} (impacta CA ${acHit} o mejor)`;
-            
-            if (roll === 20) result += ' - ¡Crítico!';
-            else if (roll === 1) result += ' - Pifia';
-            
-            addCombatLogEntry(result, roll === 20 ? 'success' : roll === 1 ? 'danger' : 'info');
-        }
-
-        function rollDamage() {
-            // Simple damage roll (1d8 for average weapon)
-            const roll = Math.floor(Math.random() * 8) + 1;
-            const strBonus = Math.floor((characterData.abilities.strength.final - 15) / 2);
-            const total = Math.max(1, roll + strBonus);
-            
-            let result = `Daño: ${roll}`;
-            if (strBonus !== 0) result += ` + ${strBonus}`;
-            result += ` = ${total} puntos`;
-            
-            addCombatLogEntry(result, 'warning');
-        }
-
-        function rollSavingThrow() {
-            const saves = ['death', 'wands', 'petrification', 'breath', 'spells'];
-            const saveNames = ['Muerte/Parálisis', 'Varitas', 'Petrificación', 'Aliento', 'Conjuros'];
-            const randomSave = saves[Math.floor(Math.random() * saves.length)];
-            const saveName = saveNames[saves.indexOf(randomSave)];
-            const saveValue = parseInt(document.getElementById('save-' + randomSave + '-total').textContent);
-            
-            const roll = Math.floor(Math.random() * 20) + 1;
-            const success = roll >= saveValue;
-            
-            const result = `Salvación vs ${saveName}: ${roll} vs ${saveValue} - ${success ? 'ÉXITO' : 'FALLO'}`;
-            addCombatLogEntry(result, success ? 'success' : 'danger');
-        }
-
-        function addCombatLogEntry(message, type = 'info') {
-            const log = document.getElementById('combat-log');
-            const time = new Date().toLocaleTimeString();
-            const colors = {
-                'info': '#4299e1',
-                'success': '#48bb78',
-                'warning': '#ed8936',
-                'danger': '#f56565'
-            };
-            
-            const entry = document.createElement('div');
-            entry.style.color = colors[type];
-            entry.style.marginBottom = '0.5rem';
-            entry.innerHTML = `<span style="color: #718096;">[${time}]</span> ${message}`;
-            
-            log.appendChild(entry);
-            log.scrollTop = log.scrollHeight;
-        }
-
-        // Size Category Update
-        function updateSizeCategory() {
-            const height = parseInt(document.getElementById('height').value);
-            let size = 'Mediano';
-            
-            if (height < 120) size = 'Pequeño';
-            else if (height > 200) size = 'Grande';
-            
-            document.getElementById('size-category').value = size;
-            characterData.basic.height = height;
-            
-            updateAllAbilityScores();
-        }
-
-        // XP and Level Conversion
-        function updateLevelFromXP() {
-            const xp = parseInt(document.getElementById('experience').value) || 0;
-            let level = 1;
-            
-            for (let i = 0; i < xpTable.length; i++) {
-                if (xp >= xpTable[i]) {
-                    level = i + 1;
-                }
-            }
-            
-            document.getElementById('level').value = level;
-            characterData.basic.experience = xp;
-            characterData.basic.level = level;
-            
-            updateXPProgress();
-            updateCharacterDisplay();
-        }
-
-        function updateXPFromLevel() {
-            const level = parseInt(document.getElementById('level').value) || 1;
-            const xp = xpTable[level - 1] || 0;
-            
-            document.getElementById('experience').value = xp;
-            characterData.basic.experience = xp;
-            characterData.basic.level = level;
-            
-            updateXPProgress();
-            updateCharacterDisplay();
-        }
-
-        function convertXPToLevel() {
-            updateLevelFromXP();
-        }
-
-        function updateXPProgress() {
-            const currentXP = parseInt(document.getElementById('experience').value) || 0;
-            const level = parseInt(document.getElementById('level').value) || 1;
-            
-            document.getElementById('current-xp-display').textContent = currentXP.toLocaleString();
-            document.getElementById('current-level-display').textContent = level;
-            
-            if (level < 20) {
-                const nextLevelXP = xpTable[level] || xpTable[xpTable.length - 1];
-                const currentLevelXP = xpTable[level - 1] || 0;
-                const progress = ((currentXP - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100;
-                
-                document.getElementById('xp-progress-bar').style.width = Math.min(Math.max(progress, 0), 100) + '%';
-                document.getElementById('xp-needed-display').textContent = `Necesita ${nextLevelXP.toLocaleString()} XP para nivel ${level + 1}`;
-            } else {
-                document.getElementById('xp-progress-bar').style.width = '100%';
-                document.getElementById('xp-needed-display').textContent = 'Nivel máximo alcanzado';
-            }
-        }
-
-        // Mana Cards Management
-        function updateManaCards() {
-            const primary = characterData.classes.primary;
-            const secondary = characterData.classes.secondary;
-            const tertiary = characterData.classes.tertiary;
-            
-            // Hide all mana cards initially
-            document.getElementById('arcane-mana-card').style.display = 'none';
-            document.getElementById('divine-mana-card').style.display = 'none';
-            document.getElementById('psp-card').style.display = 'none';
-            
-            // Show relevant mana cards
-            const arcaneClasses = ['Mago', 'Hechicero', 'Bardo'];
-            const divineClasses = ['Clérigo', 'Druida', 'Paladín', 'Ranger'];
-            const psionicClasses = ['Psiónico'];
-            
-            if (arcaneClasses.includes(primary) || arcaneClasses.includes(secondary) || arcaneClasses.includes(tertiary)) {
-                document.getElementById('arcane-mana-card').style.display = 'block';
-            }
-            
-            if (divineClasses.includes(primary) || divineClasses.includes(secondary) || divineClasses.includes(tertiary)) {
-                document.getElementById('divine-mana-card').style.display = 'block';
-            }
-            
-            if (psionicClasses.includes(primary) || psionicClasses.includes(secondary) || psionicClasses.includes(tertiary)) {
-                document.getElementById('psp-card').style.display = 'block';
-            }
-        } document.getElementById(dropdownId);
-            const header = dropdown.previousElementSibling;
-            const icon = header.querySelector('i');
-            
-            dropdown.classList.toggle('show');
-            
-            if (dropdown.classList.contains('show')) {
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Class Selection
-        function selectClass(category, className) {
-            characterData.classes[category] = className;
-            
-            // Update header text
-            const header = document.getElementById(category + '-dropdown-header');
-            const span = header.querySelector('span');
-            
-            if (className === 'Ninguna') {
-                span.textContent = getDropdownText(category);
-            } else {
-                span.textContent = getClassIcon(className) + ' ' + className;
-            }
-            
-            // Update selected item
-            const dropdown =             </div>
-
-
-
-
-    <script>
-        // Global character data
-        let characterData = {
-            basic: {
-                name: '',
-                player: '',
-                race: '',
-                alignment: 'Neutral Auténtico',
-                height: 175,
-                religion: '',
-                experience: 0,
-                level: 1
-            },
-            abilities: {
-                strength: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
-                dexterity: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
-                constitution: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
-                intelligence: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
-                wisdom: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' },
-                charisma: { base: 10, racial: 0, background: 0, size: 0, final: 10, method: 'manual' }
-            },
-            classes: {
-                primary: '',
-                secondary: '',
-                tertiary: ''
-            },
-            background: '',
-            savingThrows: {
-                death: { base: 14, mod1: 0, mod2: 0, total: 14 },
-                wands: { base: 16, mod1: 0, mod2: 0, total: 16 },
-                petrification: { base: 12, mod1: 0, mod2: 0, total: 12 },
-                breath: { base: 17, mod1: 0, mod2: 0, total: 17 },
-                spells: { base: 17, mod1: 0, mod2: 0, total: 17 }
-            },
-            combat: {
-                armorClass: 10,
-                thac0: 20,
-                weapons: [],
-                armor: 'none',
-                shield: 'none'
-            },
-            skills: {
-                general: {},
-                thief: {},
-                weaponProficiencies: []
-            },
-            spells: {
-                slots: {},
-                known: [],
-                prepared: []
-            },
-            companions: [],
-            equipment: {
-                items: [],
-                money: { gold: 0, silver: 0, copper: 0, platinum: 0 }
-            }
-        };
-
-        // Class information database
-        const classInfo = {
-            'Guerrero': {
-                icon: '⚔️',
-                hitDie: 'd10',
-                thac0: 20,
-                saves: { death: 14, wands: 16, petrification: 12, breath: 17, spells: 17 },
-                description: 'Maestro del combate cuerpo a cuerpo y las armas.',
-                abilities: 'Especialización en armas, ataques múltiples, liderazgo',
-                restrictions: 'Limitado en el uso de magia'
-            },
-            'Bárbaro': {
-                icon: '🪓',
-                hitDie: 'd12',
-                thac0: 20,
-                saves: { death: 14, wands: 16, petrification: 12, breath: 16, spells: 17 },
-                description: 'Guerrero salvaje con furia berserker.',
-                abilities: 'Furia berserker, resistencia al miedo, supervivencia',
-                restrictions: 'No puede usar armadura pesada, limitaciones mágicas'
-            },
-            'Paladín': {
-                icon: '⛪',
-                hitDie: 'd10',
-                thac0: 20,
-                saves: { death: 12, wands: 14, petrification: 10, breath: 15, spells: 15 },
-                description: 'Guerrero santo con poderes divinos.',
-                abilities: 'Detectar mal, curar enfermedades, inmunidad al miedo',
-                restrictions: 'Debe ser Legal Bueno, código de honor estricto'
-            },
-            'Ranger': {
-                icon: '🏹',
-                hitDie: 'd10',
-                thac0: 20,
-                saves: { death: 14, wands: 16, petrification: 12, breath: 16, spells: 17 },
-                description: 'Explorador y guardabosques experto.',
-                abilities: 'Rastreo, combate con dos armas, conjuros divinos',
-                restrictions: 'Limitado en ciudades, debe ser bueno'
-            },
-            'Clérigo': {
-                icon: '🛡️',
-                hitDie: 'd8',
-                thac0: 20,
-                saves: { death: 10, wands: 14, petrification: 13, breath: 16, spells: 15 },
-                description: 'Servidor divino con poderes curativos.',
-                abilities: 'Conjuros divinos, expulsar muertos vivientes',
-                restrictions: 'Limitaciones de armas según deidad'
-            },
-            'Druida': {
-                icon: '🌿',
-                hitDie: 'd8',
-                thac0: 20,
-                saves: { death: 10, wands: 14, petrification: 13, breath: 16, spells: 15 },
-                description: 'Guardián de la naturaleza con magia natural.',
-                abilities: 'Conjuros druídicos, forma salvaje, inmunidad a encantamientos',
-                restrictions: 'Solo armadura de cuero, armas naturales'
-            },
-            'Mago': {
-                icon: '🧙',
-                hitDie: 'd4',
-                thac0: 21,
-                saves: { death: 14, wands: 11, petrification: 13, breath: 15, spells: 12 },
-                description: 'Maestro de las artes arcanas y la magia.',
-                abilities: 'Conjuros arcanos, investigación mágica, crear objetos',
-                restrictions: 'Limitado en armas y armaduras'
-            },
-            'Hechicero': {
-                icon: '✨',
-                hitDie: 'd4',
-                thac0: 21,
-                saves: { death: 14, wands: 11, petrification: 13, breath: 15, spells: 12 },
-                description: 'Conjurador innato con magia espontánea.',
-                abilities: 'Magia espontánea, metamagia, poder mágico natural',
-                restrictions: 'Conjuros limitados pero flexibles'
-            },
-            'Ladrón': {
-                icon: '🥷',
-                hitDie: 'd6',
-                thac0: 21,
-                saves: { death: 13, wands: 14, petrification: 12, breath: 16, spells: 15 },
-                description: 'Experto en sigilo, trampas y subterfugio.',
-                abilities: 'Habilidades de ladrón, ataque sorpresa, leer lenguajes',
-                restrictions: 'Limitado en armadura y algunas armas'
-            },
-            'Bardo': {
-                icon: '🎭',
-                hitDie: 'd6',
-                thac0: 20,
-                saves: { death: 13, wands: 14, petrification: 12, breath: 16, spells: 15 },
-                description: 'Aventurero versátil con habilidades mágicas y sociales.',
-                abilities: 'Conjuros arcanos, habilidades de ladrón, música inspiradora',
-                restrictions: 'Progresión mágica limitada'
-            },
-            'Psiónico': {
-                icon: '🧠',
-                hitDie: 'd6',
-                thac0: 20,
-                saves: { death: 13, wands: 14, petrification: 12, breath: 16, spells: 14 },
-                description: 'Usuario de poderes mentales y psíquicos.',
-                abilities: 'Poderes psiónicos, telepatía, telequinesis',
-                restrictions: 'Reglas especiales de PSP'
-            }
-        };
-
-        // Background information database
-        const backgroundInfo = {
-            'Soldado': {
-                icon: '🛡️',
-                description: 'Veterano de guerra con experiencia militar.',
-                skills: 'Uso de armas, tácticas, liderazgo',
-                bonus: '+1 Fuerza, +1 Constitución',
-                equipment: 'Armas militares, armadura, insignias'
-            },
-            'Noble': {
-                icon: '👑',
-                description: 'Miembro de la aristocracia con educación refinada.',
-                skills: 'Etiqueta, historia, idiomas',
-                bonus: '+1 Inteligencia, +1 Carisma',
-                equipment: 'Ropas finas, joyas, documentos'
-            },
-            'Erudito': {
-                icon: '📚',
-                description: 'Académico con vasto conocimiento libresco.',
-                skills: 'Investigación, idiomas, conocimiento arcano',
-                bonus: '+2 Inteligencia',
-                equipment: 'Libros, instrumentos de escritura, pergaminos'
-            },
-            'Artesano': {
-                icon: '🔨',
-                description: 'Trabajador especializado en un oficio.',
-                skills: 'Artesanía, comercio, reparaciones',
-                bonus: '+1 Fuerza, +1 Destreza',
-                equipment: 'Herramientas, materiales, productos'
-            },
-            'Explorador': {
-                icon: '🗺️',
-                description: 'Viajero experimentado conocedor del mundo.',
-                skills: 'Supervivencia, navegación, idiomas',
-                bonus: '+1 Destreza, +1 Sabiduría',
-                equipment: 'Equipo de viaje, mapas, brújula'
-            },
-            'Mercader': {
-                icon: '💰',
-                description: 'Comerciante con ojo para los negocios.',
-                skills: 'Tasación, negociación, contactos',
-                bonus: '+1 Inteligencia, +1 Carisma',
-                equipment: 'Dinero, productos, contratos'
-            }
-        };
-
-        // Racial modifiers (AD&D 2e)
-        const racialModifiers = {
-            'Humano': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
-            'Elfo': { str: 0, dex: 1, con: -1, int: 0, wis: 0, cha: 0 },
-            'Enano': { str: 0, dex: 0, con: 1, int: 0, wis: 0, cha: -1 },
-            'Halfling': { str: -1, dex: 1, con: 0, int: 0, wis: 0, cha: 0 },
-            'Gnomo': { str: 0, dex: 0, con: 1, int: 0, wis: 0, cha: 0 },
-            'Semielfos': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
-            'Semiorcos': { str: 1, dex: 0, con: 1, int: -1, wis: 0, cha: -2 }
-        };
-
-        // Background modifiers
-        const backgroundModifiers = {
-            'Soldado': { str: 1, dex: 0, con: 1, int: 0, wis: 0, cha: 0 },
-            'Noble': { str: 0, dex: 0, con: 0, int: 1, wis: 0, cha: 1 },
-            'Erudito': { str: 0, dex: 0, con: 0, int: 2, wis: 0, cha: 0 },
-            'Artesano': { str: 1, dex: 1, con: 0, int: 0, wis: 0, cha: 0 },
-            'Explorador': { str: 0, dex: 1, con: 0, int: 0, wis: 1, cha: 0 },
-            'Mercader': { str: 0, dex: 0, con: 0, int: 1, wis: 0, cha: 1 }
-        };
-
-        // XP tables (simplified - Warrior progression)
-        const xpTable = [
-            0, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000,
-            750000, 1000000, 1250000, 1500000, 1750000, 2000000, 2250000, 2500000, 2750000, 3000000
-        ];
-
-        // Spell progression tables
-        const spellProgression = {
-            'Mago': {
-                1: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-                2: [2, 0, 0, 0, 0, 0, 0, 0, 0],
-                3: [2, 1, 0, 0, 0, 0, 0, 0, 0],
-                4: [3, 2, 0, 0, 0, 0, 0, 0, 0],
-                5: [4, 2, 1, 0, 0, 0, 0, 0, 0],
-                6: [4, 2, 2, 0, 0, 0, 0, 0, 0],
-                7: [4, 3, 2, 1, 0, 0, 0, 0, 0],
-                8: [4, 3, 3, 2, 0, 0, 0, 0, 0],
-                9: [4, 3, 3, 2, 1, 0, 0, 0, 0],
-                10: [4, 4, 3, 2, 2, 0, 0, 0, 0]
-            },
-            'Clérigo': {
-                1: [1, 0, 0, 0, 0, 0, 0],
-                2: [2, 0, 0, 0, 0, 0, 0],
-                3: [2, 1, 0, 0, 0, 0, 0],
-                4: [3, 2, 0, 0, 0, 0, 0],
-                5: [3, 3, 1, 0, 0, 0, 0],
-                6: [3, 3, 2, 0, 0, 0, 0],
-                7: [3, 3, 2, 1, 0, 0, 0],
-                8: [3, 3, 3, 2, 0, 0, 0],
-                9: [4, 4, 3, 2, 1, 0, 0],
-                10: [4, 4, 3, 3, 2, 0, 0]
-            }
-        };
-
-        // Weapon database
-        const weaponDatabase = {
-            'Daga': { damage: '1d4', type: 'P', size: 'S', weight: 1, cost: 2 },
-            'Espada Corta': { damage: '1d6', type: 'P', size: 'S', weight: 3, cost: 10 },
-            'Espada Larga': { damage: '1d8', type: 'S', size: 'M', weight: 4, cost: 15 },
-            'Espada de dos manos': { damage: '1d10', type: 'S', size: 'L', weight: 15, cost: 50 },
-            'Maza': { damage: '1d6', type: 'B', size: 'M', weight: 10, cost: 8 },
-            'Martillo de Guerra': { damage: '1d4+1', type: 'B', size: 'M', weight: 6, cost: 12 },
-            'Hacha de Batalla': { damage: '1d8', type: 'S', size: 'M', weight: 7, cost: 15 },
-            'Arco Corto': { damage: '1d6', type: 'P', size: 'M', weight: 2, cost: 30, range: '50/100/150' },
-            'Arco Largo': { damage: '1d6', type: 'P', size: 'L', weight: 3, cost: 75, range: '70/140/210' },
-            'Ballesta Ligera': { damage: '1d4', type: 'P', size: 'S', weight: 5, cost: 35, range: '60/120/180' }
-        };
-
-        // Tab Management
-        function showTab(tabName, button) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active from all buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabName + '-tab').classList.add('active');
-            button.classList.add('active');
-
-            // Update tab-specific content
-            updateTabContent(tabName);
-
-            // Dispatch tab change event
-            document.dispatchEvent(new CustomEvent('tabChanged', { detail: tabName }));
-        }
-
-        function updateTabContent(tabName) {
-            switch(tabName) {
-                case 'categories':
-                    updateCategoriesDisplay();
-                    break;
-                case 'combat':
-                    updateCombatStats();
-                    break;
-                case 'skills':
-                    updateSkillsDisplay();
-                    break;
-                case 'spells':
-                    updateSpellsDisplay();
-                    break;
-                case 'companions':
-                    updateCompanionsDisplay();
-                    break;
-                case 'equipment':
-                    updateEquipmentDisplay();
-                    break;
-            }
-        }
-                        <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD&D 2e Pandunk</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
-            color: #e2e8f0;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Header Styles */
-        .header {
-            background: linear-gradient(135deg, #1a202c, #2d3748);
-            border-bottom: 2px solid #4a5568;
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #f7fafc;
-        }
-
-        .logo i {
-            color: #f6ad55;
-            font-size: 1.8rem;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .header-btn {
-            background: linear-gradient(135deg, #4299e1, #3182ce);
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .header-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
-        }
-
-        .header-btn.save { background: linear-gradient(135deg, #48bb78, #38a169); }
-        .header-btn.export { background: linear-gradient(135deg, #ed8936, #dd6b20); }
-
-        /* Main Layout */
-        .main-container {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            min-height: calc(100vh - 80px);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: linear-gradient(180deg, #1a202c, #2d3748);
-            border-right: 2px solid #4a5568;
-            padding: 1.5rem;
-            overflow-y: auto;
-        }
-
-        .character-card {
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-            border: 1px solid #4a5568;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .character-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #f6ad55, #ed8936);
-            margin: 0 auto 1rem auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .character-name {
-            color: #f7fafc;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .character-level {
-            color: #cbd5e0;
-            font-size: 0.9rem;
-        }
-
-        .dropdown-section {
-            margin-bottom: 1.5rem;
-        }
-
-        .dropdown-header {
-            background: linear-gradient(135deg, #4a5568, #2d3748);
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        .dropdown-header:hover {
-            background: linear-gradient(135deg, #718096, #4a5568);
-            transform: translateX(4px);
-        }
-
-        .dropdown-header.primary { border-left: 4px solid #f6ad55; }
-        .dropdown-header.secondary { border-left: 4px solid #4299e1; }
-        .dropdown-header.tertiary { border-left: 4px solid #9f7aea; }
-        .dropdown-header.background { border-left: 4px solid #48bb78; }
-
-        .dropdown-content {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 6px;
-            padding: 0.5rem;
-            display: none;
-        }
-
-        .dropdown-content.show {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-
-        .dropdown-item {
-            padding: 0.6rem 0.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 0.3rem;
-            transition: all 0.3s ease;
-            color: #cbd5e0;
-        }
-
-        .dropdown-item:hover {
-            background: rgba(66, 153, 225, 0.2);
-            color: #e2e8f0;
-            transform: translateX(4px);
-        }
-
-        .dropdown-item.selected {
-            background: linear-gradient(135deg, #4299e1, #3182ce);
-            color: white;
-            font-weight: bold;
-        }
-
-        /* Main Content */
-        .main-content {
-            background: linear-gradient(180deg, #16213e, #1a1a2e);
-            padding: 1.5rem;
-            overflow-y: auto;
-        }
-
-        /* Tab Navigation */
-        .tab-navigation {
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-            border: 1px solid #4a5568;
-            border-radius: 12px;
-            padding: 0.5rem;
-            margin-bottom: 2rem;
-            display: flex;
-            gap: 0.5rem;
-            overflow-x: auto;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .tab-btn {
-            background: transparent;
-            border: none;
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            color: #cbd5e0;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            min-width: fit-content;
-        }
-
-        .tab-btn:hover {
-            background: rgba(66, 153, 225, 0.2);
-            color: #e2e8f0;
-            transform: translateY(-2px);
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, #4299e1, #3182ce);
-            color: white;
-            box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
-        }
-
-        /* Tab Content */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Form Styles */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            color: #e2e8f0;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            padding: 0.8rem;
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-            border: 1px solid #4a5568;
-            border-radius: 8px;
-            color: #e2e8f0;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: #4299e1;
-            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
-        }
-
-        /* Card Styles */
-        .card {
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-            border: 1px solid #4a5568;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Button Styles */
-        .btn {
-            background: linear-gradient(135deg, #4299e1, #3182ce);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
-        }
-
-        .btn-success { background: linear-gradient(135deg, #48bb78, #38a169); }
-        .btn-warning { background: linear-gradient(135deg, #ed8936, #dd6b20); }
-        .btn-danger { background: linear-gradient(135deg, #f56565, #e53e3e); }
-        .btn-purple { background: linear-gradient(135deg, #805ad5, #6b46c1); }
-
-        /* Grid Styles */
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                border-right: none;
-                border-bottom: 2px solid #4a5568;
-            }
-            
-            .header {
-                padding: 0.5rem 1rem;
-            }
-            
-            .header-actions {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .tab-navigation {
-                flex-wrap: wrap;
-            }
-        }
-
-        /* Utility Classes */
-        .text-center { text-align: center; }
-        .text-primary { color: #4299e1; }
-        .text-success { color: #48bb78; }
-        .text-warning { color: #ed8936; }
-        .text-danger { color: #f56565; }
-        .mb-1 { margin-bottom: 0.5rem; }
-        .mb-2 { margin-bottom: 1rem; }
-        .mb-3 { margin-bottom: 1.5rem; }
-        .mt-1 { margin-top: 0.5rem; }
-        .mt-2 { margin-top: 1rem; }
-        .mt-3 { margin-top: 1.5rem; }
-        .hidden { display: none; }
-        .visible { display: block; }
-
-        /* Combat Styles */
-        .combat-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .weapon-slot {
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-            border: 2px dashed #4a5568;
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            color: #a0aec0;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .weapon-slot.filled {
-            border: 2px solid #48bb78;
-            background: linear-gradient(135deg, #1a365d, #2c5282);
-        }
-
-        /* Skills Styles */
-        .skill-category {
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-            border: 1px solid #4a5568;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .skill-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .skill-item:hover {
-            background: rgba(66, 153, 225, 0.1);
-            transform: translateX(4px);
-        }
-
-        /* Equipment Styles */
-        .item-card {
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-            border: 1px solid #4a5568;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .item-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .item-equipped {
-            border-color: #48bb78;
-            box-shadow: 0 0 0 2px rgba(72, 187, 120, 0.2);
-        }
-
-        .item-magical {
-            border-color: #805ad5;
-            box-shadow: 0 0 0 2px rgba(128, 90, 213, 0.2);
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal {
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-            border: 1px solid #4a5568;
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 90%;
-            max-height: 90%;
-            overflow-y: auto;
-            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Companion Cards */
-        .companion-card {
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-            border: 1px solid #4a5568;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .companion-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .companion-healthy { border-left: 4px solid #48bb78; }
-        .companion-injured { border-left: 4px solid #ed8936; }
-        .companion-critical { border-left: 4px solid #f56565; }
-        .companion-dead { border-left: 4px solid #718096; opacity: 0.6; }
-
-        /* Health Bar */
-        .health-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 0.5rem 0;
-        }
-
-        .health-fill {
-            height: 100%;
-            transition: width 0.3s ease;
-        }
-
-        .health-full { background: linear-gradient(90deg, #48bb78, #38a169); }
-        .health-injured { background: linear-gradient(90deg, #ed8936, #dd6b20); }
-        .health-critical { background: linear-gradient(90deg, #f56565, #e53e3e); }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <i class="fas fa-dice-d20"></i>
-            <span>AD&D 2e Pandunk</span>
-        </div>
-        <div class="header-actions">
-            <button class="header-btn save" onclick="saveCharacter()">
-                <i class="fas fa-save"></i>
-                Guardar
-            </button>
-            <button class="header-btn" onclick="rollStats()">
-                <i class="fas fa-dice"></i>
-                Roll Stats
-            </button>
-            <button class="header-btn" onclick="rollHP()">
-                <i class="fas fa-heart"></i>
-                Roll HP
-            </button>
-            <button class="header-btn export" onclick="exportCharacter()">
-                <i class="fas fa-download"></i>
-                Exportar
-            </button>
-        </div>
-    </header>
-
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <!-- Character Card -->
-            <div class="character-card">
-                <div class="character-avatar">
-                    <i class="fas fa-user"></i>
-                </div>
-
-
-
-
-
-
-            <!-- Class Dropdowns -->
-            <div class="dropdown-section">
-                <div class="dropdown-header primary" id="primary-dropdown-header" onclick="toggleDropdown('primary-dropdown')">
-                    <span>🏛️ Categoría Principal</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="dropdown-content" id="primary-dropdown">
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Guerrero')">⚔️ Guerrero</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Bárbaro')">🪓 Bárbaro</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Paladín')">⛪ Paladín</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Ranger')">🏹 Ranger</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Clérigo')">🛡️ Clérigo</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Druida')">🌿 Druida</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Mago')">🧙 Mago</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Hechicero')">✨ Hechicero</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Ladrón')">🥷 Ladrón</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Bardo')">🎭 Bardo</div>
-                    <div class="dropdown-item" onclick="selectClass('primary', 'Psiónico')">🧠 Psiónico</div>
-                </div>
-            </div>
-
-            <div class="dropdown-section">
-                <div class="dropdown-header secondary" id="secondary-dropdown-header" onclick="toggleDropdown('secondary-dropdown')">
-                    <span>⚡ Categoría Secundaria</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="dropdown-content" id="secondary-dropdown">
-                    <div class="dropdown-item" onclick="selectClass('secondary', 'Ninguna')">❌ Ninguna</div>
-                    <div class="dropdown-item" onclick="selectClass('secondary', 'Guerrero')">⚔️ Guerrero</div>
-                    <div class="dropdown-item" onclick="selectClass('secondary', 'Ladrón')">🥷 Ladrón</div>
-                    <div class="dropdown-item" onclick="selectClass('secondary', 'Mago')">🧙 Mago</div>
-                    <div class="dropdown-item" onclick="selectClass('secondary', 'Clérigo')">🛡️ Clérigo</div>
-                </div>
-            </div>
-
-            <div class="dropdown-section">
-                <div class="dropdown-header tertiary" id="tertiary-dropdown-header" onclick="toggleDropdown('tertiary-dropdown')">
-                    <span>⭐ Categoría Terciaria</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="dropdown-content" id="tertiary-dropdown">
-                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Ninguna')">❌ Ninguna</div>
-                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Guerrero')">⚔️ Guerrero</div>
-                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Ladrón')">🥷 Ladrón</div>
-                    <div class="dropdown-item" onclick="selectClass('tertiary', 'Mago')">🧙 Mago</div>
-                </div>
-            </div>
-
-            <div class="dropdown-section">
-                <div class="dropdown-header background" id="background-dropdown-header" onclick="toggleDropdown('background-dropdown')">
-                    <span>🏰 Trasfondos</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="dropdown-content" id="background-dropdown">
-                    <div class="dropdown-item" onclick="selectBackground('Soldado')">🛡️ Soldado</div>
-                    <div class="dropdown-item" onclick="selectBackground('Noble')">👑 Noble</div>
-                    <div class="dropdown-item" onclick="selectBackground('Erudito')">📚 Erudito</div>
-                    <div class="dropdown-item" onclick="selectBackground('Artesano')">🔨 Artesano</div>
-                    <div class="dropdown-item" onclick="selectBackground('Explorador')">🗺️ Explorador</div>
-                    <div class="dropdown-item" onclick="selectBackground('Mercader')">💰 Mercader</div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Tab Navigation -->
-            <nav class="tab-navigation">
-                <button class="tab-btn active" onclick="showTab('basic', this)">
-                    <i class="fas fa-user"></i>
-                    Básico
-                </button>
-                <button class="tab-btn" onclick="showTab('abilities', this)">
-                    <i class="fas fa-fist-raised"></i>
-                    Habilidades
-                </button>
-                <button class="tab-btn" onclick="showTab('categories', this)">
-                    <i class="fas fa-scroll"></i>
-                    Categorías
-                </button>
-                <button class="tab-btn" onclick="showTab('combat', this)">
-                    <i class="fas fa-sword"></i>
-                    Combate
-                </button>
-                <button class="tab-btn" onclick="showTab('skills', this)">
-                    <i class="fas fa-tools"></i>
-                    Pericias
-                </button>
-                <button class="tab-btn" onclick="showTab('spells', this)">
-                    <i class="fas fa-magic"></i>
-                    Conjuros
-                </button>
-                <button class="tab-btn" onclick="showTab('companions', this)">
-                    <i class="fas fa-paw"></i>
-                    Compañeros
-                </button>
-                <button class="tab-btn" onclick="showTab('equipment', this)">
-                    <i class="fas fa-backpack"></i>
-                    Equipo
-                </button>
-            </nav>
-
-            <!-- Basic Info Tab -->
-            <div id="basic-tab" class="tab-content active">
-                <h2 class="mb-3 text-center">
-                    <i class="fas fa-user text-primary"></i>
-                    Información Básica
-                </h2>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="character-name">
-                            <i class="fas fa-signature"></i>
-                            Nombre del Personaje
-                        </label>
-                        <input type="text" id="character-name" placeholder="Ej: Nombre del Personaje" onchange="updateCharacterDisplay()">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="player-name">
-                            <i class="fas fa-user-friends"></i>
-                            Jugador
-                        </label>
-                        <input type="text" id="player-name" placeholder="Tu nombre">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="race">
-                            <i class="fas fa-users"></i>
-                            Raza
-                        </label>
-                        <select id="race" onchange="updateCharacterDisplay(); updateAllBasicStats();">
-                            <option value="">Selecciona Raza</option>
-                            <option value="Humano">Humano</option>
-                            <option value="Elfo">Elfo</option>
-                            <option value="Enano">Enano</option>
-                            <option value="Halfling">Halfling</option>
-                            <option value="Gnomo">Gnomo</option>
-                            <option value="Semielfos">Semielfo</option>
-                            <option value="Semiorcos">Semiorco</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="alignment">
-                            <i class="fas fa-balance-scale"></i>
-                            Alineamiento
-                        </label>
-                        <select id="alignment">
-                            <option value="Neutral Auténtico">Neutral Auténtico</option>
-                            <option value="Legal Bueno">Legal Bueno</option>
-                            <option value="Legal Neutral">Legal Neutral</option>
-                            <option value="Legal Malvado">Legal Malvado</option>
-                            <option value="Neutral Bueno">Neutral Bueno</option>
-                            <option value="Neutral Malvado">Neutral Malvado</option>
-                            <option value="Caótico Bueno">Caótico Bueno</option>
-                            <option value="Caótico Neutral">Caótico Neutral</option>
-                            <option value="Caótico Malvado">Caótico Malvado</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="height">
-                            <i class="fas fa-ruler-vertical"></i>
-                            Altura (cm)
-                        </label>
-                        <input type="number" id="height" min="100" max="300" value="175" onchange="updateSizeCategory()">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="size-category">
-                            <i class="fas fa-expand-arrows-alt"></i>
-                            Tamaño
-                        </label>
-                        <input type="text" id="size-category" value="Mediano" readonly>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="religion">
-                            <i class="fas fa-pray"></i>
-                            Religión
-                        </label>
-                        <input type="text" id="religion" placeholder="Sin religión">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="experience">
-                            <i class="fas fa-star"></i>
-                            Experiencia
-                        </label>
-                        <input type="number" id="experience" min="0" value="0" onchange="updateLevelFromXP()">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="level">
-                            <i class="fas fa-level-up-alt"></i>
-                            Nivel
-                        </label>
-                        <input type="number" id="level" min="1" max="20" value="1" onchange="updateXPFromLevel(); updateCharacterDisplay();">
-                    </div>
-                </div>
-
-                <!-- Saving Throws Section -->
-                <div class="saving-throws-section mt-3">
-                    <h3 class="mb-2 text-center">
-                        <i class="fas fa-shield-alt text-warning"></i>
-                        Tiradas de Salvación
-                    </h3>
-                    
-                    <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem;">
-                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; font-weight: bold; color: #cbd5e0;">
-                            <div>Tipo de Salvación</div>
-                            <div style="text-align: center;">Base</div>
-                            <div style="text-align: center;">Mod1</div>
-                            <div style="text-align: center;">Mod2</div>
-                            <div style="text-align: center;">Total</div>
-                        </div>
-                        
-                        <!-- Paralisis/Veneno/Muerte -->
-                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
-                            <div style="color: #e2e8f0;">Parálisis/Veneno/Muerte</div>
-                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-death-base">14</div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-death-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-death-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-death-total">14</div>
-                        </div>
-                        
-                        <!-- Cetros/Varas/Varitas -->
-                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
-                            <div style="color: #e2e8f0;">Cetros/Varas/Varitas</div>
-                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-wands-base">16</div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-wands-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-wands-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-wands-total">16</div>
-                        </div>
-                        
-                        <!-- Petrificación/Transformación -->
-                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
-                            <div style="color: #e2e8f0;">Petrificación/Transformación</div>
-                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-petrification-base">12</div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-petrification-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-petrification-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-petrification-total">12</div>
-                        </div>
-                        
-                        <!-- Aliento de Dragón -->
-                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
-                            <div style="color: #e2e8f0;">Aliento de Dragón</div>
-                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-breath-base">17</div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-breath-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-breath-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-breath-total">17</div>
-                        </div>
-                        
-                        <!-- Conjuros -->
-                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; align-items: center; padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
-                            <div style="color: #e2e8f0;">Conjuros</div>
-                            <div style="text-align: center; color: #48bb78; font-weight: bold;" id="save-spells-base">17</div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-spells-mod1" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center;">
-                                <input type="number" id="save-spells-mod2" value="0" min="-10" max="10" style="width: 60px; padding: 0.3rem; background: #1a202c; border: 1px solid #4a5568; border-radius: 4px; color: #e2e8f0; text-align: center;" onchange="updateSavingThrows()">
-                            </div>
-                            <div style="text-align: center; color: #f7fafc; font-weight: bold; font-size: 1.1rem;" id="save-spells-total">17</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stats Cards -->
-                <div class="stats-cards mt-3">
-                    <h3 class="mb-2 text-center">
-                        <i class="fas fa-heart text-danger"></i>
-                        Estadísticas Vitales
-                    </h3>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                        <!-- HP Card -->
-                        <div style="background: linear-gradient(135deg, #e53e3e, #c53030); border-radius: 12px; padding: 1.5rem; color: white; text-align: center;">
-                            <h4 style="margin: 0 0 1rem 0;"><i class="fas fa-heart"></i> Puntos de Golpe</h4>
-                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                <input type="number" id="current-hp" min="0" value="8" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
-                                <span style="font-size: 1.5rem; font-weight: bold;">/</span>
-                                <input type="number" id="max-hp" min="1" value="8" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
-                            </div>
-                            <div style="margin-bottom: 1rem;">
-                                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Bonificación Manual:</label>
-                                <input type="number" id="hp-bonus" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center;">
-                            </div>
-                        </div>
-
-                        <!-- Arcane Mana Card -->
-                        <div id="arcane-mana-card" style="background: linear-gradient(135deg, #805ad5, #6b46c1); border-radius: 12px; padding: 1.5rem; color: white; text-align: center; display: none;">
-                            <h4 style="margin: 0 0 1rem 0;"><i class="fas fa-magic"></i> Maná Arcano</h4>
-                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                <input type="number" id="current-arcane-mana" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
-                                <span style="font-size: 1.5rem; font-weight: bold;">/</span>
-                                <input type="number" id="max-arcane-mana" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
-                            </div>
-                        </div>
-
-                        <!-- Divine Mana Card -->
-                        <div id="divine-mana-card" style="background: linear-gradient(135deg, #4299e1, #3182ce); border-radius: 12px; padding: 1.5rem; color: white; text-align: center; display: none;">
-                            <h4 style="margin: 0 0 1rem 0;"><i class="fas fa-pray"></i> Maná Divino</h4>
-                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                <input type="number" id="current-divine-mana" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
-                                <span style="font-size: 1.5rem; font-weight: bold;">/</span>
-                                <input type="number" id="max-divine-mana" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
-                            </div>
-                        </div>
-
-                        <!-- PSP Card -->
-                        <div id="psp-card" style="background: linear-gradient(135deg, #ed64a6, #d53f8c); border-radius: 12px; padding: 1.5rem; color: white; text-align: center; display: none;">
-                            <h4 style="margin: 0 0 1rem 0;"><i class="fas fa-brain"></i> Pool PSP</h4>
-                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                <input type="number" id="current-psp" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
-                                <span style="font-size: 1.5rem; font-weight: bold;">/</span>
-                                <input type="number" id="max-psp" min="0" value="0" style="width: 80px; padding: 0.5rem; background: rgba(255, 255, 255, 0.2); border: none; border-radius: 6px; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- XP Progress -->
-                <div class="xp-progress mt-3">
-                    <h3 class="mb-2 text-center">
-                        <i class="fas fa-star text-warning"></i>
-                        Progresión de Experiencia
-                    </h3>
-                    
-                    <div style="background: linear-gradient(135deg, #2d3748, #1a202c); border: 1px solid #4a5568; border-radius: 12px; padding: 1.5rem;">
-                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin-bottom: 1rem;">
-                            <div style="text-align: center;">
-                                <div style="color: #cbd5e0; font-size: 0.9rem;">XP Actual</div>
-                                <div style="color: #4299e1; font-size: 1.5rem; font-weight: bold;" id="current-xp-display">0</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <button onclick="convertXPToLevel()" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; padding: 0.8rem 1.2rem; border-radius: 8px; color: white; cursor: pointer; font-weight: bold;">
-                                    <i class="fas fa-exchange-alt"></i><br>Convertir
-                                </button>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="color: #cbd5e0; font-size: 0.9rem;">Nivel Actual</div>
-                                <div style="color: #48bb78; font-size: 1.5rem; font-weight: bold;" id="current-level-display">1</div>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                <span style="color: #cbd5e0; font-size: 0.9rem;">Progreso al siguiente nivel</span>
-                                <span style="color: #e2e8f0; font-size: 0.9rem;" id="xp-needed-display">Necesita 2000 XP para nivel 2</span>
-                            </div>
-                            <div style="width: 100%; height: 12px; background: rgba(0, 0, 0, 0.3); border-radius: 6px; overflow: hidden;">
-                                <div id="xp-progress-bar" style="height: 100%; background: linear-gradient(90deg, #4299e1, #48bb78); width: 0%; transition: width 0.3s ease;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
