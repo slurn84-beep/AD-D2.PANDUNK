@@ -1701,80 +1701,130 @@ setupDropdown('background-dropdown-header', 'background-dropdown-options', 'back
             margin: 0 auto;
         }
 
-        /* Estilos para la cuadrícula de habilidades */
+        h2 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .info-panel {
+            background: #2b303b;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: #b0b0b0;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
         .abilities-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            padding: 0 1rem;
+            gap: 1rem;
         }
 
         .ability-card {
-            background-color: #2b303b;
+            background: #2b303b;
             border-radius: 12px;
             padding: 1rem 1.5rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .ability-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
         }
 
         .ability-name {
             font-size: 1.2rem;
             font-weight: bold;
             color: #ffd700;
-            text-align: left;
-            width: 100%;
+            margin-bottom: 0.8rem;
         }
 
         .ability-main-row {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             width: 100%;
         }
 
-        .ability-input {
-            width: 80px;
-            font-size: 2.2rem;
+        .dice-input {
+            width: 60px;
+            height: 60px;
+            font-size: 1.8rem;
             font-weight: bold;
             text-align: center;
-            background: transparent;
-            border: none;
+            background: #16213e;
+            border: 2px solid #4a5464;
+            border-radius: 8px;
             color: #e5e5e5;
-            appearance: none;
-            border-bottom: 2px solid #4a5464;
-            padding-bottom: 5px;
             flex-shrink: 0;
         }
 
-        .ability-input:focus {
+        .dice-input:focus {
             outline: none;
-            border-bottom-color: #ffd700;
+            border-color: #ffd700;
         }
 
-        .ability-input::-webkit-outer-spin-button,
-        .ability-input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        .total-display {
+            width: 80px;
+            height: 80px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5f3d 100%);
+            border: 3px solid #4CAF50;
+            border-radius: 12px;
+            color: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .level-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            background: #ffd700;
+            border: none;
+            border-radius: 50%;
+            color: #0c1421;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .level-btn:hover {
+            background: #ffed4e;
+            transform: scale(1.1);
         }
 
         .ability-details-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 0.8rem;
-            width: 100%;
-            min-height: 40px;
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            flex: 1;
         }
 
         .ability-detail-box {
@@ -1783,213 +1833,247 @@ setupDropdown('background-dropdown-header', 'background-dropdown-options', 'back
             align-items: center;
             justify-content: center;
             gap: 0.2rem;
-            text-align: center;
-            padding: 0.5rem 0.8rem;
-            background-color: #16213e;
+            padding: 0.5rem;
+            background: #16213e;
             border: 1px solid #4a5464;
             border-radius: 8px;
-            min-width: 80px;
+            min-width: 70px;
+            flex: 0 0 auto;
         }
 
         .detail-name {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #b0b0b0;
             white-space: nowrap;
         }
 
         .detail-value {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             color: #e5e5e5;
-            white-space: nowrap;
         }
 
-        .detail-value.positive {
-            color: #4CAF50;
+        .separator {
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, #4a5464, transparent);
+            flex-shrink: 0;
         }
 
-        .detail-value.negative {
-            color: #f44336;
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .debug-info {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-            padding: 10px;
-            margin: 20px 0;
-            border-radius: 5px;
-            font-family: monospace;
-            font-size: 12px;
-            color: #ccc;
+        input[type="number"] {
+            -moz-appearance: textfield;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="abilities-tab" class="tab-content">
-            <h2 style="color: #ffd700; margin-bottom: 2rem;">💪 Características</h2>
-            
-            <!-- Debug info para verificar que los datos se cargan -->
-            <div class="debug-info" id="debug-info">
-                Status: Cargando datos...
+        <h2>Sistema de Características</h2>
+        
+        <div class="info-panel">
+            <div class="info-item">
+                <span class="info-label">Raza</span>
+                <span class="info-value" id="race-display">Humano</span>
             </div>
-            
-            <div class="abilities-grid">
-                <div class="ability-card">
-                    <div class="ability-name">Fuerza</div>
-                    <div class="ability-main-row">
-                        <input type="number" class="ability-input" id="strength" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
-                        <div class="ability-details-row">
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Golpe</span>
-                                <span class="detail-value" id="str-hit-prob">+0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Daño</span>
-                                <span class="detail-value" id="str-damage-adj">+0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Peso</span>
-                                <span class="detail-value" id="str-weight-cap">0kg</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Esf. Máx.</span>
-                                <span class="detail-value" id="str-max-effort">0kg</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Puertas</span>
-                                <span class="detail-value" id="str-open-doors">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Barras</span>
-                                <span class="detail-value" id="str-bend-bar">0%</span>
-                            </div>
+            <div class="info-item">
+                <span class="info-label">Trasfondo</span>
+                <span class="info-value" id="background-display">Ninguno</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Nivel</span>
+                <span class="info-value" id="level-display">1</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Puntos Disponibles</span>
+                <span class="info-value" id="points-available">0</span>
+            </div>
+        </div>
+        
+        <div class="abilities-grid">
+            <div class="ability-card">
+                <div class="ability-name">FUERZA</div>
+                <div class="ability-main-row">
+                    <input type="number" class="dice-input" id="str-dice" min="1" max="65" value="10" 
+                           oninput="AbilitySystem.updateAbility('strength')">
+                    <div class="separator"></div>
+                    <div class="total-display" id="str-total">10
+                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('strength')">+</button>
+                    </div>
+                    <div class="ability-details-row">
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Golpe</span>
+                            <span class="detail-value" id="str-hit">+0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Daño</span>
+                            <span class="detail-value" id="str-dmg">+0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Peso</span>
+                            <span class="detail-value" id="str-weight">0kg</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Esf.Máx</span>
+                            <span class="detail-value" id="str-effort">0kg</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Puertas</span>
+                            <span class="detail-value" id="str-doors">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Barras</span>
+                            <span class="detail-value" id="str-bars">0%</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="ability-card">
-                    <div class="ability-name">Destreza</div>
-                    <div class="ability-main-row">
-                        <input type="number" class="ability-input" id="dexterity" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
-                        <div class="ability-details-row">
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Ajuste Reacción</span>
-                                <span class="detail-value" id="dex-reaction">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Atq. Proyectiles</span>
-                                <span class="detail-value" id="dex-missile">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Def. CA</span>
-                                <span class="detail-value" id="dex-defensive">0</span>
-                            </div>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">DESTREZA</div>
+                <div class="ability-main-row">
+                    <input type="number" class="dice-input" id="dex-dice" min="1" max="65" value="10" 
+                           oninput="AbilitySystem.updateAbility('dexterity')">
+                    <div class="separator"></div>
+                    <div class="total-display" id="dex-total">10
+                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('dexterity')">+</button>
+                    </div>
+                    <div class="ability-details-row">
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Ajuste Reacción</span>
+                            <span class="detail-value" id="dex-reaction">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Atq. Proyectiles</span>
+                            <span class="detail-value" id="dex-missile">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Def. CA</span>
+                            <span class="detail-value" id="dex-defense">0</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="ability-card">
-                    <div class="ability-name">Constitución</div>
-                    <div class="ability-main-row">
-                        <input type="number" class="ability-input" id="constitution" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
-                        <div class="ability-details-row">
-                            <div class="ability-detail-box">
-                                <span class="detail-name">HP/Nivel</span>
-                                <span class="detail-value" id="con-hp-bonus">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Shock Sistema</span>
-                                <span class="detail-value" id="con-shock-survival">0%</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Superv. Revivir</span>
-                                <span class="detail-value" id="con-resurrection">0%</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Prot. Veneno</span>
-                                <span class="detail-value" id="con-poison">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Regeneración</span>
-                                <span class="detail-value" id="con-regeneration">--</span>
-                            </div>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">CONSTITUCIÓN</div>
+                <div class="ability-main-row">
+                    <input type="number" class="dice-input" id="con-dice" min="1" max="65" value="10" 
+                           oninput="AbilitySystem.updateAbility('constitution')">
+                    <div class="separator"></div>
+                    <div class="total-display" id="con-total">10
+                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('constitution')">+</button>
+                    </div>
+                    <div class="ability-details-row">
+                        <div class="ability-detail-box">
+                            <span class="detail-name">HP/Nivel</span>
+                            <span class="detail-value" id="con-hp">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Shock Sistema</span>
+                            <span class="detail-value" id="con-shock">0%</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Superv. Revivir</span>
+                            <span class="detail-value" id="con-res">0%</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Prot. Veneno</span>
+                            <span class="detail-value" id="con-poison">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Regeneración</span>
+                            <span class="detail-value" id="con-regen">--</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="ability-card">
-                    <div class="ability-name">Inteligencia</div>
-                    <div class="ability-main-row">
-                        <input type="number" class="ability-input" id="intelligence" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
-                        <div class="ability-details-row">
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Idiomas</span>
-                                <span class="detail-value" id="int-languages">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Niv. Conjuros</span>
-                                <span class="detail-value" id="int-spell-level">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Oport. Conjuros</span>
-                                <span class="detail-value" id="int-spell-chance">0%</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Max Conjuros</span>
-                                <span class="detail-value" id="int-max-spells">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Inmunidad</span>
-                                <span class="detail-value" id="int-immunity">--</span>
-                            </div>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">INTELIGENCIA</div>
+                <div class="ability-main-row">
+                    <input type="number" class="dice-input" id="int-dice" min="1" max="65" value="10" 
+                           oninput="AbilitySystem.updateAbility('intelligence')">
+                    <div class="separator"></div>
+                    <div class="total-display" id="int-total">10
+                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('intelligence')">+</button>
+                    </div>
+                    <div class="ability-details-row">
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Idiomas</span>
+                            <span class="detail-value" id="int-lang">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Niv. Conjuros</span>
+                            <span class="detail-value" id="int-spell-lvl">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Oport. Conjuros</span>
+                            <span class="detail-value" id="int-spell-chance">0%</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Max Conjuros</span>
+                            <span class="detail-value" id="int-max-spells">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Inmunidad</span>
+                            <span class="detail-value" id="int-immunity">--</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="ability-card">
-                    <div class="ability-name">Sabiduría</div>
-                    <div class="ability-main-row">
-                        <input type="number" class="ability-input" id="wisdom" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
-                        <div class="ability-details-row">
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Def. Mágica</span>
-                                <span class="detail-value" id="wis-magic-defense">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Bonif. Conjuros</span>
-                                <span class="detail-value" id="wis-spell-bonus">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Fracaso Conjuro</span>
-                                <span class="detail-value" id="wis-spell-failure">0%</span>
-                            </div>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">SABIDURÍA</div>
+                <div class="ability-main-row">
+                    <input type="number" class="dice-input" id="wis-dice" min="1" max="65" value="10" 
+                           oninput="AbilitySystem.updateAbility('wisdom')">
+                    <div class="separator"></div>
+                    <div class="total-display" id="wis-total">10
+                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('wisdom')">+</button>
+                    </div>
+                    <div class="ability-details-row">
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Def. Mágica</span>
+                            <span class="detail-value" id="wis-magic-def">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Bonif. Conjuros</span>
+                            <span class="detail-value" id="wis-spell-bonus">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Fracaso Conjuro</span>
+                            <span class="detail-value" id="wis-spell-fail">0%</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="ability-card">
-                    <div class="ability-name">Carisma</div>
-                    <div class="ability-main-row">
-                        <input type="number" class="ability-input" id="charisma" min="1" max="65" value="10" oninput="window.AbilityCalculator.calculateModifiers()">
-                        <div class="ability-details-row">
-                            <div class="ability-detail-box">
-                                <span class="detail-name">N° Servidores</span>
-                                <span class="detail-value" id="cha-max-servers">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Lealtad Base</span>
-                                <span class="detail-value" id="cha-base-loyalty">0</span>
-                            </div>
-                            <div class="ability-detail-box">
-                                <span class="detail-name">Ajuste Reacción</span>
-                                <span class="detail-value" id="cha-reaction-adj">0</span>
-                            </div>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">CARISMA</div>
+                <div class="ability-main-row">
+                    <input type="number" class="dice-input" id="cha-dice" min="1" max="65" value="10" 
+                           oninput="AbilitySystem.updateAbility('charisma')">
+                    <div class="separator"></div>
+                    <div class="total-display" id="cha-total">10
+                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('charisma')">+</button>
+                    </div>
+                    <div class="ability-details-row">
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Servidores</span>
+                            <span class="detail-value" id="cha-servants">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Lealtad Base</span>
+                            <span class="detail-value" id="cha-loyalty">0</span>
+                        </div>
+                        <div class="ability-detail-box">
+                            <span class="detail-name">Ajuste Reacción</span>
+                            <span class="detail-value" id="cha-reaction">0</span>
                         </div>
                     </div>
                 </div>
@@ -1998,573 +2082,175 @@ setupDropdown('background-dropdown-header', 'background-dropdown-options', 'back
     </div>
 
     <script>
-        // Envolvemos todo en un namespace global para evitar conflictos
-        window.AbilityCalculator = (function() {
-            
-            // Datos de habilidades (mismo JSON que tienes)
-            const abilityData = {
-            "fuerza": [
-                {"Punt. Habilidad": "1", "Probab. de Golpe": "-5", "Ajuste de daño": "-4", "Peso Kg autorizado": "0,5", "Esfuerzo máximo Kg": "1,5", "Abrir Puertas": "1", "Doblar Barras": "0%"},
-                {"Punt. Habilidad": "2", "Probab. de Golpe": "-3", "Ajuste de daño": "-2", "Peso Kg autorizado": "0,5", "Esfuerzo máximo Kg": "2,5", "Abrir Puertas": "1", "Doblar Barras": "0%"},
-                {"Punt. Habilidad": "3", "Probab. de Golpe": "-3", "Ajuste de daño": "-1", "Peso Kg autorizado": "2,5", "Esfuerzo máximo Kg": "5", "Abrir Puertas": "2", "Doblar Barras": "0%"},
-                {"Punt. Habilidad": "4", "Probab. de Golpe": "-2", "Ajuste de daño": "-1", "Peso Kg autorizado": "5", "Esfuerzo máximo Kg": "23", "Abrir Puertas": "3", "Doblar Barras": "0%"},
-                {"Punt. Habilidad": "5", "Probab. de Golpe": "-2", "Ajuste de daño": "-1", "Peso Kg autorizado": "5", "Esfuerzo máximo Kg": "23", "Abrir Puertas": "3", "Doblar Barras": "0%"},
-                {"Punt. Habilidad": "6", "Probab. de Golpe": "-1", "Ajuste de daño": "0", "Peso Kg autorizado": "10", "Esfuerzo máximo Kg": "28", "Abrir Puertas": "4", "Doblar Barras": "0%"},
-                {"Punt. Habilidad": "7", "Probab. de Golpe": "-1", "Ajuste de daño": "0", "Peso Kg autorizado": "10", "Esfuerzo máximo Kg": "28", "Abrir Puertas": "4", "Doblar Barras": "0%"},
-                {"Punt. Habilidad": "8", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "18", "Esfuerzo máximo Kg": "45", "Abrir Puertas": "5", "Doblar Barras": "1%"},
-                {"Punt. Habilidad": "9", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "18", "Esfuerzo máximo Kg": "45", "Abrir Puertas": "5", "Doblar Barras": "1%"},
-                {"Punt. Habilidad": "10", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "20", "Esfuerzo máximo Kg": "58", "Abrir Puertas": "6", "Doblar Barras": "2%"},
-                {"Punt. Habilidad": "11", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "20", "Esfuerzo máximo Kg": "58", "Abrir Puertas": "6", "Doblar Barras": "2%"},
-                {"Punt. Habilidad": "12", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "23", "Esfuerzo máximo Kg": "70", "Abrir Puertas": "7", "Doblar Barras": "4%"},
-                {"Punt. Habilidad": "13", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "23", "Esfuerzo máximo Kg": "70", "Abrir Puertas": "7", "Doblar Barras": "4%"},
-                {"Punt. Habilidad": "14", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "28", "Esfuerzo máximo Kg": "85", "Abrir Puertas": "8", "Doblar Barras": "7%"},
-                {"Punt. Habilidad": "15", "Probab. de Golpe": "0", "Ajuste de daño": "0", "Peso Kg autorizado": "28", "Esfuerzo máximo Kg": "85", "Abrir Puertas": "8", "Doblar Barras": "7%"},
-                {"Punt. Habilidad": "16", "Probab. de Golpe": "0", "Ajuste de daño": "1", "Peso Kg autorizado": "35", "Esfuerzo máximo Kg": "98", "Abrir Puertas": "9", "Doblar Barras": "10%"},
-                {"Punt. Habilidad": "17", "Probab. de Golpe": "1", "Ajuste de daño": "1", "Peso Kg autorizado": "43", "Esfuerzo máximo Kg": "110", "Abrir Puertas": "10", "Doblar Barras": "13%"},
-                {"Punt. Habilidad": "18", "Probab. de Golpe": "1", "Ajuste de daño": "2", "Peso Kg autorizado": "55", "Esfuerzo máximo Kg": "130", "Abrir Puertas": "11", "Doblar Barras": "16%"},
-                {"Punt. Habilidad": "18/00 ", "Probab. de Golpe": "3", "Ajuste de daño": "6", "Peso Kg autorizado": "170", "Esfuerzo máximo Kg": "240", "Abrir Puertas": "16(6)", "Doblar Barras": "40%"},
-                {"Punt. Habilidad": "19", "Probab. de Golpe": "3", "Ajuste de daño": "7", "Peso Kg autorizado": "245", "Esfuerzo máximo Kg": "320", "Abrir Puertas": "16(8)", "Doblar Barras": "50%"},
-                {"Punt. Habilidad": "20", "Probab. de Golpe": "3", "Ajuste de daño": "8", "Peso Kg autorizado": "270", "Esfuerzo máximo Kg": "350", "Abrir Puertas": "17(10)", "Doblar Barras": "60%"},
-                {"Punt. Habilidad": "21", "Probab. de Golpe": "4", "Ajuste de daño": "9", "Peso Kg autorizado": "320", "Esfuerzo máximo Kg": "405", "Abrir Puertas": "17(12)", "Doblar Barras": "70%"},
-                {"Punt. Habilidad": "22", "Probab. de Golpe": "4", "Ajuste de daño": "10", "Peso Kg autorizado": "395", "Esfuerzo máximo Kg": "485", "Abrir Puertas": "18(14)", "Doblar Barras": "80%"},
-                {"Punt. Habilidad": "23", "Probab. de Golpe": "5", "Ajuste de daño": "11", "Peso Kg autorizado": "470", "Esfuerzo máximo Kg": "565", "Abrir Puertas": "18(16)", "Doblar Barras": "90%"},
-                {"Punt. Habilidad": "24", "Probab. de Golpe": "6", "Ajuste de daño": "12", "Peso Kg autorizado": "620", "Esfuerzo máximo Kg": "720", "Abrir Puertas": "19(17)", "Doblar Barras": "95%"},
-                {"Punt. Habilidad": "25", "Probab. de Golpe": "7", "Ajuste de daño": "14", "Peso Kg autorizado": "770", "Esfuerzo máximo Kg": "875", "Abrir Puertas": "19(18)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "26", "Probab. de Golpe": "8", "Ajuste de daño": "16", "Peso Kg autorizado": "920", "Esfuerzo máximo Kg": "1030", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "27", "Probab. de Golpe": "9", "Ajuste de daño": "18", "Peso Kg autorizado": "1070", "Esfuerzo máximo Kg": "1185", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "28", "Probab. de Golpe": "10", "Ajuste de daño": "20", "Peso Kg autorizado": "1220", "Esfuerzo máximo Kg": "1340", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "29", "Probab. de Golpe": "11", "Ajuste de daño": "22", "Peso Kg autorizado": "1370", "Esfuerzo máximo Kg": "1495", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "30", "Probab. de Golpe": "12", "Ajuste de daño": "24", "Peso Kg autorizado": "1520", "Esfuerzo máximo Kg": "1650", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "31", "Probab. de Golpe": "13", "Ajuste de daño": "26", "Peso Kg autorizado": "1670", "Esfuerzo máximo Kg": "1805", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "32", "Probab. de Golpe": "14", "Ajuste de daño": "28", "Peso Kg autorizado": "1820", "Esfuerzo máximo Kg": "1960", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "33", "Probab. de Golpe": "15", "Ajuste de daño": "30", "Peso Kg autorizado": "1970", "Esfuerzo máximo Kg": "2115", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "34", "Probab. de Golpe": "16", "Ajuste de daño": "32", "Peso Kg autorizado": "2120", "Esfuerzo máximo Kg": "2270", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "35", "Probab. de Golpe": "17", "Ajuste de daño": "34", "Peso Kg autorizado": "2270", "Esfuerzo máximo Kg": "2425", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "36", "Probab. de Golpe": "18", "Ajuste de daño": "36", "Peso Kg autorizado": "2420", "Esfuerzo máximo Kg": "2580", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "37", "Probab. de Golpe": "19", "Ajuste de daño": "38", "Peso Kg autorizado": "2570", "Esfuerzo máximo Kg": "2735", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "38", "Probab. de Golpe": "20", "Ajuste de daño": "40", "Peso Kg autorizado": "2720", "Esfuerzo máximo Kg": "2890", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "39", "Probab. de Golpe": "21", "Ajuste de daño": "42", "Peso Kg autorizado": "2870", "Esfuerzo máximo Kg": "3045", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "40", "Probab. de Golpe": "22", "Ajuste de daño": "44", "Peso Kg autorizado": "3020", "Esfuerzo máximo Kg": "3200", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "41", "Probab. de Golpe": "23", "Ajuste de daño": "46", "Peso Kg autorizado": "3170", "Esfuerzo máximo Kg": "3355", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "42", "Probab. de Golpe": "24", "Ajuste de daño": "48", "Peso Kg autorizado": "3320", "Esfuerzo máximo Kg": "3510", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "43", "Probab. de Golpe": "25", "Ajuste de daño": "50", "Peso Kg autorizado": "3470", "Esfuerzo máximo Kg": "3665", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "44", "Probab. de Golpe": "26", "Ajuste de daño": "52", "Peso Kg autorizado": "3620", "Esfuerzo máximo Kg": "3820", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "45", "Probab. de Golpe": "27", "Ajuste de daño": "54", "Peso Kg autorizado": "3770", "Esfuerzo máximo Kg": "3975", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "46", "Probab. de Golpe": "28", "Ajuste de daño": "56", "Peso Kg autorizado": "3920", "Esfuerzo máximo Kg": "4130", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "47", "Probab. de Golpe": "29", "Ajuste de daño": "58", "Peso Kg autorizado": "4070", "Esfuerzo máximo Kg": "4285", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "48", "Probab. de Golpe": "30", "Ajuste de daño": "60", "Peso Kg autorizado": "4220", "Esfuerzo máximo Kg": "4440", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "49", "Probab. de Golpe": "31", "Ajuste de daño": "62", "Peso Kg autorizado": "4370", "Esfuerzo máximo Kg": "4595", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "50", "Probab. de Golpe": "32", "Ajuste de daño": "64", "Peso Kg autorizado": "4520", "Esfuerzo máximo Kg": "4750", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "51", "Probab. de Golpe": "33", "Ajuste de daño": "66", "Peso Kg autorizado": "4670", "Esfuerzo máximo Kg": "4905", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "52", "Probab. de Golpe": "34", "Ajuste de daño": "68", "Peso Kg autorizado": "4820", "Esfuerzo máximo Kg": "5060", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "53", "Probab. de Golpe": "35", "Ajuste de daño": "70", "Peso Kg autorizado": "4970", "Esfuerzo máximo Kg": "5215", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "54", "Probab. de Golpe": "36", "Ajuste de daño": "72", "Peso Kg autorizado": "5120", "Esfuerzo máximo Kg": "5370", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "55", "Probab. de Golpe": "37", "Ajuste de daño": "74", "Peso Kg autorizado": "5270", "Esfuerzo máximo Kg": "5525", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "56", "Probab. de Golpe": "38", "Ajuste de daño": "76", "Peso Kg autorizado": "5420", "Esfuerzo máximo Kg": "5680", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "57", "Probab. de Golpe": "39", "Ajuste de daño": "78", "Peso Kg autorizado": "5570", "Esfuerzo máximo Kg": "5835", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "58", "Probab. de Golpe": "40", "Ajuste de daño": "80", "Peso Kg autorizado": "5720", "Esfuerzo máximo Kg": "5990", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "59", "Probab. de Golpe": "41", "Ajuste de daño": "82", "Peso Kg autorizado": "5870", "Esfuerzo máximo Kg": "6145", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "60", "Probab. de Golpe": "42", "Ajuste de daño": "84", "Peso Kg autorizado": "6020", "Esfuerzo máximo Kg": "6300", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "61", "Probab. de Golpe": "43", "Ajuste de daño": "86", "Peso Kg autorizado": "6170", "Esfuerzo máximo Kg": "6455", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "62", "Probab. de Golpe": "44", "Ajuste de daño": "88", "Peso Kg autorizado": "6320", "Esfuerzo máximo Kg": "6610", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "63", "Probab. de Golpe": "45", "Ajuste de daño": "90", "Peso Kg autorizado": "6470", "Esfuerzo máximo Kg": "6765", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "64", "Probab. de Golpe": "46", "Ajuste de daño": "92", "Peso Kg autorizado": "6620", "Esfuerzo máximo Kg": "6920", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-                {"Punt. Habilidad": "65", "Probab. de Golpe": "47", "Ajuste de daño": "94", "Peso Kg autorizado": "6770", "Esfuerzo máximo Kg": "7075", "Abrir Puertas": "19(19)", "Doblar Barras": "99%"},
-            ],
-            "destreza": [
-                {"Puntuación habilidad": "1", "Ajuste reacción": "-6", "Ajuste Atq Proyectiles": "-6", "Ajuste defensivo": "5"},
-                {"Puntuación habilidad": "2", "Ajuste reacción": "-4", "Ajuste Atq Proyectiles": "-4", "Ajuste defensivo": "5"},
-                {"Puntuación habilidad": "3", "Ajuste reacción": "-3", "Ajuste Atq Proyectiles": "-3", "Ajuste defensivo": "4"},
-                {"Puntuación habilidad": "4", "Ajuste reacción": "-2", "Ajuste Atq Proyectiles": "-2", "Ajuste defensivo": "3"},
-                {"Puntuación habilidad": "5", "Ajuste reacción": "-1", "Ajuste Atq Proyectiles": "-1", "Ajuste defensivo": "2"},
-                {"Puntuación habilidad": "6", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "1"},
-                {"Puntuación habilidad": "7", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
-                {"Puntuación habilidad": "8", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
-                {"Puntuación habilidad": "9", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
-                {"Puntuación habilidad": "10", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
-                {"Puntuación habilidad": "11", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
-                {"Puntuación habilidad": "12", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
-                {"Puntuación habilidad": "13", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
-                {"Puntuación habilidad": "14", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "0"},
-                {"Puntuación habilidad": "15", "Ajuste reacción": "0", "Ajuste Atq Proyectiles": "0", "Ajuste defensivo": "1"},
-                {"Puntuación habilidad": "16", "Ajuste reacción": "1", "Ajuste Atq Proyectiles": "1", "Ajuste defensivo": "2"},
-                {"Puntuación habilidad": "17", "Ajuste reacción": "2", "Ajuste Atq Proyectiles": "2", "Ajuste defensivo": "3"},
-                {"Puntuación habilidad": "18", "Ajuste reacción": "2", "Ajuste Atq Proyectiles": "2", "Ajuste defensivo": "4"},
-                {"Puntuación habilidad": "19", "Ajuste reacción": "3", "Ajuste Atq Proyectiles": "3", "Ajuste defensivo": "4"},
-                {"Puntuación habilidad": "20", "Ajuste reacción": "3", "Ajuste Atq Proyectiles": "3", "Ajuste defensivo": "4"},
-                {"Puntuación habilidad": "21", "Ajuste reacción": "3", "Ajuste Atq Proyectiles": "3", "Ajuste defensivo": "4"},
-                {"Puntuación habilidad": "22", "Ajuste reacción": "4", "Ajuste Atq Proyectiles": "4", "Ajuste defensivo": "5"},
-                {"Puntuación habilidad": "23", "Ajuste reacción": "4", "Ajuste Atq Proyectiles": "4", "Ajuste defensivo": "5"},
-                {"Puntuación habilidad": "24", "Ajuste reacción": "4", "Ajuste Atq Proyectiles": "4", "Ajuste defensivo": "5"},
-                {"Puntuación habilidad": "25", "Ajuste reacción": "5", "Ajuste Atq Proyectiles": "5", "Ajuste defensivo": "6"},
-                {"Puntuación habilidad": "26", "Ajuste reacción": "5", "Ajuste Atq Proyectiles": "5", "Ajuste defensivo": "6"},
-                {"Puntuación habilidad": "27", "Ajuste reacción": "5", "Ajuste Atq Proyectiles": "5", "Ajuste defensivo": "6"},
-                {"Puntuación habilidad": "28", "Ajuste reacción": "6", "Ajuste Atq Proyectiles": "6", "Ajuste defensivo": "7"},
-                {"Puntuación habilidad": "29", "Ajuste reacción": "6", "Ajuste Atq Proyectiles": "6", "Ajuste defensivo": "7"},
-                {"Puntuación habilidad": "30", "Ajuste reacción": "6", "Ajuste Atq Proyectiles": "6", "Ajuste defensivo": "7"},
-                {"Puntuación habilidad": "31", "Ajuste reacción": "7", "Ajuste Atq Proyectiles": "7", "Ajuste defensivo": "8"},
-                {"Puntuación habilidad": "32", "Ajuste reacción": "7", "Ajuste Atq Proyectiles": "7", "Ajuste defensivo": "8"},
-                {"Puntuación habilidad": "33", "Ajuste reacción": "8", "Ajuste Atq Proyectiles": "8", "Ajuste defensivo": "9"},
-                {"Puntuación habilidad": "34", "Ajuste reacción": "8", "Ajuste Atq Proyectiles": "8", "Ajuste defensivo": "9"},
-                {"Puntuación habilidad": "35", "Ajuste reacción": "9", "Ajuste Atq Proyectiles": "9", "Ajuste defensivo": "10"},
-                {"Puntuación habilidad": "36", "Ajuste reacción": "9", "Ajuste Atq Proyectiles": "9", "Ajuste defensivo": "10"},
-                {"Puntuación habilidad": "37", "Ajuste reacción": "10", "Ajuste Atq Proyectiles": "10", "Ajuste defensivo": "11"},
-                {"Puntuación habilidad": "38", "Ajuste reacción": "10", "Ajuste Atq Proyectiles": "10", "Ajuste defensivo": "11"},
-                {"Puntuación habilidad": "39", "Ajuste reacción": "11", "Ajuste Atq Proyectiles": "11", "Ajuste defensivo": "12"},
-                {"Puntuación habilidad": "40", "Ajuste reacción": "11", "Ajuste Atq Proyectiles": "11", "Ajuste defensivo": "12"},
-                {"Puntuación habilidad": "41", "Ajuste reacción": "12", "Ajuste Atq Proyectiles": "12", "Ajuste defensivo": "13"},
-                {"Puntuación habilidad": "42", "Ajuste reacción": "13", "Ajuste Atq Proyectiles": "13", "Ajuste defensivo": "14"},
-                {"Puntuación habilidad": "43", "Ajuste reacción": "14", "Ajuste Atq Proyectiles": "14", "Ajuste defensivo": "15"},
-                {"Puntuación habilidad": "44", "Ajuste reacción": "15", "Ajuste Atq Proyectiles": "15", "Ajuste defensivo": "16"},
-                {"Puntuación habilidad": "45", "Ajuste reacción": "16", "Ajuste Atq Proyectiles": "16", "Ajuste defensivo": "17"},
-                {"Puntuación habilidad": "46", "Ajuste reacción": "17", "Ajuste Atq Proyectiles": "17", "Ajuste defensivo": "18"},
-                {"Puntuación habilidad": "47", "Ajuste reacción": "18", "Ajuste Atq Proyectiles": "18", "Ajuste defensivo": "19"},
-                {"Puntuación habilidad": "48", "Ajuste reacción": "19", "Ajuste Atq Proyectiles": "19", "Ajuste defensivo": "20"},
-                {"Puntuación habilidad": "49", "Ajuste reacción": "20", "Ajuste Atq Proyectiles": "20", "Ajuste defensivo": "21"},
-                {"Puntuación habilidad": "50", "Ajuste reacción": "21", "Ajuste Atq Proyectiles": "21", "Ajuste defensivo": "22"},
-                {"Puntuación habilidad": "51", "Ajuste reacción": "22", "Ajuste Atq Proyectiles": "22", "Ajuste defensivo": "23"},
-                {"Puntuación habilidad": "52", "Ajuste reacción": "23", "Ajuste Atq Proyectiles": "23", "Ajuste defensivo": "24"},
-                {"Puntuación habilidad": "53", "Ajuste reacción": "24", "Ajuste Atq Proyectiles": "24", "Ajuste defensivo": "25"},
-                {"Puntuación habilidad": "54", "Ajuste reacción": "25", "Ajuste Atq Proyectiles": "25", "Ajuste defensivo": "26"},
-                {"Puntuación habilidad": "55", "Ajuste reacción": "26", "Ajuste Atq Proyectiles": "26", "Ajuste defensivo": "27"},
-                {"Puntuación habilidad": "56", "Ajuste reacción": "27", "Ajuste Atq Proyectiles": "27", "Ajuste defensivo": "28"},
-                {"Puntuación habilidad": "57", "Ajuste reacción": "28", "Ajuste Atq Proyectiles": "28", "Ajuste defensivo": "29"},
-                {"Puntuación habilidad": "58", "Ajuste reacción": "29", "Ajuste Atq Proyectiles": "29", "Ajuste defensivo": "30"},
-                {"Puntuación habilidad": "59", "Ajuste reacción": "30", "Ajuste Atq Proyectiles": "30", "Ajuste defensivo": "31"},
-                {"Puntuación habilidad": "60", "Ajuste reacción": "31", "Ajuste Atq Proyectiles": "31", "Ajuste defensivo": "32"},
-                {"Puntuación habilidad": "61", "Ajuste reacción": "32", "Ajuste Atq Proyectiles": "32", "Ajuste defensivo": "33"},
-                {"Puntuación habilidad": "62", "Ajuste reacción": "33", "Ajuste Atq Proyectiles": "33", "Ajuste defensivo": "34"},
-                {"Puntuación habilidad": "63", "Ajuste reacción": "34", "Ajuste Atq Proyectiles": "34", "Ajuste defensivo": "35"},
-                {"Puntuación habilidad": "64", "Ajuste reacción": "35", "Ajuste Atq Proyectiles": "35", "Ajuste defensivo": "36"},
-                {"Puntuación habilidad": "65", "Ajuste reacción": "36", "Ajuste Atq Proyectiles": "36", "Ajuste defensivo": "37"}
-            ],
-            "constitucion": [
-                {"Puntuación habilidad": "1", "Bonif HP/Nivel": "-3", "Shock de sistema": "10%", "Superv. Revivir": "20%", "Prot. Veneno": "-2", "Regeneración": "--"},
-                {"Puntuación habilidad": "2", "Bonif HP/Nivel": "-2", "Shock de sistema": "15%", "Superv. Revivir": "25%", "Prot. Veneno": "-1", "Regeneración": "--"},
-                {"Puntuación habilidad": "3", "Bonif HP/Nivel": "-2", "Shock de sistema": "20%", "Superv. Revivir": "30%", "Prot. Veneno": "-1", "Regeneración": "--"},
-                {"Puntuación habilidad": "4", "Bonif HP/Nivel": "-1", "Shock de sistema": "25%", "Superv. Revivir": "35%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "5", "Bonif HP/Nivel": "-1", "Shock de sistema": "30%", "Superv. Revivir": "40%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "6", "Bonif HP/Nivel": "0", "Shock de sistema": "35%", "Superv. Revivir": "45%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "7", "Bonif HP/Nivel": "0", "Shock de sistema": "40%", "Superv. Revivir": "50%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "8", "Bonif HP/Nivel": "0", "Shock de sistema": "45%", "Superv. Revivir": "55%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "9", "Bonif HP/Nivel": "0", "Shock de sistema": "50%", "Superv. Revivir": "60%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "10", "Bonif HP/Nivel": "0", "Shock de sistema": "55%", "Superv. Revivir": "65%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "11", "Bonif HP/Nivel": "0", "Shock de sistema": "60%", "Superv. Revivir": "70%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "12", "Bonif HP/Nivel": "0", "Shock de sistema": "65%", "Superv. Revivir": "75%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "13", "Bonif HP/Nivel": "0", "Shock de sistema": "70%", "Superv. Revivir": "80%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "14", "Bonif HP/Nivel": "0", "Shock de sistema": "75%", "Superv. Revivir": "85%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "15", "Bonif HP/Nivel": "1", "Shock de sistema": "80%", "Superv. Revivir": "90%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "16", "Bonif HP/Nivel": "2", "Shock de sistema": "85%", "Superv. Revivir": "95%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "17", "Bonif HP/Nivel": "2", "Shock de sistema": "90%", "Superv. Revivir": "96%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "18", "Bonif HP/Nivel": "3", "Shock de sistema": "95%", "Superv. Revivir": "97%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "19", "Bonif HP/Nivel": "3", "Shock de sistema": "97%", "Superv. Revivir": "98%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "20", "Bonif HP/Nivel": "4", "Shock de sistema": "98%", "Superv. Revivir": "99%", "Prot. Veneno": "0", "Regeneración": "--"},
-                {"Puntuación habilidad": "21", "Bonif HP/Nivel": "4", "Shock de sistema": "99%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "1"},
-                {"Puntuación habilidad": "22", "Bonif HP/Nivel": "4", "Shock de sistema": "99%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "1"},
-                {"Puntuación habilidad": "23", "Bonif HP/Nivel": "5", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "1"},
-                {"Puntuación habilidad": "24", "Bonif HP/Nivel": "5", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "1"},
-                {"Puntuación habilidad": "25", "Bonif HP/Nivel": "5", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "2"},
-                {"Puntuación habilidad": "26", "Bonif HP/Nivel": "6", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "2"},
-                {"Puntuación habilidad": "27", "Bonif HP/Nivel": "6", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "2"},
-                {"Puntuación habilidad": "28", "Bonif HP/Nivel": "7", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "3"},
-                {"Puntuación habilidad": "29", "Bonif HP/Nivel": "7", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "3"},
-                {"Puntuación habilidad": "30", "Bonif HP/Nivel": "8", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "3"},
-                {"Puntuación habilidad": "31", "Bonif HP/Nivel": "8", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "4"},
-                {"Puntuación habilidad": "32", "Bonif HP/Nivel": "9", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "4"},
-                {"Puntuación habilidad": "33", "Bonif HP/Nivel": "9", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "4"},
-                {"Puntuación habilidad": "34", "Bonif HP/Nivel": "10", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "5"},
-                {"Puntuación habilidad": "35", "Bonif HP/Nivel": "10", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "5"},
-                {"Puntuación habilidad": "36", "Bonif HP/Nivel": "11", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "5"},
-                {"Puntuación habilidad": "37", "Bonif HP/Nivel": "11", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "6"},
-                {"Puntuación habilidad": "38", "Bonif HP/Nivel": "12", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "6"},
-                {"Puntuación habilidad": "39", "Bonif HP/Nivel": "12", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "6"},
-                {"Puntuación habilidad": "40", "Bonif HP/Nivel": "13", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "7"},
-                {"Puntuación habilidad": "41", "Bonif HP/Nivel": "13", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "7"},
-                {"Puntuación habilidad": "42", "Bonif HP/Nivel": "14", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "8"},
-                {"Puntuación habilidad": "43", "Bonif HP/Nivel": "14", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "8"},
-                {"Puntuación habilidad": "44", "Bonif HP/Nivel": "15", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "8"},
-                {"Puntuación habilidad": "45", "Bonif HP/Nivel": "15", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "9"},
-                {"Puntuación habilidad": "46", "Bonif HP/Nivel": "16", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "9"},
-                {"Puntuación habilidad": "47", "Bonif HP/Nivel": "16", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "9"},
-                {"Puntuación habilidad": "48", "Bonif HP/Nivel": "17", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "10"},
-                {"Puntuación habilidad": "49", "Bonif HP/Nivel": "17", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "10"},
-                {"Puntuación habilidad": "50", "Bonif HP/Nivel": "18", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "10"},
-                {"Puntuación habilidad": "51", "Bonif HP/Nivel": "18", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "11"},
-                {"Puntuación habilidad": "52", "Bonif HP/Nivel": "19", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "11"},
-                {"Puntuación habilidad": "53", "Bonif HP/Nivel": "19", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "12"},
-                {"Puntuación habilidad": "54", "Bonif HP/Nivel": "20", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "12"},
-                {"Puntuación habilidad": "55", "Bonif HP/Nivel": "20", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "12"},
-                {"Puntuación habilidad": "56", "Bonif HP/Nivel": "21", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "13"},
-                {"Puntuación habilidad": "57", "Bonif HP/Nivel": "21", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "13"},
-                {"Puntuación habilidad": "58", "Bonif HP/Nivel": "22", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "14"},
-                {"Puntuación habilidad": "59", "Bonif HP/Nivel": "22", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "14"},
-                {"Puntuación habilidad": "60", "Bonif HP/Nivel": "23", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "14"},
-                {"Puntuación habilidad": "61", "Bonif HP/Nivel": "23", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "15"},
-                {"Puntuación habilidad": "62", "Bonif HP/Nivel": "24", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "15"},
-                {"Puntuación habilidad": "63", "Bonif HP/Nivel": "24", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "16"},
-                {"Puntuación habilidad": "64", "Bonif HP/Nivel": "25", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "16"},
-                {"Puntuación habilidad": "65", "Bonif HP/Nivel": "25", "Shock de sistema": "100%", "Superv. Revivir": "100%", "Prot. Veneno": "0", "Regeneración": "16"}
-            ],
-            "inteligencia": [
-                {"Puntuación habilidad": "1", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
-                {"Puntuación habilidad": "2", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
-                {"Puntuación habilidad": "3", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
-                {"Puntuación habilidad": "4", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
-                {"Puntuación habilidad": "5", "Idiomas": "0", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
-                {"Puntuación habilidad": "6", "Idiomas": "1", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
-                {"Puntuación habilidad": "7", "Idiomas": "1", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
-                {"Puntuación habilidad": "8", "Idiomas": "1", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
-                {"Puntuación habilidad": "9", "Idiomas": "1", "Niveles de conjuros": "--", "Oportunidad de aprender conjuros": "0%", "Máximo conjuros por nivel": "0", "Inmunidad": "--"},
-                {"Puntuación habilidad": "10", "Idiomas": "2", "Niveles de conjuros": "1", "Oportunidad de aprender conjuros": "25%", "Máximo conjuros por nivel": "6", "Inmunidad": "--"},
-                {"Puntuación habilidad": "11", "Idiomas": "2", "Niveles de conjuros": "2", "Oportunidad de aprender conjuros": "35%", "Máximo conjuros por nivel": "7", "Inmunidad": "--"},
-                {"Puntuación habilidad": "12", "Idiomas": "3", "Niveles de conjuros": "2", "Oportunidad de aprender conjuros": "45%", "Máximo conjuros por nivel": "7", "Inmunidad": "--"},
-                {"Puntuación habilidad": "13", "Idiomas": "3", "Niveles de conjuros": "3", "Oportunidad de aprender conjuros": "50%", "Máximo conjuros por nivel": "9", "Inmunidad": "--"},
-                {"Puntuación habilidad": "14", "Idiomas": "4", "Niveles de conjuros": "3", "Oportunidad de aprender conjuros": "60%", "Máximo conjuros por nivel": "11", "Inmunidad": "--"},
-                {"Puntuación habilidad": "15", "Idiomas": "4", "Niveles de conjuros": "4", "Oportunidad de aprender conjuros": "70%", "Máximo conjuros por nivel": "14", "Inmunidad": "--"},
-                {"Puntuación habilidad": "16", "Idiomas": "5", "Niveles de conjuros": "4", "Oportunidad de aprender conjuros": "75%", "Máximo conjuros por nivel": "18", "Inmunidad": "--"},
-                {"Puntuación habilidad": "17", "Idiomas": "6", "Niveles de conjuros": "5", "Oportunidad de aprender conjuros": "85%", "Máximo conjuros por nivel": "20", "Inmunidad": "--"},
-                {"Puntuación habilidad": "18", "Idiomas": "7", "Niveles de conjuros": "5", "Oportunidad de aprender conjuros": "95%", "Máximo conjuros por nivel": "25", "Inmunidad": "1"},
-                {"Puntuación habilidad": "19", "Idiomas": "8", "Niveles de conjuros": "6", "Oportunidad de aprender conjuros": "96%", "Máximo conjuros por nivel": "28", "Inmunidad": "1"},
-                {"Puntuación habilidad": "20", "Idiomas": "9", "Niveles de conjuros": "6", "Oportunidad de aprender conjuros": "97%", "Máximo conjuros por nivel": "30", "Inmunidad": "1"},
-                {"Puntuación habilidad": "21", "Idiomas": "10", "Niveles de conjuros": "7", "Oportunidad de aprender conjuros": "98%", "Máximo conjuros por nivel": "35", "Inmunidad": "1"},
-                {"Puntuación habilidad": "22", "Idiomas": "11", "Niveles de conjuros": "7", "Oportunidad de aprender conjuros": "99%", "Máximo conjuros por nivel": "38", "Inmunidad": "1"},
-                {"Puntuación habilidad": "23", "Idiomas": "12", "Niveles de conjuros": "8", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "42", "Inmunidad": "2"},
-                {"Puntuación habilidad": "24", "Idiomas": "13", "Niveles de conjuros": "8", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "45", "Inmunidad": "2"},
-                {"Puntuación habilidad": "25", "Idiomas": "14", "Niveles de conjuros": "9", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "50", "Inmunidad": "2"},
-                {"Puntuación habilidad": "26", "Idiomas": "15", "Niveles de conjuros": "9", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "55", "Inmunidad": "2"},
-                {"Puntuación habilidad": "27", "Idiomas": "16", "Niveles de conjuros": "10", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "60", "Inmunidad": "3"},
-                {"Puntuación habilidad": "28", "Idiomas": "17", "Niveles de conjuros": "10", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "65", "Inmunidad": "3"},
-                {"Puntuación habilidad": "29", "Idiomas": "18", "Niveles de conjuros": "11", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "70", "Inmunidad": "3"},
-                {"Puntuación habilidad": "30", "Idiomas": "19", "Niveles de conjuros": "11", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "75", "Inmunidad": "4"},
-                {"Puntuación habilidad": "31", "Idiomas": "20", "Niveles de conjuros": "12", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "80", "Inmunidad": "4"},
-                {"Puntuación habilidad": "32", "Idiomas": "21", "Niveles de conjuros": "12", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "85", "Inmunidad": "4"},
-                {"Puntuación habilidad": "33", "Idiomas": "22", "Niveles de conjuros": "13", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "90", "Inmunidad": "5"},
-                {"Puntuación habilidad": "34", "Idiomas": "23", "Niveles de conjuros": "13", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "95", "Inmunidad": "5"},
-                {"Puntuación habilidad": "35", "Idiomas": "24", "Niveles de conjuros": "14", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "100", "Inmunidad": "5"},
-                {"Puntuación habilidad": "36", "Idiomas": "25", "Niveles de conjuros": "14", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "105", "Inmunidad": "6"},
-                {"Puntuación habilidad": "37", "Idiomas": "26", "Niveles de conjuros": "15", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "110", "Inmunidad": "6"},
-                {"Puntuación habilidad": "38", "Idiomas": "27", "Niveles de conjuros": "15", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "115", "Inmunidad": "6"},
-                {"Puntuación habilidad": "39", "Idiomas": "28", "Niveles de conjuros": "16", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "120", "Inmunidad": "7"},
-                {"Puntuación habilidad": "40", "Idiomas": "29", "Niveles de conjuros": "16", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "125", "Inmunidad": "7"},
-                {"Puntuación habilidad": "41", "Idiomas": "30", "Niveles de conjuros": "17", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "130", "Inmunidad": "7"},
-                {"Puntuación habilidad": "42", "Idiomas": "31", "Niveles de conjuros": "17", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "135", "Inmunidad": "8"},
-                {"Puntuación habilidad": "43", "Idiomas": "32", "Niveles de conjuros": "18", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "140", "Inmunidad": "8"},
-                {"Puntuación habilidad": "44", "Idiomas": "33", "Niveles de conjuros": "18", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "145", "Inmunidad": "8"},
-                {"Puntuación habilidad": "45", "Idiomas": "34", "Niveles de conjuros": "19", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "150", "Inmunidad": "9"},
-                {"Puntuación habilidad": "46", "Idiomas": "35", "Niveles de conjuros": "19", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "155", "Inmunidad": "9"},
-                {"Puntuación habilidad": "47", "Idiomas": "36", "Niveles de conjuros": "20", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "160", "Inmunidad": "9"},
-                {"Puntuación habilidad": "48", "Idiomas": "37", "Niveles de conjuros": "20", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "165", "Inmunidad": "10"},
-                {"Puntuación habilidad": "49", "Idiomas": "38", "Niveles de conjuros": "21", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "170", "Inmunidad": "10"},
-                {"Puntuación habilidad": "50", "Idiomas": "39", "Niveles de conjuros": "21", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "175", "Inmunidad": "10"},
-                {"Puntuación habilidad": "51", "Idiomas": "40", "Niveles de conjuros": "22", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "180", "Inmunidad": "11"},
-                {"Puntuación habilidad": "52", "Idiomas": "41", "Niveles de conjuros": "22", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "185", "Inmunidad": "11"},
-                {"Puntuación habilidad": "53", "Idiomas": "42", "Niveles de conjuros": "23", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "190", "Inmunidad": "11"},
-                {"Puntuación habilidad": "54", "Idiomas": "43", "Niveles de conjuros": "23", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "195", "Inmunidad": "12"},
-                {"Puntuación habilidad": "55", "Idiomas": "44", "Niveles de conjuros": "24", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "200", "Inmunidad": "12"},
-                {"Puntuación habilidad": "56", "Idiomas": "45", "Niveles de conjuros": "24", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "205", "Inmunidad": "12"},
-                {"Puntuación habilidad": "57", "Idiomas": "46", "Niveles de conjuros": "25", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "210", "Inmunidad": "13"},
-                {"Puntuación habilidad": "58", "Idiomas": "47", "Niveles de conjuros": "25", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "215", "Inmunidad": "13"},
-                {"Puntuación habilidad": "59", "Idiomas": "48", "Niveles de conjuros": "26", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "220", "Inmunidad": "13"},
-                {"Puntuación habilidad": "60", "Idiomas": "49", "Niveles de conjuros": "26", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "225", "Inmunidad": "14"},
-                {"Puntuación habilidad": "61", "Idiomas": "50", "Niveles de conjuros": "27", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "230", "Inmunidad": "14"},
-                {"Puntuación habilidad": "62", "Idiomas": "51", "Niveles de conjuros": "27", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "235", "Inmunidad": "14"},
-                {"Puntuación habilidad": "63", "Idiomas": "52", "Niveles de conjuros": "28", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "240", "Inmunidad": "15"},
-                {"Puntuación habilidad": "64", "Idiomas": "53", "Niveles de conjuros": "28", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "245", "Inmunidad": "15"},
-                {"Puntuación habilidad": "65", "Idiomas": "54", "Niveles de conjuros": "29", "Oportunidad de aprender conjuros": "100%", "Máximo conjuros por nivel": "250", "Inmunidad": "15"}
-            ],
-            "sabiduria": [
-                {"Puntuación habilidad": "1", "Def. Mágica": "-6", "Bonif. Conjuros": "0", "Fracaso Conjuro": "50%"},
-                {"Puntuación habilidad": "2", "Def. Mágica": "-4", "Bonif. Conjuros": "0", "Fracaso Conjuro": "45%"},
-                {"Puntuación habilidad": "3", "Def. Mágica": "-3", "Bonif. Conjuros": "0", "Fracaso Conjuro": "40%"},
-                {"Puntuación habilidad": "4", "Def. Mágica": "-2", "Bonif. Conjuros": "0", "Fracaso Conjuro": "35%"},
-                {"Puntuación habilidad": "5", "Def. Mágica": "-1", "Bonif. Conjuros": "0", "Fracaso Conjuro": "30%"},
-                {"Puntuación habilidad": "6", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "25%"},
-                {"Puntuación habilidad": "7", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "20%"},
-                {"Puntuación habilidad": "8", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "15%"},
-                {"Puntuación habilidad": "9", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "10%"},
-                {"Puntuación habilidad": "10", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "5%"},
-                {"Puntuación habilidad": "11", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "12", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "13", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "14", "Def. Mágica": "0", "Bonif. Conjuros": "0", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "15", "Def. Mágica": "0", "Bonif. Conjuros": "1", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "16", "Def. Mágica": "1", "Bonif. Conjuros": "2", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "17", "Def. Mágica": "2", "Bonif. Conjuros": "3", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "18", "Def. Mágica": "3", "Bonif. Conjuros": "4", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "19", "Def. Mágica": "4", "Bonif. Conjuros": "4", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "20", "Def. Mágica": "4", "Bonif. Conjuros": "5", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "21", "Def. Mágica": "4", "Bonif. Conjuros": "5", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "22", "Def. Mágica": "5", "Bonif. Conjuros": "6", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "23", "Def. Mágica": "5", "Bonif. Conjuros": "6", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "24", "Def. Mágica": "5", "Bonif. Conjuros": "7", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "25", "Def. Mágica": "6", "Bonif. Conjuros": "7", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "26", "Def. Mágica": "6", "Bonif. Conjuros": "8", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "27", "Def. Mágica": "6", "Bonif. Conjuros": "8", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "28", "Def. Mágica": "7", "Bonif. Conjuros": "9", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "29", "Def. Mágica": "7", "Bonif. Conjuros": "9", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "30", "Def. Mágica": "8", "Bonif. Conjuros": "10", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "31", "Def. Mágica": "8", "Bonif. Conjuros": "10", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "32", "Def. Mágica": "9", "Bonif. Conjuros": "11", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "33", "Def. Mágica": "9", "Bonif. Conjuros": "11", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "34", "Def. Mágica": "10", "Bonif. Conjuros": "12", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "35", "Def. Mágica": "10", "Bonif. Conjuros": "12", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "36", "Def. Mágica": "11", "Bonif. Conjuros": "13", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "37", "Def. Mágica": "11", "Bonif. Conjuros": "13", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "38", "Def. Mágica": "12", "Bonif. Conjuros": "14", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "39", "Def. Mágica": "12", "Bonif. Conjuros": "14", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "40", "Def. Mágica": "13", "Bonif. Conjuros": "15", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "41", "Def. Mágica": "13", "Bonif. Conjuros": "15", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "42", "Def. Mágica": "14", "Bonif. Conjuros": "16", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "43", "Def. Mágica": "14", "Bonif. Conjuros": "16", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "44", "Def. Mágica": "15", "Bonif. Conjuros": "17", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "45", "Def. Mágica": "15", "Bonif. Conjuros": "17", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "46", "Def. Mágica": "16", "Bonif. Conjuros": "18", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "47", "Def. Mágica": "16", "Bonif. Conjuros": "18", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "48", "Def. Mágica": "17", "Bonif. Conjuros": "19", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "49", "Def. Mágica": "17", "Bonif. Conjuros": "19", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "50", "Def. Mágica": "18", "Bonif. Conjuros": "20", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "51", "Def. Mágica": "18", "Bonif. Conjuros": "20", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "52", "Def. Mágica": "19", "Bonif. Conjuros": "21", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "53", "Def. Mágica": "19", "Bonif. Conjuros": "21", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "54", "Def. Mágica": "20", "Bonif. Conjuros": "22", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "55", "Def. Mágica": "20", "Bonif. Conjuros": "22", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "56", "Def. Mágica": "21", "Bonif. Conjuros": "23", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "57", "Def. Mágica": "21", "Bonif. Conjuros": "23", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "58", "Def. Mágica": "22", "Bonif. Conjuros": "24", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "59", "Def. Mágica": "22", "Bonif. Conjuros": "24", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "60", "Def. Mágica": "23", "Bonif. Conjuros": "25", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "61", "Def. Mágica": "23", "Bonif. Conjuros": "25", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "62", "Def. Mágica": "24", "Bonif. Conjuros": "26", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "63", "Def. Mágica": "24", "Bonif. Conjuros": "26", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "64", "Def. Mágica": "25", "Bonif. Conjuros": "27", "Fracaso Conjuro": "0%"},
-                {"Puntuación habilidad": "65", "Def. Mágica": "25", "Bonif. Conjuros": "27", "Fracaso Conjuro": "0%"}
-            ],
-            "carisma": [
-                {"Puntuación habilidad": "1", "N° de servidores": "0", "Lealtad base": "-5", "Ajuste reacción": "-7"},
-                {"Puntuación habilidad": "2", "N° de servidores": "0", "Lealtad base": "-4", "Ajuste reacción": "-6"},
-                {"Puntuación habilidad": "3", "N° de servidores": "0", "Lealtad base": "-3", "Ajuste reacción": "-5"},
-                {"Puntuación habilidad": "4", "N° de servidores": "1", "Lealtad base": "-2", "Ajuste reacción": "-4"},
-                {"Puntuación habilidad": "5", "N° de servidores": "1", "Lealtad base": "-1", "Ajuste reacción": "-3"},
-                {"Puntuación habilidad": "6", "N° de servidores": "1", "Lealtad base": "0", "Ajuste reacción": "-2"},
-                {"Puntuación habilidad": "7", "N° de servidores": "1", "Lealtad base": "0", "Ajuste reacción": "-1"},
-                {"Puntuación habilidad": "8", "N° de servidores": "2", "Lealtad base": "0", "Ajuste reacción": "0"},
-                {"Puntuación habilidad": "9", "N° de servidores": "2", "Lealtad base": "0", "Ajuste reacción": "0"},
-                {"Puntuación habilidad": "10", "N° de servidores": "3", "Lealtad base": "0", "Ajuste reacción": "0"},
-                {"Puntuación habilidad": "11", "N° de servidores": "3", "Lealtad base": "0", "Ajuste reacción": "0"},
-                {"Puntuación habilidad": "12", "N° de servidores": "4", "Lealtad base": "0", "Ajuste reacción": "0"},
-                {"Puntuación habilidad": "13", "N° de servidores": "4", "Lealtad base": "0", "Ajuste reacción": "0"},
-                {"Puntuación habilidad": "14", "N° de servidores": "5", "Lealtad base": "1", "Ajuste reacción": "1"},
-                {"Puntuación habilidad": "15", "N° de servidores": "6", "Lealtad base": "2", "Ajuste reacción": "2"},
-                {"Puntuación habilidad": "16", "N° de servidores": "7", "Lealtad base": "3", "Ajuste reacción": "3"},
-                {"Puntuación habilidad": "17", "N° de servidores": "8", "Lealtad base": "4", "Ajuste reacción": "4"},
-                {"Puntuación habilidad": "18", "N° de servidores": "10", "Lealtad base": "5", "Ajuste reacción": "5"},
-                {"Puntuación habilidad": "19", "N° de servidores": "12", "Lealtad base": "6", "Ajuste reacción": "6"},
-                {"Puntuación habilidad": "20", "N° de servidores": "14", "Lealtad base": "7", "Ajuste reacción": "7"},
-                {"Puntuación habilidad": "21", "N° de servidores": "16", "Lealtad base": "8", "Ajuste reacción": "8"},
-                {"Puntuación habilidad": "22", "N° de servidores": "18", "Lealtad base": "9", "Ajuste reacción": "9"},
-                {"Puntuación habilidad": "23", "N° de servidores": "20", "Lealtad base": "10", "Ajuste reacción": "10"},
-                {"Puntuación habilidad": "24", "N° de servidores": "22", "Lealtad base": "11", "Ajuste reacción": "11"},
-                {"Puntuación habilidad": "25", "N° de servidores": "24", "Lealtad base": "12", "Ajuste reacción": "12"},
-                {"Puntuación habilidad": "26", "N° de servidores": "26", "Lealtad base": "13", "Ajuste reacción": "13"},
-                {"Puntuación habilidad": "27", "N° de servidores": "28", "Lealtad base": "14", "Ajuste reacción": "14"},
-                {"Puntuación habilidad": "28", "N° de servidores": "30", "Lealtad base": "15", "Ajuste reacción": "15"},
-                {"Puntuación habilidad": "29", "N° de servidores": "32", "Lealtad base": "16", "Ajuste reacción": "16"},
-                {"Puntuación habilidad": "30", "N° de servidores": "34", "Lealtad base": "17", "Ajuste reacción": "17"},
-                {"Puntuación habilidad": "31", "N° de servidores": "36", "Lealtad base": "18", "Ajuste reacción": "18"},
-                {"Puntuación habilidad": "32", "N° de servidores": "38", "Lealtad base": "19", "Ajuste reacción": "19"},
-                {"Puntuación habilidad": "33", "N° de servidores": "40", "Lealtad base": "20", "Ajuste reacción": "20"},
-                {"Puntuación habilidad": "34", "N° de servidores": "42", "Lealtad base": "21", "Ajuste reacción": "21"},
-                {"Puntuación habilidad": "35", "N° de servidores": "44", "Lealtad base": "22", "Ajuste reacción": "22"},
-                {"Puntuación habilidad": "36", "N° de servidores": "46", "Lealtad base": "23", "Ajuste reacción": "23"},
-                {"Puntuación habilidad": "37", "N° de servidores": "48", "Lealtad base": "24", "Ajuste reacción": "24"},
-                {"Puntuación habilidad": "38", "N° de servidores": "50", "Lealtad base": "25", "Ajuste reacción": "25"},
-                {"Puntuación habilidad": "39", "N° de servidores": "52", "Lealtad base": "26", "Ajuste reacción": "26"},
-                {"Puntuación habilidad": "40", "N° de servidores": "54", "Lealtad base": "27", "Ajuste reacción": "27"},
-                {"Puntuación habilidad": "41", "N° de servidores": "56", "Lealtad base": "28", "Ajuste reacción": "28"},
-                {"Puntuación habilidad": "42", "N° de servidores": "58", "Lealtad base": "29", "Ajuste reacción": "29"},
-                {"Puntuación habilidad": "43", "N° de servidores": "60", "Lealtad base": "30", "Ajuste reacción": "30"},
-                {"Puntuación habilidad": "44", "N° de servidores": "62", "Lealtad base": "31", "Ajuste reacción": "31"},
-                {"Puntuación habilidad": "45", "N° de servidores": "64", "Lealtad base": "32", "Ajuste reacción": "32"},
-                {"Puntuación habilidad": "46", "N° de servidores": "66", "Lealtad base": "33", "Ajuste reacción": "33"},
-                {"Puntuación habilidad": "47", "N° de servidores": "68", "Lealtad base": "34", "Ajuste reacción": "34"},
-                {"Puntuación habilidad": "48", "N° de servidores": "70", "Lealtad base": "35", "Ajuste reacción": "35"},
-                {"Puntuación habilidad": "49", "N° de servidores": "72", "Lealtad base": "36", "Ajuste reacción": "36"},
-                {"Puntuación habilidad": "50", "N° de servidores": "74", "Lealtad base": "37", "Ajuste reacción": "37"},
-                {"Puntuación habilidad": "51", "N° de servidores": "76", "Lealtad base": "38", "Ajuste reacción": "38"},
-                {"Puntuación habilidad": "52", "N° de servidores": "78", "Lealtad base": "39", "Ajuste reacción": "39"},
-                {"Puntuación habilidad": "53", "N° de servidores": "80", "Lealtad base": "40", "Ajuste reacción": "40"},
-                {"Puntuación habilidad": "54", "N° de servidores": "82", "Lealtad base": "41", "Ajuste reacción": "41"},
-                {"Puntuación habilidad": "55", "N° de servidores": "84", "Lealtad base": "42", "Ajuste reacción": "42"},
-                {"Puntuación habilidad": "56", "N° de servidores": "86", "Lealtad base": "43", "Ajuste reacción": "43"},
-                {"Puntuación habilidad": "57", "N° de servidores": "88", "Lealtad base": "44", "Ajuste reacción": "44"},
-                {"Puntuación habilidad": "58", "N° de servidores": "90", "Lealtad base": "45", "Ajuste reacción": "45"},
-                {"Puntuación habilidad": "59", "N° de servidores": "92", "Lealtad base": "46", "Ajuste reacción": "46"},
-                {"Puntuación habilidad": "60", "N° de servidores": "94", "Lealtad base": "47", "Ajuste reacción": "47"},
-                {"Puntuación habilidad": "61", "N° de servidores": "96", "Lealtad base": "48", "Ajuste reacción": "48"},
-                {"Puntuación habilidad": "62", "N° de servidores": "98", "Lealtad base": "49", "Ajuste reacción": "49"},
-                {"Puntuación habilidad": "63", "N° de servidores": "100", "Lealtad base": "50", "Ajuste reacción": "50"},
-                {"Puntuación habilidad": "64", "N° de servidores": "102", "Lealtad base": "51", "Ajuste reacción": "51"},
-                {"Puntuación habilidad": "65", "N° de servidores": "104", "Lealtad base": "52", "Ajuste reacción": "52"}
-            ]
-        };
-
- // Función para calcular modificadores
-            function calculateModifiers() {
-                try {
-                    document.getElementById("debug-info").textContent = "Status: Calculando modificadores...";
-                    
-                    // FUERZA
-                    const str = parseInt(document.getElementById("strength").value) || 10;
-                    const strData = abilityData["fuerza"]?.find(f => f["Punt. Habilidad"] == str);
-                    
-                    if (strData) {
-                        document.getElementById("str-hit-prob").textContent = strData["Probab. de Golpe"] || "--";
-                        document.getElementById("str-damage-adj").textContent = strData["Ajuste de daño"] || "--";
-                        document.getElementById("str-weight-cap").textContent = (strData["Peso Kg autorizado"] || "--") + "kg";
-                        document.getElementById("str-max-effort").textContent = (strData["Esfuerzo máximo Kg"] || "--") + "kg";
-                        document.getElementById("str-open-doors").textContent = strData["Abrir Puertas"] || "--";
-                        document.getElementById("str-bend-bar").textContent = strData["Doblar Barras"] || "--";
-                    } else {
-                        setElementsToDefault("str", ["--", "--", "--kg", "--kg", "--", "--"]);
-                    }
-
-                    // DESTREZA
-                    const dex = parseInt(document.getElementById("dexterity").value) || 10;
-                    const dexData = abilityData["destreza"]?.find(f => f["Puntuación habilidad"] == dex);
-                    
-                    if (dexData) {
-                        document.getElementById("dex-reaction").textContent = dexData["Ajuste reacción"] || "--";
-                        document.getElementById("dex-missile").textContent = dexData["Ajuste Atq Proyectiles"] || "--";
-                        document.getElementById("dex-defensive").textContent = dexData["Ajuste defensivo"] || "--";
-                    } else {
-                        setElementsToDefault("dex", ["--", "--", "--"]);
-                    }
-
-                    // CONSTITUCIÓN
-                    const con = parseInt(document.getElementById("constitution").value) || 10;
-                    const conData = abilityData["constitucion"]?.find(f => f["Puntuación habilidad"] == con);
-                    
-                    if (conData) {
-                        document.getElementById("con-hp-bonus").textContent = conData["Bonif HP/Nivel"] || "--";
-                        document.getElementById("con-shock-survival").textContent = conData["Shock de sistema"] || "--";
-                        document.getElementById("con-resurrection").textContent = conData["Superv. Revivir"] || "--";
-                        document.getElementById("con-poison").textContent = conData["Prot. Veneno"] || "--";
-                        document.getElementById("con-regeneration").textContent = conData["Regeneración"] || "--";
-                    } else {
-                        setElementsToDefault("con", ["--", "--", "--", "--", "--"]);
-                    }
-
-                    // INTELIGENCIA
-                    const intel = parseInt(document.getElementById("intelligence").value) || 10;
-                    const intelData = abilityData["inteligencia"]?.find(f => f["Puntuación habilidad"] == intel);
-                    
-                    if (intelData) {
-                        document.getElementById("int-languages").textContent = intelData["Idiomas"] || "--";
-                        document.getElementById("int-spell-level").textContent = intelData["Niveles de conjuros"] || "--";
-                        document.getElementById("int-spell-chance").textContent = intelData["Oportunidad de aprender conjuros"] || "--";
-                        document.getElementById("int-max-spells").textContent = intelData["Máximo conjuros por nivel"] || "--";
-                        document.getElementById("int-immunity").textContent = intelData["Inmunidad"] || "--";
-                    } else {
-                        setElementsToDefault("int", ["--", "--", "--", "--", "--"]);
-                    }
-
-                    // SABIDURÍA
-                    const wis = parseInt(document.getElementById("wisdom").value) || 10;
-                    const wisData = abilityData["sabiduria"]?.find(f => f["Puntuación habilidad"] == wis);
-                    
-                    if (wisData) {
-                        document.getElementById("wis-magic-defense").textContent = wisData["Def. Mágica"] || "--";
-                        document.getElementById("wis-spell-bonus").textContent = wisData["Bonif. Conjuros"] || "--";
-                        document.getElementById("wis-spell-failure").textContent = wisData["Fracaso Conjuro"] || "--";
-                    } else {
-                        setElementsToDefault("wis", ["--", "--", "--"]);
-                    }
-
-                    // CARISMA
-                    const cha = parseInt(document.getElementById("charisma").value) || 10;
-                    const chaData = abilityData["carisma"]?.find(f => f["Puntuación habilidad"] == cha);
-                    
-                    if (chaData) {
-                        document.getElementById("cha-max-servers").textContent = chaData["N° de servidores"] || "--";
-                        document.getElementById("cha-base-loyalty").textContent = chaData["Lealtad base"] || "--";
-                        document.getElementById("cha-reaction-adj").textContent = chaData["Ajuste reacción"] || "--";
-                    } else {
-                        setElementsToDefault("cha", ["--", "--", "--"]);
-                    }
-
-                    document.getElementById("debug-info").textContent = "Status: ✅ Cálculos completados correctamente";
-                    
-                } catch (error) {
-                    document.getElementById("debug-info").textContent = "Status: ❌ Error - " + error.message;
-                    console.error("Error en calculateModifiers:", error);
-                }
-            }
-
-            // Función auxiliar para establecer valores por defecto
-            function setElementsToDefault(prefix, values) {
-                const ids = {
-                    "str": ["str-hit-prob", "str-damage-adj", "str-weight-cap", "str-max-effort", "str-open-doors", "str-bend-bar"],
-                    "dex": ["dex-reaction", "dex-missile", "dex-defensive"],
-                    "con": ["con-hp-bonus", "con-shock-survival", "con-resurrection", "con-poison", "con-regeneration"],
-                    "int": ["int-languages", "int-spell-level", "int-spell-chance", "int-max-spells", "int-immunity"],
-                    "wis": ["wis-magic-defense", "wis-spell-bonus", "wis-spell-failure"],
-                    "cha": ["cha-max-servers", "cha-base-loyalty", "cha-reaction-adj"]
-                };
-
-                if (ids[prefix]) {
-                    ids[prefix].forEach((id, index) => {
-                        const element = document.getElementById(id);
-                        if (element && values[index]) {
-                            element.textContent = values[index];
-                        }
-                    });
-                }
-            }
-
-            // Función de inicialización
-            function init() {
-                document.getElementById("debug-info").textContent = "Status: 🔄 Inicializando calculadora...";
-                
-                // Verificar que todos los elementos existen
-                const requiredElements = [
-                    "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"
-                ];
-                
-                let allElementsFound = true;
-                requiredElements.forEach(id => {
-                    if (!document.getElementById(id)) {
-                        console.error("Elemento no encontrado:", id);
-                        allElementsFound = false;
-                    }
-                });
-
-                if (allElementsFound) {
-                    calculateModifiers();
-                    document.getElementById("debug-info").textContent = "Status: ✅ Calculadora inicializada correctamente";
-                } else {
-                    document.getElementById("debug-info").textContent = "Status: ❌ Error - Elementos HTML faltantes";
-                }
-            }
-
-            // API pública del módulo
-            return {
-                calculateModifiers: calculateModifiers,
-                init: init,
-                abilityData: abilityData // Exportamos los datos para debugging
+        const AbilitySystem = (function() {
+            const racialModifiers = {
+                'Humano': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
+                'Elfo': { str: 0, dex: 1, con: -1, int: 0, wis: 0, cha: 0 },
+                'Enano': { str: 0, dex: 0, con: 1, int: 0, wis: 0, cha: -1 }
             };
+
+            const backgroundModifiers = {
+                'Ninguno': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
+                'Noble': { str: 0, dex: 0, con: 0, int: 1, wis: 0, cha: 1 }
+            };
+
+            const levelPoints = {
+                strength: 0, dexterity: 0, constitution: 0,
+                intelligence: 0, wisdom: 0, charisma: 0
+            };
+
+            let currentRace = 'Humano';
+            let currentBackground = 'Ninguno';
+            let currentLevel = 1;
+
+            const abilityTables = {
+                strength: [
+                    {s:1,h:-5,d:-4,w:0.5,e:1.5,do:1,b:"0%"},
+                    {s:3,h:-3,d:-1,w:2.5,e:5,do:2,b:"0%"},
+                    {s:6,h:-1,d:0,w:10,e:28,do:4,b:"0%"},
+                    {s:10,h:0,d:0,w:20,e:58,do:6,b:"2%"},
+                    {s:15,h:0,d:0,w:28,e:85,do:8,b:"7%"},
+                    {s:16,h:0,d:1,w:35,e:98,do:9,b:"10%"},
+                    {s:18,h:1,d:2,w:55,e:130,do:11,b:"16%"},
+                    {s:20,h:3,d:8,w:270,e:350,do:17,b:"60%"},
+                    {s:45,h:27,d:54,w:3770,e:3975,do:19,b:"99%"},
+                    {s:65,h:47,d:94,w:6770,e:7075,do:19,b:"99%"}
+                ],
+                dexterity: [
+                    {s:1,r:-6,m:-6,df:5},
+                    {s:6,r:0,m:0,df:0},
+                    {s:10,r:0,m:0,df:0},
+                    {s:16,r:1,m:1,df:-1},
+                    {s:18,r:2,m:2,df:-4},
+                    {s:45,r:16,m:16,df:-17},
+                    {s:65,r:36,m:36,df:-37}
+                ],
+                constitution: [
+                    {s:1,hp:-3,sh:"25%",res:"30%",p:-2,rg:"--"},
+                    {s:10,hp:0,sh:"70%",res:"75%",p:0,rg:"--"},
+                    {s:15,hp:1,sh:"90%",res:"94%",p:0,rg:"--"},
+                    {s:18,hp:3,sh:"99%",res:"100%",p:0,rg:"--"},
+                    {s:45,hp:15,sh:"100%",res:"100%",p:0,rg:"9"},
+                    {s:65,hp:25,sh:"100%",res:"100%",p:0,rg:"16"}
+                ],
+                intelligence: [
+                    {s:1,l:0,sl:"--",ch:"0%",mx:0,im:"--"},
+                    {s:10,l:2,sl:"5",ch:"40%",mx:7,im:"--"},
+                    {s:18,l:7,sl:"9",ch:"85%",mx:18,im:"--"},
+                    {s:45,l:34,sl:"19",ch:"100%",mx:150,im:"9"},
+                    {s:65,l:54,sl:"29",ch:"100%",mx:250,im:"15"}
+                ],
+                wisdom: [
+                    {s:1,md:-6,b:0,f:"80%"},
+                    {s:10,md:0,b:0,f:"15%"},
+                    {s:13,md:0,b:1,f:"0%"},
+                    {s:18,md:4,b:4,f:"0%"},
+                    {s:45,md:15,b:17,f:"0%"},
+                    {s:65,md:25,b:27,f:"0%"}
+                ],
+                charisma: [
+                    {s:1,sv:0,ly:-8,rc:-7},
+                    {s:10,sv:4,ly:0,rc:0},
+                    {s:18,sv:15,ly:8,rc:7},
+                    {s:45,sv:64,ly:32,rc:32},
+                    {s:65,sv:104,ly:52,rc:52}
+                ]
+            };
+
+            function findData(table, score) {
+                let exact = table.find(e => e.s === score);
+                if (exact) return exact;
+                return table.reduce((p,c) => Math.abs(c.s-score)<Math.abs(p.s-score)?c:p);
+            }
+
+            function getPrefix(ability) {
+                return {strength:'str',dexterity:'dex',constitution:'con',
+                        intelligence:'int',wisdom:'wis',charisma:'cha'}[ability];
+            }
+
+            function calculateTotal(ability) {
+                const dice = parseInt(document.getElementById(`${getPrefix(ability)}-dice`).value)||10;
+                const key = {strength:'str',dexterity:'dex',constitution:'con',
+                             intelligence:'int',wisdom:'wis',charisma:'cha'}[ability];
+                return dice + racialModifiers[currentRace][key] + 
+                       backgroundModifiers[currentBackground][key] + levelPoints[ability];
+            }
+
+            function updateModifiers(ability, total) {
+                const pre = getPrefix(ability);
+                switch(ability) {
+                    case 'strength':
+                        const sd = findData(abilityTables.strength, total);
+                        document.getElementById('str-hit').textContent = sd.h>=0?`+${sd.h}`:sd.h;
+                        document.getElementById('str-dmg').textContent = sd.d>=0?`+${sd.d}`:sd.d;
+                        document.getElementById('str-weight').textContent = sd.w+'kg';
+                        document.getElementById('str-effort').textContent = sd.e+'kg';
+                        document.getElementById('str-doors').textContent = sd.do;
+                        document.getElementById('str-bars').textContent = sd.b;
+                        break;
+                    case 'dexterity':
+                        const dd = findData(abilityTables.dexterity, total);
+                        document.getElementById('dex-reaction').textContent = dd.r>=0?`+${dd.r}`:dd.r;
+                        document.getElementById('dex-missile').textContent = dd.m>=0?`+${dd.m}`:dd.m;
+                        document.getElementById('dex-defense').textContent = dd.df>=0?`+${dd.df}`:dd.df;
+                        break;
+                    case 'constitution':
+                        const cd = findData(abilityTables.constitution, total);
+                        document.getElementById('con-hp').textContent = cd.hp>=0?`+${cd.hp}`:cd.hp;
+                        document.getElementById('con-shock').textContent = cd.sh;
+                        document.getElementById('con-res').textContent = cd.res;
+                        document.getElementById('con-poison').textContent = cd.p>=0?`+${cd.p}`:cd.p;
+                        document.getElementById('con-regen').textContent = cd.rg;
+                        break;
+                    case 'intelligence':
+                        const id = findData(abilityTables.intelligence, total);
+                        document.getElementById('int-lang').textContent = id.l;
+                        document.getElementById('int-spell-lvl').textContent = id.sl;
+                        document.getElementById('int-spell-chance').textContent = id.ch;
+                        document.getElementById('int-max-spells').textContent = id.mx;
+                        document.getElementById('int-immunity').textContent = id.im;
+                        break;
+                    case 'wisdom':
+                        const wd = findData(abilityTables.wisdom, total);
+                        document.getElementById('wis-magic-def').textContent = wd.md>=0?`+${wd.md}`:wd.md;
+                        document.getElementById('wis-spell-bonus').textContent = wd.b>=0?`+${wd.b}`:wd.b;
+                        document.getElementById('wis-spell-fail').textContent = wd.f;
+                        break;
+                    case 'charisma':
+                        const chd = findData(abilityTables.charisma, total);
+                        document.getElementById('cha-servants').textContent = chd.sv;
+                        document.getElementById('cha-loyalty').textContent = chd.ly>=0?`+${chd.ly}`:chd.ly;
+                        document.getElementById('cha-reaction').textContent = chd.rc>=0?`+${chd.rc}`:chd.rc;
+                        break;
+                }
+            }
+
+            function updateAbility(ability) {
+                const total = calculateTotal(ability);
+                document.getElementById(`${getPrefix(ability)}-total`).textContent = total;
+                updateModifiers(ability, total);
+            }
+
+            function addLevelPoint(ability) {
+                const bonusLevels = [3,6,9,12,15,18,21,24,27,30];
+                let totalPoints = bonusLevels.filter(l => currentLevel >= l).length;
+                let usedPoints = Object.values(levelPoints).reduce((s,v) => s+v, 0);
+                if (usedPoints < totalPoints) {
+                    levelPoints[ability]++;
+                    updateAbility(ability);
+                    document.getElementById('points-available').textContent = totalPoints - usedPoints - 1;
+                }
+            }
+
+            function init() {
+                ['strength','dexterity','constitution','intelligence','wisdom','charisma']
+                    .forEach(a => updateAbility(a));
+            }
+
+            return {updateAbility, addLevelPoint, init};
         })();
 
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function() {
-            window.AbilityCalculator.init();
-        });
-
-        // También ejecutar inmediatamente por si el DOM ya está listo
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', window.AbilityCalculator.init);
-        } else {
-            window.AbilityCalculator.init();
-        }
+        window.addEventListener('DOMContentLoaded', () => AbilitySystem.init());
     </script>
 </body>
 </html>
