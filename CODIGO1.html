@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD&D 2.Pandunk</title>
+    <title>AD&D 2.Pandunk - Basic Tab</title>
     <style>
         * {
             margin: 0;
@@ -15,232 +15,23 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
             color: #e5e5e5;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .app-header {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 2px solid #ffd700;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffd700;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #1a1a2e;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #e5e5e5;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .main-container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 2rem;
-        }
-
-        .sidebar {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 1.5rem;
-            height: fit-content;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .character-summary {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            margin-bottom: 2rem;
-        }
-
-        .character-avatar {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #1a1a2e;
-        }
-
-        .category-selector {
-            margin-bottom: 2rem;
-        }
-
-        .category-title {
-            color: #ffd700;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .category-grid {
-            display: grid;
-            gap: 0.5rem;
-        }
-
-        .category-option {
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-
-        .category-option:hover {
-            background: rgba(255, 215, 0, 0.1);
-            border-color: rgba(255, 215, 0, 0.3);
-            transform: translateX(4px);
-        }
-
-        .category-option.selected {
-            background: rgba(255, 215, 0, 0.2);
-            border-color: #ffd700;
-            position: relative;
-        }
-
-        .category-option.selected::before {
-            content: "✓";
-            position: absolute;
-            right: 0.8rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #ffd700;
-            font-weight: bold;
-        }
-
-        .category-name {
-            font-weight: 600;
-            color: #ffd700;
-            display: block;
-            margin-bottom: 0.2rem;
-        }
-
-        .category-desc {
-            font-size: 0.85rem;
-            color: #b0b0b0;
-            line-height: 1.3;
-        }
-
-        .main-content {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-
-        .tab-navigation {
-            display: flex;
-            background: rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .tab-btn {
-            padding: 1rem 2rem;
-            background: transparent;
-            border: none;
-            color: #b0b0b0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            font-weight: 500;
-        }
-
-        .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #e5e5e5;
-        }
-
-        .tab-btn.active {
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .tab-btn.active::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #ffd700;
-        }
-
-        .tab-content {
             padding: 2rem;
-            display: none;
         }
 
-        .tab-content.active {
-            display: block;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+        }
+
+        h2 {
+            color: #ffd700;
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
         .form-grid {
@@ -281,88 +72,129 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
         }
 
-        .abilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+        .saves-headers {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.8rem 1rem;
+            background: rgba(0, 150, 0, 0.15);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 150, 0, 0.3);
         }
 
-        .ability-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .ability-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .ability-name {
-            color: #ffd700;
-            font-weight: 700;
+        .save-type-header {
+            color: #90EE90;
+            font-weight: bold;
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+            flex: 2;
         }
 
-        .ability-score {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #e5e5e5;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        .save-data-headers {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex: 3;
         }
 
-        .ability-modifier {
-            font-size: 1.2rem;
-            font-weight: 600;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            display: inline-block;
+        .header-item {
+            color: #90EE90;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            text-align: center;
             min-width: 60px;
         }
 
-        .modifier-positive {
-            background: rgba(0, 255, 127, 0.2);
-            color: #00ff7f;
+        .saving-throws-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .saving-throw-row {
+            background: rgba(0, 150, 0, 0.08);
+            border: 1px solid rgba(0, 150, 0, 0.25);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .saving-throw-row:hover {
+            background: rgba(0, 150, 0, 0.12);
+            border-color: rgba(0, 150, 0, 0.4);
+            transform: translateX(3px);
+        }
+
+        .save-type-name {
+            color: #e5e5e5;
+            font-weight: 600;
+            font-size: 0.95rem;
+            flex: 2;
+            min-width: 200px;
+        }
+
+        .save-data-row {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex: 3;
+        }
+
+        .save-value {
+            color: #00FF7F;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 60px;
+            text-align: center;
+            background: rgba(0, 255, 127, 0.1);
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
             border: 1px solid rgba(0, 255, 127, 0.3);
         }
 
-        .modifier-negative {
-            background: rgba(255, 99, 71, 0.2);
-            color: #ff6347;
-            border: 1px solid rgba(255, 99, 71, 0.3);
-        }
-
-        .modifier-zero {
-            background: rgba(255, 255, 255, 0.1);
-            color: #b0b0b0;
+        .save-modifier-input {
+            width: 60px;
+            padding: 0.4rem;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: #e5e5e5;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 500;
         }
 
-        .ability-input {
-            background: transparent;
-            border: none;
-            color: inherit;
-            font-size: inherit;
-            font-weight: inherit;
-            text-align: center;
-            width: 100%;
+        .save-modifier-input:focus {
             outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .save-total-value {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-width: 60px;
+            text-align: center;
+            background: rgba(255, 215, 0, 0.15);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
         }
 
         .stats-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin: 2rem 0;
+            margin-bottom: 2rem;
         }
 
         .stat-card {
@@ -371,6 +203,20 @@
             border-radius: 12px;
             padding: 1.5rem;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .stat-value-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
         }
 
         .stat-value {
@@ -380,6 +226,14 @@
             margin-bottom: 0.5rem;
         }
 
+        .stat-detail {
+            font-size: 0.8rem;
+            color: #b0b0b0;
+            text-align: center;
+            min-height: 20px;
+            font-weight: 500;
+        }
+
         .stat-label {
             color: #b0b0b0;
             font-size: 0.9rem;
@@ -387,1297 +241,566 @@
             letter-spacing: 0.5px;
         }
 
-        .dice-roller {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-        }
-
-        .dice-btn {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #1a1a2e;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            font-weight: bold;
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .dice-btn:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.6);
-        }
-
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: 2rem;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #ffd700;
-            border-radius: 8px;
-            padding: 1rem 1.5rem;
-            color: #ffd700;
-            transform: translateX(400px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1001;
-            white-space: pre-line;
-            max-width: 400px;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .con-bonus-info {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .con-bonus-info h4 {
-            color: #ffd700;
-            margin-bottom: 0.5rem;
-        }
-
-        .con-bonus-info p {
-            color: #e5e5e5;
-            margin: 0.25rem 0;
-        }
-
-        .spells-list {
-            display: grid;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .spell-item {
+        .manual-bonus-input {
+            width: 70px;
+            padding: 0.3rem;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 1rem;
-            border-left: 4px solid #ffd700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .spell-item:hover {
-            background: rgba(255, 215, 0, 0.1);
-            transform: translateX(4px);
-        }
-
-        .spell-name {
-            color: #ffd700;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .spell-level {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            color: #e5e5e5;
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-        }
-
-        .spell-school {
-            display: inline-block;
-            background: rgba(0, 150, 255, 0.2);
-            color: #87ceeb;
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-        }
-
-        .spell-description {
-            color: #b0b0b0;
-            margin-top: 0.5rem;
-            line-height: 1.4;
-            font-size: 0.9rem;
-        }
-
-        .spell-slots {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .spell-slot {
-            aspect-ratio: 1;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .spell-slot.used {
-            background: rgba(255, 99, 71, 0.2);
-            border-color: #ff6347;
-            color: #ff6347;
-        }
-
-        .spell-slot.available {
-            background: rgba(0, 255, 127, 0.2);
-            border-color: #00ff7f;
-            color: #00ff7f;
-        }
-
-        .spell-slot:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .spell-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-
-        .spell-modal-content {
-            background: rgba(0, 0, 0, 0.95);
-            border: 2px solid #ffd700;
-            border-radius: 16px;
-            padding: 2rem;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .spell-modal .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: #ffd700;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Equipment specific styles */
-        .equipment-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .equipment-section h3 {
-            color: #ffd700;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .equipment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .equipment-slot {
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            min-height: 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .equipment-slot.occupied {
-            border-style: solid;
-            border-color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .equipment-slot:hover {
-            border-color: rgba(255, 215, 0, 0.5);
-            background: rgba(255, 215, 0, 0.05);
-        }
-
-        .slot-label {
-            font-size: 0.8rem;
-            color: #b0b0b0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .slot-item {
-            color: #ffd700;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .slot-empty {
-            color: #666;
-            font-style: italic;
-        }
-
-        .weapon-slot {
-            background: rgba(220, 20, 60, 0.1);
-            border-color: rgba(220, 20, 60, 0.3);
-        }
-
-        .weapon-slot.occupied {
-            border-color: #dc143c;
-            background: rgba(220, 20, 60, 0.2);
-        }
-
-        .weapon-slot .slot-item {
-            color: #ff6b6b;
-        }
-
-        .armor-stats {
-            background: rgba(0, 100, 200, 0.1);
-            border: 1px solid rgba(0, 100, 200, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        .armor-stats h4 {
-            color: #4da6ff;
-            margin-bottom: 0.5rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-        }
-
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            color: #e5e5e5;
-        }
-
-        .stat-item .label {
-            color: #b0b0b0;
-        }
-
-        .stat-item .value {
-            color: #ffd700;
-            font-weight: 600;
-        }
-
-        .quick-equip-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .quick-equip-btn {
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 6px;
             color: #e5e5e5;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 0.3rem;
         }
 
-        .quick-equip-btn:hover {
-            background: rgba(255, 215, 0, 0.2);
+        .manual-bonus-input:focus {
+            outline: none;
             border-color: #ffd700;
-            color: #ffd700;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
         }
 
-        @media (max-width: 1024px) {
-            .main-container {
-                grid-template-columns: 1fr;
-                padding: 0 1rem;
-            }
-            
-            .sidebar {
-                order: 2;
-            }
-            
-            .main-content {
-                order: 1;
-            }
-
-            .equipment-grid {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            }
+        .mana-card {
+            background: linear-gradient(135deg, rgba(75, 0, 130, 0.1), rgba(138, 43, 226, 0.1));
+            border: 1px solid rgba(138, 43, 226, 0.3);
         }
 
-        @media (max-width: 768px) {
-            .spell-modal-content {
-                margin: 1rem;
-                max-width: calc(100% - 2rem);
-            }
+        .psp-card {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
+            border: 1px solid rgba(199, 21, 133, 0.3);
+        }
 
-            .equipment-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
-            .quick-equip-buttons {
-                justify-content: center;
-            }
+        input[type="number"] {
+            -moz-appearance: textfield;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="app-header">
-        <div class="header-content">
-            <div class="logo">
-                🎲 AD&D 2.Pandunk
+    <div class="container">
+        <h2>Información Básica del Personaje</h2>
+        
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="form-label">Nombre del Personaje</label>
+                <input type="text" class="form-input" id="characterName" placeholder="Nombre">
             </div>
-            <div class="header-actions">
-                <button class="btn btn-secondary" onclick="rollAbilities()">🎲 Roll Stats</button>
-                <button class="btn btn-secondary" onclick="rollHitPoints()">❤️ Roll HP</button>
-                <button class="btn btn-secondary" onclick="saveCharacter()">💾 Guardar</button>
-                <button class="btn btn-primary" onclick="exportCharacter()">📤 Exportar</button>
+            
+            <div class="form-group">
+                <label class="form-label">Jugador</label>
+                <input type="text" class="form-input" id="playerName" placeholder="Tu nombre">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Raza</label>
+                <select class="form-input" id="race">
+                    <option value="">Selecciona Raza</option>
+                    <option value="humano">Humano</option>
+                    <option value="elfo">Elfo</option>
+                    <option value="enano">Enano</option>
+                    <option value="mediano">Mediano</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Alineamiento</label>
+                <select class="form-input" id="alignment">
+                    <option value="LB">Legal Bueno</option>
+                    <option value="NB">Neutral Bueno</option>
+                    <option value="CB">Caótico Bueno</option>
+                    <option value="LN">Legal Neutral</option>
+                    <option value="N" selected>Neutral Auténtico</option>
+                    <option value="CN">Caótico Neutral</option>
+                    <option value="LM">Legal Malvado</option>
+                    <option value="NM">Neutral Malvado</option>
+                    <option value="CM">Caótico Malvado</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Altura (cm)</label>
+                <input type="number" class="form-input" id="characterHeight" min="1" max="30000" placeholder="175">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Tamaño</label>
+                <input type="text" class="form-input" id="characterSize" value="Mediano" readonly>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Experiencia</label>
+                <input type="number" class="form-input" id="experience" value="0">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Nivel</label>
+                <input type="number" class="form-input" id="Level" value="1" min="1" max="30">
             </div>
         </div>
-    </header>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <!-- Character Summary -->
-            <div class="character-summary">
-                <div class="character-avatar" id="characterAvatar">👤</div>
-                <h3 id="characterNameDisplay">Nuevo Personaje</h3>
-                <p id="characterClassDisplay">Selecciona una clase</p>
-                <p>Nivel <span id="characterLevelDisplay">1</span></p>
+        <h3 style="color: #ffd700; margin-top: 2rem; margin-bottom: 1rem;">Tiradas de Salvación</h3>
+        
+        <div class="saves-headers">
+            <div class="save-type-header">Tipo de Salvación</div>
+            <div class="save-data-headers">
+                <span class="header-item">Base</span>
+                <span class="header-item">Mod1</span>
+                <span class="header-item">Mod2</span>
+                <span class="header-item">Total</span>
             </div>
-
-           <div class="category-selector">
-    <h4 class="category-title" style="text-align: center;">🛡️ Categoría Principal</h4>
-    <div class="custom-dropdown-container">
-        <div class="dropdown-header category-option" id="primary-dropdown-header">
-            <h5 class="category-name" id="primary-selected-name" style="color: #b0b0b0; font-style: italic; text-align: center; margin: 0;">Selecciona una clase</h5>
-            <span class="category-desc" id="primary-selected-desc"></span>
         </div>
         
-        <div class="dropdown-options" id="primary-dropdown-options">
-            <div class="option" data-category="luchador" data-class="Bárbaro">Bárbaro</div>
-            <div class="option" data-category="luchador" data-class="Ranger">Ranger</div>
-            <div class="option" data-category="luchador" data-class="Guerrero">Guerrero</div>
-            <div class="option" data-category="luchador" data-class="Paladín">Paladín</div>
-            <div class="option" data-category="luchador" data-class="Samurái">Samurái</div>
-            <div class="option" data-category="sacerdote" data-class="Clérigo">Clérigo</div>
-            <div class="option" data-category="sacerdote" data-class="Druida">Druida</div>
-            <div class="option" data-category="sacerdote" data-class="Chamán">Chamán</div>
-            <div class="option" data-category="hechicero" data-class="Mago">Mago</div>
-            <div class="option" data-category="hechicero" data-class="Hechicero">Hechicero</div>
-            <div class="option" data-category="hechicero" data-class="Bruja">Bruja</div>
-            <div class="option" data-category="hechicero" data-class="Artífice">Artífice</div>
-            <div class="option" data-category="bribon" data-class="Ladrón">Ladrón</div>
-            <div class="option" data-category="bribon" data-class="Bardo">Bardo</div>
-            <div class="option" data-category="bribon" data-class="Ninja">Ninja</div>
-            <div class="option" data-category="bribon" data-class="Psiónico">Psiónico</div>
-            <div class="option" data-category="bribon" data-class="Pistolero">Pistolero</div>
-        </div>
-    </div>
-</div>
-
-<div class="category-selector">
-    <h4 class="category-title" style="text-align: center;">⚔️ Categoría Secundaria</h4>
-    <div class="custom-dropdown-container">
-        <div class="dropdown-header category-option disabled" id="secondary-dropdown-header">
-            <h5 class="category-name" id="secondary-selected-name" style="color: #b0b0b0; font-style: italic; text-align: center; margin: 0;">Selecciona primero una categoría principal</h5>
-            <span class="category-desc" id="secondary-selected-desc"></span>
-        </div>
-        <div class="dropdown-options" id="secondary-dropdown-options">
+        <div class="saving-throws-vertical">
+            <div class="saving-throw-row">
+                <div class="save-type-name">Parálisis/Veneno/Muerte</div>
+                <div class="save-data-row">
+                    <span class="save-value" id="save-paralysis-base">14</span>
+                    <input type="number" id="save-paralysis-mod1" value="0" class="save-modifier-input">
+                    <input type="number" id="save-paralysis-mod2" value="0" class="save-modifier-input">
+                    <span class="save-total-value" id="save-paralysis-total">14</span>
+                </div>
             </div>
-    </div>
-</div>
-
-<div class="category-selector">
-    <h4 class="category-title" style="text-align: center;">✨ Categoría Terciaria</h4>
-    <div class="custom-dropdown-container">
-        <div class="dropdown-header category-option disabled" id="tertiary-dropdown-header">
-            <h5 class="category-name" id="tertiary-selected-name" style="color: #b0b0b0; font-style: italic; text-align: center; margin: 0;">Selecciona primero una categoría secundaria</h5>
-            <span class="category-desc" id="tertiary-selected-desc"></span>
-        </div>
-        <div class="dropdown-options" id="tertiary-dropdown-options">
+            
+            <div class="saving-throw-row">
+                <div class="save-type-name">Cetros/Varas/Varitas</div>
+                <div class="save-data-row">
+                    <span class="save-value" id="save-rods-base">16</span>
+                    <input type="number" id="save-rods-mod1" value="0" class="save-modifier-input">
+                    <input type="number" id="save-rods-mod2" value="0" class="save-modifier-input">
+                    <span class="save-total-value" id="save-rods-total">16</span>
+                </div>
             </div>
+            
+            <div class="saving-throw-row">
+                <div class="save-type-name">Petrificación/Polimorfismo</div>
+                <div class="save-data-row">
+                    <span class="save-value" id="save-petrification-base">12</span>
+                    <input type="number" id="save-petrification-mod1" value="0" class="save-modifier-input">
+                    <input type="number" id="save-petrification-mod2" value="0" class="save-modifier-input">
+                    <span class="save-total-value" id="save-petrification-total">12</span>
+                </div>
+            </div>
+            
+            <div class="saving-throw-row">
+                <div class="save-type-name">Arma de Aliento</div>
+                <div class="save-data-row">
+                    <span class="save-value" id="save-breath-base">17</span>
+                    <input type="number" id="save-breath-mod1" value="0" class="save-modifier-input">
+                    <input type="number" id="save-breath-mod2" value="0" class="save-modifier-input">
+                    <span class="save-total-value" id="save-breath-total">17</span>
+                </div>
+            </div>
+            
+            <div class="saving-throw-row">
+                <div class="save-type-name">Conjuros</div>
+                <div class="save-data-row">
+                    <span class="save-value" id="save-spells-base">17</span>
+                    <input type="number" id="save-spells-mod1" value="0" class="save-modifier-input">
+                    <input type="number" id="save-spells-mod2" value="0" class="save-modifier-input">
+                    <span class="save-total-value" id="save-spells-total">17</span>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="color: #ffd700; margin-top: 2rem; margin-bottom: 1rem;">Estadísticas Principales</h3>
+        
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-value-container">
+                    <div class="stat-value" id="totalHP">10</div>
+                    <div class="stat-detail" id="hp-breakdown">10 base</div>
+                    <input type="number" id="hp-manual-bonus" value="0" class="manual-bonus-input" placeholder="Bonus">
+                </div>
+                <div class="stat-label">Puntos de Golpe</div>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card mana-card" id="arcane-mana-card" style="display: none;">
+                <div class="stat-value-container">
+                    <div class="stat-value" id="arcaneMana">0</div>
+                    <div class="stat-detail" id="arcane-mana-breakdown">-</div>
+                    <input type="number" id="arcane-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus">
+                </div>
+                <div class="stat-label">Maná Arcano</div>
+            </div>
+            
+            <div class="stat-card mana-card" id="divine-mana-card" style="display: none;">
+                <div class="stat-value-container">
+                    <div class="stat-value" id="divineMana">0</div>
+                    <div class="stat-detail" id="divine-mana-breakdown">-</div>
+                    <input type="number" id="divine-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus">
+                </div>
+                <div class="stat-label">Maná Divino</div>
+            </div>
+            
+            <div class="stat-card psp-card" id="psp-card" style="display: none;">
+                <div class="stat-value-container">
+                    <div class="stat-value" id="pspPool">0</div>
+                    <div class="stat-detail" id="psp-breakdown">-</div>
+                    <input type="number" id="psp-manual" value="0" class="manual-bonus-input" placeholder="Bonus">
+                </div>
+                <div class="stat-label">Pool PSP</div>
+            </div>
+        </div>
+
+        <!-- Campos ocultos para simular los dropdowns y totales de habilidades -->
+        <div style="display: none;">
+            <div id="primary-selected-name">Guerrero</div>
+            <div id="secondary-selected-name">Ninguno</div>
+            <div id="tertiary-selected-name">Ninguno</div>
+            <div id="con-hp">0</div>
+            <div id="int-total">10</div>
+            <div id="wis-total">10</div>
+            <div id="cha-total">10</div>
+        </div>
     </div>
-</div>
-<!-- 📜 Trasfondos -->
-<div class="category-selector">
-  <h4 class="category-title" style="text-align: center;">📜 Trasfondos</h4>
-  <div class="custom-dropdown-container">
-    <div class="dropdown-header category-option disabled" id="background-dropdown-header">
-      <h5 class="category-name" id="background-selected-name" style="color: #b0b0b0; font-style: italic; text-align: center; margin: 0;">Selecciona primero una clase</h5>
-      <span class="category-desc" id="background-selected-desc"></span>
-    </div>
-    <div class="dropdown-options" id="background-dropdown-options"></div>
-  </div>
-</div>
 
-<script>
-/* =========================
-   CATEGORÍAS PRINCIPALES
-   ========================= */
-const categories = {
-  primary: [
-    { id: 'luchador', name: 'Luchador', classes: ['Bárbaro', 'Ranger', 'Guerrero', 'Paladín', 'Samurái'] },
-    { id: 'sacerdote', name: 'Sacerdote', classes: ['Clérigo', 'Druida', 'Chamán'] },
-    { id: 'hechicero', name: 'Hechicero', classes: ['Mago', 'Hechicero', 'Bruja', 'Artífice'] },
-    { id: 'bribon', name: 'Bribón', classes: ['Ladrón', 'Bardo', 'Ninja', 'Psiónico', 'Pistolero'] }
-  ]
-};
+    <script>
+        const CharacterCalculator = (function() {
+            const SAVING_THROWS = {
+                "luchador": {
+                    1: {paralysis: 14, rods: 16, petrification: 15, breath: 17, spells: 17},
+                    3: {paralysis: 13, rods: 15, petrification: 14, breath: 16, spells: 16},
+                    5: {paralysis: 11, rods: 13, petrification: 12, breath: 13, spells: 14},
+                    7: {paralysis: 10, rods: 12, petrification: 11, breath: 12, spells: 13},
+                    9: {paralysis: 8, rods: 10, petrification: 9, breath: 9, spells: 11},
+                    11: {paralysis: 7, rods: 9, petrification: 8, breath: 8, spells: 10},
+                    13: {paralysis: 5, rods: 7, petrification: 6, breath: 5, spells: 8},
+                    15: {paralysis: 4, rods: 6, petrification: 5, breath: 4, spells: 7},
+                    17: {paralysis: 3, rods: 5, petrification: 4, breath: 4, spells: 6}
+                },
+                "sacerdote": {
+                    1: {paralysis: 10, rods: 14, petrification: 13, breath: 16, spells: 15},
+                    3: {paralysis: 9, rods: 13, petrification: 12, breath: 15, spells: 14},
+                    5: {paralysis: 7, rods: 11, petrification: 10, breath: 13, spells: 12},
+                    7: {paralysis: 6, rods: 10, petrification: 9, breath: 12, spells: 11},
+                    9: {paralysis: 4, rods: 8, petrification: 7, breath: 10, spells: 9},
+                    11: {paralysis: 3, rods: 7, petrification: 6, breath: 9, spells: 8},
+                    13: {paralysis: 2, rods: 5, petrification: 4, breath: 7, spells: 6},
+                    15: {paralysis: 1, rods: 4, petrification: 3, breath: 6, spells: 5},
+                    17: {paralysis: 1, rods: 2, petrification: 2, breath: 5, spells: 4}
+                },
+                "hechicero": {
+                    1: {paralysis: 14, rods: 11, petrification: 13, breath: 15, spells: 12},
+                    3: {paralysis: 13, rods: 10, petrification: 12, breath: 14, spells: 11},
+                    5: {paralysis: 11, rods: 8, petrification: 10, breath: 12, spells: 9},
+                    7: {paralysis: 10, rods: 7, petrification: 9, breath: 11, spells: 8},
+                    9: {paralysis: 8, rods: 5, petrification: 7, breath: 9, spells: 6},
+                    11: {paralysis: 7, rods: 4, petrification: 6, breath: 8, spells: 5},
+                    13: {paralysis: 5, rods: 2, petrification: 4, breath: 6, spells: 3},
+                    15: {paralysis: 4, rods: 1, petrification: 3, breath: 5, spells: 2},
+                    17: {paralysis: 3, rods: 1, petrification: 2, breath: 4, spells: 1}
+                },
+                "bribon": {
+                    1: {paralysis: 13, rods: 14, petrification: 12, breath: 16, spells: 15},
+                    3: {paralysis: 12, rods: 13, petrification: 11, breath: 15, spells: 14},
+                    5: {paralysis: 11, rods: 12, petrification: 10, breath: 14, spells: 13},
+                    7: {paralysis: 10, rods: 11, petrification: 9, breath: 13, spells: 12},
+                    9: {paralysis: 9, rods: 10, petrification: 8, breath: 12, spells: 11},
+                    11: {paralysis: 8, rods: 9, petrification: 7, breath: 11, spells: 10},
+                    13: {paralysis: 7, rods: 8, petrification: 6, breath: 10, spells: 9},
+                    15: {paralysis: 6, rods: 7, petrification: 5, breath: 9, spells: 8},
+                    17: {paralysis: 5, rods: 6, petrification: 4, breath: 8, spells: 7}
+                }
+            };
 
-/* =========================
-   TRASFONDOS POR GRUPO
-   ========================= */
-const backgrounds = {
-  "luchador": ["Soldado", "Guardia", "Marinero", "Campesino"],
-  "sacerdote": ["Acolito", "Ermitaño", "Noble", "Erudito"],
-  "hechicero": ["Escribano", "Erudito", "Charlatán", "Animador"],
-  "bribon": ["Criminal", "Charlatán", "Animador", "Vagabundo", "Comerciante"]
-};
+            const PSP_TABLE = {
+                wisdom: {
+                    1: {base: 0, perLevel: 0}, 9: {base: 1, perLevel: 0}, 10: {base: 2, perLevel: 0},
+                    11: {base: 3, perLevel: 0}, 12: {base: 5, perLevel: 0}, 13: {base: 6, perLevel: 1},
+                    14: {base: 7, perLevel: 1}, 15: {base: 8, perLevel: 2}, 16: {base: 9, perLevel: 2},
+                    17: {base: 10, perLevel: 3}, 18: {base: 11, perLevel: 3}, 19: {base: 12, perLevel: 4},
+                    20: {base: 13, perLevel: 4}, 21: {base: 14, perLevel: 5}, 25: {base: 18, perLevel: 9}
+                },
+                intelligence: {
+                    1: {bonus: 0}, 9: {bonus: 1}, 10: {bonus: 2}, 11: {bonus: 3}, 12: {bonus: 4},
+                    13: {bonus: 5}, 14: {bonus: 6}, 15: {bonus: 7}, 16: {bonus: 8}, 17: {bonus: 9},
+                    18: {bonus: 10}, 19: {bonus: 11}, 20: {bonus: 12}, 25: {bonus: 17}
+                },
+                constitution: {
+                    1: {bonus: 0}, 9: {bonus: 1}, 10: {bonus: 2}, 11: {bonus: 3}, 12: {bonus: 4},
+                    13: {bonus: 5}, 14: {bonus: 6}, 15: {bonus: 7}, 16: {bonus: 8}, 17: {bonus: 9},
+                    18: {bonus: 10}, 19: {bonus: 11}, 20: {bonus: 12}, 25: {bonus: 17}
+                }
+            };
 
-/* =========================
-   FUNCIONES DE DROPDOWN
-   ========================= */
-function setupDropdown(headerId, optionsId, selectedNameId, onSelectionCallback) {
-  const header = document.getElementById(headerId);
-  const options = document.getElementById(optionsId);
-  const selectedName = document.getElementById(selectedNameId);
+            const HIT_DICE = {
+                "Bárbaro": 12, "Guerrero": 10, "Ranger": 10, "Paladín": 10, "Samurái": 10,
+                "Clérigo": 8, "Druida": 8, "Chamán": 8,
+                "Mago": 4, "Hechicero": 4, "Bruja": 4, "Artífice": 4,
+                "Ladrón": 6, "Bardo": 6, "Ninja": 6, "Psiónico": 6, "Pistolero": 6
+            };
 
-  if (!header || !options || !selectedName) return;
+            const SPELLCASTING_CLASSES = {
+                arcane: ["Mago", "Bruja", "Artífice"],
+                divine: ["Clérigo", "Druida", "Chamán"],
+                charisma: ["Bardo", "Hechicero"]
+            };
 
-  header.addEventListener('click', () => {
-    if (!header.classList.contains('disabled')) {
-      options.classList.toggle('show');
-    }
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!header.contains(e.target) && !options.contains(e.target)) {
-      options.classList.remove('show');
-    }
-  });
-
-  options.addEventListener('click', (e) => {
-    const target = e.target.closest('.option');
-    if (target) {
-      const selectedClass = target.getAttribute('data-class');
-      const categoryId = target.getAttribute('data-category');
-
-      if (selectedClass === 'Ninguno') {
-        selectedName.textContent = 'Selecciona una clase';
-        selectedName.style.color = '#b0b0b0';
-        selectedName.style.fontStyle = 'italic';
-      } else {
-        selectedName.textContent = selectedClass;
-        selectedName.style.color = 'inherit';
-        selectedName.style.fontStyle = 'normal';
-      }
-
-      options.classList.remove('show');
-
-      if (onSelectionCallback) {
-        onSelectionCallback(categoryId);
-      }
-    }
-  });
-}
-
-function populateDropdown(optionsContainerId, classList) {
-  const container = document.getElementById(optionsContainerId);
-  container.innerHTML = '';
-
-  const emptyOption = document.createElement('div');
-  emptyOption.className = 'option';
-  emptyOption.setAttribute('data-category', '');
-  emptyOption.setAttribute('data-class', 'Ninguno');
-  emptyOption.textContent = 'Ninguno';
-  container.appendChild(emptyOption);
-
-  classList.forEach(cls => {
-    const optionDiv = document.createElement('div');
-    optionDiv.className = 'option';
-    optionDiv.setAttribute('data-category', cls.categoryId);
-    optionDiv.setAttribute('data-class', cls.name);
-    optionDiv.textContent = cls.name;
-    container.appendChild(optionDiv);
-  });
-}
-
-/* =========================
-   TRASFONDOS (activar y llenar)
-   ========================= */
-function populateBackgroundsForGroup(groupId) {
-  const header = document.getElementById('background-dropdown-header');
-  const selectedName = document.getElementById('background-selected-name');
-  const options = document.getElementById('background-dropdown-options');
-
-  if (!backgrounds[groupId]) {
-    header.classList.add('disabled');
-    selectedName.textContent = "No hay trasfondos para esta categoría";
-    selectedName.style.color = "#b0b0b0";
-    selectedName.style.fontStyle = "italic";
-    options.innerHTML = '';
-    return;
-  }
-
-  header.classList.remove('disabled');
-  selectedName.textContent = "Selecciona un trasfondo";
-  selectedName.style.color = "#b0b0b0";
-  selectedName.style.fontStyle = "italic";
-
-  options.innerHTML = '';
-  backgrounds[groupId].forEach(bg => {
-    const opt = document.createElement('div');
-    opt.className = 'option';
-    opt.setAttribute('data-class', bg);
-    opt.textContent = bg;
-    options.appendChild(opt);
-  });
-}
-
-/* =========================
-   HOOKS DE SELECCIÓN
-   ========================= */
-function selectPrimaryCategory(categoryId) {
-  console.log("Categoría principal seleccionada: " + categoryId);
-  populateBackgroundsForGroup(categoryId);
-}
-
-function selectSecondaryCategory(categoryId) {
-  console.log("Categoría secundaria seleccionada: " + categoryId);
-}
-
-/* =========================
-   INICIALIZACIÓN
-   ========================= */
-setupDropdown('primary-dropdown-header', 'primary-dropdown-options', 'primary-selected-name', selectPrimaryCategory);
-setupDropdown('secondary-dropdown-header', 'secondary-dropdown-options', 'secondary-selected-name', selectSecondaryCategory);
-setupDropdown('tertiary-dropdown-header', 'tertiary-dropdown-options', 'tertiary-selected-name');
-setupDropdown('background-dropdown-header', 'background-dropdown-options', 'background-selected-name');
-</script>
-
-<style>
-/* Estilos para el nuevo menú desplegable personalizado */
-.custom-dropdown-container {
-    position: relative;
-    width: 100%;
-}
-
-.dropdown-header {
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-align: center;
-    padding: 0.5rem 1.5rem;
-}
-
-.dropdown-header:hover {
-    background-color: #3b4252;
-}
-
-.dropdown-header.disabled {
-    cursor: not-allowed;
-    background-color: #2b303b;
-    opacity: 0.5;
-}
-
-.dropdown-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #2b303b;
-    border: 1px solid #4a5464;
-    border-top: none;
-    z-index: 5;
-    max-height: 0;
-    overflow-y: auto;
-    transition: max-height 0.3s ease-in-out;
-}
-
-.dropdown-options.show {
-    max-height: 500px;
-}
-
-.option {
-    padding: 0.4rem 1.5rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    border-bottom: 1px solid #2b303b;
-    text-align: center;
-}
-
-.option:hover {
-    background-color: #4a5464;
-}
-</style>
-
-<script>
-    // Mapeo de categorías y clases principales
-    const categories = {
-        primary: [
-            { id: 'luchador', name: 'Luchador', classes: ['Bárbaro', 'Ranger', 'Guerrero', 'Paladín', 'Samurái'] },
-            { id: 'sacerdote', name: 'Sacerdote', classes: ['Clérigo', 'Druida', 'Chamán'] },
-            { id: 'hechicero', name: 'Hechicero', classes: ['Mago', 'Hechicero', 'Bruja', 'Artífice'] },
-            { id: 'bribon', name: 'Bribón', classes: ['Ladrón', 'Bardo', 'Ninja', 'Psiónico', 'Pistolero'] }
-        ]
-    };
-
-    function setupDropdown(headerId, optionsId, selectedNameId, onSelectionCallback) {
-        const header = document.getElementById(headerId);
-        const options = document.getElementById(optionsId);
-        const selectedName = document.getElementById(selectedNameId);
-
-        if (!header || !options || !selectedName) return;
-
-        header.addEventListener('click', () => {
-            if (!header.classList.contains('disabled')) {
-                options.classList.toggle('show');
+            function findClosestLevel(table, level) {
+                const levels = Object.keys(table).map(Number).sort((a, b) => a - b);
+                for (let i = levels.length - 1; i >= 0; i--) {
+                    if (level >= levels[i]) return table[levels[i]];
+                }
+                return table[levels[0]];
             }
-        });
 
-        document.addEventListener('click', (e) => {
-            if (!header.contains(e.target) && !options.contains(e.target)) {
-                options.classList.remove('show');
+            function findClosestScore(table, score) {
+                const scores = Object.keys(table).map(Number).sort((a, b) => a - b);
+                for (let i = scores.length - 1; i >= 0; i--) {
+                    if (score >= scores[i]) return table[scores[i]];
+                }
+                return table[scores[0]];
             }
-        });
 
-        options.addEventListener('click', (e) => {
-            const target = e.target.closest('.option');
-            if (target) {
-                const selectedClass = target.getAttribute('data-class');
-                const categoryId = target.getAttribute('data-category');
+            function getSelectedClass(id) {
+                const el = document.getElementById(id);
+                return el ? el.textContent.trim() : "";
+            }
 
-                if (selectedClass === 'Ninguno') {
-                    selectedName.textContent = 'Selecciona una clase';
-                    selectedName.style.color = '#b0b0b0';
-                    selectedName.style.fontStyle = 'italic';
+            function getCategoryFromClass(className) {
+                if (["Bárbaro", "Guerrero", "Ranger", "Paladín", "Samurái"].includes(className)) return "luchador";
+                if (["Clérigo", "Druida", "Chamán"].includes(className)) return "sacerdote";
+                if (["Mago", "Hechicero", "Bruja", "Artífice"].includes(className)) return "hechicero";
+                if (["Ladrón", "Bardo", "Ninja", "Psiónico", "Pistolero"].includes(className)) return "bribon";
+                return null;
+            }
+
+            function getAbilityScore(id) {
+                const el = document.getElementById(id);
+                return el ? parseInt(el.textContent) || 10 : 10;
+            }
+
+            function updateSavingThrows() {
+                const primaryClass = getSelectedClass('primary-selected-name');
+                const category = getCategoryFromClass(primaryClass);
+                const level = parseInt(document.getElementById('Level')?.value) || 1;
+
+                if (!category) return;
+
+                const saves = findClosestLevel(SAVING_THROWS[category], level);
+                
+                document.getElementById('save-paralysis-base').textContent = saves.paralysis;
+                document.getElementById('save-rods-base').textContent = saves.rods;
+                document.getElementById('save-petrification-base').textContent = saves.petrification;
+                document.getElementById('save-breath-base').textContent = saves.breath;
+                document.getElementById('save-spells-base').textContent = saves.spells;
+
+                ['paralysis', 'rods', 'petrification', 'breath', 'spells'].forEach(type => {
+                    const base = parseInt(document.getElementById(`save-${type}-base`).textContent) || 0;
+                    const mod1 = parseInt(document.getElementById(`save-${type}-mod1`).value) || 0;
+                    const mod2 = parseInt(document.getElementById(`save-${type}-mod2`).value) || 0;
+                    document.getElementById(`save-${type}-total`).textContent = base + mod1 + mod2;
+                });
+            }
+
+            function updateHitPoints() {
+                const level = parseInt(document.getElementById('Level')?.value) || 1;
+                const conHP = getAbilityScore('con-hp');
+                const manualBonus = parseInt(document.getElementById('hp-manual-bonus')?.value) || 0;
+
+                const primaryClass = getSelectedClass('primary-selected-name');
+                const secondaryClass = getSelectedClass('secondary-selected-name');
+                const tertiaryClass = getSelectedClass('tertiary-selected-name');
+
+                let totalHP = 10;
+                let breakdown = "10 base";
+
+                if (level === 1) {
+                    totalHP += conHP;
+                    breakdown += ` + ${conHP} CON`;
                 } else {
-                    selectedName.textContent = selectedClass;
-                    selectedName.style.color = 'inherit';
-                    selectedName.style.fontStyle = 'normal';
+                    const classes = [primaryClass, secondaryClass, tertiaryClass].filter(c => 
+                        c && c !== "Selecciona una clase" && c !== "Ninguno" && HIT_DICE[c]
+                    );
+
+                    if (classes.length > 0) {
+                        let avgHD = classes.reduce((sum, cls) => sum + (HIT_DICE[cls] || 6), 0) / classes.length;
+                        let levelHP = Math.floor(avgHD * (level - 1));
+                        totalHP = 10 + levelHP + (conHP * level);
+                        breakdown = `10 + ${levelHP} HD + (${conHP}×${level})`;
+                    }
                 }
 
-                options.classList.remove('show');
+                totalHP += manualBonus;
+                if (manualBonus !== 0) breakdown += ` + ${manualBonus}`;
+
+                document.getElementById('totalHP').textContent = totalHP;
+                document.getElementById('hp-breakdown').textContent = breakdown;
+            }
+
+            function updateManaPoolsAndPSP() {
+                const level = parseInt(document.getElementById('Level')?.value) || 1;
+                const primaryClass = getSelectedClass('primary-selected-name');
+                const secondaryClass = getSelectedClass('secondary-selected-name');
+                const tertiaryClass = getSelectedClass('tertiary-selected-name');
+
+                const classes = [primaryClass, secondaryClass, tertiaryClass];
                 
-                if (onSelectionCallback) {
-                    onSelectionCallback(categoryId);
+                let hasArcane = false, hasDivine = false, hasCharisma = false, hasPsionic = false;
+
+                classes.forEach(cls => {
+                    if (SPELLCASTING_CLASSES.arcane.includes(cls)) hasArcane = true;
+                    if (SPELLCASTING_CLASSES.divine.includes(cls)) hasDivine = true;
+                    if (SPELLCASTING_CLASSES.charisma.includes(cls)) hasCharisma = true;
+                    if (cls === "Psiónico") hasPsionic = true;
+                });
+
+                document.getElementById('arcane-mana-card').style.display = (hasArcane || hasCharisma) ? 'block' : 'none';
+                document.getElementById('divine-mana-card').style.display = hasDivine ? 'block' : 'none';
+                document.getElementById('psp-card').style.display = hasPsionic ? 'block' : 'none';
+
+                if (hasArcane || hasCharisma) {
+                    const int = getAbilityScore('int-total');
+                    const cha = getAbilityScore('cha-total');
+                    const wis = getAbilityScore('wis-total');
+                    
+                    const primaryStat = hasArcane ? int : cha;
+                    const mana = Math.round((wis / 4) + (primaryStat + 1)) * level;
+                    const manual = parseInt(document.getElementById('arcane-mana-manual')?.value) || 0;
+                    
+                    document.getElementById('arcaneMana').textContent = mana + manual;
+                    document.getElementById('arcane-mana-breakdown').textContent = 
+                        `((${wis}/4)+(${primaryStat}+1))×${level}`;
+                }
+
+                if (hasDivine) {
+                    const wis = getAbilityScore('wis-total');
+                    const mana = Math.round((wis / 4) + (wis + 1)) * level;
+                    const manual = parseInt(document.getElementById('divine-mana-manual')?.value) || 0;
+                    
+                    document.getElementById('divineMana').textContent = mana + manual;
+                    document.getElementById('divine-mana-breakdown').textContent = 
+                        `((${wis}/4)+(${wis}+1))×${level}`;
+                }
+
+                if (hasPsionic) {
+                    const wis = getAbilityScore('wis-total');
+                    const int = getAbilityScore('int-total');
+                    const con = getAbilityScore('con-total');
+
+                    if (level === 1) {
+                        const wisData = findClosestScore(PSP_TABLE.wisdom, wis);
+                        const intBonus = findClosestScore(PSP_TABLE.intelligence, int).bonus || 0;
+                        const conBonus = findClosestScore(PSP_TABLE.constitution, con).bonus || 0;
+                        const basePSP = (wisData.base || 0) + intBonus + conBonus;
+                        const manual = parseInt(document.getElementById('psp-manual')?.value) || 0;
+                        
+                        document.getElementById('pspPool').textContent = basePSP + manual;
+                        document.getElementById('psp-breakdown').textContent = 
+                            `${wisData.base || 0} + ${intBonus} + ${conBonus}`;
+                    } else {
+                        const wisData = findClosestScore(PSP_TABLE.wisdom, wis);
+                        const intBonus = findClosestScore(PSP_TABLE.intelligence, int).bonus || 0;
+                        const conBonus = findClosestScore(PSP_TABLE.constitution, con).bonus || 0;
+                        const level1PSP = (wisData.base || 0) + intBonus + conBonus;
+                        const perLevelPSP = ((10 + (wisData.perLevel || 0)) * (level - 1));
+                        const totalPSP = level1PSP + perLevelPSP;
+                        const manual = parseInt(document.getElementById('psp-manual')?.value) || 0;
+                        
+                        document.getElementById('pspPool').textContent = totalPSP + manual;
+                        document.getElementById('psp-breakdown').textContent = 
+                            `${level1PSP} + (10+${wisData.perLevel || 0})×${level-1}`;
+                    }
                 }
             }
-        });
-    }
 
-    function populateDropdown(optionsContainerId, classList) {
-        const container = document.getElementById(optionsContainerId);
-        container.innerHTML = '';
+            function updateCharacterSize() {
+                const height = parseInt(document.getElementById('characterHeight')?.value) || 0;
+                let size = "Mediano";
 
-        const emptyOption = document.createElement('div');
-        emptyOption.className = 'option';
-        emptyOption.setAttribute('data-category', '');
-        emptyOption.setAttribute('data-class', 'Ninguno');
-        emptyOption.textContent = 'Ninguno';
-        container.appendChild(emptyOption);
+                if (height < 60) size = "Diminuto";
+                else if (height < 120) size = "Pequeño";
+                else if (height < 240) size = "Mediano";
+                else if (height < 480) size = "Grande";
+                else if (height < 960) size = "Enorme";
+                else size = "Gargantuesco";
 
-        classList.forEach(cls => {
-            const optionDiv = document.createElement('div');
-            optionDiv.className = 'option';
-            optionDiv.setAttribute('data-category', cls.categoryId);
-            optionDiv.setAttribute('data-class', cls.name);
-            optionDiv.textContent = cls.name;
-            container.appendChild(optionDiv);
-        });
-    }
+                document.getElementById('characterSize').value = size;
+            }
 
-    function handlePrimarySelection(categoryId) {
-        // Habilita el menú secundario
-        const secondaryHeader = document.getElementById('secondary-dropdown-header');
-        const secondarySelectedName = document.getElementById('secondary-selected-name');
-        
-        secondaryHeader.classList.remove('disabled');
-        secondarySelectedName.textContent = 'Selecciona una clase';
-        secondarySelectedName.style.color = '#b0b0b0';
-        secondarySelectedName.style.fontStyle = 'italic';
-        
-        const secondaryClasses = categories.primary.flatMap(cat => 
-            cat.classes.map(cls => ({ name: cls, categoryId: cat.id }))
-        );
-        populateDropdown('secondary-dropdown-options', secondaryClasses);
-        
-        // Deshabilita el menú terciario
-        const tertiaryHeader = document.getElementById('tertiary-dropdown-header');
-        const tertiarySelectedName = document.getElementById('tertiary-selected-name');
-        tertiaryHeader.classList.add('disabled');
-        tertiarySelectedName.textContent = 'Selecciona primero una categoría secundaria';
-        tertiarySelectedName.style.color = '#b0b0b0';
-        tertiarySelectedName.style.fontStyle = 'italic';
-        document.getElementById('tertiary-dropdown-options').innerHTML = '';
-        
-        // Mantén tu función original
-        selectPrimaryCategory(categoryId);
-    }
-    
-    function handleSecondarySelection(categoryId) {
-        // Habilita el menú terciario
-        const tertiaryHeader = document.getElementById('tertiary-dropdown-header');
-        const tertiarySelectedName = document.getElementById('tertiary-selected-name');
-        
-        tertiaryHeader.classList.remove('disabled');
-        tertiarySelectedName.textContent = 'Selecciona una clase';
-        tertiarySelectedName.style.color = '#b0b0b0';
-        tertiarySelectedName.style.fontStyle = 'italic';
-        
-        const tertiaryClasses = categories.primary.flatMap(cat => 
-            cat.classes.map(cls => ({ name: cls, categoryId: cat.id }))
-        );
-        populateDropdown('tertiary-dropdown-options', tertiaryClasses);
-        
-        // Mantén tu función original
-        selectSecondaryCategory(categoryId);
-    }
-    
-    // Configurar cada menú
-    setupDropdown('primary-dropdown-header', 'primary-dropdown-options', 'primary-selected-name', handlePrimarySelection);
-    setupDropdown('secondary-dropdown-header', 'secondary-dropdown-options', 'secondary-selected-name', handleSecondarySelection);
-    setupDropdown('tertiary-dropdown-header', 'tertiary-dropdown-options', 'tertiary-selected-name');
+            function updateAll() {
+                updateSavingThrows();
+                updateHitPoints();
+                updateManaPoolsAndPSP();
+            }
 
-    // Mantenemos la función original para la lógica de tu aplicación
-    function selectPrimaryCategory(category) {
-        console.log("Activando lógica para la categoría principal: " + category);
-        // Aquí puedes agregar tu lógica para actualizar los campos
-        // como `gaco`, `salvamentos` y `habilidades`.
-    }
-    
-    function selectSecondaryCategory(category) {
-        console.log("Activando lógica para la categoría secundaria: " + category);
-    }
-</script>
-        </aside>
+            function init() {
+                const observer = new MutationObserver(() => {
+                    updateAll();
+                });
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Tab Navigation -->
-            <nav class="tab-navigation">
-                <button class="tab-btn" onclick="showTab('basic', this)">📋 Básico</button>
-                <button class="tab-btn" onclick="showTab('abilities', this)">💪 Habilidades</button>
-                <button class="tab-btn" onclick="showTab('combat', this)">⚔️ Combate</button>
-                <button class="tab-btn" onclick="showTab('skills', this)">🎯 Pericias</button>
-                <button class="tab-btn" onclick="showTab('spells', this)">✨ Conjuros</button>
-                <button class="tab-btn active" onclick="showTab('equipment', this)">🎒 Equipo</button>
-            </nav>
+                ['primary-selected-name', 'secondary-selected-name', 'tertiary-selected-name'].forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        observer.observe(element, { childList: true, characterData: true, subtree: true });
+                    }
+                });
 
-            <!-- Basic Info Tab -->
-            <div id="basic-tab" class="tab-content">
-                <h2 style="color: #ffd700; margin-bottom: 2rem;">📋 Información Básica</h2>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">Nombre del Personaje</label>
-                        <input type="text" class="form-input" id="characterName" placeholder="Ej: Nombre del Personaje" onchange="updateCharacterDisplay()">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Jugador</label>
-                        <input type="text" class="form-input" id="playerName" placeholder="Tu nombre">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Raza</label>
-                        <select class="form-input" id="race" onchange="updateCharacterDisplay()">
-                            <option value="">Selecciona Raza</option>
-                            <option value="humano">Humano</option>
-                            <option value="elfo">Elfo</option>
-                            <option value="enano">Enano</option>
-                            <option value="mediano">Mediano</option>
-                            <option value="orco">Orco</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Alineamiento</label>
-                        <select class="form-input" id="alignment">
-                            <option value="LB">Legal Bueno</option>
-                            <option value="NB">Neutral Bueno</option>
-                            <option value="CB">Caótico Bueno</option>
-                            <option value="LN">Legal Neutral</option>
-                            <option value="N" selected>Neutral Auténtico</option>
-                            <option value="CN">Caótico Neutral</option>
-                            <option value="LM">Legal Malvado</option>
-                            <option value="NM">Neutral Malvado</option>
-                            <option value="CM">Caótico Malvado</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-    <label class="form-label">Altura (cm)</label>
-    <input type="number" class="form-input" id="characterHeight" min="1" max="30000" placeholder="Ej: 175" onchange="updateCharacterSize()">
-</div>
+                const levelInput = document.getElementById('Level');
+                if (levelInput) {
+                    levelInput.addEventListener('input', updateAll);
+                }
 
-<div class="form-group">
-    <label class="form-label">Tamaño</label>
-    <input type="text" class="form-input" id="characterSize" value="Mediano" readonly>
-</div>
+                const heightInput = document.getElementById('characterHeight');
+                if (heightInput) {
+                    heightInput.addEventListener('input', updateCharacterSize);
+                }
 
-<div class="form-group">
-    <label class="form-label">Religión</label>
-    <select class="form-input" id="religion">
-        <option value="">Sin religión</option>
-        <option value="ao">Ao (El Oculto)</option>
-        <option value="lathander">Lathander</option>
-        <option value="gond">Gond</option>
-        <option value="tyr">Tyr</option>
-        <option value="helm">Helm</option>
-        <option value="tempus">Tempus</option>
-        <option value="mystra">Mystra</option>
-        <option value="selune">Selûne</option>
-        <option value="shar">Shar</option>
-        <option value="cyric">Cyric</option>
-        <option value="bane">Bane</option>
-        <option value="bhaal">Bhaal</option>
-        <option value="myrkul">Myrkul</option>
-        <option value="kelemvor">Kelemvor</option>
-        <option value="otro">Otro</option>
-    </select>
-</div>
-                    <div class="form-group">
-                        <label class="form-label">Experiencia</label>
-                        <input type="number" class="form-input" id="experience" value="0" onchange="updateFromXP()">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Nivel</label>
-                        <input type="number" class="form-input" id="Level" value="1" onchange="updateFromXP()">
-                    </div>
-                </div>
-<!-- Salvaciones -->
-<div class="combat-section">
-    <h3 style="color: #ffd700; margin-bottom: 1rem;">🛡️ Tiradas de Salvación</h3>
-    
-    <!-- Encabezados -->
-    <div class="saves-headers">
-        <div class="save-type-header">Tipo de Salvación</div>
-        <div class="save-data-headers">
-            <span class="header-item">Base</span>
-            <span class="header-item">Mod1</span>
-            <span class="header-item">Mod2</span>
-            <span class="header-item">Total</span>
-        </div>
-    </div>
-    
-    <div class="saving-throws-vertical" id="saving-throws">
-        <div class="saving-throw-row">
-            <div class="save-type-name">Parálisis/Veneno/Muerte</div>
-            <div class="save-data-row">
-                <span class="save-value" id="save-paralysis-base">14</span>
-                <input type="number" id="save-paralysis-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <input type="number" id="save-paralysis-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <span class="save-total-value" id="save-paralysis-total">14</span>
-            </div>
-        </div>
-        
-        <div class="saving-throw-row">
-            <div class="save-type-name">Cetros/Varas/Varitas</div>
-            <div class="save-data-row">
-                <span class="save-value" id="save-rods-base">16</span>
-                <input type="number" id="save-rods-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <input type="number" id="save-rods-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <span class="save-total-value" id="save-rods-total">16</span>
-            </div>
-        </div>
-        
-        <div class="saving-throw-row">
-            <div class="save-type-name">Petrificación/Polimorfismo</div>
-            <div class="save-data-row">
-                <span class="save-value" id="save-petrification-base">12</span>
-                <input type="number" id="save-petrification-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <input type="number" id="save-petrification-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <span class="save-total-value" id="save-petrification-total">12</span>
-            </div>
-        </div>
-        
-        <div class="saving-throw-row">
-            <div class="save-type-name">Arma de Aliento</div>
-            <div class="save-data-row">
-                <span class="save-value" id="save-breath-base">17</span>
-                <input type="number" id="save-breath-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <input type="number" id="save-breath-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <span class="save-total-value" id="save-breath-total">17</span>
-            </div>
-        </div>
-        
-        <div class="saving-throw-row">
-            <div class="save-type-name">Conjuros</div>
-            <div class="save-data-row">
-                <span class="save-value" id="save-spells-base">17</span>
-                <input type="number" id="save-spells-mod1" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <input type="number" id="save-spells-mod2" value="0" class="save-modifier-input" oninput="updateSavingThrows()">
-                <span class="save-total-value" id="save-spells-total">17</span>
-            </div>
-        </div>
-    </div>
-</div>
+                ['save-paralysis-mod1', 'save-paralysis-mod2', 'save-rods-mod1', 'save-rods-mod2',
+                 'save-petrification-mod1', 'save-petrification-mod2', 'save-breath-mod1', 'save-breath-mod2',
+                 'save-spells-mod1', 'save-spells-mod2'].forEach(id => {
+                    const input = document.getElementById(id);
+                    if (input) input.addEventListener('input', updateSavingThrows);
+                });
 
-<!-- Quick Stats Display -->
-<div class="stats-row">
-    <div class="stat-card">
-        <div class="stat-value-container">
-            <div class="stat-value" id="totalHP">10</div>
-            <div class="stat-detail" id="hp-breakdown">10 + 0</div>
-            <input type="number" id="hp-manual-bonus" value="0" class="manual-bonus-input" placeholder="Bonus" oninput="updateHitPoints()">
-        </div>
-        <div class="stat-label">Puntos de Golpe</div>
-    </div>
-    
-<div class="stat-card">
-                        <div class="stat-value" id="ArcaneMana">10</div>
-                        <div class="stat-label">Maná Arcano</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="Divine Mana">10</div>
-                        <div class="stat-label">Maná Divino</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="PsionicPoolPSP">10</div>
-                        <div class="stat-label">PSP</div>
-                    </div>
-                </div>
-</div>
+                const hpManual = document.getElementById('hp-manual-bonus');
+                if (hpManual) hpManual.addEventListener('input', updateHitPoints);
 
-<!-- Stats Adicionales por Clase -->
-<div class="additional-stats-row">
-    <div class="stat-card mana-card" id="arcane-mana-card" style="display: none;">
-        <div class="stat-value-container">
-            <div class="stat-value" id="arcaneMana">0</div>
-            <div class="stat-detail" id="arcane-mana-breakdown">0/0</div>
-            <input type="number" id="arcane-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus" oninput="updateArcaneMana()">
-        </div>
-        <div class="stat-label">Maná Arcano</div>
-    </div>
-    
-    <div class="stat-card mana-card" id="divine-mana-card" style="display: none;">
-        <div class="stat-value-container">
-            <div class="stat-value" id="divineMana">0</div>
-            <div class="stat-detail" id="divine-mana-breakdown">0/0</div>
-            <input type="number" id="divine-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus" oninput="updateDivineMana()">
-        </div>
-        <div class="stat-label">Maná Divino</div>
-    </div>
-    
-    <div class="stat-card psp-card" id="psp-card" style="display: none;">
-        <div class="stat-value-container">
-            <div class="stat-value" id="pspPool">0</div>
-            <div class="stat-detail" id="psp-breakdown">Base + Mods</div>
-            <input type="number" id="psp-manual" value="0" class="manual-bonus-input" placeholder="Bonus" oninput="updatePSPPool()">
-        </div>
-        <div class="stat-label">Pool PSP</div>
-    </div>
-</div>
+                const arcaneManual = document.getElementById('arcane-mana-manual');
+                if (arcaneManual) arcaneManual.addEventListener('input', updateManaPoolsAndPSP);
 
-<style>
-/* Estilos para Salvaciones Organizadas */
-.saves-headers {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding: 0.8rem 1rem;
-    background: rgba(0, 150, 0, 0.15);
-    border-radius: 8px;
-    border: 1px solid rgba(0, 150, 0, 0.3);
-}
+                const divineManual = document.getElementById('divine-mana-manual');
+                if (divineManual) divineManual.addEventListener('input', updateManaPoolsAndPSP);
 
-.save-type-header {
-    color: #90EE90;
-    font-weight: bold;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    flex: 2;
-}
+                const pspManual = document.getElementById('psp-manual');
+                if (pspManual) pspManual.addEventListener('input', updateManaPoolsAndPSP);
 
-.save-data-headers {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex: 3;
-}
+                updateAll();
+            }
 
-.header-item {
-    color: #90EE90;
-    font-weight: bold;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    text-align: center;
-    min-width: 60px;
-}
+            return {
+                init,
+                updateSavingThrows,
+                updateHitPoints,
+                updateManaPoolsAndPSP,
+                updateCharacterSize,
+                updateAll
+            };
+        })();
 
-.saving-throws-vertical {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', CharacterCalculator.init);
+        } else {
+            CharacterCalculator.init();
+        }
 
-.saving-throw-row {
-    background: rgba(0, 150, 0, 0.08);
-    border: 1px solid rgba(0, 150, 0, 0.25);
-    border-radius: 8px;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: all 0.3s ease;
-}
-
-.saving-throw-row:hover {
-    background: rgba(0, 150, 0, 0.12);
-    border-color: rgba(0, 150, 0, 0.4);
-    transform: translateX(3px);
-}
-
-.save-type-name {
-    color: #e5e5e5;
-    font-weight: 600;
-    font-size: 0.95rem;
-    flex: 2;
-    min-width: 200px;
-}
-
-.save-data-row {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex: 3;
-}
-
-.save-value {
-    color: #00FF7F;
-    font-weight: bold;
-    font-size: 1.1rem;
-    min-width: 60px;
-    text-align: center;
-    background: rgba(0, 255, 127, 0.1);
-    padding: 0.3rem 0.6rem;
-    border-radius: 6px;
-    border: 1px solid rgba(0, 255, 127, 0.3);
-}
-
-.save-modifier-input {
-    width: 60px;
-    padding: 0.4rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    color: #e5e5e5;
-    font-size: 0.9rem;
-    text-align: center;
-    font-weight: 500;
-}
-
-.save-modifier-input:focus {
-    outline: none;
-    border-color: #ffd700;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
-}
-
-.save-total-value {
-    color: #ffd700;
-    font-weight: bold;
-    font-size: 1.2rem;
-    min-width: 60px;
-    text-align: center;
-    background: rgba(255, 215, 0, 0.15);
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
-    border: 2px solid rgba(255, 215, 0, 0.4);
-}
-
-/* Stats Row Principal */
-.stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-/* Fila Adicional para Stats por Clase */
-.additional-stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-/* Estilos para Stats Cards Mejorados */
-.stat-value-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-}
-
-.stat-detail {
-    font-size: 0.8rem;
-    color: #b0b0b0;
-    text-align: center;
-    min-height: 20px;
-    font-weight: 500;
-}
-
-.manual-bonus-input {
-    width: 70px;
-    padding: 0.3rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    color: #e5e5e5;
-    font-size: 0.8rem;
-    text-align: center;
-    margin-top: 0.3rem;
-}
-
-.manual-bonus-input:focus {
-    outline: none;
-    border-color: #ffd700;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
-}
-
-.manual-bonus-input::placeholder {
-    color: #666;
-    font-size: 0.75rem;
-}
-
-/* Cards de Maná */
-.mana-card {
-    background: linear-gradient(135deg, rgba(75, 0, 130, 0.1), rgba(138, 43, 226, 0.1));
-    border: 1px solid rgba(138, 43, 226, 0.3);
-}
-
-.mana-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.2);
-    border-color: rgba(138, 43, 226, 0.5);
-}
-
-/* Card de PSP */
-.psp-card {
-    background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
-    border: 1px solid rgba(199, 21, 133, 0.3);
-}
-
-.psp-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(199, 21, 133, 0.2);
-    border-color: rgba(199, 21, 133, 0.5);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .saves-headers {
-        flex-direction: column;
-        gap: 0.8rem;
-        text-align: center;
-    }
-    
-    .save-data-headers {
-        justify-content: center;
-    }
-    
-    .saving-throw-row {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-    
-    .save-type-name {
-        min-width: auto;
-    }
-    
-    .save-data-row {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .stats-row {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .additional-stats-row {
-        grid-template-columns: 1fr;
-    }
-    
-    .save-data-row {
-        gap: 0.8rem;
-    }
-    
-    .header-item {
-        min-width: 50px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .stats-row {
-        grid-template-columns: 1fr;
-    }
-    
-    .saves-headers {
-        padding: 0.6rem;
-    }
-    
-    .saving-throw-row {
-        padding: 0.8rem;
-    }
-    
-    .save-data-headers {
-        gap: 1rem;
-    }
-    
-    .save-data-row {
-        gap: 0.6rem;
-    }
-}
-</style>
+        window.CharacterCalculator = CharacterCalculator;
+        window.updateSavingThrows = () => CharacterCalculator.updateSavingThrows();
+        window.updateHitPoints = () => CharacterCalculator.updateHitPoints();
+        window.updateArcaneMana = () => CharacterCalculator.updateManaPoolsAndPSP();
+        window.updateDivineMana = () => CharacterCalculator.updateManaPoolsAndPSP();
+        window.updatePSPPool = () => CharacterCalculator.updateManaPoolsAndPSP();
+        window.updateCharacterSize = () => CharacterCalculator.updateCharacterSize();
+    </script>
+</body>
+</html>
 
 ... <!-- Abilities Tab --> 
 <!DOCTYPE html>
