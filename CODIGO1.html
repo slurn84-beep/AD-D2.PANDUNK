@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD&D 2.Pandunk - Basic Tab</title>
+    <title>AD&D 2.Pandunk</title>
     <style>
         * {
             margin: 0;
@@ -15,23 +15,228 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
             color: #e5e5e5;
-            padding: 2rem;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
+        .app-header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e5e5e5;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            height: fit-content;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .character-summary {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .character-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1a1a2e;
+        }
+
+        .category-selector {
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            color: #ffd700;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .custom-dropdown-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .dropdown-header {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .dropdown-header:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .dropdown-header.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .category-name {
+            font-weight: 600;
+            color: #ffd700;
+            margin: 0;
+        }
+
+        .dropdown-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #2b303b;
+            border: 1px solid #4a5464;
+            border-top: none;
+            z-index: 5;
+            max-height: 0;
+            overflow-y: auto;
+            transition: max-height 0.3s ease;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-options.show {
+            max-height: 300px;
+        }
+
+        .option {
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .option:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .main-content {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
+            overflow: hidden;
         }
 
-        h2 {
+        .tab-navigation {
+            display: flex;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            color: #b0b0b0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e5e5e5;
+        }
+
+        .tab-btn.active {
             color: #ffd700;
-            margin-bottom: 2rem;
-            text-align: center;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .tab-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ffd700;
+        }
+
+        .tab-content {
+            padding: 2rem;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .form-grid {
@@ -86,14 +291,11 @@
             color: #90EE90;
             font-weight: bold;
             font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
             flex: 2;
         }
 
         .save-data-headers {
             display: flex;
-            align-items: center;
             gap: 2rem;
             flex: 3;
         }
@@ -102,8 +304,6 @@
             color: #90EE90;
             font-weight: bold;
             font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
             text-align: center;
             min-width: 60px;
         }
@@ -123,13 +323,6 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .saving-throw-row:hover {
-            background: rgba(0, 150, 0, 0.12);
-            border-color: rgba(0, 150, 0, 0.4);
-            transform: translateX(3px);
         }
 
         .save-type-name {
@@ -142,7 +335,6 @@
 
         .save-data-row {
             display: flex;
-            align-items: center;
             gap: 2rem;
             flex: 3;
         }
@@ -156,7 +348,6 @@
             background: rgba(0, 255, 127, 0.1);
             padding: 0.3rem 0.6rem;
             border-radius: 6px;
-            border: 1px solid rgba(0, 255, 127, 0.3);
         }
 
         .save-modifier-input {
@@ -166,16 +357,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 6px;
             color: #e5e5e5;
-            font-size: 0.9rem;
             text-align: center;
-            font-weight: 500;
-        }
-
-        .save-modifier-input:focus {
-            outline: none;
-            border-color: #ffd700;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
         }
 
         .save-total-value {
@@ -187,7 +369,6 @@
             background: rgba(255, 215, 0, 0.15);
             padding: 0.4rem 0.8rem;
             border-radius: 8px;
-            border: 2px solid rgba(255, 215, 0, 0.4);
         }
 
         .stats-row {
@@ -203,13 +384,6 @@
             border-radius: 12px;
             padding: 1.5rem;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 215, 0, 0.3);
         }
 
         .stat-value-container {
@@ -223,22 +397,18 @@
             font-size: 2rem;
             font-weight: 700;
             color: #ffd700;
-            margin-bottom: 0.5rem;
         }
 
         .stat-detail {
             font-size: 0.8rem;
             color: #b0b0b0;
-            text-align: center;
-            min-height: 20px;
-            font-weight: 500;
         }
 
         .stat-label {
             color: #b0b0b0;
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
         }
 
         .manual-bonus-input {
@@ -248,16 +418,8 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 6px;
             color: #e5e5e5;
-            font-size: 0.8rem;
             text-align: center;
             margin-top: 0.3rem;
-        }
-
-        .manual-bonus-input:focus {
-            outline: none;
-            border-color: #ffd700;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
         }
 
         .mana-card {
@@ -276,257 +438,470 @@
             margin: 0;
         }
 
-        input[type="number"] {
-            -moz-appearance: textfield;
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Información Básica del Personaje</h2>
-        
-        <div class="form-grid">
-            <div class="form-group">
-                <label class="form-label">Nombre del Personaje</label>
-                <input type="text" class="form-input" id="characterName" placeholder="Nombre">
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Jugador</label>
-                <input type="text" class="form-input" id="playerName" placeholder="Tu nombre">
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Raza</label>
-                <select class="form-input" id="race">
-                    <option value="">Selecciona Raza</option>
-                    <option value="humano">Humano</option>
-                    <option value="elfo">Elfo</option>
-                    <option value="enano">Enano</option>
-                    <option value="mediano">Mediano</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Alineamiento</label>
-                <select class="form-input" id="alignment">
-                    <option value="LB">Legal Bueno</option>
-                    <option value="NB">Neutral Bueno</option>
-                    <option value="CB">Caótico Bueno</option>
-                    <option value="LN">Legal Neutral</option>
-                    <option value="N" selected>Neutral Auténtico</option>
-                    <option value="CN">Caótico Neutral</option>
-                    <option value="LM">Legal Malvado</option>
-                    <option value="NM">Neutral Malvado</option>
-                    <option value="CM">Caótico Malvado</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Altura (cm)</label>
-                <input type="number" class="form-input" id="characterHeight" min="1" max="30000" placeholder="175">
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Tamaño</label>
-                <input type="text" class="form-input" id="characterSize" value="Mediano" readonly>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Experiencia</label>
-                <input type="number" class="form-input" id="experience" value="0">
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Nivel</label>
-                <input type="number" class="form-input" id="Level" value="1" min="1" max="30">
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo">🎲 AD&D 2.Pandunk</div>
+            <div class="header-actions">
+                <button class="btn btn-secondary">🎲 Roll Stats</button>
+                <button class="btn btn-secondary">💾 Guardar</button>
+                <button class="btn btn-primary">📤 Exportar</button>
             </div>
         </div>
+    </header>
 
-        <h3 style="color: #ffd700; margin-top: 2rem; margin-bottom: 1rem;">Tiradas de Salvación</h3>
-        
-        <div class="saves-headers">
-            <div class="save-type-header">Tipo de Salvación</div>
-            <div class="save-data-headers">
-                <span class="header-item">Base</span>
-                <span class="header-item">Mod1</span>
-                <span class="header-item">Mod2</span>
-                <span class="header-item">Total</span>
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="character-summary">
+                <div class="character-avatar">👤</div>
+                <h3 id="characterNameDisplay">Nuevo Personaje</h3>
+                <p id="characterClassDisplay">Selecciona una clase</p>
+                <p>Nivel <span id="characterLevelDisplay">1</span></p>
             </div>
-        </div>
-        
-        <div class="saving-throws-vertical">
-            <div class="saving-throw-row">
-                <div class="save-type-name">Parálisis/Veneno/Muerte</div>
-                <div class="save-data-row">
-                    <span class="save-value" id="save-paralysis-base">14</span>
-                    <input type="number" id="save-paralysis-mod1" value="0" class="save-modifier-input">
-                    <input type="number" id="save-paralysis-mod2" value="0" class="save-modifier-input">
-                    <span class="save-total-value" id="save-paralysis-total">14</span>
-                </div>
-            </div>
-            
-            <div class="saving-throw-row">
-                <div class="save-type-name">Cetros/Varas/Varitas</div>
-                <div class="save-data-row">
-                    <span class="save-value" id="save-rods-base">16</span>
-                    <input type="number" id="save-rods-mod1" value="0" class="save-modifier-input">
-                    <input type="number" id="save-rods-mod2" value="0" class="save-modifier-input">
-                    <span class="save-total-value" id="save-rods-total">16</span>
-                </div>
-            </div>
-            
-            <div class="saving-throw-row">
-                <div class="save-type-name">Petrificación/Polimorfismo</div>
-                <div class="save-data-row">
-                    <span class="save-value" id="save-petrification-base">12</span>
-                    <input type="number" id="save-petrification-mod1" value="0" class="save-modifier-input">
-                    <input type="number" id="save-petrification-mod2" value="0" class="save-modifier-input">
-                    <span class="save-total-value" id="save-petrification-total">12</span>
-                </div>
-            </div>
-            
-            <div class="saving-throw-row">
-                <div class="save-type-name">Arma de Aliento</div>
-                <div class="save-data-row">
-                    <span class="save-value" id="save-breath-base">17</span>
-                    <input type="number" id="save-breath-mod1" value="0" class="save-modifier-input">
-                    <input type="number" id="save-breath-mod2" value="0" class="save-modifier-input">
-                    <span class="save-total-value" id="save-breath-total">17</span>
-                </div>
-            </div>
-            
-            <div class="saving-throw-row">
-                <div class="save-type-name">Conjuros</div>
-                <div class="save-data-row">
-                    <span class="save-value" id="save-spells-base">17</span>
-                    <input type="number" id="save-spells-mod1" value="0" class="save-modifier-input">
-                    <input type="number" id="save-spells-mod2" value="0" class="save-modifier-input">
-                    <span class="save-total-value" id="save-spells-total">17</span>
-                </div>
-            </div>
-        </div>
 
-        <h3 style="color: #ffd700; margin-top: 2rem; margin-bottom: 1rem;">Estadísticas Principales</h3>
-        
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-value-container">
-                    <div class="stat-value" id="totalHP">10</div>
-                    <div class="stat-detail" id="hp-breakdown">10 base</div>
-                    <input type="number" id="hp-manual-bonus" value="0" class="manual-bonus-input" placeholder="Bonus">
+            <div class="category-selector">
+                <h4 class="category-title">🛡️ Categoría Principal</h4>
+                <div class="custom-dropdown-container">
+                    <div class="dropdown-header" id="primary-dropdown-header">
+                        <h5 class="category-name" id="primary-selected-name" style="color: #b0b0b0; font-style: italic;">Selecciona una clase</h5>
+                    </div>
+                    <div class="dropdown-options" id="primary-dropdown-options">
+                        <div class="option" data-category="luchador" data-class="Bárbaro">Bárbaro</div>
+                        <div class="option" data-category="luchador" data-class="Ranger">Ranger</div>
+                        <div class="option" data-category="luchador" data-class="Guerrero">Guerrero</div>
+                        <div class="option" data-category="luchador" data-class="Paladín">Paladín</div>
+                        <div class="option" data-category="luchador" data-class="Samurái">Samurái</div>
+                        <div class="option" data-category="sacerdote" data-class="Clérigo">Clérigo</div>
+                        <div class="option" data-category="sacerdote" data-class="Druida">Druida</div>
+                        <div class="option" data-category="sacerdote" data-class="Chamán">Chamán</div>
+                        <div class="option" data-category="hechicero" data-class="Mago">Mago</div>
+                        <div class="option" data-category="hechicero" data-class="Hechicero">Hechicero</div>
+                        <div class="option" data-category="hechicero" data-class="Bruja">Bruja</div>
+                        <div class="option" data-category="hechicero" data-class="Artífice">Artífice</div>
+                        <div class="option" data-category="bribon" data-class="Ladrón">Ladrón</div>
+                        <div class="option" data-category="bribon" data-class="Bardo">Bardo</div>
+                        <div class="option" data-category="bribon" data-class="Ninja">Ninja</div>
+                        <div class="option" data-category="bribon" data-class="Psiónico">Psiónico</div>
+                        <div class="option" data-category="bribon" data-class="Pistolero">Pistolero</div>
+                    </div>
                 </div>
-                <div class="stat-label">Puntos de Golpe</div>
             </div>
-        </div>
 
-        <div class="stats-row">
-            <div class="stat-card mana-card" id="arcane-mana-card" style="display: none;">
-                <div class="stat-value-container">
-                    <div class="stat-value" id="arcaneMana">0</div>
-                    <div class="stat-detail" id="arcane-mana-breakdown">-</div>
-                    <input type="number" id="arcane-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus">
+            <div class="category-selector">
+                <h4 class="category-title">⚔️ Categoría Secundaria</h4>
+                <div class="custom-dropdown-container">
+                    <div class="dropdown-header disabled" id="secondary-dropdown-header">
+                        <h5 class="category-name" id="secondary-selected-name" style="color: #b0b0b0; font-style: italic;">Selecciona primero categoría principal</h5>
+                    </div>
+                    <div class="dropdown-options" id="secondary-dropdown-options"></div>
                 </div>
-                <div class="stat-label">Maná Arcano</div>
             </div>
-            
-            <div class="stat-card mana-card" id="divine-mana-card" style="display: none;">
-                <div class="stat-value-container">
-                    <div class="stat-value" id="divineMana">0</div>
-                    <div class="stat-detail" id="divine-mana-breakdown">-</div>
-                    <input type="number" id="divine-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus">
-                </div>
-                <div class="stat-label">Maná Divino</div>
-            </div>
-            
-            <div class="stat-card psp-card" id="psp-card" style="display: none;">
-                <div class="stat-value-container">
-                    <div class="stat-value" id="pspPool">0</div>
-                    <div class="stat-detail" id="psp-breakdown">-</div>
-                    <input type="number" id="psp-manual" value="0" class="manual-bonus-input" placeholder="Bonus">
-                </div>
-                <div class="stat-label">Pool PSP</div>
-            </div>
-        </div>
 
-        <!-- Campos ocultos para simular los dropdowns y totales de habilidades -->
-        <div style="display: none;">
-            <div id="primary-selected-name">Guerrero</div>
-            <div id="secondary-selected-name">Ninguno</div>
-            <div id="tertiary-selected-name">Ninguno</div>
-            <div id="con-hp">0</div>
-            <div id="int-total">10</div>
-            <div id="wis-total">10</div>
-            <div id="cha-total">10</div>
-        </div>
+            <div class="category-selector">
+                <h4 class="category-title">✨ Categoría Terciaria</h4>
+                <div class="custom-dropdown-container">
+                    <div class="dropdown-header disabled" id="tertiary-dropdown-header">
+                        <h5 class="category-name" id="tertiary-selected-name" style="color: #b0b0b0; font-style: italic;">Selecciona primero categoría secundaria</h5>
+                    </div>
+                    <div class="dropdown-options" id="tertiary-dropdown-options"></div>
+                </div>
+            </div>
+
+            <div class="category-selector">
+                <h4 class="category-title">📜 Trasfondos</h4>
+                <div class="custom-dropdown-container">
+                    <div class="dropdown-header disabled" id="background-dropdown-header">
+                        <h5 class="category-name" id="background-selected-name" style="color: #b0b0b0; font-style: italic;">Selecciona primero una clase</h5>
+                    </div>
+                    <div class="dropdown-options" id="background-dropdown-options"></div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <nav class="tab-navigation">
+                <button class="tab-btn active" onclick="showTab('basic')">📋 Básico</button>
+                <button class="tab-btn" onclick="showTab('abilities')">💪 Habilidades</button>
+                <button class="tab-btn" onclick="showTab('combat')">⚔️ Combate</button>
+                <button class="tab-btn" onclick="showTab('skills')">🎯 Pericias</button>
+                <button class="tab-btn" onclick="showTab('spells')">✨ Conjuros</button>
+                <button class="tab-btn" onclick="showTab('equipment')">🎒 Equipo</button>
+            </nav>
+
+            <div id="basic-tab" class="tab-content active">
+                <h2 style="color: #ffd700; margin-bottom: 2rem;">📋 Información Básica</h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Nombre del Personaje</label>
+                        <input type="text" class="form-input" id="characterName" placeholder="Nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Jugador</label>
+                        <input type="text" class="form-input" id="playerName" placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Raza</label>
+                        <select class="form-input" id="race">
+                            <option value="">Selecciona Raza</option>
+                            <option value="humano">Humano</option>
+                            <option value="elfo">Elfo</option>
+                            <option value="enano">Enano</option>
+                            <option value="mediano">Mediano</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Alineamiento</label>
+                        <select class="form-input" id="alignment">
+                            <option value="LB">Legal Bueno</option>
+                            <option value="N" selected>Neutral</option>
+                            <option value="CM">Caótico Malvado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Altura (cm)</label>
+                        <input type="number" class="form-input" id="characterHeight" placeholder="175">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tamaño</label>
+                        <input type="text" class="form-input" id="characterSize" value="Mediano" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Experiencia</label>
+                        <input type="number" class="form-input" id="experience" value="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Nivel</label>
+                        <input type="number" class="form-input" id="Level" value="1" min="1">
+                    </div>
+                </div>
+
+                <h3 style="color: #ffd700; margin-top: 2rem; margin-bottom: 1rem;">🛡️ Tiradas de Salvación</h3>
+                
+                <div class="saves-headers">
+                    <div class="save-type-header">Tipo de Salvación</div>
+                    <div class="save-data-headers">
+                        <span class="header-item">Base</span>
+                        <span class="header-item">Mod1</span>
+                        <span class="header-item">Mod2</span>
+                        <span class="header-item">Total</span>
+                    </div>
+                </div>
+                
+                <div class="saving-throws-vertical">
+                    <div class="saving-throw-row">
+                        <div class="save-type-name">Parálisis/Veneno/Muerte</div>
+                        <div class="save-data-row">
+                            <span class="save-value" id="save-paralysis-base">14</span>
+                            <input type="number" id="save-paralysis-mod1" value="0" class="save-modifier-input">
+                            <input type="number" id="save-paralysis-mod2" value="0" class="save-modifier-input">
+                            <span class="save-total-value" id="save-paralysis-total">14</span>
+                        </div>
+                    </div>
+                    
+                    <div class="saving-throw-row">
+                        <div class="save-type-name">Cetros/Varas/Varitas</div>
+                        <div class="save-data-row">
+                            <span class="save-value" id="save-rods-base">16</span>
+                            <input type="number" id="save-rods-mod1" value="0" class="save-modifier-input">
+                            <input type="number" id="save-rods-mod2" value="0" class="save-modifier-input">
+                            <span class="save-total-value" id="save-rods-total">16</span>
+                        </div>
+                    </div>
+                    
+                    <div class="saving-throw-row">
+                        <div class="save-type-name">Petrificación/Polimorfismo</div>
+                        <div class="save-data-row">
+                            <span class="save-value" id="save-petrification-base">12</span>
+                            <input type="number" id="save-petrification-mod1" value="0" class="save-modifier-input">
+                            <input type="number" id="save-petrification-mod2" value="0" class="save-modifier-input">
+                            <span class="save-total-value" id="save-petrification-total">12</span>
+                        </div>
+                    </div>
+                    
+                    <div class="saving-throw-row">
+                        <div class="save-type-name">Arma de Aliento</div>
+                        <div class="save-data-row">
+                            <span class="save-value" id="save-breath-base">17</span>
+                            <input type="number" id="save-breath-mod1" value="0" class="save-modifier-input">
+                            <input type="number" id="save-breath-mod2" value="0" class="save-modifier-input">
+                            <span class="save-total-value" id="save-breath-total">17</span>
+                        </div>
+                    </div>
+                    
+                    <div class="saving-throw-row">
+                        <div class="save-type-name">Conjuros</div>
+                        <div class="save-data-row">
+                            <span class="save-value" id="save-spells-base">17</span>
+                            <input type="number" id="save-spells-mod1" value="0" class="save-modifier-input">
+                            <input type="number" id="save-spells-mod2" value="0" class="save-modifier-input">
+                            <span class="save-total-value" id="save-spells-total">17</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #ffd700; margin-top: 2rem; margin-bottom: 1rem;">📊 Estadísticas</h3>
+                
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-value-container">
+                            <div class="stat-value" id="totalHP">10</div>
+                            <div class="stat-detail" id="hp-breakdown">10 base</div>
+                            <input type="number" id="hp-manual-bonus" value="0" class="manual-bonus-input" placeholder="Bonus">
+                        </div>
+                        <div class="stat-label">Puntos de Golpe</div>
+                    </div>
+                    
+                    <div class="stat-card mana-card" id="arcane-mana-card" style="display: none;">
+                        <div class="stat-value-container">
+                            <div class="stat-value" id="arcaneMana">0</div>
+                            <div class="stat-detail" id="arcane-mana-breakdown">-</div>
+                            <input type="number" id="arcane-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus">
+                        </div>
+                        <div class="stat-label">Maná Arcano</div>
+                    </div>
+                    
+                    <div class="stat-card mana-card" id="divine-mana-card" style="display: none;">
+                        <div class="stat-value-container">
+                            <div class="stat-value" id="divineMana">0</div>
+                            <div class="stat-detail" id="divine-mana-breakdown">-</div>
+                            <input type="number" id="divine-mana-manual" value="0" class="manual-bonus-input" placeholder="Bonus">
+                        </div>
+                        <div class="stat-label">Maná Divino</div>
+                    </div>
+                    
+                    <div class="stat-card psp-card" id="psp-card" style="display: none;">
+                        <div class="stat-value-container">
+                            <div class="stat-value" id="pspPool">0</div>
+                            <div class="stat-detail" id="psp-breakdown">-</div>
+                            <input type="number" id="psp-manual" value="0" class="manual-bonus-input" placeholder="Bonus">
+                        </div>
+                        <div class="stat-label">Pool PSP</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="abilities-tab" class="tab-content">
+                <h2 style="color: #ffd700; text-align: center;">💪 Pestaña de Habilidades</h2>
+                <p style="text-align: center; color: #b0b0b0; margin-top: 1rem;">
+                    Aquí irá el contenido del Abilities Tab que ya creamos anteriormente.
+                </p>
+                <div style="display: none;">
+                    <div id="con-hp">0</div>
+                    <div id="int-total">10</div>
+                    <div id="wis-total">10</div>
+                    <div id="cha-total">10</div>
+                </div>
+            </div>
+
+            <div id="combat-tab" class="tab-content">
+                <h2 style="color: #ffd700;">⚔️ Combate</h2>
+                <p>Contenido próximamente...</p>
+            </div>
+
+            <div id="skills-tab" class="tab-content">
+                <h2 style="color: #ffd700;">🎯 Pericias</h2>
+                <p>Contenido próximamente...</p>
+            </div>
+
+            <div id="spells-tab" class="tab-content">
+                <h2 style="color: #ffd700;">✨ Conjuros</h2>
+                <p>Contenido próximamente...</p>
+            </div>
+
+            <div id="equipment-tab" class="tab-content">
+                <h2 style="color: #ffd700;">🎒 Equipo</h2>
+                <p>Contenido próximamente...</p>
+            </div>
+        </main>
     </div>
 
     <script>
+        // SISTEMA DE DROPDOWNS
+        const backgrounds = {
+            "luchador": ["Soldado", "Guardia", "Marinero", "Campesino"],
+            "sacerdote": ["Acolito", "Ermitaño", "Noble", "Erudito"],
+            "hechicero": ["Escribano", "Erudito", "Charlatán", "Animador"],
+            "bribon": ["Criminal", "Charlatán", "Animador", "Vagabundo"]
+        };
+
+        const categories = {
+            primary: [
+                { id: 'luchador', classes: ['Bárbaro', 'Ranger', 'Guerrero', 'Paladín', 'Samurái'] },
+                { id: 'sacerdote', classes: ['Clérigo', 'Druida', 'Chamán'] },
+                { id: 'hechicero', classes: ['Mago', 'Hechicero', 'Bruja', 'Artífice'] },
+                { id: 'bribon', classes: ['Ladrón', 'Bardo', 'Ninja', 'Psiónico', 'Pistolero'] }
+            ]
+        };
+
+        function setupDropdown(headerId, optionsId, selectedNameId, onSelectionCallback) {
+            const header = document.getElementById(headerId);
+            const options = document.getElementById(optionsId);
+            const selectedName = document.getElementById(selectedNameId);
+
+            if (!header || !options || !selectedName) return;
+
+            header.addEventListener('click', () => {
+                if (!header.classList.contains('disabled')) {
+                    options.classList.toggle('show');
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!header.contains(e.target) && !options.contains(e.target)) {
+                    options.classList.remove('show');
+                }
+            });
+
+            options.addEventListener('click', (e) => {
+                const target = e.target.closest('.option');
+                if (target) {
+                    const selectedClass = target.getAttribute('data-class');
+                    const categoryId = target.getAttribute('data-category');
+
+                    selectedName.textContent = selectedClass;
+                    selectedName.style.color = '#ffd700';
+                    selectedName.style.fontStyle = 'normal';
+
+                    options.classList.remove('show');
+
+                    if (onSelectionCallback) {
+                        onSelectionCallback(categoryId, selectedClass);
+                    }
+                }
+            });
+        }
+
+        function populateDropdown(optionsContainerId, classList) {
+            const container = document.getElementById(optionsContainerId);
+            container.innerHTML = '<div class="option" data-class="Ninguno">Ninguno</div>';
+
+            classList.forEach(cls => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.setAttribute('data-category', cls.categoryId);
+                optionDiv.setAttribute('data-class', cls.name);
+                optionDiv.textContent = cls.name;
+                container.appendChild(optionDiv);
+            });
+        }
+
+        function handlePrimarySelection(categoryId, className) {
+            const secondaryHeader = document.getElementById('secondary-dropdown-header');
+            const secondarySelectedName = document.getElementById('secondary-selected-name');
+            
+            secondaryHeader.classList.remove('disabled');
+            secondarySelectedName.textContent = 'Selecciona una clase';
+            
+            const secondaryClasses = categories.primary.flatMap(cat => 
+                cat.classes.map(cls => ({ name: cls, categoryId: cat.id }))
+            );
+            populateDropdown('secondary-dropdown-options', secondaryClasses);
+
+            const bgHeader = document.getElementById('background-dropdown-header');
+            const bgName = document.getElementById('background-selected-name');
+            if (backgrounds[categoryId]) {
+                bgHeader.classList.remove('disabled');
+                bgName.textContent = 'Selecciona un trasfondo';
+                const bgOptions = document.getElementById('background-dropdown-options');
+                bgOptions.innerHTML = backgrounds[categoryId].map(bg => 
+                    `<div class="option" data-class="${bg}">${bg}</div>`
+                ).join('');
+            }
+
+            if (window.CharacterCalculator) {
+                window.CharacterCalculator.updateAll();
+            }
+        }
+
+        function handleSecondarySelection(categoryId) {
+            const tertiaryHeader = document.getElementById('tertiary-dropdown-header');
+            const tertiarySelectedName = document.getElementById('tertiary-selected-name');
+            
+            tertiaryHeader.classList.remove('disabled');
+            tertiarySelectedName.textContent = 'Selecciona una clase';
+            
+            const tertiaryClasses = categories.primary.flatMap(cat => 
+                cat.classes.map(cls => ({ name: cls, categoryId: cat.id }))
+            );
+            populateDropdown('tertiary-dropdown-options', tertiaryClasses);
+
+            if (window.CharacterCalculator) {
+                window.CharacterCalculator.updateAll();
+            }
+        }
+
+        setupDropdown('primary-dropdown-header', 'primary-dropdown-options', 'primary-selected-name', handlePrimarySelection);
+        setupDropdown('secondary-dropdown-header', 'secondary-dropdown-options', 'secondary-selected-name', handleSecondarySelection);
+        setupDropdown('tertiary-dropdown-header', 'tertiary-dropdown-options', 'tertiary-selected-name');
+        setupDropdown('background-dropdown-header', 'background-dropdown-options', 'background-selected-name');
+
+        // SISTEMA DE TABS
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // SISTEMA DE CÁLCULOS
         const CharacterCalculator = (function() {
             const SAVING_THROWS = {
                 "luchador": {
                     1: {paralysis: 14, rods: 16, petrification: 15, breath: 17, spells: 17},
-                    3: {paralysis: 13, rods: 15, petrification: 14, breath: 16, spells: 16},
                     5: {paralysis: 11, rods: 13, petrification: 12, breath: 13, spells: 14},
-                    7: {paralysis: 10, rods: 12, petrification: 11, breath: 12, spells: 13},
                     9: {paralysis: 8, rods: 10, petrification: 9, breath: 9, spells: 11},
-                    11: {paralysis: 7, rods: 9, petrification: 8, breath: 8, spells: 10},
                     13: {paralysis: 5, rods: 7, petrification: 6, breath: 5, spells: 8},
-                    15: {paralysis: 4, rods: 6, petrification: 5, breath: 4, spells: 7},
                     17: {paralysis: 3, rods: 5, petrification: 4, breath: 4, spells: 6}
                 },
                 "sacerdote": {
                     1: {paralysis: 10, rods: 14, petrification: 13, breath: 16, spells: 15},
-                    3: {paralysis: 9, rods: 13, petrification: 12, breath: 15, spells: 14},
                     5: {paralysis: 7, rods: 11, petrification: 10, breath: 13, spells: 12},
-                    7: {paralysis: 6, rods: 10, petrification: 9, breath: 12, spells: 11},
                     9: {paralysis: 4, rods: 8, petrification: 7, breath: 10, spells: 9},
-                    11: {paralysis: 3, rods: 7, petrification: 6, breath: 9, spells: 8},
                     13: {paralysis: 2, rods: 5, petrification: 4, breath: 7, spells: 6},
-                    15: {paralysis: 1, rods: 4, petrification: 3, breath: 6, spells: 5},
                     17: {paralysis: 1, rods: 2, petrification: 2, breath: 5, spells: 4}
                 },
                 "hechicero": {
                     1: {paralysis: 14, rods: 11, petrification: 13, breath: 15, spells: 12},
-                    3: {paralysis: 13, rods: 10, petrification: 12, breath: 14, spells: 11},
                     5: {paralysis: 11, rods: 8, petrification: 10, breath: 12, spells: 9},
-                    7: {paralysis: 10, rods: 7, petrification: 9, breath: 11, spells: 8},
                     9: {paralysis: 8, rods: 5, petrification: 7, breath: 9, spells: 6},
-                    11: {paralysis: 7, rods: 4, petrification: 6, breath: 8, spells: 5},
                     13: {paralysis: 5, rods: 2, petrification: 4, breath: 6, spells: 3},
-                    15: {paralysis: 4, rods: 1, petrification: 3, breath: 5, spells: 2},
                     17: {paralysis: 3, rods: 1, petrification: 2, breath: 4, spells: 1}
                 },
                 "bribon": {
                     1: {paralysis: 13, rods: 14, petrification: 12, breath: 16, spells: 15},
-                    3: {paralysis: 12, rods: 13, petrification: 11, breath: 15, spells: 14},
                     5: {paralysis: 11, rods: 12, petrification: 10, breath: 14, spells: 13},
-                    7: {paralysis: 10, rods: 11, petrification: 9, breath: 13, spells: 12},
                     9: {paralysis: 9, rods: 10, petrification: 8, breath: 12, spells: 11},
-                    11: {paralysis: 8, rods: 9, petrification: 7, breath: 11, spells: 10},
                     13: {paralysis: 7, rods: 8, petrification: 6, breath: 10, spells: 9},
-                    15: {paralysis: 6, rods: 7, petrification: 5, breath: 9, spells: 8},
                     17: {paralysis: 5, rods: 6, petrification: 4, breath: 8, spells: 7}
                 }
             };
 
             const PSP_TABLE = {
                 wisdom: {
-                    1: {base: 0, perLevel: 0}, 9: {base: 1, perLevel: 0}, 10: {base: 2, perLevel: 0},
-                    11: {base: 3, perLevel: 0}, 12: {base: 5, perLevel: 0}, 13: {base: 6, perLevel: 1},
-                    14: {base: 7, perLevel: 1}, 15: {base: 8, perLevel: 2}, 16: {base: 9, perLevel: 2},
-                    17: {base: 10, perLevel: 3}, 18: {base: 11, perLevel: 3}, 19: {base: 12, perLevel: 4},
-                    20: {base: 13, perLevel: 4}, 21: {base: 14, perLevel: 5}, 25: {base: 18, perLevel: 9}
+                    1: {base: 0, perLevel: 0}, 10: {base: 2, perLevel: 0}, 13: {base: 6, perLevel: 1},
+                    15: {base: 8, perLevel: 2}, 18: {base: 11, perLevel: 3}, 25: {base: 18, perLevel: 9}
                 },
                 intelligence: {
-                    1: {bonus: 0}, 9: {bonus: 1}, 10: {bonus: 2}, 11: {bonus: 3}, 12: {bonus: 4},
-                    13: {bonus: 5}, 14: {bonus: 6}, 15: {bonus: 7}, 16: {bonus: 8}, 17: {bonus: 9},
-                    18: {bonus: 10}, 19: {bonus: 11}, 20: {bonus: 12}, 25: {bonus: 17}
+                    1: {bonus: 0}, 10: {bonus: 2}, 13: {bonus: 5}, 18: {bonus: 10}, 25: {bonus: 17}
                 },
                 constitution: {
-                    1: {bonus: 0}, 9: {bonus: 1}, 10: {bonus: 2}, 11: {bonus: 3}, 12: {bonus: 4},
-                    13: {bonus: 5}, 14: {bonus: 6}, 15: {bonus: 7}, 16: {bonus: 8}, 17: {bonus: 9},
-                    18: {bonus: 10}, 19: {bonus: 11}, 20: {bonus: 12}, 25: {bonus: 17}
+                    1: {bonus: 0}, 10: {bonus: 2}, 13: {bonus: 5}, 18: {bonus: 10}, 25: {bonus: 17}
                 }
             };
 
@@ -537,13 +912,13 @@
                 "Ladrón": 6, "Bardo": 6, "Ninja": 6, "Psiónico": 6, "Pistolero": 6
             };
 
-            const SPELLCASTING_CLASSES = {
+            const SPELLCASTING = {
                 arcane: ["Mago", "Bruja", "Artífice"],
                 divine: ["Clérigo", "Druida", "Chamán"],
                 charisma: ["Bardo", "Hechicero"]
             };
 
-            function findClosestLevel(table, level) {
+            function findClosest(table, level) {
                 const levels = Object.keys(table).map(Number).sort((a, b) => a - b);
                 for (let i = levels.length - 1; i >= 0; i--) {
                     if (level >= levels[i]) return table[levels[i]];
@@ -551,20 +926,11 @@
                 return table[levels[0]];
             }
 
-            function findClosestScore(table, score) {
-                const scores = Object.keys(table).map(Number).sort((a, b) => a - b);
-                for (let i = scores.length - 1; i >= 0; i--) {
-                    if (score >= scores[i]) return table[scores[i]];
-                }
-                return table[scores[0]];
+            function getClass(id) {
+                return document.getElementById(id)?.textContent.trim() || "";
             }
 
-            function getSelectedClass(id) {
-                const el = document.getElementById(id);
-                return el ? el.textContent.trim() : "";
-            }
-
-            function getCategoryFromClass(className) {
+            function getCategory(className) {
                 if (["Bárbaro", "Guerrero", "Ranger", "Paladín", "Samurái"].includes(className)) return "luchador";
                 if (["Clérigo", "Druida", "Chamán"].includes(className)) return "sacerdote";
                 if (["Mago", "Hechicero", "Bruja", "Artífice"].includes(className)) return "hechicero";
@@ -572,28 +938,22 @@
                 return null;
             }
 
-            function getAbilityScore(id) {
-                const el = document.getElementById(id);
-                return el ? parseInt(el.textContent) || 10 : 10;
+            function getAbility(id) {
+                return parseInt(document.getElementById(id)?.textContent) || 10;
             }
 
             function updateSavingThrows() {
-                const primaryClass = getSelectedClass('primary-selected-name');
-                const category = getCategoryFromClass(primaryClass);
+                const primaryClass = getClass('primary-selected-name');
+                const category = getCategory(primaryClass);
                 const level = parseInt(document.getElementById('Level')?.value) || 1;
 
                 if (!category) return;
 
-                const saves = findClosestLevel(SAVING_THROWS[category], level);
+                const saves = findClosest(SAVING_THROWS[category], level);
                 
-                document.getElementById('save-paralysis-base').textContent = saves.paralysis;
-                document.getElementById('save-rods-base').textContent = saves.rods;
-                document.getElementById('save-petrification-base').textContent = saves.petrification;
-                document.getElementById('save-breath-base').textContent = saves.breath;
-                document.getElementById('save-spells-base').textContent = saves.spells;
-
                 ['paralysis', 'rods', 'petrification', 'breath', 'spells'].forEach(type => {
-                    const base = parseInt(document.getElementById(`save-${type}-base`).textContent) || 0;
+                    document.getElementById(`save-${type}-base`).textContent = saves[type];
+                    const base = saves[type];
                     const mod1 = parseInt(document.getElementById(`save-${type}-mod1`).value) || 0;
                     const mod2 = parseInt(document.getElementById(`save-${type}-mod2`).value) || 0;
                     document.getElementById(`save-${type}-total`).textContent = base + mod1 + mod2;
@@ -602,12 +962,14 @@
 
             function updateHitPoints() {
                 const level = parseInt(document.getElementById('Level')?.value) || 1;
-                const conHP = getAbilityScore('con-hp');
-                const manualBonus = parseInt(document.getElementById('hp-manual-bonus')?.value) || 0;
+                const conHP = getAbility('con-hp');
+                const manual = parseInt(document.getElementById('hp-manual-bonus')?.value) || 0;
 
-                const primaryClass = getSelectedClass('primary-selected-name');
-                const secondaryClass = getSelectedClass('secondary-selected-name');
-                const tertiaryClass = getSelectedClass('tertiary-selected-name');
+                const classes = [
+                    getClass('primary-selected-name'),
+                    getClass('secondary-selected-name'),
+                    getClass('tertiary-selected-name')
+                ].filter(c => c && c !== "Selecciona una clase" && c !== "Ninguno" && HIT_DICE[c]);
 
                 let totalHP = 10;
                 let breakdown = "10 base";
@@ -615,63 +977,52 @@
                 if (level === 1) {
                     totalHP += conHP;
                     breakdown += ` + ${conHP} CON`;
-                } else {
-                    const classes = [primaryClass, secondaryClass, tertiaryClass].filter(c => 
-                        c && c !== "Selecciona una clase" && c !== "Ninguno" && HIT_DICE[c]
-                    );
-
-                    if (classes.length > 0) {
-                        let avgHD = classes.reduce((sum, cls) => sum + (HIT_DICE[cls] || 6), 0) / classes.length;
-                        let levelHP = Math.floor(avgHD * (level - 1));
-                        totalHP = 10 + levelHP + (conHP * level);
-                        breakdown = `10 + ${levelHP} HD + (${conHP}×${level})`;
-                    }
+                } else if (classes.length > 0) {
+                    const avgHD = classes.reduce((sum, cls) => sum + HIT_DICE[cls], 0) / classes.length;
+                    const levelHP = Math.floor(avgHD * (level - 1));
+                    totalHP = 10 + levelHP + (conHP * level);
+                    breakdown = `10 + ${levelHP} HD + (${conHP}×${level})`;
                 }
 
-                totalHP += manualBonus;
-                if (manualBonus !== 0) breakdown += ` + ${manualBonus}`;
+                totalHP += manual;
+                if (manual !== 0) breakdown += ` + ${manual}`;
 
                 document.getElementById('totalHP').textContent = totalHP;
                 document.getElementById('hp-breakdown').textContent = breakdown;
             }
 
-            function updateManaPoolsAndPSP() {
+            function updateManaAndPSP() {
                 const level = parseInt(document.getElementById('Level')?.value) || 1;
-                const primaryClass = getSelectedClass('primary-selected-name');
-                const secondaryClass = getSelectedClass('secondary-selected-name');
-                const tertiaryClass = getSelectedClass('tertiary-selected-name');
+                const classes = [
+                    getClass('primary-selected-name'),
+                    getClass('secondary-selected-name'),
+                    getClass('tertiary-selected-name')
+                ];
 
-                const classes = [primaryClass, secondaryClass, tertiaryClass];
-                
-                let hasArcane = false, hasDivine = false, hasCharisma = false, hasPsionic = false;
-
-                classes.forEach(cls => {
-                    if (SPELLCASTING_CLASSES.arcane.includes(cls)) hasArcane = true;
-                    if (SPELLCASTING_CLASSES.divine.includes(cls)) hasDivine = true;
-                    if (SPELLCASTING_CLASSES.charisma.includes(cls)) hasCharisma = true;
-                    if (cls === "Psiónico") hasPsionic = true;
-                });
+                let hasArcane = classes.some(c => SPELLCASTING.arcane.includes(c));
+                let hasDivine = classes.some(c => SPELLCASTING.divine.includes(c));
+                let hasCharisma = classes.some(c => SPELLCASTING.charisma.includes(c));
+                let hasPsionic = classes.includes("Psiónico");
 
                 document.getElementById('arcane-mana-card').style.display = (hasArcane || hasCharisma) ? 'block' : 'none';
                 document.getElementById('divine-mana-card').style.display = hasDivine ? 'block' : 'none';
                 document.getElementById('psp-card').style.display = hasPsionic ? 'block' : 'none';
 
                 if (hasArcane || hasCharisma) {
-                    const int = getAbilityScore('int-total');
-                    const cha = getAbilityScore('cha-total');
-                    const wis = getAbilityScore('wis-total');
-                    
-                    const primaryStat = hasArcane ? int : cha;
-                    const mana = Math.round((wis / 4) + (primaryStat + 1)) * level;
+                    const int = getAbility('int-total');
+                    const cha = getAbility('cha-total');
+                    const wis = getAbility('wis-total');
+                    const stat = hasArcane ? int : cha;
+                    const mana = Math.round((wis / 4) + (stat + 1)) * level;
                     const manual = parseInt(document.getElementById('arcane-mana-manual')?.value) || 0;
                     
                     document.getElementById('arcaneMana').textContent = mana + manual;
                     document.getElementById('arcane-mana-breakdown').textContent = 
-                        `((${wis}/4)+(${primaryStat}+1))×${level}`;
+                        `((${wis}/4)+(${stat}+1))×${level}`;
                 }
 
                 if (hasDivine) {
-                    const wis = getAbilityScore('wis-total');
+                    const wis = getAbility('wis-total');
                     const mana = Math.round((wis / 4) + (wis + 1)) * level;
                     const manual = parseInt(document.getElementById('divine-mana-manual')?.value) || 0;
                     
@@ -681,699 +1032,66 @@
                 }
 
                 if (hasPsionic) {
-                    const wis = getAbilityScore('wis-total');
-                    const int = getAbilityScore('int-total');
-                    const con = getAbilityScore('con-total');
+                    const wis = getAbility('wis-total');
+                    const int = getAbility('int-total');
+                    const con = getAbility('con-total');
 
-                    if (level === 1) {
-                        const wisData = findClosestScore(PSP_TABLE.wisdom, wis);
-                        const intBonus = findClosestScore(PSP_TABLE.intelligence, int).bonus || 0;
-                        const conBonus = findClosestScore(PSP_TABLE.constitution, con).bonus || 0;
-                        const basePSP = (wisData.base || 0) + intBonus + conBonus;
-                        const manual = parseInt(document.getElementById('psp-manual')?.value) || 0;
-                        
-                        document.getElementById('pspPool').textContent = basePSP + manual;
-                        document.getElementById('psp-breakdown').textContent = 
-                            `${wisData.base || 0} + ${intBonus} + ${conBonus}`;
-                    } else {
-                        const wisData = findClosestScore(PSP_TABLE.wisdom, wis);
-                        const intBonus = findClosestScore(PSP_TABLE.intelligence, int).bonus || 0;
-                        const conBonus = findClosestScore(PSP_TABLE.constitution, con).bonus || 0;
-                        const level1PSP = (wisData.base || 0) + intBonus + conBonus;
-                        const perLevelPSP = ((10 + (wisData.perLevel || 0)) * (level - 1));
-                        const totalPSP = level1PSP + perLevelPSP;
-                        const manual = parseInt(document.getElementById('psp-manual')?.value) || 0;
-                        
-                        document.getElementById('pspPool').textContent = totalPSP + manual;
-                        document.getElementById('psp-breakdown').textContent = 
-                            `${level1PSP} + (10+${wisData.perLevel || 0})×${level-1}`;
+                    const wisData = findClosest(PSP_TABLE.wisdom, wis);
+                    const intBonus = findClosest(PSP_TABLE.intelligence, int).bonus;
+                    const conBonus = findClosest(PSP_TABLE.constitution, con).bonus;
+                    
+                    let totalPSP = wisData.base + intBonus + conBonus;
+                    if (level > 1) {
+                        totalPSP += (10 + wisData.perLevel) * (level - 1);
                     }
+                    
+                    const manual = parseInt(document.getElementById('psp-manual')?.value) || 0;
+                    document.getElementById('pspPool').textContent = totalPSP + manual;
                 }
             }
 
             function updateCharacterSize() {
                 const height = parseInt(document.getElementById('characterHeight')?.value) || 0;
                 let size = "Mediano";
-
                 if (height < 60) size = "Diminuto";
                 else if (height < 120) size = "Pequeño";
                 else if (height < 240) size = "Mediano";
                 else if (height < 480) size = "Grande";
                 else if (height < 960) size = "Enorme";
                 else size = "Gargantuesco";
-
                 document.getElementById('characterSize').value = size;
             }
 
             function updateAll() {
                 updateSavingThrows();
                 updateHitPoints();
-                updateManaPoolsAndPSP();
+                updateManaAndPSP();
             }
 
             function init() {
-                const observer = new MutationObserver(() => {
-                    updateAll();
-                });
-
+                const observer = new MutationObserver(updateAll);
                 ['primary-selected-name', 'secondary-selected-name', 'tertiary-selected-name'].forEach(id => {
-                    const element = document.getElementById(id);
-                    if (element) {
-                        observer.observe(element, { childList: true, characterData: true, subtree: true });
-                    }
+                    const el = document.getElementById(id);
+                    if (el) observer.observe(el, { childList: true, characterData: true, subtree: true });
                 });
 
-                const levelInput = document.getElementById('Level');
-                if (levelInput) {
-                    levelInput.addEventListener('input', updateAll);
-                }
-
-                const heightInput = document.getElementById('characterHeight');
-                if (heightInput) {
-                    heightInput.addEventListener('input', updateCharacterSize);
-                }
-
-                ['save-paralysis-mod1', 'save-paralysis-mod2', 'save-rods-mod1', 'save-rods-mod2',
-                 'save-petrification-mod1', 'save-petrification-mod2', 'save-breath-mod1', 'save-breath-mod2',
-                 'save-spells-mod1', 'save-spells-mod2'].forEach(id => {
-                    const input = document.getElementById(id);
-                    if (input) input.addEventListener('input', updateSavingThrows);
+                document.getElementById('Level')?.addEventListener('input', updateAll);
+                document.getElementById('characterHeight')?.addEventListener('input', updateCharacterSize);
+                document.getElementById('hp-manual-bonus')?.addEventListener('input', updateHitPoints);
+                
+                ['save-paralysis-mod1', 'save-rods-mod1', 'save-petrification-mod1', 
+                 'save-breath-mod1', 'save-spells-mod1'].forEach(id => {
+                    document.getElementById(id)?.addEventListener('input', updateSavingThrows);
                 });
-
-                const hpManual = document.getElementById('hp-manual-bonus');
-                if (hpManual) hpManual.addEventListener('input', updateHitPoints);
-
-                const arcaneManual = document.getElementById('arcane-mana-manual');
-                if (arcaneManual) arcaneManual.addEventListener('input', updateManaPoolsAndPSP);
-
-                const divineManual = document.getElementById('divine-mana-manual');
-                if (divineManual) divineManual.addEventListener('input', updateManaPoolsAndPSP);
-
-                const pspManual = document.getElementById('psp-manual');
-                if (pspManual) pspManual.addEventListener('input', updateManaPoolsAndPSP);
 
                 updateAll();
             }
 
-            return {
-                init,
-                updateSavingThrows,
-                updateHitPoints,
-                updateManaPoolsAndPSP,
-                updateCharacterSize,
-                updateAll
-            };
+            return { init, updateAll, updateSavingThrows, updateHitPoints, updateManaAndPSP, updateCharacterSize };
         })();
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', CharacterCalculator.init);
-        } else {
-            CharacterCalculator.init();
-        }
-
+        document.addEventListener('DOMContentLoaded', CharacterCalculator.init);
         window.CharacterCalculator = CharacterCalculator;
-        window.updateSavingThrows = () => CharacterCalculator.updateSavingThrows();
-        window.updateHitPoints = () => CharacterCalculator.updateHitPoints();
-        window.updateArcaneMana = () => CharacterCalculator.updateManaPoolsAndPSP();
-        window.updateDivineMana = () => CharacterCalculator.updateManaPoolsAndPSP();
-        window.updatePSPPool = () => CharacterCalculator.updateManaPoolsAndPSP();
-        window.updateCharacterSize = () => CharacterCalculator.updateCharacterSize();
-    </script>
-</body>
-</html>
-
-... <!-- Abilities Tab --> 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD&D 2nd Edition - Características</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #0c1421 0%, #1e2a3a 100%);
-            color: #e5e5e5;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            text-align: center;
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-
-        .info-panel {
-            background: #2b303b;
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .info-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-
-        .info-label {
-            font-size: 0.8rem;
-            color: #b0b0b0;
-        }
-
-        .info-value {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #ffd700;
-        }
-
-        .abilities-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .ability-card {
-            background: #2b303b;
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .ability-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 0.8rem;
-        }
-
-        .ability-main-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            width: 100%;
-        }
-
-        .dice-input {
-            width: 60px;
-            height: 60px;
-            font-size: 1.8rem;
-            font-weight: bold;
-            text-align: center;
-            background: #16213e;
-            border: 2px solid #4a5464;
-            border-radius: 8px;
-            color: #e5e5e5;
-            flex-shrink: 0;
-        }
-
-        .dice-input:focus {
-            outline: none;
-            border-color: #ffd700;
-        }
-
-        .total-display {
-            width: 80px;
-            height: 80px;
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-align: center;
-            background: linear-gradient(135deg, #1a472a 0%, #2d5f3d 100%);
-            border: 3px solid #4CAF50;
-            border-radius: 12px;
-            color: #4CAF50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            position: relative;
-        }
-
-        .level-btn {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            width: 24px;
-            height: 24px;
-            background: #ffd700;
-            border: none;
-            border-radius: 50%;
-            color: #0c1421;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .level-btn:hover {
-            background: #ffed4e;
-            transform: scale(1.1);
-        }
-
-        .ability-details-row {
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            flex: 1;
-        }
-
-        .ability-detail-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.2rem;
-            padding: 0.5rem;
-            background: #16213e;
-            border: 1px solid #4a5464;
-            border-radius: 8px;
-            min-width: 70px;
-            flex: 0 0 auto;
-        }
-
-        .detail-name {
-            font-size: 0.75rem;
-            color: #b0b0b0;
-            white-space: nowrap;
-        }
-
-        .detail-value {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #e5e5e5;
-        }
-
-        .separator {
-            width: 2px;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, #4a5464, transparent);
-            flex-shrink: 0;
-        }
-
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Sistema de Características</h2>
-        
-        <div class="info-panel">
-            <div class="info-item">
-                <span class="info-label">Raza</span>
-                <span class="info-value" id="race-display">Humano</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Trasfondo</span>
-                <span class="info-value" id="background-display">Ninguno</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Nivel</span>
-                <span class="info-value" id="level-display">1</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Puntos Disponibles</span>
-                <span class="info-value" id="points-available">0</span>
-            </div>
-        </div>
-        
-        <div class="abilities-grid">
-            <div class="ability-card">
-                <div class="ability-name">FUERZA</div>
-                <div class="ability-main-row">
-                    <input type="number" class="dice-input" id="str-dice" min="1" max="65" value="10" 
-                           oninput="AbilitySystem.updateAbility('strength')">
-                    <div class="separator"></div>
-                    <div class="total-display" id="str-total">10
-                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('strength')">+</button>
-                    </div>
-                    <div class="ability-details-row">
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Golpe</span>
-                            <span class="detail-value" id="str-hit">+0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Daño</span>
-                            <span class="detail-value" id="str-dmg">+0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Peso</span>
-                            <span class="detail-value" id="str-weight">0kg</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Esf.Máx</span>
-                            <span class="detail-value" id="str-effort">0kg</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Puertas</span>
-                            <span class="detail-value" id="str-doors">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Barras</span>
-                            <span class="detail-value" id="str-bars">0%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ability-card">
-                <div class="ability-name">DESTREZA</div>
-                <div class="ability-main-row">
-                    <input type="number" class="dice-input" id="dex-dice" min="1" max="65" value="10" 
-                           oninput="AbilitySystem.updateAbility('dexterity')">
-                    <div class="separator"></div>
-                    <div class="total-display" id="dex-total">10
-                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('dexterity')">+</button>
-                    </div>
-                    <div class="ability-details-row">
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Ajuste Reacción</span>
-                            <span class="detail-value" id="dex-reaction">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Atq. Proyectiles</span>
-                            <span class="detail-value" id="dex-missile">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Def. CA</span>
-                            <span class="detail-value" id="dex-defense">0</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ability-card">
-                <div class="ability-name">CONSTITUCIÓN</div>
-                <div class="ability-main-row">
-                    <input type="number" class="dice-input" id="con-dice" min="1" max="65" value="10" 
-                           oninput="AbilitySystem.updateAbility('constitution')">
-                    <div class="separator"></div>
-                    <div class="total-display" id="con-total">10
-                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('constitution')">+</button>
-                    </div>
-                    <div class="ability-details-row">
-                        <div class="ability-detail-box">
-                            <span class="detail-name">HP/Nivel</span>
-                            <span class="detail-value" id="con-hp">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Shock Sistema</span>
-                            <span class="detail-value" id="con-shock">0%</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Superv. Revivir</span>
-                            <span class="detail-value" id="con-res">0%</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Prot. Veneno</span>
-                            <span class="detail-value" id="con-poison">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Regeneración</span>
-                            <span class="detail-value" id="con-regen">--</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ability-card">
-                <div class="ability-name">INTELIGENCIA</div>
-                <div class="ability-main-row">
-                    <input type="number" class="dice-input" id="int-dice" min="1" max="65" value="10" 
-                           oninput="AbilitySystem.updateAbility('intelligence')">
-                    <div class="separator"></div>
-                    <div class="total-display" id="int-total">10
-                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('intelligence')">+</button>
-                    </div>
-                    <div class="ability-details-row">
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Idiomas</span>
-                            <span class="detail-value" id="int-lang">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Niv. Conjuros</span>
-                            <span class="detail-value" id="int-spell-lvl">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Oport. Conjuros</span>
-                            <span class="detail-value" id="int-spell-chance">0%</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Max Conjuros</span>
-                            <span class="detail-value" id="int-max-spells">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Inmunidad</span>
-                            <span class="detail-value" id="int-immunity">--</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ability-card">
-                <div class="ability-name">SABIDURÍA</div>
-                <div class="ability-main-row">
-                    <input type="number" class="dice-input" id="wis-dice" min="1" max="65" value="10" 
-                           oninput="AbilitySystem.updateAbility('wisdom')">
-                    <div class="separator"></div>
-                    <div class="total-display" id="wis-total">10
-                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('wisdom')">+</button>
-                    </div>
-                    <div class="ability-details-row">
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Def. Mágica</span>
-                            <span class="detail-value" id="wis-magic-def">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Bonif. Conjuros</span>
-                            <span class="detail-value" id="wis-spell-bonus">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Fracaso Conjuro</span>
-                            <span class="detail-value" id="wis-spell-fail">0%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ability-card">
-                <div class="ability-name">CARISMA</div>
-                <div class="ability-main-row">
-                    <input type="number" class="dice-input" id="cha-dice" min="1" max="65" value="10" 
-                           oninput="AbilitySystem.updateAbility('charisma')">
-                    <div class="separator"></div>
-                    <div class="total-display" id="cha-total">10
-                        <button class="level-btn" onclick="AbilitySystem.addLevelPoint('charisma')">+</button>
-                    </div>
-                    <div class="ability-details-row">
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Servidores</span>
-                            <span class="detail-value" id="cha-servants">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Lealtad Base</span>
-                            <span class="detail-value" id="cha-loyalty">0</span>
-                        </div>
-                        <div class="ability-detail-box">
-                            <span class="detail-name">Ajuste Reacción</span>
-                            <span class="detail-value" id="cha-reaction">0</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const AbilitySystem = (function() {
-            const racialModifiers = {
-                'Humano': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
-                'Elfo': { str: 0, dex: 1, con: -1, int: 0, wis: 0, cha: 0 },
-                'Enano': { str: 0, dex: 0, con: 1, int: 0, wis: 0, cha: -1 }
-            };
-
-            const backgroundModifiers = {
-                'Ninguno': { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 },
-                'Noble': { str: 0, dex: 0, con: 0, int: 1, wis: 0, cha: 1 }
-            };
-
-            const levelPoints = {
-                strength: 0, dexterity: 0, constitution: 0,
-                intelligence: 0, wisdom: 0, charisma: 0
-            };
-
-            let currentRace = 'Humano';
-            let currentBackground = 'Ninguno';
-            let currentLevel = 1;
-
-            const abilityTables = {
-                strength: [
-                    {s:1,h:-5,d:-4,w:0.5,e:1.5,do:1,b:"0%"},
-                    {s:3,h:-3,d:-1,w:2.5,e:5,do:2,b:"0%"},
-                    {s:6,h:-1,d:0,w:10,e:28,do:4,b:"0%"},
-                    {s:10,h:0,d:0,w:20,e:58,do:6,b:"2%"},
-                    {s:15,h:0,d:0,w:28,e:85,do:8,b:"7%"},
-                    {s:16,h:0,d:1,w:35,e:98,do:9,b:"10%"},
-                    {s:18,h:1,d:2,w:55,e:130,do:11,b:"16%"},
-                    {s:20,h:3,d:8,w:270,e:350,do:17,b:"60%"},
-                    {s:45,h:27,d:54,w:3770,e:3975,do:19,b:"99%"},
-                    {s:65,h:47,d:94,w:6770,e:7075,do:19,b:"99%"}
-                ],
-                dexterity: [
-                    {s:1,r:-6,m:-6,df:5},
-                    {s:6,r:0,m:0,df:0},
-                    {s:10,r:0,m:0,df:0},
-                    {s:16,r:1,m:1,df:-1},
-                    {s:18,r:2,m:2,df:-4},
-                    {s:45,r:16,m:16,df:-17},
-                    {s:65,r:36,m:36,df:-37}
-                ],
-                constitution: [
-                    {s:1,hp:-3,sh:"25%",res:"30%",p:-2,rg:"--"},
-                    {s:10,hp:0,sh:"70%",res:"75%",p:0,rg:"--"},
-                    {s:15,hp:1,sh:"90%",res:"94%",p:0,rg:"--"},
-                    {s:18,hp:3,sh:"99%",res:"100%",p:0,rg:"--"},
-                    {s:45,hp:15,sh:"100%",res:"100%",p:0,rg:"9"},
-                    {s:65,hp:25,sh:"100%",res:"100%",p:0,rg:"16"}
-                ],
-                intelligence: [
-                    {s:1,l:0,sl:"--",ch:"0%",mx:0,im:"--"},
-                    {s:10,l:2,sl:"5",ch:"40%",mx:7,im:"--"},
-                    {s:18,l:7,sl:"9",ch:"85%",mx:18,im:"--"},
-                    {s:45,l:34,sl:"19",ch:"100%",mx:150,im:"9"},
-                    {s:65,l:54,sl:"29",ch:"100%",mx:250,im:"15"}
-                ],
-                wisdom: [
-                    {s:1,md:-6,b:0,f:"80%"},
-                    {s:10,md:0,b:0,f:"15%"},
-                    {s:13,md:0,b:1,f:"0%"},
-                    {s:18,md:4,b:4,f:"0%"},
-                    {s:45,md:15,b:17,f:"0%"},
-                    {s:65,md:25,b:27,f:"0%"}
-                ],
-                charisma: [
-                    {s:1,sv:0,ly:-8,rc:-7},
-                    {s:10,sv:4,ly:0,rc:0},
-                    {s:18,sv:15,ly:8,rc:7},
-                    {s:45,sv:64,ly:32,rc:32},
-                    {s:65,sv:104,ly:52,rc:52}
-                ]
-            };
-
-            function findData(table, score) {
-                let exact = table.find(e => e.s === score);
-                if (exact) return exact;
-                return table.reduce((p,c) => Math.abs(c.s-score)<Math.abs(p.s-score)?c:p);
-            }
-
-            function getPrefix(ability) {
-                return {strength:'str',dexterity:'dex',constitution:'con',
-                        intelligence:'int',wisdom:'wis',charisma:'cha'}[ability];
-            }
-
-            function calculateTotal(ability) {
-                const dice = parseInt(document.getElementById(`${getPrefix(ability)}-dice`).value)||10;
-                const key = {strength:'str',dexterity:'dex',constitution:'con',
-                             intelligence:'int',wisdom:'wis',charisma:'cha'}[ability];
-                return dice + racialModifiers[currentRace][key] + 
-                       backgroundModifiers[currentBackground][key] + levelPoints[ability];
-            }
-
-            function updateModifiers(ability, total) {
-                const pre = getPrefix(ability);
-                switch(ability) {
-                    case 'strength':
-                        const sd = findData(abilityTables.strength, total);
-                        document.getElementById('str-hit').textContent = sd.h>=0?`+${sd.h}`:sd.h;
-                        document.getElementById('str-dmg').textContent = sd.d>=0?`+${sd.d}`:sd.d;
-                        document.getElementById('str-weight').textContent = sd.w+'kg';
-                        document.getElementById('str-effort').textContent = sd.e+'kg';
-                        document.getElementById('str-doors').textContent = sd.do;
-                        document.getElementById('str-bars').textContent = sd.b;
-                        break;
-                    case 'dexterity':
-                        const dd = findData(abilityTables.dexterity, total);
-                        document.getElementById('dex-reaction').textContent = dd.r>=0?`+${dd.r}`:dd.r;
-                        document.getElementById('dex-missile').textContent = dd.m>=0?`+${dd.m}`:dd.m;
-                        document.getElementById('dex-defense').textContent = dd.df>=0?`+${dd.df}`:dd.df;
-                        break;
-                    case 'constitution':
-                        const cd = findData(abilityTables.constitution, total);
-                        document.getElementById('con-hp').textContent = cd.hp>=0?`+${cd.hp}`:cd.hp;
-                        document.getElementById('con-shock').textContent = cd.sh;
-                        document.getElementById('con-res').textContent = cd.res;
-                        document.getElementById('con-poison').textContent = cd.p>=0?`+${cd.p}`:cd.p;
-                        document.getElementById('con-regen').textContent = cd.rg;
-                        break;
-                    case 'intelligence':
-                        const id = findData(abilityTables.intelligence, total);
-                        document.getElementById('int-lang').textContent = id.l;
-                        document.getElementById('int-spell-lvl').textContent = id.sl;
-                        document.getElementById('int-spell-chance').textContent = id.ch;
-                        document.getElementById('int-max-spells').textContent = id.mx;
-                        document.getElementById('int-immunity').textContent = id.im;
-                        break;
-                    case 'wisdom':
-                        const wd = findData(abilityTables.wisdom, total);
-                        document.getElementById('wis-magic-def').textContent = wd.md>=0?`+${wd.md}`:wd.md;
-                        document.getElementById('wis-spell-bonus').textContent = wd.b>=0?`+${wd.b}`:wd.b;
-                        document.getElementById('wis-spell-fail').textContent = wd.f;
-                        break;
-                    case 'charisma':
-                        const chd = findData(abilityTables.charisma, total);
-                        document.getElementById('cha-servants').textContent = chd.sv;
-                        document.getElementById('cha-loyalty').textContent = chd.ly>=0?`+${chd.ly}`:chd.ly;
-                        document.getElementById('cha-reaction').textContent = chd.rc>=0?`+${chd.rc}`:chd.rc;
-                        break;
-                }
-            }
-
-            function updateAbility(ability) {
-                const total = calculateTotal(ability);
-                document.getElementById(`${getPrefix(ability)}-total`).textContent = total;
-                updateModifiers(ability, total);
-            }
-
-            function addLevelPoint(ability) {
-                const bonusLevels = [3,6,9,12,15,18,21,24,27,30];
-                let totalPoints = bonusLevels.filter(l => currentLevel >= l).length;
-                let usedPoints = Object.values(levelPoints).reduce((s,v) => s+v, 0);
-                if (usedPoints < totalPoints) {
-                    levelPoints[ability]++;
-                    updateAbility(ability);
-                    document.getElementById('points-available').textContent = totalPoints - usedPoints - 1;
-                }
-            }
-
-            function init() {
-                ['strength','dexterity','constitution','intelligence','wisdom','charisma']
-                    .forEach(a => updateAbility(a));
-            }
-
-            return {updateAbility, addLevelPoint, init};
-        })();
-
-        window.addEventListener('DOMContentLoaded', () => AbilitySystem.init());
     </script>
 </body>
 </html>
