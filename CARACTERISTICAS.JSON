@@ -1,0 +1,2818 @@
+{
+  "fuerza": [
+    {
+      "Punt. Habilidad": "1",
+      "Probab. de Golpe": "-5",
+      "Ajuste de daño": "-4",
+      "Peso Kg autorizado": "0,5",
+      "Esfuerzo máximo Kg": "1,5",
+      "Abrir Puertas": "1",
+      "Doblar Barras": "0%"
+    },
+    {
+      "Punt. Habilidad": "2",
+      "Probab. de Golpe": "-3",
+      "Ajuste de daño": "-2",
+      "Peso Kg autorizado": "0.5",
+      "Esfuerzo máximo Kg": "2.5",
+      "Abrir Puertas": "1",
+      "Doblar Barras": "0%"
+    },
+    {
+      "Punt. Habilidad": "3",
+      "Probab. de Golpe": "-3",
+      "Ajuste de daño": "-1",
+      "Peso Kg autorizado": "2,5",
+      "Esfuerzo máximo Kg": "5",
+      "Abrir Puertas": "2",
+      "Doblar Barras": "0%"
+    },
+    {
+      "Punt. Habilidad": "4",
+      "Probab. de Golpe": "-2",
+      "Ajuste de daño": "-1",
+      "Peso Kg autorizado": "5",
+      "Esfuerzo máximo Kg": "23",
+      "Abrir Puertas": "3",
+      "Doblar Barras": "0%"
+    },
+    {
+      "Punt. Habilidad": "5",
+      "Probab. de Golpe": "-2",
+      "Ajuste de daño": "-1",
+      "Peso Kg autorizado": "5",
+      "Esfuerzo máximo Kg": "23",
+      "Abrir Puertas": "3",
+      "Doblar Barras": "0%"
+    },
+    {
+      "Punt. Habilidad": "6",
+      "Probab. de Golpe": "-1",
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "10",
+      "Esfuerzo máximo Kg": "28",
+      "Abrir Puertas": "4",
+      "Doblar Barras": "0%"
+    },
+    {
+      "Punt. Habilidad": "7",
+      "Probab. de Golpe": "-1",
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "10",
+      "Esfuerzo máximo Kg": "28",
+      "Abrir Puertas": "4",
+      "Doblar Barras": "0%"
+    },
+    {
+      "Punt. Habilidad": "8",
+      "Probab. de Golpe": "0",
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "18",
+      "Esfuerzo máximo Kg": "45",
+      "Abrir Puertas": "5",
+      "Doblar Barras": "1%"
+    },
+    {
+      "Punt. Habilidad": "9",
+      "Probab. de Golpe": "0",
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "18",
+      "Esfuerzo máximo Kg": "45",
+      "Abrir Puertas": "5",
+      "Doblar Barras": "1%"
+    },
+    {
+      "Punt. Habilidad": "10",
+      "Probab. de Golpe": "0",
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "20",
+      "Esfuerzo máximo Kg": "58",
+      "Abrir Puertas": "6",
+      "Doblar Barras": "2%"
+    },
+    {
+      "Punt. Habilidad": "11",
+      "Probab. de Golpe": "0",
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "20",
+      "Esfuerzo máximo Kg": "58",
+      "Abrir Puertas": "6",
+      "Doblar Barras": "2%"
+    },
+    {
+      "Punt. Habilidad": "12",
+      "Probab. de Golpe": "0",
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "23",
+      "Esfuerzo máximo Kg": "70",
+      "Abrir Puertas": "7",
+      "Doblar Barras": "4%"
+    },
+    {
+      "Punt. Habilidad": "13",
+      "Probab. de Golpe": null,
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "23",
+      "Esfuerzo máximo Kg": "70",
+      "Abrir Puertas": "7",
+      "Doblar Barras": "4%"
+    },
+    {
+      "Punt. Habilidad": "14",
+      "Probab. de Golpe": "0",
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "28",
+      "Esfuerzo máximo Kg": "85",
+      "Abrir Puertas": "8",
+      "Doblar Barras": "7%"
+    },
+    {
+      "Punt. Habilidad": "15",
+      "Probab. de Golpe": "0",
+      "Ajuste de daño": "0",
+      "Peso Kg autorizado": "28",
+      "Esfuerzo máximo Kg": "85",
+      "Abrir Puertas": "8",
+      "Doblar Barras": "7%"
+    },
+    {
+      "Punt. Habilidad": "16",
+      "Probab. de Golpe": "0",
+      "Ajuste de daño": "1",
+      "Peso Kg autorizado": "35",
+      "Esfuerzo máximo Kg": "98",
+      "Abrir Puertas": "9",
+      "Doblar Barras": "10%"
+    },
+    {
+      "Punt. Habilidad": "17",
+      "Probab. de Golpe": "1",
+      "Ajuste de daño": "1",
+      "Peso Kg autorizado": "43",
+      "Esfuerzo máximo Kg": "110",
+      "Abrir Puertas": "10",
+      "Doblar Barras": "13%"
+    },
+    {
+      "Punt. Habilidad": "18",
+      "Probab. de Golpe": "1",
+      "Ajuste de daño": "2",
+      "Peso Kg autorizado": "55",
+      "Esfuerzo máximo Kg": "130",
+      "Abrir Puertas": "11",
+      "Doblar Barras": "16%"
+    },
+    {
+      "Punt. Habilidad": "18/00",
+      "Probab. de Golpe": "3",
+      "Ajuste de daño": "6",
+      "Peso Kg autorizado": "170",
+      "Esfuerzo máximo Kg": "240",
+      "Abrir Puertas": "16(6)",
+      "Doblar Barras": "40%"
+    },
+    {
+      "Punt. Habilidad": "19",
+      "Probab. de Golpe": "3",
+      "Ajuste de daño": "7",
+      "Peso Kg autorizado": "245",
+      "Esfuerzo máximo Kg": "320",
+      "Abrir Puertas": "16(8)",
+      "Doblar Barras": "50%"
+    },
+    {
+      "Punt. Habilidad": "20",
+      "Probab. de Golpe": "3",
+      "Ajuste de daño": "8",
+      "Peso Kg autorizado": "270",
+      "Esfuerzo máximo Kg": "350",
+      "Abrir Puertas": "17(10)",
+      "Doblar Barras": "60%"
+    },
+    {
+      "Punt. Habilidad": "21",
+      "Probab. de Golpe": "4",
+      "Ajuste de daño": "9",
+      "Peso Kg autorizado": "320",
+      "Esfuerzo máximo Kg": "405",
+      "Abrir Puertas": "17(12)",
+      "Doblar Barras": "70%"
+    },
+    {
+      "Punt. Habilidad": "22",
+      "Probab. de Golpe": "4",
+      "Ajuste de daño": "10",
+      "Peso Kg autorizado": "395",
+      "Esfuerzo máximo Kg": "485",
+      "Abrir Puertas": "18(14)",
+      "Doblar Barras": "80%"
+    },
+    {
+      "Punt. Habilidad": "23",
+      "Probab. de Golpe": "5",
+      "Ajuste de daño": "11",
+      "Peso Kg autorizado": "470",
+      "Esfuerzo máximo Kg": "565",
+      "Abrir Puertas": "18(16)",
+      "Doblar Barras": "90%"
+    },
+    {
+      "Punt. Habilidad": "24",
+      "Probab. de Golpe": "6",
+      "Ajuste de daño": "12",
+      "Peso Kg autorizado": "620",
+      "Esfuerzo máximo Kg": "720",
+      "Abrir Puertas": "19(17)",
+      "Doblar Barras": "95%"
+    },
+    {
+      "Punt. Habilidad": "25",
+      "Probab. de Golpe": "7",
+      "Ajuste de daño": "14",
+      "Peso Kg autorizado": "770",
+      "Esfuerzo máximo Kg": "875",
+      "Abrir Puertas": "19(18)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "26",
+      "Probab. de Golpe": "8",
+      "Ajuste de daño": "16",
+      "Peso Kg autorizado": "920",
+      "Esfuerzo máximo Kg": "1030",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "27",
+      "Probab. de Golpe": "9",
+      "Ajuste de daño": "18",
+      "Peso Kg autorizado": "1070",
+      "Esfuerzo máximo Kg": "1185",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "28",
+      "Probab. de Golpe": "10",
+      "Ajuste de daño": "20",
+      "Peso Kg autorizado": "1220",
+      "Esfuerzo máximo Kg": "1340",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "29",
+      "Probab. de Golpe": "11",
+      "Ajuste de daño": "22",
+      "Peso Kg autorizado": "1370",
+      "Esfuerzo máximo Kg": "1495",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "30",
+      "Probab. de Golpe": "12",
+      "Ajuste de daño": "24",
+      "Peso Kg autorizado": "1520",
+      "Esfuerzo máximo Kg": "1650",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "31",
+      "Probab. de Golpe": "13",
+      "Ajuste de daño": "26",
+      "Peso Kg autorizado": "1670",
+      "Esfuerzo máximo Kg": "1805",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "32",
+      "Probab. de Golpe": "14",
+      "Ajuste de daño": "28",
+      "Peso Kg autorizado": "1820",
+      "Esfuerzo máximo Kg": "1960",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "33",
+      "Probab. de Golpe": "15",
+      "Ajuste de daño": "30",
+      "Peso Kg autorizado": "1970",
+      "Esfuerzo máximo Kg": "2115",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "34",
+      "Probab. de Golpe": "16",
+      "Ajuste de daño": "32",
+      "Peso Kg autorizado": "2120",
+      "Esfuerzo máximo Kg": "2270",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "35",
+      "Probab. de Golpe": "17",
+      "Ajuste de daño": "34",
+      "Peso Kg autorizado": "2270",
+      "Esfuerzo máximo Kg": "2425",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "36",
+      "Probab. de Golpe": "18",
+      "Ajuste de daño": "36",
+      "Peso Kg autorizado": "2420",
+      "Esfuerzo máximo Kg": "2580",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "37",
+      "Probab. de Golpe": "19",
+      "Ajuste de daño": "38",
+      "Peso Kg autorizado": "2570",
+      "Esfuerzo máximo Kg": "2735",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "38",
+      "Probab. de Golpe": "20",
+      "Ajuste de daño": "40",
+      "Peso Kg autorizado": "2720",
+      "Esfuerzo máximo Kg": "2890",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "39",
+      "Probab. de Golpe": "21",
+      "Ajuste de daño": "42",
+      "Peso Kg autorizado": "2870",
+      "Esfuerzo máximo Kg": "3045",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "40",
+      "Probab. de Golpe": "22",
+      "Ajuste de daño": "44",
+      "Peso Kg autorizado": "3020",
+      "Esfuerzo máximo Kg": "3200",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "41",
+      "Probab. de Golpe": "23",
+      "Ajuste de daño": "46",
+      "Peso Kg autorizado": "3170",
+      "Esfuerzo máximo Kg": "3355",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "42",
+      "Probab. de Golpe": "24",
+      "Ajuste de daño": "48",
+      "Peso Kg autorizado": "3320",
+      "Esfuerzo máximo Kg": "3510",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "43",
+      "Probab. de Golpe": "25",
+      "Ajuste de daño": "50",
+      "Peso Kg autorizado": "3470",
+      "Esfuerzo máximo Kg": "3665",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "44",
+      "Probab. de Golpe": "26",
+      "Ajuste de daño": "52",
+      "Peso Kg autorizado": "3620",
+      "Esfuerzo máximo Kg": "3820",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "45",
+      "Probab. de Golpe": "27",
+      "Ajuste de daño": "54",
+      "Peso Kg autorizado": "3770",
+      "Esfuerzo máximo Kg": "3975",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "46",
+      "Probab. de Golpe": "28",
+      "Ajuste de daño": "56",
+      "Peso Kg autorizado": "3920",
+      "Esfuerzo máximo Kg": "4130",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "47",
+      "Probab. de Golpe": "29",
+      "Ajuste de daño": "58",
+      "Peso Kg autorizado": "4070",
+      "Esfuerzo máximo Kg": "4285",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "48",
+      "Probab. de Golpe": "30",
+      "Ajuste de daño": "60",
+      "Peso Kg autorizado": "4220",
+      "Esfuerzo máximo Kg": "4440",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "49",
+      "Probab. de Golpe": "31",
+      "Ajuste de daño": "62",
+      "Peso Kg autorizado": "4370",
+      "Esfuerzo máximo Kg": "4595",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "50",
+      "Probab. de Golpe": "32",
+      "Ajuste de daño": "64",
+      "Peso Kg autorizado": "4520",
+      "Esfuerzo máximo Kg": "4750",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "51",
+      "Probab. de Golpe": "33",
+      "Ajuste de daño": "66",
+      "Peso Kg autorizado": "4670",
+      "Esfuerzo máximo Kg": "4905",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "52",
+      "Probab. de Golpe": "34",
+      "Ajuste de daño": "68",
+      "Peso Kg autorizado": "4820",
+      "Esfuerzo máximo Kg": "5060",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "53",
+      "Probab. de Golpe": "35",
+      "Ajuste de daño": "70",
+      "Peso Kg autorizado": "4970",
+      "Esfuerzo máximo Kg": "5215",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "54",
+      "Probab. de Golpe": "36",
+      "Ajuste de daño": "72",
+      "Peso Kg autorizado": "5120",
+      "Esfuerzo máximo Kg": "5370",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "55",
+      "Probab. de Golpe": "37",
+      "Ajuste de daño": "74",
+      "Peso Kg autorizado": "5270",
+      "Esfuerzo máximo Kg": "5525",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "56",
+      "Probab. de Golpe": "38",
+      "Ajuste de daño": "76",
+      "Peso Kg autorizado": "5420",
+      "Esfuerzo máximo Kg": "5680",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "57",
+      "Probab. de Golpe": "39",
+      "Ajuste de daño": "78",
+      "Peso Kg autorizado": "5570",
+      "Esfuerzo máximo Kg": "5835",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "58",
+      "Probab. de Golpe": "40",
+      "Ajuste de daño": "80",
+      "Peso Kg autorizado": "5720",
+      "Esfuerzo máximo Kg": "5990",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "59",
+      "Probab. de Golpe": "41",
+      "Ajuste de daño": "82",
+      "Peso Kg autorizado": "5870",
+      "Esfuerzo máximo Kg": "6145",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "60",
+      "Probab. de Golpe": "42",
+      "Ajuste de daño": "84",
+      "Peso Kg autorizado": "6020",
+      "Esfuerzo máximo Kg": "6300",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "61",
+      "Probab. de Golpe": "43",
+      "Ajuste de daño": "86",
+      "Peso Kg autorizado": "6170",
+      "Esfuerzo máximo Kg": "6455",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "62",
+      "Probab. de Golpe": "44",
+      "Ajuste de daño": "88",
+      "Peso Kg autorizado": "6320",
+      "Esfuerzo máximo Kg": "6610",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "63",
+      "Probab. de Golpe": "45",
+      "Ajuste de daño": "90",
+      "Peso Kg autorizado": "6470",
+      "Esfuerzo máximo Kg": "6765",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "64",
+      "Probab. de Golpe": "46",
+      "Ajuste de daño": "92",
+      "Peso Kg autorizado": "6620",
+      "Esfuerzo máximo Kg": "6920",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    },
+    {
+      "Punt. Habilidad": "65",
+      "Probab. de Golpe": "47",
+      "Ajuste de daño": "94",
+      "Peso Kg autorizado": "6770",
+      "Esfuerzo máximo Kg": "7075",
+      "Abrir Puertas": "19(19)",
+      "Doblar Barras": "99%"
+    }
+  ],
+  "destreza": [
+    {
+      "Puntuación habilidad": "1",
+      "Ajuste reacción": "-6",
+      "Ajuste Atq Proyectiles": "-6",
+      "Ajuste defensivo": "5"
+    },
+    {
+      "Puntuación habilidad": "2",
+      "Ajuste reacción": "-4",
+      "Ajuste Atq Proyectiles": "-4",
+      "Ajuste defensivo": "5"
+    },
+    {
+      "Puntuación habilidad": "3",
+      "Ajuste reacción": "-3",
+      "Ajuste Atq Proyectiles": "-3",
+      "Ajuste defensivo": "4"
+    },
+    {
+      "Puntuación habilidad": "4",
+      "Ajuste reacción": "-2",
+      "Ajuste Atq Proyectiles": "-2",
+      "Ajuste defensivo": "3"
+    },
+    {
+      "Puntuación habilidad": "5",
+      "Ajuste reacción": "-1",
+      "Ajuste Atq Proyectiles": "-1",
+      "Ajuste defensivo": "2"
+    },
+    {
+      "Puntuación habilidad": "6",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "1"
+    },
+    {
+      "Puntuación habilidad": "7",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "0"
+    },
+    {
+      "Puntuación habilidad": "8",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "0"
+    },
+    {
+      "Puntuación habilidad": "9",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "0"
+    },
+    {
+      "Puntuación habilidad": "10",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "0"
+    },
+    {
+      "Puntuación habilidad": "11",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "0"
+    },
+    {
+      "Puntuación habilidad": "12",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "0"
+    },
+    {
+      "Puntuación habilidad": "13",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "0"
+    },
+    {
+      "Puntuación habilidad": "14",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "0"
+    },
+    {
+      "Puntuación habilidad": "15",
+      "Ajuste reacción": "0",
+      "Ajuste Atq Proyectiles": "0",
+      "Ajuste defensivo": "1"
+    },
+    {
+      "Puntuación habilidad": "16",
+      "Ajuste reacción": "1",
+      "Ajuste Atq Proyectiles": "1",
+      "Ajuste defensivo": "2"
+    },
+    {
+      "Puntuación habilidad": "17",
+      "Ajuste reacción": "2",
+      "Ajuste Atq Proyectiles": "2",
+      "Ajuste defensivo": "3"
+    },
+    {
+      "Puntuación habilidad": "18",
+      "Ajuste reacción": "2",
+      "Ajuste Atq Proyectiles": "2",
+      "Ajuste defensivo": "4"
+    },
+    {
+      "Puntuación habilidad": "19",
+      "Ajuste reacción": "3",
+      "Ajuste Atq Proyectiles": "3",
+      "Ajuste defensivo": "4"
+    },
+    {
+      "Puntuación habilidad": "20",
+      "Ajuste reacción": "3",
+      "Ajuste Atq Proyectiles": "3",
+      "Ajuste defensivo": "4"
+    },
+    {
+      "Puntuación habilidad": "21",
+      "Ajuste reacción": "3",
+      "Ajuste Atq Proyectiles": "3",
+      "Ajuste defensivo": "4"
+    },
+    {
+      "Puntuación habilidad": "22",
+      "Ajuste reacción": "4",
+      "Ajuste Atq Proyectiles": "4",
+      "Ajuste defensivo": "5"
+    },
+    {
+      "Puntuación habilidad": "23",
+      "Ajuste reacción": "4",
+      "Ajuste Atq Proyectiles": "4",
+      "Ajuste defensivo": "5"
+    },
+    {
+      "Puntuación habilidad": "24",
+      "Ajuste reacción": "4",
+      "Ajuste Atq Proyectiles": "4",
+      "Ajuste defensivo": "5"
+    },
+    {
+      "Puntuación habilidad": "25",
+      "Ajuste reacción": "5",
+      "Ajuste Atq Proyectiles": "5",
+      "Ajuste defensivo": "6"
+    },
+    {
+      "Puntuación habilidad": "26",
+      "Ajuste reacción": "5",
+      "Ajuste Atq Proyectiles": "5",
+      "Ajuste defensivo": "6"
+    },
+    {
+      "Puntuación habilidad": "27",
+      "Ajuste reacción": "5",
+      "Ajuste Atq Proyectiles": "5",
+      "Ajuste defensivo": "6"
+    },
+    {
+      "Puntuación habilidad": "28",
+      "Ajuste reacción": "6",
+      "Ajuste Atq Proyectiles": "6",
+      "Ajuste defensivo": "7"
+    },
+    {
+      "Puntuación habilidad": "29",
+      "Ajuste reacción": "6",
+      "Ajuste Atq Proyectiles": "6",
+      "Ajuste defensivo": "7"
+    },
+    {
+      "Puntuación habilidad": "30",
+      "Ajuste reacción": "6",
+      "Ajuste Atq Proyectiles": "6",
+      "Ajuste defensivo": "7"
+    },
+    {
+      "Puntuación habilidad": "31",
+      "Ajuste reacción": "7",
+      "Ajuste Atq Proyectiles": "7",
+      "Ajuste defensivo": "8"
+    },
+    {
+      "Puntuación habilidad": "32",
+      "Ajuste reacción": "7",
+      "Ajuste Atq Proyectiles": "7",
+      "Ajuste defensivo": "8"
+    },
+    {
+      "Puntuación habilidad": "33",
+      "Ajuste reacción": "8",
+      "Ajuste Atq Proyectiles": "8",
+      "Ajuste defensivo": "9"
+    },
+    {
+      "Puntuación habilidad": "34",
+      "Ajuste reacción": "8",
+      "Ajuste Atq Proyectiles": "8",
+      "Ajuste defensivo": "9"
+    },
+    {
+      "Puntuación habilidad": "35",
+      "Ajuste reacción": "9",
+      "Ajuste Atq Proyectiles": "9",
+      "Ajuste defensivo": "10"
+    },
+    {
+      "Puntuación habilidad": "36",
+      "Ajuste reacción": "9",
+      "Ajuste Atq Proyectiles": "9",
+      "Ajuste defensivo": "10"
+    },
+    {
+      "Puntuación habilidad": "37",
+      "Ajuste reacción": "10",
+      "Ajuste Atq Proyectiles": "10",
+      "Ajuste defensivo": "11"
+    },
+    {
+      "Puntuación habilidad": "38",
+      "Ajuste reacción": "10",
+      "Ajuste Atq Proyectiles": "10",
+      "Ajuste defensivo": "11"
+    },
+    {
+      "Puntuación habilidad": "39",
+      "Ajuste reacción": "11",
+      "Ajuste Atq Proyectiles": "11",
+      "Ajuste defensivo": "12"
+    },
+    {
+      "Puntuación habilidad": "40",
+      "Ajuste reacción": "11",
+      "Ajuste Atq Proyectiles": "11",
+      "Ajuste defensivo": "12"
+    },
+    {
+      "Puntuación habilidad": "41",
+      "Ajuste reacción": "12",
+      "Ajuste Atq Proyectiles": "12",
+      "Ajuste defensivo": "13"
+    },
+    {
+      "Puntuación habilidad": "42",
+      "Ajuste reacción": "13",
+      "Ajuste Atq Proyectiles": "13",
+      "Ajuste defensivo": "14"
+    },
+    {
+      "Puntuación habilidad": "43",
+      "Ajuste reacción": "14",
+      "Ajuste Atq Proyectiles": "14",
+      "Ajuste defensivo": "15"
+    },
+    {
+      "Puntuación habilidad": "44",
+      "Ajuste reacción": "15",
+      "Ajuste Atq Proyectiles": "15",
+      "Ajuste defensivo": "16"
+    },
+    {
+      "Puntuación habilidad": "45",
+      "Ajuste reacción": "16",
+      "Ajuste Atq Proyectiles": "16",
+      "Ajuste defensivo": "17"
+    },
+    {
+      "Puntuación habilidad": "46",
+      "Ajuste reacción": "17",
+      "Ajuste Atq Proyectiles": "17",
+      "Ajuste defensivo": "18"
+    },
+    {
+      "Puntuación habilidad": "47",
+      "Ajuste reacción": "18",
+      "Ajuste Atq Proyectiles": "18",
+      "Ajuste defensivo": "19"
+    },
+    {
+      "Puntuación habilidad": "48",
+      "Ajuste reacción": "19",
+      "Ajuste Atq Proyectiles": "19",
+      "Ajuste defensivo": "20"
+    },
+    {
+      "Puntuación habilidad": "49",
+      "Ajuste reacción": "20",
+      "Ajuste Atq Proyectiles": "20",
+      "Ajuste defensivo": "21"
+    },
+    {
+      "Puntuación habilidad": "50",
+      "Ajuste reacción": "21",
+      "Ajuste Atq Proyectiles": "21",
+      "Ajuste defensivo": "22"
+    },
+    {
+      "Puntuación habilidad": "51",
+      "Ajuste reacción": "22",
+      "Ajuste Atq Proyectiles": "22",
+      "Ajuste defensivo": "23"
+    },
+    {
+      "Puntuación habilidad": "52",
+      "Ajuste reacción": "23",
+      "Ajuste Atq Proyectiles": "23",
+      "Ajuste defensivo": "24"
+    },
+    {
+      "Puntuación habilidad": "53",
+      "Ajuste reacción": "24",
+      "Ajuste Atq Proyectiles": "24",
+      "Ajuste defensivo": "25"
+    },
+    {
+      "Puntuación habilidad": "54",
+      "Ajuste reacción": "25",
+      "Ajuste Atq Proyectiles": "25",
+      "Ajuste defensivo": "26"
+    },
+    {
+      "Puntuación habilidad": "55",
+      "Ajuste reacción": "26",
+      "Ajuste Atq Proyectiles": "26",
+      "Ajuste defensivo": "27"
+    },
+    {
+      "Puntuación habilidad": "56",
+      "Ajuste reacción": "27",
+      "Ajuste Atq Proyectiles": "27",
+      "Ajuste defensivo": "28"
+    },
+    {
+      "Puntuación habilidad": "57",
+      "Ajuste reacción": "28",
+      "Ajuste Atq Proyectiles": "28",
+      "Ajuste defensivo": "29"
+    },
+    {
+      "Puntuación habilidad": "58",
+      "Ajuste reacción": "29",
+      "Ajuste Atq Proyectiles": "29",
+      "Ajuste defensivo": "30"
+    },
+    {
+      "Puntuación habilidad": "59",
+      "Ajuste reacción": "30",
+      "Ajuste Atq Proyectiles": "30",
+      "Ajuste defensivo": "31"
+    },
+    {
+      "Puntuación habilidad": "60",
+      "Ajuste reacción": "31",
+      "Ajuste Atq Proyectiles": "31",
+      "Ajuste defensivo": "32"
+    },
+    {
+      "Puntuación habilidad": "61",
+      "Ajuste reacción": "32",
+      "Ajuste Atq Proyectiles": "32",
+      "Ajuste defensivo": "33"
+    },
+    {
+      "Puntuación habilidad": "62",
+      "Ajuste reacción": "33",
+      "Ajuste Atq Proyectiles": "33",
+      "Ajuste defensivo": "34"
+    },
+    {
+      "Puntuación habilidad": "63",
+      "Ajuste reacción": "34",
+      "Ajuste Atq Proyectiles": "34",
+      "Ajuste defensivo": "35"
+    },
+    {
+      "Puntuación habilidad": "64",
+      "Ajuste reacción": "35",
+      "Ajuste Atq Proyectiles": "35",
+      "Ajuste defensivo": "36"
+    },
+    {
+      "Puntuación habilidad": "65",
+      "Ajuste reacción": "36",
+      "Ajuste Atq Proyectiles": "36",
+      "Ajuste defensivo": "37"
+    }
+  ],
+  "constitucion": [
+    {
+      "Puntuación Habilidad": "1",
+      "Ajuste punto golpe": "-3",
+      "Shock del sistema": "25%",
+      "Supervi Revivif": "30%",
+      "Protección veneno": "-2",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "2",
+      "Ajuste punto golpe": "-2",
+      "Shock del sistema": "30%",
+      "Supervi Revivif": "35%",
+      "Protección veneno": "-1",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "3",
+      "Ajuste punto golpe": "-2",
+      "Shock del sistema": "35%",
+      "Supervi Revivif": "40%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "4",
+      "Ajuste punto golpe": "-1",
+      "Shock del sistema": "40%",
+      "Supervi Revivif": "45%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "5",
+      "Ajuste punto golpe": "-1",
+      "Shock del sistema": "45%",
+      "Supervi Revivif": "50%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "6",
+      "Ajuste punto golpe": "-1",
+      "Shock del sistema": "50%",
+      "Supervi Revivif": "55%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "7",
+      "Ajuste punto golpe": "0",
+      "Shock del sistema": "55%",
+      "Supervi Revivif": "60%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "8",
+      "Ajuste punto golpe": "0",
+      "Shock del sistema": "60%",
+      "Supervi Revivif": "65%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "9",
+      "Ajuste punto golpe": "0",
+      "Shock del sistema": "65%",
+      "Supervi Revivif": "70%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "10",
+      "Ajuste punto golpe": "0",
+      "Shock del sistema": "70%",
+      "Supervi Revivif": "75%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "11",
+      "Ajuste punto golpe": "0",
+      "Shock del sistema": "75%",
+      "Supervi Revivif": "80%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "12",
+      "Ajuste punto golpe": "0",
+      "Shock del sistema": "80%",
+      "Supervi Revivif": "85%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "13",
+      "Ajuste punto golpe": "0",
+      "Shock del sistema": "85%",
+      "Supervi Revivif": "90%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "14",
+      "Ajuste punto golpe": "0",
+      "Shock del sistema": "88%",
+      "Supervi Revivif": "92%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "15",
+      "Ajuste punto golpe": "1",
+      "Shock del sistema": "90%",
+      "Supervi Revivif": "94%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "16",
+      "Ajuste punto golpe": "2",
+      "Shock del sistema": "95%",
+      "Supervi Revivif": "96%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "17",
+      "Ajuste punto golpe": "3",
+      "Shock del sistema": "97%",
+      "Supervi Revivif": "98%",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "18",
+      "Ajuste punto golpe": "4",
+      "Shock del sistema": "99%",
+      "Supervi Revivif": "1",
+      "Protección veneno": "0",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "19",
+      "Ajuste punto golpe": "5",
+      "Shock del sistema": "99%",
+      "Supervi Revivif": "1",
+      "Protección veneno": "1",
+      "Regeneración": null
+    },
+    {
+      "Puntuación Habilidad": "20",
+      "Ajuste punto golpe": "5",
+      "Shock del sistema": "99%",
+      "Supervi Revivif": "1",
+      "Protección veneno": "1",
+      "Regeneración": "1/6 T"
+    },
+    {
+      "Puntuación Habilidad": "21",
+      "Ajuste punto golpe": "6",
+      "Shock del sistema": "99%",
+      "Supervi Revivif": "1",
+      "Protección veneno": "2",
+      "Regeneración": "1/5 T"
+    },
+    {
+      "Puntuación Habilidad": "22",
+      "Ajuste punto golpe": "6",
+      "Shock del sistema": "99%",
+      "Supervi Revivif": "1",
+      "Protección veneno": "2",
+      "Regeneración": "1/4 T"
+    },
+    {
+      "Puntuación Habilidad": "23",
+      "Ajuste punto golpe": "6",
+      "Shock del sistema": "99%",
+      "Supervi Revivif": "1",
+      "Protección veneno": "3",
+      "Regeneración": "1/3 T"
+    },
+    {
+      "Puntuación Habilidad": "24",
+      "Ajuste punto golpe": "7",
+      "Shock del sistema": "99%",
+      "Supervi Revivif": "1",
+      "Protección veneno": "3",
+      "Regeneración": "1/2 T"
+    },
+    {
+      "Puntuación Habilidad": "25",
+      "Ajuste punto golpe": "7",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "4",
+      "Regeneración": "1T"
+    },
+    {
+      "Puntuación Habilidad": "26",
+      "Ajuste punto golpe": "8",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "4",
+      "Regeneración": "1T"
+    },
+    {
+      "Puntuación Habilidad": "27",
+      "Ajuste punto golpe": "8",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "5",
+      "Regeneración": "1T"
+    },
+    {
+      "Puntuación Habilidad": "28",
+      "Ajuste punto golpe": "9",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "5",
+      "Regeneración": "2T"
+    },
+    {
+      "Puntuación Habilidad": "29",
+      "Ajuste punto golpe": "9",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "6",
+      "Regeneración": "2T"
+    },
+    {
+      "Puntuación Habilidad": "30",
+      "Ajuste punto golpe": "10",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "6",
+      "Regeneración": "2T"
+    },
+    {
+      "Puntuación Habilidad": "31",
+      "Ajuste punto golpe": "11",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "7",
+      "Regeneración": "3T"
+    },
+    {
+      "Puntuación Habilidad": "32",
+      "Ajuste punto golpe": "12",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "7",
+      "Regeneración": "3T"
+    },
+    {
+      "Puntuación Habilidad": "33",
+      "Ajuste punto golpe": "13",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "8",
+      "Regeneración": "4T"
+    },
+    {
+      "Puntuación Habilidad": "34",
+      "Ajuste punto golpe": "14",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "8",
+      "Regeneración": "4T"
+    },
+    {
+      "Puntuación Habilidad": "35",
+      "Ajuste punto golpe": "15",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "9",
+      "Regeneración": "5T"
+    },
+    {
+      "Puntuación Habilidad": "36",
+      "Ajuste punto golpe": "16",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "9",
+      "Regeneración": "5T"
+    },
+    {
+      "Puntuación Habilidad": "37",
+      "Ajuste punto golpe": "17",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "10",
+      "Regeneración": "6T"
+    },
+    {
+      "Puntuación Habilidad": "38",
+      "Ajuste punto golpe": "18",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "10",
+      "Regeneración": "6T"
+    },
+    {
+      "Puntuación Habilidad": "39",
+      "Ajuste punto golpe": "19",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "11",
+      "Regeneración": "7T"
+    },
+    {
+      "Puntuación Habilidad": "40",
+      "Ajuste punto golpe": "20",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "11",
+      "Regeneración": "71"
+    },
+    {
+      "Puntuación Habilidad": "41",
+      "Ajuste punto golpe": "21",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "12",
+      "Regeneración": "8T"
+    },
+    {
+      "Puntuación Habilidad": "42",
+      "Ajuste punto golpe": "22",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "12",
+      "Regeneración": "9T"
+    },
+    {
+      "Puntuación Habilidad": "43",
+      "Ajuste punto golpe": "23",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "13",
+      "Regeneración": "10T"
+    },
+    {
+      "Puntuación Habilidad": "44",
+      "Ajuste punto golpe": "24",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "13",
+      "Regeneración": "11T"
+    },
+    {
+      "Puntuación Habilidad": "45",
+      "Ajuste punto golpe": "25",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "14",
+      "Regeneración": "12T"
+    },
+    {
+      "Puntuación Habilidad": "46",
+      "Ajuste punto golpe": "26",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "14",
+      "Regeneración": "13T"
+    },
+    {
+      "Puntuación Habilidad": "47",
+      "Ajuste punto golpe": "27",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "15",
+      "Regeneración": "14T"
+    },
+    {
+      "Puntuación Habilidad": "48",
+      "Ajuste punto golpe": "28",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "15",
+      "Regeneración": "15T"
+    },
+    {
+      "Puntuación Habilidad": "49",
+      "Ajuste punto golpe": "29",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "16",
+      "Regeneración": "16T"
+    },
+    {
+      "Puntuación Habilidad": "50",
+      "Ajuste punto golpe": "30",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "16",
+      "Regeneración": "17T"
+    },
+    {
+      "Puntuación Habilidad": "51",
+      "Ajuste punto golpe": "31",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "17",
+      "Regeneración": "18T"
+    },
+    {
+      "Puntuación Habilidad": "52",
+      "Ajuste punto golpe": "32",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "17",
+      "Regeneración": "19T"
+    },
+    {
+      "Puntuación Habilidad": "53",
+      "Ajuste punto golpe": "33",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "18",
+      "Regeneración": "20T"
+    },
+    {
+      "Puntuación Habilidad": "54",
+      "Ajuste punto golpe": "34",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "18",
+      "Regeneración": "21T"
+    },
+    {
+      "Puntuación Habilidad": "55",
+      "Ajuste punto golpe": "35",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "19",
+      "Regeneración": "22T"
+    },
+    {
+      "Puntuación Habilidad": "56",
+      "Ajuste punto golpe": "36",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "19",
+      "Regeneración": "23T"
+    },
+    {
+      "Puntuación Habilidad": "57",
+      "Ajuste punto golpe": "37",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "20",
+      "Regeneración": "24T"
+    },
+    {
+      "Puntuación Habilidad": "58",
+      "Ajuste punto golpe": "38",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "20",
+      "Regeneración": "25T"
+    },
+    {
+      "Puntuación Habilidad": "59",
+      "Ajuste punto golpe": "39",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "21",
+      "Regeneración": "26T"
+    },
+    {
+      "Puntuación Habilidad": "60",
+      "Ajuste punto golpe": "40",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "21",
+      "Regeneración": "27T"
+    },
+    {
+      "Puntuación Habilidad": "61",
+      "Ajuste punto golpe": "41",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "22",
+      "Regeneración": "28T"
+    },
+    {
+      "Puntuación Habilidad": "62",
+      "Ajuste punto golpe": "42",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "22",
+      "Regeneración": "29T"
+    },
+    {
+      "Puntuación Habilidad": "63",
+      "Ajuste punto golpe": "43",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "23",
+      "Regeneración": "30T"
+    },
+    {
+      "Puntuación Habilidad": "64",
+      "Ajuste punto golpe": "44",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "23",
+      "Regeneración": "31T"
+    },
+    {
+      "Puntuación Habilidad": "65",
+      "Ajuste punto golpe": "45",
+      "Shock del sistema": "1",
+      "Supervi Revivif": "1",
+      "Protección veneno": "24",
+      "Regeneración": "32T"
+    }
+  ],
+  "inteligencia": [
+    {
+      "Puntuación Habilidad": "1",
+      "Número de lenguajes": "0",
+      "Nivel de conjuros": null,
+      "Oportunidad de conjuros": null,
+      "Num Max conjuros": null,
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "2",
+      "Número de lenguajes": "1",
+      "Nivel de conjuros": null,
+      "Oportunidad de conjuros": null,
+      "Num Max conjuros": null,
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "3",
+      "Número de lenguajes": "1",
+      "Nivel de conjuros": null,
+      "Oportunidad de conjuros": null,
+      "Num Max conjuros": null,
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "4",
+      "Número de lenguajes": "1",
+      "Nivel de conjuros": null,
+      "Oportunidad de conjuros": null,
+      "Num Max conjuros": null,
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "5",
+      "Número de lenguajes": "1",
+      "Nivel de conjuros": null,
+      "Oportunidad de conjuros": null,
+      "Num Max conjuros": null,
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "6",
+      "Número de lenguajes": "1",
+      "Nivel de conjuros": null,
+      "Oportunidad de conjuros": null,
+      "Num Max conjuros": null,
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "7",
+      "Número de lenguajes": "1",
+      "Nivel de conjuros": null,
+      "Oportunidad de conjuros": null,
+      "Num Max conjuros": null,
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "8",
+      "Número de lenguajes": "1",
+      "Nivel de conjuros": null,
+      "Oportunidad de conjuros": null,
+      "Num Max conjuros": null,
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "9",
+      "Número de lenguajes": "2",
+      "Nivel de conjuros": "4",
+      "Oportunidad de conjuros": "35%",
+      "Num Max conjuros": "6",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "10",
+      "Número de lenguajes": "2",
+      "Nivel de conjuros": "5",
+      "Oportunidad de conjuros": "40%",
+      "Num Max conjuros": "7",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "11",
+      "Número de lenguajes": "2",
+      "Nivel de conjuros": "5",
+      "Oportunidad de conjuros": "45%",
+      "Num Max conjuros": "7",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "12",
+      "Número de lenguajes": "3",
+      "Nivel de conjuros": "6",
+      "Oportunidad de conjuros": "50%",
+      "Num Max conjuros": "7",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "13",
+      "Número de lenguajes": "3",
+      "Nivel de conjuros": "6",
+      "Oportunidad de conjuros": "55%",
+      "Num Max conjuros": "9",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "14",
+      "Número de lenguajes": "4",
+      "Nivel de conjuros": "7",
+      "Oportunidad de conjuros": "60%",
+      "Num Max conjuros": "9",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "15",
+      "Número de lenguajes": "4",
+      "Nivel de conjuros": "7",
+      "Oportunidad de conjuros": "65%",
+      "Num Max conjuros": "11",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "16",
+      "Número de lenguajes": "5",
+      "Nivel de conjuros": "8",
+      "Oportunidad de conjuros": "70%",
+      "Num Max conjuros": "11",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "17",
+      "Número de lenguajes": "6",
+      "Nivel de conjuros": "8",
+      "Oportunidad de conjuros": "75%",
+      "Num Max conjuros": "14",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "18",
+      "Número de lenguajes": "7",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "85%",
+      "Num Max conjuros": "18",
+      "Inmunidad conjuros": null
+    },
+    {
+      "Puntuación Habilidad": "19",
+      "Número de lenguajes": "8",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "95%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N1"
+    },
+    {
+      "Puntuación Habilidad": "20",
+      "Número de lenguajes": "9",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "96%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N2"
+    },
+    {
+      "Puntuación Habilidad": "21",
+      "Número de lenguajes": "10",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "97%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N3"
+    },
+    {
+      "Puntuación Habilidad": "22",
+      "Número de lenguajes": "11",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "98%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N4"
+    },
+    {
+      "Puntuación Habilidad": "23",
+      "Número de lenguajes": "12",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "99%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N5"
+    },
+    {
+      "Puntuación Habilidad": "24",
+      "Número de lenguajes": "15",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N6"
+    },
+    {
+      "Puntuación Habilidad": "25",
+      "Número de lenguajes": "20",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N7"
+    },
+    {
+      "Puntuación Habilidad": "26",
+      "Número de lenguajes": "25",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N7"
+    },
+    {
+      "Puntuación Habilidad": "27",
+      "Número de lenguajes": "30",
+      "Nivel de conjuros": "9",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N7"
+    },
+    {
+      "Puntuación Habilidad": "28",
+      "Número de lenguajes": "35",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N8"
+    },
+    {
+      "Puntuación Habilidad": "29",
+      "Número de lenguajes": "40",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N9"
+    },
+    {
+      "Puntuación Habilidad": "30",
+      "Número de lenguajes": "45",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "31",
+      "Número de lenguajes": "50",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "32",
+      "Número de lenguajes": "55",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "33",
+      "Número de lenguajes": "60",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "34",
+      "Número de lenguajes": "65",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "35",
+      "Número de lenguajes": "70",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "36",
+      "Número de lenguajes": "75",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "37",
+      "Número de lenguajes": "80",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "38",
+      "Número de lenguajes": "85",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "39",
+      "Número de lenguajes": "90",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "40",
+      "Número de lenguajes": "95",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "41",
+      "Número de lenguajes": "100",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "42",
+      "Número de lenguajes": "105",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "43",
+      "Número de lenguajes": "110",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "44",
+      "Número de lenguajes": "115",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "45",
+      "Número de lenguajes": "120",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "46",
+      "Número de lenguajes": "125",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "47",
+      "Número de lenguajes": "130",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "48",
+      "Número de lenguajes": "135",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "49",
+      "Número de lenguajes": "140",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "50",
+      "Número de lenguajes": "145",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "51",
+      "Número de lenguajes": "150",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "52",
+      "Número de lenguajes": "155",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "53",
+      "Número de lenguajes": "160",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "54",
+      "Número de lenguajes": "165",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "55",
+      "Número de lenguajes": "170",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "56",
+      "Número de lenguajes": "175",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "57",
+      "Número de lenguajes": "180",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "58",
+      "Número de lenguajes": "185",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "59",
+      "Número de lenguajes": "190",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "60",
+      "Número de lenguajes": "195",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "61",
+      "Número de lenguajes": "200",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "62",
+      "Número de lenguajes": "205",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "63",
+      "Número de lenguajes": "210",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "64",
+      "Número de lenguajes": "215",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    },
+    {
+      "Puntuación Habilidad": "65",
+      "Número de lenguajes": "220",
+      "Nivel de conjuros": "10",
+      "Oportunidad de conjuros": "100%",
+      "Num Max conjuros": "TODOS",
+      "Inmunidad conjuros": "ILUSIONES N10"
+    }
+  ],
+  "sabiduria": [
+    {
+      "Puntuación Habilidad": "1",
+      "Ajus Def Mágica": "-6",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "80%"
+    },
+    {
+      "Puntuación Habilidad": "2",
+      "Ajus Def Mágica": "-4",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "60%"
+    },
+    {
+      "Puntuación Habilidad": "3",
+      "Ajus Def Mágica": "-3",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "50%"
+    },
+    {
+      "Puntuación Habilidad": "4",
+      "Ajus Def Mágica": "-2",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "45%"
+    },
+    {
+      "Puntuación Habilidad": "5",
+      "Ajus Def Mágica": "-1",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "40%"
+    },
+    {
+      "Puntuación Habilidad": "6",
+      "Ajus Def Mágica": "-1",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "35%"
+    },
+    {
+      "Puntuación Habilidad": "7",
+      "Ajus Def Mágica": "-1",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "30%"
+    },
+    {
+      "Puntuación Habilidad": "8",
+      "Ajus Def Mágica": "0",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "25%"
+    },
+    {
+      "Puntuación Habilidad": "9",
+      "Ajus Def Mágica": "0",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "20%"
+    },
+    {
+      "Puntuación Habilidad": "10",
+      "Ajus Def Mágica": "0",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "15%"
+    },
+    {
+      "Puntuación Habilidad": "11",
+      "Ajus Def Mágica": "0",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "10%"
+    },
+    {
+      "Puntuación Habilidad": "12",
+      "Ajus Def Mágica": "0",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "5%"
+    },
+    {
+      "Puntuación Habilidad": "13",
+      "Ajus Def Mágica": "0",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "14",
+      "Ajus Def Mágica": "0",
+      "Bonificacion conjuros": "0",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "15",
+      "Ajus Def Mágica": "1",
+      "Bonificacion conjuros": "2",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "16",
+      "Ajus Def Mágica": "2",
+      "Bonificacion conjuros": "2",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "17",
+      "Ajus Def Mágica": "3",
+      "Bonificacion conjuros": "3",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "18",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "4",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "19",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "1,4",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "20",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "2,4",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "21",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "3,5",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "22",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "4,5",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "23",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "5,5",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "24",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,6",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "25",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "26",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "27",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "28",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "29",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "30",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "31",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "32",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "33",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "34",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "35",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "36",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "37",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "38",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "39",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "40",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "41",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "42",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "43",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "44",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "45",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "46",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "47",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "48",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "49",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "50",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "51",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "52",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "53",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "54",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "55",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "56",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "57",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "58",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "59",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "60",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "61",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "62",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "63",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "64",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    },
+    {
+      "Puntuación Habilidad": "65",
+      "Ajus Def Mágica": "4",
+      "Bonificacion conjuros": "6,7",
+      "Fracaso Conjuro": "0"
+    }
+  ],
+  "carisma": [
+    {
+      "Puntuación Habilidad": "1",
+      "Num Max servidores": "0",
+      "Lealtad Base": "-8",
+      "Ajuste reacción": "-7"
+    },
+    {
+      "Puntuación Habilidad": "2",
+      "Num Max servidores": "1",
+      "Lealtad Base": "-7",
+      "Ajuste reacción": "-6"
+    },
+    {
+      "Puntuación Habilidad": "3",
+      "Num Max servidores": "1",
+      "Lealtad Base": "-6",
+      "Ajuste reacción": "-5"
+    },
+    {
+      "Puntuación Habilidad": "4",
+      "Num Max servidores": "1",
+      "Lealtad Base": "-5",
+      "Ajuste reacción": "-4"
+    },
+    {
+      "Puntuación Habilidad": "5",
+      "Num Max servidores": "2",
+      "Lealtad Base": "-4",
+      "Ajuste reacción": "-3"
+    },
+    {
+      "Puntuación Habilidad": "6",
+      "Num Max servidores": "2",
+      "Lealtad Base": "-3",
+      "Ajuste reacción": "-2"
+    },
+    {
+      "Puntuación Habilidad": "7",
+      "Num Max servidores": "3",
+      "Lealtad Base": "-2",
+      "Ajuste reacción": "-1"
+    },
+    {
+      "Puntuación Habilidad": "8",
+      "Num Max servidores": "3",
+      "Lealtad Base": "-1",
+      "Ajuste reacción": "0"
+    },
+    {
+      "Puntuación Habilidad": "9",
+      "Num Max servidores": "4",
+      "Lealtad Base": "0",
+      "Ajuste reacción": "0"
+    },
+    {
+      "Puntuación Habilidad": "10",
+      "Num Max servidores": "4",
+      "Lealtad Base": "0",
+      "Ajuste reacción": "0"
+    },
+    {
+      "Puntuación Habilidad": "11",
+      "Num Max servidores": "4",
+      "Lealtad Base": "0",
+      "Ajuste reacción": "0"
+    },
+    {
+      "Puntuación Habilidad": "12",
+      "Num Max servidores": "5",
+      "Lealtad Base": "0",
+      "Ajuste reacción": "0"
+    },
+    {
+      "Puntuación Habilidad": "13",
+      "Num Max servidores": "5",
+      "Lealtad Base": "0",
+      "Ajuste reacción": "1"
+    },
+    {
+      "Puntuación Habilidad": "14",
+      "Num Max servidores": "6",
+      "Lealtad Base": "1",
+      "Ajuste reacción": "2"
+    },
+    {
+      "Puntuación Habilidad": "15",
+      "Num Max servidores": "7",
+      "Lealtad Base": "3",
+      "Ajuste reacción": "3"
+    },
+    {
+      "Puntuación Habilidad": "16",
+      "Num Max servidores": "8",
+      "Lealtad Base": "4",
+      "Ajuste reacción": "5"
+    },
+    {
+      "Puntuación Habilidad": "17",
+      "Num Max servidores": "10",
+      "Lealtad Base": "6",
+      "Ajuste reacción": "6"
+    },
+    {
+      "Puntuación Habilidad": "18",
+      "Num Max servidores": "15",
+      "Lealtad Base": "8",
+      "Ajuste reacción": "7"
+    },
+    {
+      "Puntuación Habilidad": "19",
+      "Num Max servidores": "20",
+      "Lealtad Base": "10",
+      "Ajuste reacción": "8"
+    },
+    {
+      "Puntuación Habilidad": "20",
+      "Num Max servidores": "25",
+      "Lealtad Base": "12",
+      "Ajuste reacción": "9"
+    },
+    {
+      "Puntuación Habilidad": "21",
+      "Num Max servidores": "30",
+      "Lealtad Base": "14",
+      "Ajuste reacción": "10"
+    },
+    {
+      "Puntuación Habilidad": "22",
+      "Num Max servidores": "35",
+      "Lealtad Base": "16",
+      "Ajuste reacción": "11"
+    },
+    {
+      "Puntuación Habilidad": "23",
+      "Num Max servidores": "40",
+      "Lealtad Base": "18",
+      "Ajuste reacción": "12"
+    },
+    {
+      "Puntuación Habilidad": "24",
+      "Num Max servidores": "45",
+      "Lealtad Base": "20",
+      "Ajuste reacción": "13"
+    },
+    {
+      "Puntuación Habilidad": "25",
+      "Num Max servidores": "50",
+      "Lealtad Base": "20",
+      "Ajuste reacción": "14"
+    },
+    {
+      "Puntuación Habilidad": "26",
+      "Num Max servidores": "55",
+      "Lealtad Base": "21",
+      "Ajuste reacción": "15"
+    },
+    {
+      "Puntuación Habilidad": "27",
+      "Num Max servidores": "60",
+      "Lealtad Base": "21",
+      "Ajuste reacción": "16"
+    },
+    {
+      "Puntuación Habilidad": "28",
+      "Num Max servidores": "65",
+      "Lealtad Base": "22",
+      "Ajuste reacción": "17"
+    },
+    {
+      "Puntuación Habilidad": "29",
+      "Num Max servidores": "70",
+      "Lealtad Base": "22",
+      "Ajuste reacción": "18"
+    },
+    {
+      "Puntuación Habilidad": "30",
+      "Num Max servidores": "75",
+      "Lealtad Base": "23",
+      "Ajuste reacción": "19"
+    },
+    {
+      "Puntuación Habilidad": "31",
+      "Num Max servidores": "80",
+      "Lealtad Base": "24",
+      "Ajuste reacción": "20"
+    },
+    {
+      "Puntuación Habilidad": "32",
+      "Num Max servidores": "85",
+      "Lealtad Base": "25",
+      "Ajuste reacción": "21"
+    },
+    {
+      "Puntuación Habilidad": "33",
+      "Num Max servidores": "90",
+      "Lealtad Base": "26",
+      "Ajuste reacción": "22"
+    },
+    {
+      "Puntuación Habilidad": "34",
+      "Num Max servidores": "95",
+      "Lealtad Base": "27",
+      "Ajuste reacción": "23"
+    },
+    {
+      "Puntuación Habilidad": "35",
+      "Num Max servidores": "100",
+      "Lealtad Base": "28",
+      "Ajuste reacción": "24"
+    },
+    {
+      "Puntuación Habilidad": "36",
+      "Num Max servidores": "105",
+      "Lealtad Base": "29",
+      "Ajuste reacción": "25"
+    },
+    {
+      "Puntuación Habilidad": "37",
+      "Num Max servidores": "110",
+      "Lealtad Base": "30",
+      "Ajuste reacción": "26"
+    },
+    {
+      "Puntuación Habilidad": "38",
+      "Num Max servidores": "115",
+      "Lealtad Base": "31",
+      "Ajuste reacción": "27"
+    },
+    {
+      "Puntuación Habilidad": "39",
+      "Num Max servidores": "120",
+      "Lealtad Base": "32",
+      "Ajuste reacción": "28"
+    },
+    {
+      "Puntuación Habilidad": "40",
+      "Num Max servidores": "125",
+      "Lealtad Base": "33",
+      "Ajuste reacción": "29"
+    },
+    {
+      "Puntuación Habilidad": "41",
+      "Num Max servidores": "130",
+      "Lealtad Base": "34",
+      "Ajuste reacción": "30"
+    },
+    {
+      "Puntuación Habilidad": "42",
+      "Num Max servidores": "135",
+      "Lealtad Base": "35",
+      "Ajuste reacción": "31"
+    },
+    {
+      "Puntuación Habilidad": "43",
+      "Num Max servidores": "140",
+      "Lealtad Base": "36",
+      "Ajuste reacción": "32"
+    },
+    {
+      "Puntuación Habilidad": "44",
+      "Num Max servidores": "145",
+      "Lealtad Base": "37",
+      "Ajuste reacción": "33"
+    },
+    {
+      "Puntuación Habilidad": "45",
+      "Num Max servidores": "150",
+      "Lealtad Base": "38",
+      "Ajuste reacción": "34"
+    },
+    {
+      "Puntuación Habilidad": "46",
+      "Num Max servidores": "155",
+      "Lealtad Base": "39",
+      "Ajuste reacción": "35"
+    },
+    {
+      "Puntuación Habilidad": "47",
+      "Num Max servidores": "160",
+      "Lealtad Base": "40",
+      "Ajuste reacción": "36"
+    },
+    {
+      "Puntuación Habilidad": "48",
+      "Num Max servidores": "165",
+      "Lealtad Base": "41",
+      "Ajuste reacción": "37"
+    },
+    {
+      "Puntuación Habilidad": "49",
+      "Num Max servidores": "170",
+      "Lealtad Base": "42",
+      "Ajuste reacción": "38"
+    },
+    {
+      "Puntuación Habilidad": "50",
+      "Num Max servidores": "175",
+      "Lealtad Base": "43",
+      "Ajuste reacción": "39"
+    },
+    {
+      "Puntuación Habilidad": "51",
+      "Num Max servidores": "180",
+      "Lealtad Base": "44",
+      "Ajuste reacción": "40"
+    },
+    {
+      "Puntuación Habilidad": "52",
+      "Num Max servidores": "185",
+      "Lealtad Base": "45",
+      "Ajuste reacción": "41"
+    },
+    {
+      "Puntuación Habilidad": "53",
+      "Num Max servidores": "190",
+      "Lealtad Base": "46",
+      "Ajuste reacción": "42"
+    },
+    {
+      "Puntuación Habilidad": "54",
+      "Num Max servidores": "195",
+      "Lealtad Base": "47",
+      "Ajuste reacción": "43"
+    },
+    {
+      "Puntuación Habilidad": "55",
+      "Num Max servidores": "200",
+      "Lealtad Base": "48",
+      "Ajuste reacción": "44"
+    },
+    {
+      "Puntuación Habilidad": "56",
+      "Num Max servidores": "205",
+      "Lealtad Base": "49",
+      "Ajuste reacción": "45"
+    },
+    {
+      "Puntuación Habilidad": "57",
+      "Num Max servidores": "210",
+      "Lealtad Base": "50",
+      "Ajuste reacción": "46"
+    },
+    {
+      "Puntuación Habilidad": "58",
+      "Num Max servidores": "215",
+      "Lealtad Base": "51",
+      "Ajuste reacción": "47"
+    },
+    {
+      "Puntuación Habilidad": "59",
+      "Num Max servidores": "220",
+      "Lealtad Base": "52",
+      "Ajuste reacción": "48"
+    },
+    {
+      "Puntuación Habilidad": "60",
+      "Num Max servidores": "225",
+      "Lealtad Base": "53",
+      "Ajuste reacción": "49"
+    },
+    {
+      "Puntuación Habilidad": "61",
+      "Num Max servidores": "230",
+      "Lealtad Base": "54",
+      "Ajuste reacción": "50"
+    },
+    {
+      "Puntuación Habilidad": "62",
+      "Num Max servidores": "235",
+      "Lealtad Base": "55",
+      "Ajuste reacción": "51"
+    },
+    {
+      "Puntuación Habilidad": "63",
+      "Num Max servidores": "240",
+      "Lealtad Base": "56",
+      "Ajuste reacción": "52"
+    },
+    {
+      "Puntuación Habilidad": "64",
+      "Num Max servidores": "245",
+      "Lealtad Base": "57",
+      "Ajuste reacción": "53"
+    },
+    {
+      "Puntuación Habilidad": "65",
+      "Num Max servidores": "250",
+      "Lealtad Base": "58",
+      "Ajuste reacción": "54"
+    }
+  ]
+}
